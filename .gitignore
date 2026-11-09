@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+# Never commit real exports: they may carry patient data.
+*.REDCap.xml
+fixtures/private/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.pdf
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+.DS_Store
+# Evaluation: downloaded corpus (licensed, refetch with fetch_corpus.sh) and anything
+# derived from the internal rectal-cancer project, which must stay local.
+paper/eval/corpus/*/
+paper/eval/results/rectal/
+paper/eval/results/contribution.csv

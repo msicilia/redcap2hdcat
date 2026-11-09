@@ -1,0 +1,72 @@
+{
+  "dmp": {
+    "title": "DMP — Multiplataforma en cáncer de recto",
+    "description": "Plan de gestión de datos del estudio multiplataforma en cáncer de recto: integración de datos clínicos, radiómica, microRNAs y mutaciones para modelado de respuesta al tratamiento.",
+    "language": "spa",
+    "created": "2025-09-01T10:00:00Z",
+    "modified": "2026-06-15T12:00:00Z",
+    "ethical_issues_exist": "yes",
+    "ethical_issues_description": "Datos clínicos de pacientes; aprobación del comité de ética de referencia.",
+    "dmp_id": { "identifier": "https://doi.org/10.5281/zenodo.0000000", "type": "doi" },
+    "contact": {
+      "name": "Dra. Responsable del Estudio",
+      "mbox": "ip.estudio@irycis.example",
+      "contact_id": { "identifier": "https://orcid.org/0000-0002-1825-0097", "type": "orcid" }
+    },
+    "contributor": [
+      {
+        "name": "Dra. Responsable del Estudio",
+        "mbox": "ip.estudio@irycis.example",
+        "role": ["http://credit.niso.org/contributor-roles/investigation/"],
+        "contributor_id": { "identifier": "https://orcid.org/0000-0002-1825-0097", "type": "orcid" }
+      },
+      {
+        "name": "Gestor de Datos del Nodo",
+        "mbox": "datos@irycis.example",
+        "role": ["http://credit.niso.org/contributor-roles/data-curation/"],
+        "contributor_id": { "identifier": "https://orcid.org/0000-0001-5109-3700", "type": "orcid" }
+      }
+    ],
+    "project": [
+      {
+        "title": "IMPaCT-Data 2 — Multiplataforma en cáncer de recto",
+        "description": "Subproyecto de integración multiplataforma dentro de IMPaCT-Data 2.",
+        "start": "2025-01-01",
+        "end": "2026-12-31",
+        "funding": [
+          {
+            "funder_id": { "identifier": "https://ror.org/00ca2c886", "type": "url" },
+            "grant_id": { "identifier": "PMP24/00024", "type": "other" },
+            "funding_status": "granted"
+          }
+        ]
+      }
+    ],
+    "dataset": [
+      {
+        "title": "Multiplataforma en cáncer de recto",
+        "description": "Conjunto de datos clínicos, de radiómica, microRNAs y mutaciones de la cohorte de cáncer de recto, con seguimiento longitudinal.",
+        "type": "dataset",
+        "issued": "2026-01-15",
+        "language": "spa",
+        "personal_data": "yes",
+        "sensitive_data": "yes",
+        "keyword": ["cáncer de recto", "radiómica", "microRNA", "medicina de precisión"],
+        "dataset_id": { "identifier": "https://doi.org/10.5281/zenodo.1234567", "type": "doi" },
+        "distribution": [
+          {
+            "title": "Acceso controlado vía HDAB",
+            "access_url": "https://redcap.irycis.example/dataset/rectal",
+            "data_access": "shared",
+            "license": [
+              {
+                "license_ref": "https://creativecommons.org/licenses/by/4.0/",
+                "start_date": "2026-01-15"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
