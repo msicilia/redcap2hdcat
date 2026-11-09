@@ -67,8 +67,20 @@ fills the fields REDCap cannot — without ever overwriting a value REDCap alrea
 
 Terminology codes attach at three levels: dataset (`healthdcatap:hasCodingSystem`),
 form (`dct:subject` on each CSVW table) and field (`skos:exactMatch` on the column).
-REDCap has no native slot for codes, so the convention is to write them in the field
-annotation as `@CODE=SNOMED:22298006` (repeatable; other action tags are ignored).
+REDCap has no native slot for codes. Two forms are read from the field annotation, and
+other action tags are ignored:
+
+- `@CODE=<system>|<version>|<code or expression>`, repeatable, for example
+  `@CODE=SNOMED||22298006` or `@CODE=LOINC|2.74|4548-4`;
+- the JSON that the [ROME](https://github.com/REDCap-German-User-Group/ontology-annotation)
+  module writes in an `@ONTOLOGY` tag. Codes of the field go to `skos:exactMatch`; codes
+  of answer options become SKOS concepts (choice code, label, `skos:exactMatch`)
+  referenced from the column with `dct:references`, and for a checkbox the column of each
+  option also carries that option's codes. Units are read but not emitted, because
+  neither CSVW nor HealthDCAT-AP has a property for them.
+
+`hasCodingSystem` uses the HealthDCAT-AP coding-system vocabulary
+(`.../resource/authority/coding-system/SNOMED-CT`, `LOINC`, `ICD-10`, ...).
 
 > `--snomed` also enables a **demonstration** mapper that guesses SNOMED concepts from
 > field labels. The codes are real SNOMED identifiers but the assignment is heuristic

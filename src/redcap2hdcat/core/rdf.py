@@ -306,14 +306,31 @@ def _emit_column(g: Graph, table: URIRef, schema: BNode, column, lang: str) -> N
         g.add((node, SKOS.notation, Literal(f"{code} = {label}")))
     # Field-level semantic coding, terminology-agnostic (SNOMED, LOINC, ICD-10...).
     for coding in column.codings:
-        # A resolvable URI for a plain code; a blank node for an expression.
-        concept = URIRef(coding.uri) if coding.uri else BNode()
-        g.add((node, SKOS.exactMatch, concept))
-        g.add((concept, SKOS.notation, Literal(coding.pill)))
-        if coding.display:
-            g.add((concept, RDFS.label, Literal(coding.display)))
-        if coding.version:
-            g.add((concept, OWL.versionInfo, Literal(coding.version)))
+        g.add((node, SKOS.exactMatch, _concept(g, coding)))
+    # Coded answer options (ROME valueCodingMap). Neither CSVW nor HealthDCAT-AP has a
+    # property for the value set of a column, so each coded option is a SKOS concept
+    # with the choice code and label, referenced from the column.
+    labels = dict(column.choices)
+    for code, codings in column.value_codings.items():
+        option = BNode()
+        g.add((node, DCTERMS.references, option))
+        g.add((option, RDF.type, SKOS.Concept))
+        g.add((option, SKOS.notation, Literal(code)))
+        if labels.get(code):
+            g.add((option, SKOS.prefLabel, Literal(labels[code], lang=lang)))
+        for coding in codings:
+            g.add((option, SKOS.exactMatch, _concept(g, coding)))
+
+
+def _concept(g: Graph, coding) -> URIRef | BNode:
+    """A resolvable URI for a plain code of a known system; a blank node otherwise."""
+    concept = URIRef(coding.uri) if coding.uri else BNode()
+    g.add((concept, SKOS.notation, Literal(coding.pill)))
+    if coding.display:
+        g.add((concept, RDFS.label, Literal(coding.display)))
+    if coding.version:
+        g.add((concept, OWL.versionInfo, Literal(coding.version)))
+    return concept
 
 
 def build_csvw(
@@ -353,7 +370,7 @@ def build_csvw(
             _emit_column(g, table, schema, column, lang)
             if column.name == record_id:
                 g.add((schema, CSVW.primaryKey, Literal(record_id)))
-            for coding in column.codings:
+            for coding in column.all_codings:
                 systems_used.add(coding.system)
                 # Form-level subject: the concepts its fields carry.
                 if coding.uri:
@@ -361,9 +378,10 @@ def build_csvw(
 
     # Dataset-level: declare which coding systems are in use (EHDS Art. 51 style).
     for system in sorted(systems_used):
-        wikidata = snomed.CODING_SYSTEM_WIKIDATA.get(system)
-        if wikidata:
-            g.add((dataset, HEALTHDCATAP.hasCodingSystem, URIRef(wikidata)))
+        concept = snomed.CODING_SYSTEM.get(system.upper())
+        if concept:
+            g.add((dataset, HEALTHDCATAP.hasCodingSystem,
+                   _typed(g, URIRef(concept), DCTERMS.Standard)))
 
     return table_group
 

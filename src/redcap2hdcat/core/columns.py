@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..model import FieldType, Project, Variable
-from .snomed import Coding, code_field
+from .snomed import Coding, code_field, parse_rome
 from .vocab import datatype_for
 
 
@@ -36,12 +36,24 @@ class Column:
     calculation: str = ""
     choices: list[tuple[str, str]] = None # type: ignore[assignment]
     codings: list[Coding] = None # type: ignore[assignment]
+    # Codes of the answer options, by choice code (ROME valueCodingMap).
+    value_codings: dict[str, list[Coding]] = None # type: ignore[assignment]
 
     def __post_init__(self) -> None:
         if self.choices is None:
             self.choices = []
         if self.codings is None:
             self.codings = []
+        if self.value_codings is None:
+            self.value_codings = {}
+
+    @property
+    def all_codings(self) -> list[Coding]:
+        """Codes of the field and of its answer options, without repetition."""
+        out = list(self.codings)
+        for codings in self.value_codings.values():
+            out += [c for c in codings if c not in out]
+        return out
 
 
 def _structural_columns(project: Project) -> list[Column]:
@@ -86,6 +98,8 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
             continue
 
         codings = code_field(var.annotation, var.label, var.name, demo=snomed_demo)
+        rome = parse_rome(var.annotation)
+        value_codings = rome.values if rome else {}
 
         if var.field_type == FieldType.CHECKBOX:
             for choice in var.choices:
@@ -103,7 +117,10 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
                         form=var.form,
                         redcap_type=var.field_type.value,
                         validation=var.validation,
-                        codings=list(codings),
+                        # The column of one option denotes that option.
+                        codings=list(codings) + [
+                            c for c in value_codings.get(choice.code.strip(), [])
+                            if c not in codings],
                     )
                 )
             continue
@@ -125,6 +142,9 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
                 calculation=var.calculation,
                 choices=[(c.code, c.label) for c in var.choices],
                 codings=list(codings),
+                value_codings={
+                    c.code: value_codings[c.code] for c in var.choices if c.code in value_codings
+                },
             )
         )
 
