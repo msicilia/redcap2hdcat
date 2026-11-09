@@ -29,7 +29,7 @@ REDCap action tags (@HIDDEN, @READONLY...) are left untouched. Examples:
     @CODE=ICD10|2019|I21.9
     @CODE=SNOMED||243796009:246090004=421720008 (post-coordinated expression)
 
-Codes written by the ROME module (REDCap Ontology Annotations Made Easy) are read as
+Codes written by the ROME module (REDCap Ontologies Made Easy) are read as
 well. ROME stores a JSON object in an ``@ONTOLOGY`` action tag, with FHIR-style codings
 for the field (``dataElement.coding``), for its answer options
 (``dataElement.valueCodingMap``, keyed by choice code) and for its unit
