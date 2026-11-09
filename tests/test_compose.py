@@ -100,7 +100,7 @@ class TestSnomedInRdf:
         assert list(g.objects(None, DCTERMS.subject))
         # Dataset level.
         systems = list(g.objects(None, HEALTHDCATAP.hasCodingSystem))
-        assert snomed.CODING_SYSTEM_WIKIDATA["SNOMED"] in {str(s) for s in systems}
+        assert snomed.CODING_SYSTEM["SNOMED"] in {str(s) for s in systems}
 
 
 class TestDmpComposition:

@@ -36,38 +36,36 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "tree_environment" ;
-    csvw:column _:N2254b9de6cd7405bbdb099c064ef0197,
-        _:N92252f027efa4d60858c3d10b230e428,
-        _:Nf50aa69f77d9488fa87261141e3dd805 ;
+    csvw:column _:N4b014a3152224f59ac614a87c6f32267,
+        _:N878cc923a74b494eba0affb7049ff6df,
+        _:Nb2bd0a4a91334e7ca1b99b02e5246895 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N2254b9de6cd7405bbdb099c064ef0197,
-                _:N92252f027efa4d60858c3d10b230e428,
-                _:Nf50aa69f77d9488fa87261141e3dd805 ;
+            csvw:column _:N4b014a3152224f59ac614a87c6f32267,
+                _:N878cc923a74b494eba0affb7049ff6df,
+                _:Nb2bd0a4a91334e7ca1b99b02e5246895 ;
             csvw:primaryKey "tree_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1> a csvw:Table ;
     dct:title "tree_measurement" ;
-    csvw:column _:Nb90478f3500947fe9afd3628932c4b55,
-        _:Nbd7ba8d51f9f4bf5ba50c02b57d0ff0a ;
+    csvw:column _:N3319d570af234eed94b35c65bca02a99,
+        _:N9851f33e085b4b969c4a1aea0c6d1e08 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:Nb90478f3500947fe9afd3628932c4b55,
-                _:Nbd7ba8d51f9f4bf5ba50c02b57d0ff0a ] .
+            csvw:column _:N3319d570af234eed94b35c65bca02a99,
+                _:N9851f33e085b4b969c4a1aea0c6d1e08 ] .
 
 dpv-pd:Health a dpv:PersonalData .
 
 dpv-pd:Identifying a dpv:PersonalData .
 
-_:N2254b9de6cd7405bbdb099c064ef0197 a csvw:Column ;
-    dct:description "Tree ID" ;
-    dct:isPartOf "tree_environment" ;
+_:N3319d570af234eed94b35c65bca02a99 a csvw:Column ;
+    dct:description "Log size" ;
+    dct:isPartOf "tree_measurement" ;
     dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "tree_id" ;
-    csvw:required true ;
-    csvw:title "Tree ID" ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:datatype "decimal" ;
+    csvw:name "log_size" ;
+    csvw:title "Log size" .
 
-_:N92252f027efa4d60858c3d10b230e428 a csvw:Column ;
+_:N4b014a3152224f59ac614a87c6f32267 a csvw:Column ;
     dct:description "Controlled Environment Chamber" ;
     dct:isPartOf "tree_environment" ;
     dct:type "radio" ;
@@ -79,7 +77,15 @@ _:N92252f027efa4d60858c3d10b230e428 a csvw:Column ;
     csvw:name "chamber" ;
     csvw:title "Controlled Environment Chamber" .
 
-_:Nb90478f3500947fe9afd3628932c4b55 a csvw:Column ;
+_:N878cc923a74b494eba0affb7049ff6df a csvw:Column ;
+    dct:description "Ozone enriched environment" ;
+    dct:isPartOf "tree_environment" ;
+    dct:type "yesno" ;
+    csvw:datatype "boolean" ;
+    csvw:name "ozone" ;
+    csvw:title "Ozone enriched environment" .
+
+_:N9851f33e085b4b969c4a1aea0c6d1e08 a csvw:Column ;
     dct:description "Date of measurement" ;
     dct:isPartOf "tree_measurement" ;
     dct:type "text" ;
@@ -87,19 +93,13 @@ _:Nb90478f3500947fe9afd3628932c4b55 a csvw:Column ;
     csvw:name "date" ;
     csvw:title "Date of measurement" .
 
-_:Nbd7ba8d51f9f4bf5ba50c02b57d0ff0a a csvw:Column ;
-    dct:description "Log size" ;
-    dct:isPartOf "tree_measurement" ;
-    dct:type "text" ;
-    csvw:datatype "decimal" ;
-    csvw:name "log_size" ;
-    csvw:title "Log size" .
-
-_:Nf50aa69f77d9488fa87261141e3dd805 a csvw:Column ;
-    dct:description "Ozone enriched environment" ;
+_:Nb2bd0a4a91334e7ca1b99b02e5246895 a csvw:Column ;
+    dct:description "Tree ID" ;
     dct:isPartOf "tree_environment" ;
-    dct:type "yesno" ;
-    csvw:datatype "boolean" ;
-    csvw:name "ozone" ;
-    csvw:title "Ozone enriched environment" .
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "tree_id" ;
+    csvw:required true ;
+    csvw:title "Tree ID" ;
+    dpv:hasPersonalData dpv-pd:Identifying .
 

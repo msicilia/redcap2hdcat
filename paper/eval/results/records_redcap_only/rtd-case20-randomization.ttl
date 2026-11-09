@@ -32,22 +32,22 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "my_first_instrument" ;
-    csvw:column _:N10f74d08f7cc404da7f3d4f4cdd5bbec,
-        _:N436c833cf4d940e8ba6b9418a365ffd7,
-        _:N5b256863daaa41d0846d93b69965b220,
-        _:N8759f77436864b95be705bc9aad2d69e,
-        _:Nb02c9f0e868f4d0290dd9a07317638e9,
-        _:Nbf041f238a7b47b5b219a10943b048c6 ;
+    csvw:column _:N1018ac850aa74e18ab4b895a8fd890a4,
+        _:N280781aa283b4081b5bf9692a2b78bdc,
+        _:N7234c082ab814a1a8f9e4471b518edb1,
+        _:N73ea450f83d3464da09678ad24676232,
+        _:N8f0f869b4588404ab137326062dadf73,
+        _:Nc2ba04f71d3441d59a4eec9a73c40f8a ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N10f74d08f7cc404da7f3d4f4cdd5bbec,
-                _:N436c833cf4d940e8ba6b9418a365ffd7,
-                _:N5b256863daaa41d0846d93b69965b220,
-                _:N8759f77436864b95be705bc9aad2d69e,
-                _:Nb02c9f0e868f4d0290dd9a07317638e9,
-                _:Nbf041f238a7b47b5b219a10943b048c6 ;
+            csvw:column _:N1018ac850aa74e18ab4b895a8fd890a4,
+                _:N280781aa283b4081b5bf9692a2b78bdc,
+                _:N7234c082ab814a1a8f9e4471b518edb1,
+                _:N73ea450f83d3464da09678ad24676232,
+                _:N8f0f869b4588404ab137326062dadf73,
+                _:Nc2ba04f71d3441d59a4eec9a73c40f8a ;
             csvw:primaryKey "record_id" ] .
 
-_:N10f74d08f7cc404da7f3d4f4cdd5bbec a csvw:Column ;
+_:N1018ac850aa74e18ab4b895a8fd890a4 a csvw:Column ;
     dct:description "Pre test response" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
@@ -55,7 +55,7 @@ _:N10f74d08f7cc404da7f3d4f4cdd5bbec a csvw:Column ;
     csvw:name "pre_test" ;
     csvw:title "Pre test response" .
 
-_:N436c833cf4d940e8ba6b9418a365ffd7 a csvw:Column ;
+_:N280781aa283b4081b5bf9692a2b78bdc a csvw:Column ;
     dct:description "Location" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -69,7 +69,15 @@ _:N436c833cf4d940e8ba6b9418a365ffd7 a csvw:Column ;
     csvw:name "location" ;
     csvw:title "Location" .
 
-_:N5b256863daaa41d0846d93b69965b220 a csvw:Column ;
+_:N7234c082ab814a1a8f9e4471b518edb1 a csvw:Column ;
+    dct:description "Post test response" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "post_test" ;
+    csvw:title "Post test response" .
+
+_:N73ea450f83d3464da09678ad24676232 a csvw:Column ;
     dct:description "Treatment" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -79,7 +87,7 @@ _:N5b256863daaa41d0846d93b69965b220 a csvw:Column ;
     csvw:name "treatment" ;
     csvw:title "Treatment" .
 
-_:N8759f77436864b95be705bc9aad2d69e a csvw:Column ;
+_:N8f0f869b4588404ab137326062dadf73 a csvw:Column ;
     dct:description "Sex" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -89,7 +97,7 @@ _:N8759f77436864b95be705bc9aad2d69e a csvw:Column ;
     csvw:name "sex" ;
     csvw:title "Sex" .
 
-_:Nb02c9f0e868f4d0290dd9a07317638e9 a csvw:Column ;
+_:Nc2ba04f71d3441d59a4eec9a73c40f8a a csvw:Column ;
     dct:description "Record ID" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
@@ -98,12 +106,4 @@ _:Nb02c9f0e868f4d0290dd9a07317638e9 a csvw:Column ;
     csvw:required true ;
     csvw:title "Record ID" ;
     dpv:hasPersonalData dpv-pd:Identifying .
-
-_:Nbf041f238a7b47b5b219a10943b048c6 a csvw:Column ;
-    dct:description "Post test response" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "post_test" ;
-    csvw:title "Post test response" .
 

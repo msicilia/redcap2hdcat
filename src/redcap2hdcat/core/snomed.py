@@ -28,12 +28,23 @@ REDCap action tags (@HIDDEN, @READONLY...) are left untouched. Examples:
     @CODE=LOINC|2.74|4548-4
     @CODE=ICD10|2019|I21.9
     @CODE=SNOMED||243796009:246090004=421720008 (post-coordinated expression)
+
+Codes written by the ROME module (REDCap Ontology Annotations Made Easy) are read as
+well. ROME stores a JSON object in an ``@ONTOLOGY`` action tag, with FHIR-style codings
+for the field (``dataElement.coding``), for its answer options
+(``dataElement.valueCodingMap``, keyed by choice code) and for its unit
+(``dataElement.unit``). Format: technical_docs/Annotation_Format.md and
+schemas/rome-annotation.schema.json in
+https://github.com/REDCap-German-User-Group/ontology-annotation (commit f945c6d).
+As in ROME's own parser, the tag may be quoted or not, and when several @ONTOLOGY
+tags are present the last valid one is used.
 """
 
 from __future__ import annotations
 
+import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 # system name -> base URI for a concept in that system.
 _SYSTEM_URI = {
@@ -43,12 +54,34 @@ _SYSTEM_URI = {
     "ICD10CM": "http://hl7.org/fhir/sid/icd-10-cm/",
 }
 
-# system name -> Wikidata entity for healthdcatap:hasCodingSystem (dataset level).
-CODING_SYSTEM_WIKIDATA = {
-    "SNOMED": "http://www.wikidata.org/entity/Q1753883",
-    "LOINC": "http://www.wikidata.org/entity/Q502415",
-    "ICD10": "http://www.wikidata.org/entity/Q45127",
-    "ICD10CM": "http://www.wikidata.org/entity/Q45127",
+# FHIR code-system URI (as ROME writes it) -> the system token used above.
+_FHIR_SYSTEM = {
+    "snomed.info/sct": "SNOMED",
+    "loinc.org": "LOINC",
+    "hl7.org/fhir/sid/icd-10": "ICD10",
+    "hl7.org/fhir/sid/icd-10-cm": "ICD10CM",
+    "id.who.int/icd/release/11/mms": "ICD11",
+    "terminology.hl7.org/CodeSystem/icd-o-3": "ICDO3",
+    "www.whocc.no/atc": "ATC",
+    "www.nlm.nih.gov/research/umls/rxnorm": "RXNORM",
+    "human-phenotype-ontology.org": "HPO",
+    "www.orpha.net": "ORPHA",
+    "ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl": "NCIT",
+    "unitsofmeasure.org": "UCUM",
+}
+
+# system name -> concept of the HealthDCAT-AP coding-system vocabulary, the range of
+# healthdcatap:hasCodingSystem in Release 8 (catalogue/coding-system.rdf).
+_CODING_SYSTEM_NAL = "https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/"
+CODING_SYSTEM = {
+    token: _CODING_SYSTEM_NAL + concept
+    for token, concept in {
+        "SNOMED": "SNOMED-CT", "LOINC": "LOINC", "ICD10": "ICD-10",
+        # ICD-10-CM is the US national modification of ICD-10.
+        "ICD10CM": "ICD-10-NAT", "ICD11": "ICD-11", "ICDO3": "ICD-O", "ATC": "ATC",
+        "RXNORM": "RXNORM", "HPO": "HPO", "ORPHA": "ORPHACODE", "NCIT": "NCIT",
+        "MESH": "MESH", "UCUM": "UCUM",
+    }.items()
 }
 
 # Everything from @CODE= up to the next action tag or end of string.
@@ -85,6 +118,15 @@ class Coding:
 
 
 def parse_annotation(annotation: str) -> list[Coding]:
+    """Field codes: those of the @CODE convention, then those of a ROME @ONTOLOGY tag."""
+    out = parse_code_tags(annotation)
+    rome = parse_rome(annotation)
+    if rome:
+        out += [c for c in rome.coding if c not in out]
+    return out
+
+
+def parse_code_tags(annotation: str) -> list[Coding]:
     """Extract codes written with the @CODE convention, ignoring action tags."""
     out: list[Coding] = []
     for payload in _CODE_TAG.findall(annotation or ""):
@@ -101,6 +143,99 @@ def parse_annotation(annotation: str) -> list[Coding]:
         code = re.sub(r"\s+", " ", _SCG_TERM.sub("", value)).strip()
         out.append(Coding(system=system, code=code, version=version, display=display))
     return out
+
+
+# --- ROME @ONTOLOGY ----------------------------------------------------------------
+
+@dataclass(frozen=True)
+class RomeAnnotation:
+    """Codings of one ROME annotation: field, answer options (by choice code), unit."""
+
+    coding: list[Coding] = field(default_factory=list)
+    values: dict[str, list[Coding]] = field(default_factory=dict)
+    unit: list[Coding] = field(default_factory=list)
+
+
+_ONTOLOGY_TAG = re.compile(r"@ONTOLOGY\s*=\s*", re.IGNORECASE)
+
+
+def _json_object_at(text: str, start: int) -> str | None:
+    """The balanced {...} beginning at text[start], skipping braces inside strings."""
+    if start >= len(text) or text[start] != "{":
+        return None
+    depth, in_string, escaped = 0, False, False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+        elif ch == '"':
+            in_string = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return text[start:i + 1]
+    return None
+
+
+def _system_token(system: str) -> str:
+    key = re.sub(r"^https?://", "", system.strip()).rstrip("/")
+    return _FHIR_SYSTEM.get(key, system.strip())
+
+
+def _codings(items) -> list[Coding]:
+    out: list[Coding] = []
+    for item in items if isinstance(items, list) else []:
+        if not isinstance(item, dict):
+            continue
+        system, code = str(item.get("system", "")).strip(), str(item.get("code", "")).strip()
+        if not system or not code:
+            continue
+        coding = Coding(system=_system_token(system), code=code,
+                        version=str(item.get("version", "")).strip(),
+                        display=str(item.get("display", "")).strip())
+        if coding not in out:
+            out.append(coding)
+    return out
+
+
+def parse_rome(annotation: str) -> RomeAnnotation | None:
+    """The last valid ROME @ONTOLOGY annotation in a field annotation, or None."""
+    text = annotation or ""
+    found: RomeAnnotation | None = None
+    for match in _ONTOLOGY_TAG.finditer(text):
+        start = match.end()
+        if start < len(text) and text[start] in "'\"":
+            start += 1
+        raw = _json_object_at(text, start)
+        if raw is None:
+            continue
+        try:
+            data = json.loads(raw)
+        except ValueError:
+            continue
+        element = data.get("dataElement") if isinstance(data, dict) else None
+        if not isinstance(element, dict):
+            continue
+        values_raw = element.get("valueCodingMap")
+        values = {
+            str(code): _codings(entry.get("coding"))
+            for code, entry in (values_raw.items() if isinstance(values_raw, dict) else [])
+            if isinstance(entry, dict)
+        }
+        unit = element.get("unit")
+        found = RomeAnnotation(
+            coding=_codings(element.get("coding")),
+            values={k: v for k, v in values.items() if v},
+            unit=_codings(unit.get("coding")) if isinstance(unit, dict) else [],
+        )
+    return found
 
 
 # --- demonstration auto-mapper -------------------------------------------------

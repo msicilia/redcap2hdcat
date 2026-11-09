@@ -193,7 +193,8 @@ health study are health data.
 
 HealthDCAT-AP records the code systems used in a dataset with
 \code{healthdcatap:hasCodingSystem}. We emit codes at three levels. At the dataset level,
-\code{hasCodingSystem} lists each system that occurs in the project. At the form level,
+\code{hasCodingSystem} lists each system that occurs in the project, as a concept of the
+coding-system vocabulary of HealthDCAT-AP. At the form level,
 each \code{csvw:Table} lists with \code{dct:subject} the concepts of its fields. At the
 field level, each \code{csvw:Column} links with \code{skos:exactMatch} to the concept it
 denotes, for instance \url{http://snomed.info/id/22298006}, with the concept's label and
@@ -207,8 +208,15 @@ carry codes there in a repeatable tag of the form
 names any code system, the version is optional, and the value is either a code or a
 SNOMED CT compositional expression.\citep{snomedct} A plain code yields a concept
 address; an expression is carried as text. The tag ends at the next action tag, so the
-behaviour of the form is unchanged. \TBD{Decide: also read the \code{@ONTOLOGY} JSON
-written by ROME, and say so here.}
+behaviour of the form is unchanged.
+
+The tool also reads the annotations written by ROME, which stores in an
+\code{@ONTOLOGY} tag a JSON object with codes for the field, for each answer option and
+for the unit.\citep{meigen2026rome,romeformat} The codes of the field are emitted as
+above. Each coded answer option becomes a SKOS concept with the choice code and label,
+linked to its codes and referenced from the column. For a checkbox, the column of each
+option also links to the codes of that option. Units are not emitted, because neither
+CSVW nor HealthDCAT-AP has a property for them.
 
 The method emits codes that a project already carries and does not decide which concept
 a field denotes. The tool includes a demonstration mapper that assigns SNOMED CT concepts
@@ -250,8 +258,9 @@ stages (a) and (b).
 
 \paragraph{Conformance} We validated each record against the shapes, vocabularies and
 imports of the validator configuration of the pinned release, merged into one graph as
-the online HealthData@EU validator does. For one public record, the local results and
-the report of the online validator agreed for every group of results. Two mandatory
+the online HealthData@EU validator does. For one public record, built with each version
+of the tool, we compared the local results with the report of the online validator. Two
+mandatory
 elements had no source in any stage (see Results). We therefore validated each record as
 built and again with placeholders for these two, to separate their violations from the
 rest. We first ran this validation on version 0.1.0 of the tool, corrected the defects
@@ -324,7 +333,12 @@ conformed (Table~\ref{tab:corpus}). The remaining warnings concern recommended p
 that the tool does not emit, such as the legal basis, the purpose and the retention
 period, and the use of a dataset type from outside the recommended vocabulary. The
 record of the clinical project had the same two violations at stages (b) and (c). The
-validation command of the tool reached the same verdict as the evaluation set-up.
+validation command of the tool reached the same verdict as the evaluation set-up. For the
+public record with placeholders, the online validator reported no violations and 31
+warnings. The local results agreed with it for every group of results; one warning
+concerned the description of an author in an imported vocabulary, and not the record.
+The two reports had also agreed for version 0.1.0. None of the evaluated projects carries
+terminology codes. A test project whose fields carry codes in both forms also conformed.
 
 \subsection{Robustness}
 
@@ -377,8 +391,8 @@ follows the standard rejects; we converted it into a node shape before validatin
 The TEHDAS2 guideline states what each element should contain, and the online editor
 requires a person to enter each description.\citep{tehdas2d51,hipeditor} The method
 described here derives the elements that existing sources hold and leaves the rest to a
-person. Annotations added with ROME or RareLink\citep{meigen2026rome,graefe2025rarelink}
-can be carried into the catalogue record. \code{sdc\_healthdcat\_ap} takes the
+person. Codes that ROME adds while a project is designed reach the catalogue record
+without further work.\citep{meigen2026rome} \code{sdc\_healthdcat\_ap} takes the
 governance values from a file that the data holder writes;\citep{sdchealthdcat} the
 method described here reads them from a plan that funders usually require already.
 

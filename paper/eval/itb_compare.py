@@ -5,7 +5,8 @@ Also lists the local results whose focus node lies outside the record (brought i
 the shapes/vocabulary graph into the data graph, as the ITB validator does), which
 shacl_check.py excludes from its summaries.
 
-Usage: python itb_compare.py [record-id]     (default rtd-case07-longitudinal)
+Usage: python itb_compare.py [record-id] [variant]
+       (defaults rtd-case07-longitudinal, records; variant records_hdab = with placeholders)
 Output: results/itb/compare_<id>.csv, results/itb/outside_record_<id>.csv
 """
 
@@ -32,18 +33,19 @@ def expand(c: str) -> str:
 
 def main() -> None:
     rid = sys.argv[1] if len(sys.argv) > 1 else "rtd-case07-longitudinal"
+    variant = sys.argv[2] if len(sys.argv) > 2 else "records"
     itb = Graph().parse(RESULTS / "itb" / f"{rid}.report.ttl")
     online = Counter(
         (str(itb.value(r, SH.resultSeverity)).split("#")[1], str(itb.value(r, SH.resultPath)),
          str(itb.value(r, SH.sourceConstraintComponent)).split("#")[1])
         for r in itb.subjects(RDF.type, SH.ValidationResult))
-    with (RESULTS / "shacl" / "records" / f"{rid}.csv").open(newline="", encoding="utf-8") as fh:
+    with (RESULTS / "shacl" / variant / f"{rid}.csv").open(newline="", encoding="utf-8") as fh:
         local = Counter((r["severity"], expand(r["path"]), r["component"].replace("sh:", ""))
                         for r in csv.DictReader(fh) if r["severity"])
 
     # Local results outside the record.
     shapes, _ = build_shapes()
-    rec = Graph().parse(RESULTS / "records" / f"{rid}.ttl")
+    rec = Graph().parse(RESULTS / variant / f"{rid}.ttl")
     data = Graph()
     for t in shapes:
         data.add(t)

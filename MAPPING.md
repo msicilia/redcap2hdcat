@@ -76,13 +76,15 @@ Nothing in REDCap holds this information. It goes to configuration or a human fo
 `dct:publisher` (+ its mandatory `contactPoint` and NAL Health Publisher Types `type`) ·
 `dcat:theme` (NAL data-theme; in practice almost always `HEAL`) · `healthdcatap:healthTheme` ·
 `dpv:hasLegalBasis` · `healthdcatap:retentionPeriod` · `dct:accrualPeriodicity` ·
-`dct:conformsTo` · `healthdcatap:hasCodingSystem` (unless `@CODE` annotations are used) ·
+`dct:conformsTo` · `healthdcatap:hasCodingSystem` (unless `@CODE` or ROME `@ONTOLOGY` annotations are used) ·
 `dqv:hasQualityAnnotation` · licence and `dct:rights`.
 
 > **Useful hook:** the dictionary `field_annotation` field accepts `@` action tags. Some
 > institutions already use it for ontology codes. If populated, `hasCodingSystem` and
-> field-level `skos:exactMatch` stop being MANUAL (the `@CODE=` convention). Action tags
-> are not IRIs and are never copied to `csvw:propertyUrl`.
+> field-level `skos:exactMatch` stop being MANUAL (the `@CODE=` convention, or the
+> `@ONTOLOGY` JSON of the ROME module). `hasCodingSystem` takes concepts of the
+> HealthDCAT-AP coding-system vocabulary, typed `dct:Standard`. Action tags are not IRIs
+> and are never copied to `csvw:propertyUrl`.
 
 ---
 
@@ -100,7 +102,8 @@ REDCap dictionary maps almost 1:1.
 | `dct:description` | 1..n | `field_note`, else `field_label` (Release 8 requires one) | **AUTO** |
 | `csvw:datatype` | 1 | `field_type` + `text_validation_type_or_show_slider_number` | **AUTO** |
 | `csvw:propertyUrl` | 0..1 | never emitted: REDCap has no property IRI | — |
-| `skos:exactMatch` | 0..n | `@CODE=` in `field_annotation` | **AUTO** |
+| `skos:exactMatch` | 0..n | `@CODE=` or ROME `@ONTOLOGY` (`dataElement.coding`) in `field_annotation` | **AUTO** |
+| `dct:references` | 0..n | ROME `dataElement.valueCodingMap`: one `skos:Concept` per coded answer option | **AUTO** |
 
 ### Type table
 
