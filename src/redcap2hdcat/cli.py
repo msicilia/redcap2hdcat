@@ -102,12 +102,19 @@ def cmd_check(args: argparse.Namespace) -> int:
         json.dump(result.to_dict(), sys.stdout, indent=2, ensure_ascii=False)
         sys.stdout.write("\n")
     elif result.conforms:
-        print(f"Conformant ({'SHACL' if result.shacl_used else 'mandatory properties'} checked).")
+        checked = (f"SHACL, {result.profile or 'given'} shapes" if result.shacl_used
+                   else "mandatory properties")
+        warn = f"; {result.warnings} warning(s)" if result.warnings else ""
+        print(f"Conformant ({checked} checked{warn}).")
     else:
         for prop in result.missing:
             print(f"  missing: {prop}")
-        if result.report:
-            print(result.report)
+        for v in result.violations:
+            path = f" [{v['path']}]" if v["path"] else ""
+            print(f"  violation{path}: {v['message']}")
+        if result.shacl_used:
+            print(f"{len(result.violations)} violation(s), {result.warnings} warning(s) "
+                  f"({result.profile or 'given'} shapes).")
     return EXIT_OK if result.conforms else EXIT_NONCONFORMANT
 
 

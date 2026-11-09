@@ -24,6 +24,8 @@ class Column:
     required: bool = False
     identifier: bool = False
     source_variable: str = ""
+    # An IRI for the column's property. REDCap has none; field annotations are
+    # action tags, not IRIs, and are not copied here.
     property_url: str = ""
     form: str = ""
     # The original REDCap widget (text, radio, checkbox...), kept alongside the XSD
@@ -98,7 +100,6 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
                         datatype="boolean",
                         identifier=var.identifier,
                         source_variable=var.name,
-                        property_url=var.annotation,
                         form=var.form,
                         redcap_type=var.field_type.value,
                         validation=var.validation,
@@ -118,7 +119,6 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
                 required=var.required or index == 0,
                 identifier=var.identifier or var.name == record_id,
                 source_variable=var.name,
-                property_url=var.annotation,
                 form=var.form,
                 redcap_type=var.field_type.value,
                 validation=var.validation,

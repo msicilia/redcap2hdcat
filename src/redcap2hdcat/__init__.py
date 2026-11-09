@@ -3,7 +3,7 @@
 The library exists so the CLI stays testable; it is not the user interface.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from .config import Config
 from .model import Project, Variable

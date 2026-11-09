@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from ..config import Agent
+from ..core.vocab import language_tag
 from ..model import Project
 
 
@@ -46,10 +47,15 @@ class DMPOverlay:
         meta = project.metadata
         if not meta.title:
             meta.title = self.title
-        if not meta.description:
+        if not meta.description and self.description:
             meta.description = self.description
+            meta.dmp_text_language = _language_code(self.language)
+        if self.keywords and not meta.dmp_text_language:
+            meta.dmp_text_language = _language_code(self.language)
         if not meta.language:
             meta.language = _language_code(self.language)
+        if not meta.project_title:
+            meta.project_title = self.project_title
         if not meta.created:
             meta.created = self.issued
         if not meta.modified:
@@ -73,10 +79,19 @@ class DMPOverlay:
 
 
 def _language_code(rda_language: str) -> str:
-    """RDA uses ISO 639-3 (spa, eng); DCAT text tags want ISO 639-1 (es, en)."""
-    return {"spa": "es", "eng": "en", "cat": "ca", "eus": "eu", "glg": "gl"}.get(
-        rda_language, rda_language[:2] if rda_language else ""
-    )
+    """RDA uses ISO 639-3 (spa, eng); language tags want ISO 639-1 (es, en).
+
+    An unknown code gives an empty string rather than a truncation: truncating
+    'LanguageEnum.spa' once produced the tag 'La'.
+    """
+    return language_tag(rda_language)
+
+
+def _enum_value(value) -> str:
+    """madmpy models controlled fields as enums; take the value, not the repr."""
+    if value is None:
+        return ""
+    return str(getattr(value, "value", value) or "")
 
 
 def _agent(node) -> Agent:
@@ -159,8 +174,8 @@ def load(path: str | Path, project_title: str = "") -> DMPOverlay:
         title=ds_title or str(getattr(dmp, "title", "")),
         description=str(getattr(dataset, "description", "") if dataset else "")
         or str(getattr(dmp, "description", "") or ""),
-        language=str(getattr(dataset, "language", "") if dataset else "")
-        or str(getattr(dmp, "language", "") or ""),
+        language=_enum_value(getattr(dataset, "language", None) if dataset else None)
+        or _enum_value(getattr(dmp, "language", None)),
         issued=str(getattr(dataset, "issued", "") if dataset else ""),
         modified=str(getattr(dmp, "modified", "") or ""),
         creator=creator,

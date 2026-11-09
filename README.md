@@ -43,8 +43,10 @@ redcap2hdcat build project.xml -c institution.yaml -o record.ttl
 redcap2hdcat build project.xml -c institution.yaml \
     --dmp plan.json --snomed -o record.ttl
 
-# 4. Check conformance.
-redcap2hdcat check record.ttl --shapes ./shapes/
+# 4. Check conformance. --shapes takes the HealthData@EU validator folder published with
+#    each HealthDCAT-AP release (the one holding config.properties); the profile follows
+#    the record's access rights. A plain folder of .ttl shapes also works.
+redcap2hdcat check record.ttl --shapes ./healthdcat-ap/release-8/ehds/
 
 # 5. Generate a synthetic sample distribution.
 redcap2hdcat sample project.xml -n 100 -o sample.csv
