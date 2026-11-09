@@ -120,8 +120,10 @@ class TestDmpComposition:
         names = {str(o) for o in composed.objects(None, FOAF.name)}
         assert "Dra. Responsable del Estudio" in names
 
-    def test_license_comes_from_dmp(self, composed):
-        assert (None, DCTERMS.license, None) in composed
+    def test_license_comes_from_dmp_on_the_distribution(self, composed):
+        dist = next(composed.objects(None, DCAT.distribution))
+        assert composed.value(dist, DCTERMS.license) is not None
+        assert not [s for s, _ in composed.subject_objects(DCTERMS.license) if s != dist]
 
     def test_grant_identifies_the_generating_project(self, composed):
         # A grant number is not an IRI, so it cannot be dct:isReferencedBy; it

@@ -32,80 +32,91 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary/table-0> a csvw:Table ;
     dct:title "tblcenter" ;
-    csvw:column _:N01adb64cecb14716b157e6448a698602,
-        _:N03186d6c249a4fea94d6b640aec0b39a,
-        _:N1ba5d13f5e7142ff83e08592adf03dbe,
-        _:N1f6240fd19564b82bd994acb15b5e832,
-        _:N26755dc719314f41a525b030644965a7,
-        _:N34fc9fabd73e49e0bdead8405e379fc1,
-        _:N464dd1a38e31464eb142269ac98fbe49,
-        _:N55fd67b769ca4f2387813df261ade903,
-        _:N5c5aae6736734dba92dd39f874ce1631,
-        _:N660e676d38f747b3baab6c850374a1e8,
-        _:N7f73a2a42ffd42d697c22c323047ca6c,
-        _:N89558917d70c4b7b9bce179795cf23e3,
-        _:N8f26e3ac62bb465d9de96d551f5af672,
-        _:Nab9f93f91f3546fab4685a73c8cae7c9,
-        _:Nc2f26077b8804ac2829400a2127ebece,
-        _:Nc9b136bd10e74ccaad50245dac619366,
-        _:Nd74a38cd8a4143db9d6f0f0892b39ffe,
-        _:Ndb036abec0e84de29744f84278f287d4,
-        _:Ne2109ddbc9ff4b52bde555c827fa3814,
-        _:Neddab2b057b5479b99f46783df3db6d3,
-        _:Nf0c0fb60263c46118cf56259ec2ed1cc,
-        _:Nff2228f166284bbfa59d0c2dac84d813 ;
+    csvw:column _:N03990bc4b3234720b3ad657295dd9c26,
+        _:N10f9d9ea81b54484b7c7bf61600d6c85,
+        _:N18febf15862d49a6aa79a9d0b1604a60,
+        _:N3359ddc5fe03496ebe01229ef6265889,
+        _:N38a18314a09b488a915b0acdcfa69e15,
+        _:N47dbe724dd17493daaf6544217733c7c,
+        _:N497f2672a4cc43e58474cef917d30464,
+        _:N5491017958a8463e85f858fd49a6ee37,
+        _:N56d18ab161044afeb1dc0f811685828f,
+        _:N58354cb5924c44dda9e0ad5cdac20fd8,
+        _:N595b1a96d3b74fa1a3144df511cd028c,
+        _:N59744959b3ec4b1bbe6c76d49df2af37,
+        _:N5ed712f8370e4fbbbfd194bedcee7bb2,
+        _:N76442454e8164208bc18887fc6a65ca6,
+        _:N881f16aa3aec49c19665dcd15ad1647c,
+        _:N926d0654a22547a1bc708edf943b578d,
+        _:Na76a6b5eb0d34a8e88059b0527a945d7,
+        _:Nb1db6acfce2b48cda656d2fa53eea40a,
+        _:Nbb9276de267546f29964fc7136e324be,
+        _:Nc6671c962f5745a8bac36fe130196424,
+        _:Nce2ccb4e4a004103895ae525921ce90a,
+        _:Nd972857b06154779ba609f3bfac07f8d ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N01adb64cecb14716b157e6448a698602,
-                _:N03186d6c249a4fea94d6b640aec0b39a,
-                _:N1ba5d13f5e7142ff83e08592adf03dbe,
-                _:N1f6240fd19564b82bd994acb15b5e832,
-                _:N26755dc719314f41a525b030644965a7,
-                _:N34fc9fabd73e49e0bdead8405e379fc1,
-                _:N464dd1a38e31464eb142269ac98fbe49,
-                _:N55fd67b769ca4f2387813df261ade903,
-                _:N5c5aae6736734dba92dd39f874ce1631,
-                _:N660e676d38f747b3baab6c850374a1e8,
-                _:N7f73a2a42ffd42d697c22c323047ca6c,
-                _:N89558917d70c4b7b9bce179795cf23e3,
-                _:N8f26e3ac62bb465d9de96d551f5af672,
-                _:Nab9f93f91f3546fab4685a73c8cae7c9,
-                _:Nc2f26077b8804ac2829400a2127ebece,
-                _:Nc9b136bd10e74ccaad50245dac619366,
-                _:Nd74a38cd8a4143db9d6f0f0892b39ffe,
-                _:Ndb036abec0e84de29744f84278f287d4,
-                _:Ne2109ddbc9ff4b52bde555c827fa3814,
-                _:Neddab2b057b5479b99f46783df3db6d3,
-                _:Nf0c0fb60263c46118cf56259ec2ed1cc,
-                _:Nff2228f166284bbfa59d0c2dac84d813 ;
+            csvw:column _:N03990bc4b3234720b3ad657295dd9c26,
+                _:N10f9d9ea81b54484b7c7bf61600d6c85,
+                _:N18febf15862d49a6aa79a9d0b1604a60,
+                _:N3359ddc5fe03496ebe01229ef6265889,
+                _:N38a18314a09b488a915b0acdcfa69e15,
+                _:N47dbe724dd17493daaf6544217733c7c,
+                _:N497f2672a4cc43e58474cef917d30464,
+                _:N5491017958a8463e85f858fd49a6ee37,
+                _:N56d18ab161044afeb1dc0f811685828f,
+                _:N58354cb5924c44dda9e0ad5cdac20fd8,
+                _:N595b1a96d3b74fa1a3144df511cd028c,
+                _:N59744959b3ec4b1bbe6c76d49df2af37,
+                _:N5ed712f8370e4fbbbfd194bedcee7bb2,
+                _:N76442454e8164208bc18887fc6a65ca6,
+                _:N881f16aa3aec49c19665dcd15ad1647c,
+                _:N926d0654a22547a1bc708edf943b578d,
+                _:Na76a6b5eb0d34a8e88059b0527a945d7,
+                _:Nb1db6acfce2b48cda656d2fa53eea40a,
+                _:Nbb9276de267546f29964fc7136e324be,
+                _:Nc6671c962f5745a8bac36fe130196424,
+                _:Nce2ccb4e4a004103895ae525921ce90a,
+                _:Nd972857b06154779ba609f3bfac07f8d ;
             csvw:primaryKey "record_id" ] .
 
-_:N01adb64cecb14716b157e6448a698602 a csvw:Column ;
-    dct:description "Record ID" ;
+_:N03990bc4b3234720b3ad657295dd9c26 a csvw:Column ;
+    dct:description """RURAL
+<div style="font-weight:lighter;font-style:italic">Facility location</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = Urban",
+        "2 = Mostly urban",
+        "3 = Mostly rural",
+        "4 = Rural",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "rural" ;
+    csvw:title """RURAL
+<div style="font-weight:lighter;font-style:italic">Facility location</div>""" .
+
+_:N10f9d9ea81b54484b7c7bf61600d6c85 a csvw:Column ;
+    dct:description """CENTER
+<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
+Needs to be unique within each region.</div>""" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID" ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:name "center" ;
+    csvw:title """CENTER
+<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
+Needs to be unique within each region.</div>""" .
 
-_:N03186d6c249a4fea94d6b640aec0b39a a csvw:Column ;
-    dct:description "DISTRICT" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "district" ;
-    csvw:title "DISTRICT" .
-
-_:N1ba5d13f5e7142ff83e08592adf03dbe a csvw:Column ;
-    dct:description "Database Closing Date (CLOSE_D)" ;
+_:N18febf15862d49a6aa79a9d0b1604a60 a csvw:Column ;
+    dct:description """Site Inclusion Date (ADD_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "date" ;
-    csvw:name "close_d" ;
-    csvw:title "Database Closing Date (CLOSE_D)" .
+    csvw:name "add_center" ;
+    csvw:title """Site Inclusion Date (ADD_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" .
 
-_:N1f6240fd19564b82bd994acb15b5e832 a csvw:Column ;
+_:N3359ddc5fe03496ebe01229ef6265889 a csvw:Column ;
     dct:description """LEVEL
 <div style="font-weight:lighter;font-style:italic">Facility level of care</div>""" ;
     dct:isPartOf "tblcenter" ;
@@ -119,7 +130,119 @@ _:N1f6240fd19564b82bd994acb15b5e832 a csvw:Column ;
     csvw:title """LEVEL
 <div style="font-weight:lighter;font-style:italic">Facility level of care</div>""" .
 
-_:N26755dc719314f41a525b030644965a7 a csvw:Column ;
+_:N38a18314a09b488a915b0acdcfa69e15 a csvw:Column ;
+    dct:description """Site Exclusion date (DROP_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "drop_center" ;
+    csvw:title """Site Exclusion date (DROP_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" .
+
+_:N47dbe724dd17493daaf6544217733c7c a csvw:Column ;
+    dct:description "DISTRICT" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "district" ;
+    csvw:title "DISTRICT" .
+
+_:N497f2672a4cc43e58474cef917d30464 a csvw:Column ;
+    dct:description "Notes about this site" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "notes" ;
+    csvw:title "Notes about this site" .
+
+_:N5491017958a8463e85f858fd49a6ee37 a csvw:Column ;
+    dct:description """SURVEY_INTERNET
+<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = sufficient   access to complete online surveys",
+        "2 = degraded access making online survey completion difficult",
+        "3 = no internet access",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "survey_internet" ;
+    csvw:title """SURVEY_INTERNET
+<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" .
+
+_:N56d18ab161044afeb1dc0f811685828f a csvw:Column ;
+    dct:description """Database Open Date (OPEN_D)
+<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "open_d" ;
+    csvw:title """Database Open Date (OPEN_D)
+<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" .
+
+_:N58354cb5924c44dda9e0ad5cdac20fd8 a csvw:Column ;
+    dct:description """Last Reviewed Date 
+<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "last_reviewed_d" ;
+    csvw:title """Last Reviewed Date 
+<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" .
+
+_:N595b1a96d3b74fa1a3144df511cd028c a csvw:Column ;
+    dct:description "PROVINCE" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "province" ;
+    csvw:title "PROVINCE" .
+
+_:N59744959b3ec4b1bbe6c76d49df2af37 a csvw:Column ;
+    dct:description """NAME
+<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "name" ;
+    csvw:title """NAME
+<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" .
+
+_:N5ed712f8370e4fbbbfd194bedcee7bb2 a csvw:Column ;
+    dct:description "CITY" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "city" ;
+    csvw:title "CITY" .
+
+_:N76442454e8164208bc18887fc6a65ca6 a csvw:Column ;
+    dct:description "Values: AP, EA, SA, WA, CA, CN, NA" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "AP = Asia-Pacific",
+        "CA = Central Africa",
+        "CN = CCASAnet (Latin America)",
+        "EA = East Africa",
+        "NA = NA-ACCORD (North America)",
+        "SA = Southern Africa",
+        "WA = West Africa" ;
+    csvw:datatype "integer" ;
+    csvw:name "region" ;
+    csvw:title """REGION
+<div style="font-weight:lighter;font-style:italic">IeDEA global region</div>""" .
+
+_:N881f16aa3aec49c19665dcd15ad1647c a csvw:Column ;
+    dct:description """PROGRAM
+<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "program" ;
+    csvw:title """PROGRAM
+<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" .
+
+_:N926d0654a22547a1bc708edf943b578d a csvw:Column ;
     dct:description "<a target=\"_blank\" href=\"http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3\">Coded as 3-letter ISO code (on back end)</a>" ;
     dct:isPartOf "tblcenter" ;
     dct:type "dropdown" ;
@@ -376,29 +499,28 @@ _:N26755dc719314f41a525b030644965a7 a csvw:Column ;
     csvw:name "country" ;
     csvw:title "COUNTRY" .
 
-_:N34fc9fabd73e49e0bdead8405e379fc1 a csvw:Column ;
-    dct:description """Site Exclusion date (DROP_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" ;
+_:Na76a6b5eb0d34a8e88059b0527a945d7 a csvw:Column ;
+    dct:description "Database Closing Date (CLOSE_D)" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "date" ;
-    csvw:name "drop_center" ;
-    csvw:title """Site Exclusion date (DROP_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" .
+    csvw:name "close_d" ;
+    csvw:title "Database Closing Date (CLOSE_D)" .
 
-_:N464dd1a38e31464eb142269ac98fbe49 a csvw:Column ;
-    dct:description """Geocode - Latitude (GEOCODE_LAT)
-<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
-Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" ;
+_:Nb1db6acfce2b48cda656d2fa53eea40a a csvw:Column ;
+    dct:description """ADULTPED
+<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" ;
     dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "geocode_lat" ;
-    csvw:title """Geocode - Latitude (GEOCODE_LAT)
-<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
-Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" .
+    dct:type "dropdown" ;
+    skos:notation "ADULT = Adults (ADULT)",
+        "BOTH = Adults and children (BOTH)",
+        "PED = Children (PED)" ;
+    csvw:datatype "integer" ;
+    csvw:name "adultped" ;
+    csvw:title """ADULTPED
+<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" .
 
-_:N55fd67b769ca4f2387813df261ade903 a csvw:Column ;
+_:Nbb9276de267546f29964fc7136e324be a csvw:Column ;
     dct:description """SURVEY_PAPER
 <div style="font-weight:lighter;font-style:italic">Resources for printing and transferring paper surveys to a central location for data entry</div>""" ;
     dct:isPartOf "tblcenter" ;
@@ -414,155 +536,33 @@ _:N55fd67b769ca4f2387813df261ade903 a csvw:Column ;
     csvw:title """SURVEY_PAPER
 <div style="font-weight:lighter;font-style:italic">Resources for printing and transferring paper surveys to a central location for data entry</div>""" .
 
-_:N5c5aae6736734dba92dd39f874ce1631 a csvw:Column ;
-    dct:description """PROGRAM
-<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" ;
+_:Nc6671c962f5745a8bac36fe130196424 a csvw:Column ;
+    dct:description """Geocode - Latitude (GEOCODE_LAT)
+<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
+Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "program" ;
-    csvw:title """PROGRAM
-<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" .
+    csvw:name "geocode_lat" ;
+    csvw:title """Geocode - Latitude (GEOCODE_LAT)
+<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
+Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" .
 
-_:N660e676d38f747b3baab6c850374a1e8 a csvw:Column ;
-    dct:description "Notes about this site" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "notes" ;
-    csvw:title "Notes about this site" .
-
-_:N7f73a2a42ffd42d697c22c323047ca6c a csvw:Column ;
-    dct:description """ADULTPED
-<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "dropdown" ;
-    skos:notation "ADULT = Adults (ADULT)",
-        "BOTH = Adults and children (BOTH)",
-        "PED = Children (PED)" ;
-    csvw:datatype "integer" ;
-    csvw:name "adultped" ;
-    csvw:title """ADULTPED
-<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" .
-
-_:N89558917d70c4b7b9bce179795cf23e3 a csvw:Column ;
-    dct:description "PROVINCE" ;
+_:Nce2ccb4e4a004103895ae525921ce90a a csvw:Column ;
+    dct:description "Record ID" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "province" ;
-    csvw:title "PROVINCE" .
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID" ;
+    dpv:hasPersonalData dpv-pd:Identifying .
 
-_:N8f26e3ac62bb465d9de96d551f5af672 a csvw:Column ;
-    dct:description """CENTER
-<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
-Needs to be unique within each region.</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "center" ;
-    csvw:title """CENTER
-<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
-Needs to be unique within each region.</div>""" .
-
-_:Nab9f93f91f3546fab4685a73c8cae7c9 a csvw:Column ;
-    dct:description """RURAL
-<div style="font-weight:lighter;font-style:italic">Facility location</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "dropdown" ;
-    skos:notation "1 = Urban",
-        "2 = Mostly urban",
-        "3 = Mostly rural",
-        "4 = Rural",
-        "9 = Unknown" ;
-    csvw:datatype "integer" ;
-    csvw:name "rural" ;
-    csvw:title """RURAL
-<div style="font-weight:lighter;font-style:italic">Facility location</div>""" .
-
-_:Nc2f26077b8804ac2829400a2127ebece a csvw:Column ;
-    dct:description "CITY" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "city" ;
-    csvw:title "CITY" .
-
-_:Nc9b136bd10e74ccaad50245dac619366 a csvw:Column ;
-    dct:description """NAME
-<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "name" ;
-    csvw:title """NAME
-<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" .
-
-_:Nd74a38cd8a4143db9d6f0f0892b39ffe a csvw:Column ;
-    dct:description "Values: AP, EA, SA, WA, CA, CN, NA" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "dropdown" ;
-    skos:notation "AP = Asia-Pacific",
-        "CA = Central Africa",
-        "CN = CCASAnet (Latin America)",
-        "EA = East Africa",
-        "NA = NA-ACCORD (North America)",
-        "SA = Southern Africa",
-        "WA = West Africa" ;
-    csvw:datatype "integer" ;
-    csvw:name "region" ;
-    csvw:title """REGION
-<div style="font-weight:lighter;font-style:italic">IeDEA global region</div>""" .
-
-_:Ndb036abec0e84de29744f84278f287d4 a csvw:Column ;
-    dct:description """Site Inclusion Date (ADD_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "add_center" ;
-    csvw:title """Site Inclusion Date (ADD_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" .
-
-_:Ne2109ddbc9ff4b52bde555c827fa3814 a csvw:Column ;
-    dct:description """Database Open Date (OPEN_D)
-<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "open_d" ;
-    csvw:title """Database Open Date (OPEN_D)
-<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" .
-
-_:Neddab2b057b5479b99f46783df3db6d3 a csvw:Column ;
-    dct:description """SURVEY_INTERNET
-<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "dropdown" ;
-    skos:notation "1 = sufficient   access to complete online surveys",
-        "2 = degraded access making online survey completion difficult",
-        "3 = no internet access",
-        "9 = Unknown" ;
-    csvw:datatype "integer" ;
-    csvw:name "survey_internet" ;
-    csvw:title """SURVEY_INTERNET
-<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" .
-
-_:Nf0c0fb60263c46118cf56259ec2ed1cc a csvw:Column ;
+_:Nd972857b06154779ba609f3bfac07f8d a csvw:Column ;
     dct:description "Geocode - Longitude (GEOCODE_LON)" ;
     dct:isPartOf "tblcenter" ;
     dct:type "text" ;
     csvw:datatype "string" ;
     csvw:name "geocode_lon" ;
     csvw:title "Geocode - Longitude (GEOCODE_LON)" .
-
-_:Nff2228f166284bbfa59d0c2dac84d813 a csvw:Column ;
-    dct:description """Last Reviewed Date 
-<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" ;
-    dct:isPartOf "tblcenter" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "last_reviewed_d" ;
-    csvw:title """Last Reviewed Date 
-<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" .
 

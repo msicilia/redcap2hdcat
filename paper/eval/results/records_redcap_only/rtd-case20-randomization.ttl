@@ -32,32 +32,30 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "my_first_instrument" ;
-    csvw:column _:N19c44512c8b14d71afe9be7980c4e2c2,
-        _:N3366ee1d2ec9419a9f443839b5817bca,
-        _:N569295bc03744ef9b6aa318c0e38935b,
-        _:N608eaecc555f4ef5b242df79aa91a77e,
-        _:N96253f6b0ff24a7194f7f346011a755a,
-        _:Ne73bd22b3053466c98e74a84097b6383 ;
+    csvw:column _:N10f74d08f7cc404da7f3d4f4cdd5bbec,
+        _:N436c833cf4d940e8ba6b9418a365ffd7,
+        _:N5b256863daaa41d0846d93b69965b220,
+        _:N8759f77436864b95be705bc9aad2d69e,
+        _:Nb02c9f0e868f4d0290dd9a07317638e9,
+        _:Nbf041f238a7b47b5b219a10943b048c6 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N19c44512c8b14d71afe9be7980c4e2c2,
-                _:N3366ee1d2ec9419a9f443839b5817bca,
-                _:N569295bc03744ef9b6aa318c0e38935b,
-                _:N608eaecc555f4ef5b242df79aa91a77e,
-                _:N96253f6b0ff24a7194f7f346011a755a,
-                _:Ne73bd22b3053466c98e74a84097b6383 ;
+            csvw:column _:N10f74d08f7cc404da7f3d4f4cdd5bbec,
+                _:N436c833cf4d940e8ba6b9418a365ffd7,
+                _:N5b256863daaa41d0846d93b69965b220,
+                _:N8759f77436864b95be705bc9aad2d69e,
+                _:Nb02c9f0e868f4d0290dd9a07317638e9,
+                _:Nbf041f238a7b47b5b219a10943b048c6 ;
             csvw:primaryKey "record_id" ] .
 
-_:N19c44512c8b14d71afe9be7980c4e2c2 a csvw:Column ;
-    dct:description "Sex" ;
+_:N10f74d08f7cc404da7f3d4f4cdd5bbec a csvw:Column ;
+    dct:description "Pre test response" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "dropdown" ;
-    skos:notation "0 = Female",
-        "1 = Male" ;
-    csvw:datatype "integer" ;
-    csvw:name "sex" ;
-    csvw:title "Sex" .
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "pre_test" ;
+    csvw:title "Pre test response" .
 
-_:N3366ee1d2ec9419a9f443839b5817bca a csvw:Column ;
+_:N436c833cf4d940e8ba6b9418a365ffd7 a csvw:Column ;
     dct:description "Location" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -71,15 +69,27 @@ _:N3366ee1d2ec9419a9f443839b5817bca a csvw:Column ;
     csvw:name "location" ;
     csvw:title "Location" .
 
-_:N569295bc03744ef9b6aa318c0e38935b a csvw:Column ;
-    dct:description "Pre test response" ;
+_:N5b256863daaa41d0846d93b69965b220 a csvw:Column ;
+    dct:description "Treatment" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "pre_test" ;
-    csvw:title "Pre test response" .
+    dct:type "dropdown" ;
+    skos:notation "0 = Control",
+        "1 = Treatment" ;
+    csvw:datatype "integer" ;
+    csvw:name "treatment" ;
+    csvw:title "Treatment" .
 
-_:N608eaecc555f4ef5b242df79aa91a77e a csvw:Column ;
+_:N8759f77436864b95be705bc9aad2d69e a csvw:Column ;
+    dct:description "Sex" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "dropdown" ;
+    skos:notation "0 = Female",
+        "1 = Male" ;
+    csvw:datatype "integer" ;
+    csvw:name "sex" ;
+    csvw:title "Sex" .
+
+_:Nb02c9f0e868f4d0290dd9a07317638e9 a csvw:Column ;
     dct:description "Record ID" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
@@ -89,21 +99,11 @@ _:N608eaecc555f4ef5b242df79aa91a77e a csvw:Column ;
     csvw:title "Record ID" ;
     dpv:hasPersonalData dpv-pd:Identifying .
 
-_:N96253f6b0ff24a7194f7f346011a755a a csvw:Column ;
+_:Nbf041f238a7b47b5b219a10943b048c6 a csvw:Column ;
     dct:description "Post test response" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
     csvw:datatype "string" ;
     csvw:name "post_test" ;
     csvw:title "Post test response" .
-
-_:Ne73bd22b3053466c98e74a84097b6383 a csvw:Column ;
-    dct:description "Treatment" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "dropdown" ;
-    skos:notation "0 = Control",
-        "1 = Treatment" ;
-    csvw:datatype "integer" ;
-    csvw:name "treatment" ;
-    csvw:title "Treatment" .
 

@@ -32,76 +32,118 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "my_first_instrument" ;
-    csvw:column _:N00a920d14e414711abce6dd618a050d5,
-        _:N034d8c197c1a4161b459870cfcdeefdc,
-        _:N1611393a62a94065b463733b08f2d41b,
-        _:N1dcd987537fe4a48afe16aa348c87a18,
-        _:N26bce5ce00f8409f8d808ee247b5a746,
-        _:N2f1f1366af0f419ca969e214e99ba40e,
-        _:N2f8829db76e84f898b79af2f7d44c736,
-        _:N330dcc63762b45b89ee51d013e76a7a1,
-        _:N33688bc89c79412285630127bcffe5b8,
-        _:N34d60b96f05d451dbf84e4a8fab34070,
-        _:N3791be7577f74aa48bea310c070e8f3f,
-        _:N47695bf0acdf438e8f47a7e81aa9d852,
-        _:N4bc35e464bd442b69ebc37529368c768,
-        _:N50f9ec5636bd47f2a960c86b91cc3b7c,
-        _:N608298c9f7084595b7335c2c4cd503ae,
-        _:N751aeeda069a40ff943af8a644e913ec,
-        _:N7fea1cd8569b4cff836cd49e10830619,
-        _:N84711f8a525048bea1abf59d5133533b,
-        _:N8e08c80424f4477e914522be9b453126,
-        _:N96a5153a0dff4f46a502eb63c9853914,
-        _:N9c45c6a2c9e4414bbb20cf36c1ced2b0,
-        _:Na4fa8b2b2d9f4517ace357b5246fc053,
-        _:Naa0505cf604247d0b4589592f8dba2e4,
-        _:Nbad0af1598c24e119bfbe9597a0249c9,
-        _:Nd559dce6fb494238ba38f3c7bc952ef6,
-        _:Ne8581311e2b9440a9709e44f0401045c,
-        _:Nef9643ee6bc5408cbd5211dc08758084,
-        _:Nf1d4cb2cf29f47acb505e54c9699f85f,
-        _:Nf34cc2c7af0f447c868f11ce985261c5 ;
+    csvw:column _:N063a81fcab474267b8bf438085c17b72,
+        _:N08a1f7159fea44c789437a95566d867c,
+        _:N178ca2133f2346d9865985a4d4ea43a5,
+        _:N1d56c03d6b1847ffb0b56b93cbcfa8c1,
+        _:N21b4621c53614dd08cd66c87f1b41660,
+        _:N391e3aa0b9da4d838b93461bb66cd04f,
+        _:N43ec71653bb543dda55f50d889aca016,
+        _:N54960d678a174c09b2b15a6a3178ebb7,
+        _:N62bbb1020561471d99ab40a01253b4fb,
+        _:N652a62315df145b5bc48f48638fc411e,
+        _:N6b8e51800d0849f7b28bcfbff2b900c1,
+        _:N76abd3ebe95c4a5787f0bb3327823a08,
+        _:N77935eab17c54ee2928923d5a9e773a1,
+        _:N7bbd6e91144e44a8b36209454e4a4da9,
+        _:N7d47d993b86f445ba1476bdfd3a20780,
+        _:N7efe0ca02aef42a5abe490f51f8cea47,
+        _:N87ab783cefce4dc88bcea564a4efb960,
+        _:N88f5ece3c6f0462081f303806bf5f961,
+        _:N93793c6ed44c4706bb33e84acb8be6d3,
+        _:Na3409b1ff83a4b8a9a3bd7dc07dc83a5,
+        _:Na5bc9c0035dc495cb037a09d22f1e0d7,
+        _:Na950de1a67554c2ab7510ff161c90b23,
+        _:Naca383a8b04b4855a210859484e22e74,
+        _:Nb46ef12e51394f1a949ea90102b5dd55,
+        _:Nc428a679a5b540258b2d1e70e4eb45eb,
+        _:Ne16698391f3a4a6bab10869aae0c32a4,
+        _:Nee67ad8a09764603adb0b7f5b51458c9,
+        _:Nf3d208b621e442148dad93c5e86d657d,
+        _:Nf6be7488c1474d1c9d0084a725280f3c ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N00a920d14e414711abce6dd618a050d5,
-                _:N034d8c197c1a4161b459870cfcdeefdc,
-                _:N1611393a62a94065b463733b08f2d41b,
-                _:N1dcd987537fe4a48afe16aa348c87a18,
-                _:N26bce5ce00f8409f8d808ee247b5a746,
-                _:N2f1f1366af0f419ca969e214e99ba40e,
-                _:N2f8829db76e84f898b79af2f7d44c736,
-                _:N330dcc63762b45b89ee51d013e76a7a1,
-                _:N33688bc89c79412285630127bcffe5b8,
-                _:N34d60b96f05d451dbf84e4a8fab34070,
-                _:N3791be7577f74aa48bea310c070e8f3f,
-                _:N47695bf0acdf438e8f47a7e81aa9d852,
-                _:N4bc35e464bd442b69ebc37529368c768,
-                _:N50f9ec5636bd47f2a960c86b91cc3b7c,
-                _:N608298c9f7084595b7335c2c4cd503ae,
-                _:N751aeeda069a40ff943af8a644e913ec,
-                _:N7fea1cd8569b4cff836cd49e10830619,
-                _:N84711f8a525048bea1abf59d5133533b,
-                _:N8e08c80424f4477e914522be9b453126,
-                _:N96a5153a0dff4f46a502eb63c9853914,
-                _:N9c45c6a2c9e4414bbb20cf36c1ced2b0,
-                _:Na4fa8b2b2d9f4517ace357b5246fc053,
-                _:Naa0505cf604247d0b4589592f8dba2e4,
-                _:Nbad0af1598c24e119bfbe9597a0249c9,
-                _:Nd559dce6fb494238ba38f3c7bc952ef6,
-                _:Ne8581311e2b9440a9709e44f0401045c,
-                _:Nef9643ee6bc5408cbd5211dc08758084,
-                _:Nf1d4cb2cf29f47acb505e54c9699f85f,
-                _:Nf34cc2c7af0f447c868f11ce985261c5 ;
+            csvw:column _:N063a81fcab474267b8bf438085c17b72,
+                _:N08a1f7159fea44c789437a95566d867c,
+                _:N178ca2133f2346d9865985a4d4ea43a5,
+                _:N1d56c03d6b1847ffb0b56b93cbcfa8c1,
+                _:N21b4621c53614dd08cd66c87f1b41660,
+                _:N391e3aa0b9da4d838b93461bb66cd04f,
+                _:N43ec71653bb543dda55f50d889aca016,
+                _:N54960d678a174c09b2b15a6a3178ebb7,
+                _:N62bbb1020561471d99ab40a01253b4fb,
+                _:N652a62315df145b5bc48f48638fc411e,
+                _:N6b8e51800d0849f7b28bcfbff2b900c1,
+                _:N76abd3ebe95c4a5787f0bb3327823a08,
+                _:N77935eab17c54ee2928923d5a9e773a1,
+                _:N7bbd6e91144e44a8b36209454e4a4da9,
+                _:N7d47d993b86f445ba1476bdfd3a20780,
+                _:N7efe0ca02aef42a5abe490f51f8cea47,
+                _:N87ab783cefce4dc88bcea564a4efb960,
+                _:N88f5ece3c6f0462081f303806bf5f961,
+                _:N93793c6ed44c4706bb33e84acb8be6d3,
+                _:Na3409b1ff83a4b8a9a3bd7dc07dc83a5,
+                _:Na5bc9c0035dc495cb037a09d22f1e0d7,
+                _:Na950de1a67554c2ab7510ff161c90b23,
+                _:Naca383a8b04b4855a210859484e22e74,
+                _:Nb46ef12e51394f1a949ea90102b5dd55,
+                _:Nc428a679a5b540258b2d1e70e4eb45eb,
+                _:Ne16698391f3a4a6bab10869aae0c32a4,
+                _:Nee67ad8a09764603adb0b7f5b51458c9,
+                _:Nf3d208b621e442148dad93c5e86d657d,
+                _:Nf6be7488c1474d1c9d0084a725280f3c ;
             csvw:primaryKey "record_id" ] .
 
-_:N00a920d14e414711abce6dd618a050d5 a csvw:Column ;
-    dct:description "Slider" ;
+_:N063a81fcab474267b8bf438085c17b72 a csvw:Column ;
+    dct:description "ZIP Code" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "slider" ;
-    csvw:datatype "integer" ;
-    csvw:name "slider" ;
-    csvw:title "Slider" .
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "zip" ;
+    csvw:title "ZIP Code" .
 
-_:N034d8c197c1a4161b459870cfcdeefdc a csvw:Column ;
+_:N08a1f7159fea44c789437a95566d867c a csvw:Column ;
+    dct:description "Record ID" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID" ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N178ca2133f2346d9865985a4d4ea43a5 a csvw:Column ;
+    dct:description "Max: 2019-12-31" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date_ymd" ;
+    csvw:title "Date (YMD) [no min, max]" .
+
+_:N1d56c03d6b1847ffb0b56b93cbcfa8c1 a csvw:Column ;
+    dct:description "Phone (North America)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "phone" ;
+    csvw:title "Phone (North America)" .
+
+_:N21b4621c53614dd08cd66c87f1b41660 a csvw:Column ;
+    dct:description "Yes/No" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "yesno" ;
+    csvw:datatype "boolean" ;
+    csvw:name "yes_no" ;
+    csvw:title "Yes/No" .
+
+_:N391e3aa0b9da4d838b93461bb66cd04f a csvw:Column ;
+    dct:description "Datetime (ymd hms)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_ymdhms" ;
+    csvw:title "Datetime (ymd hms)" .
+
+_:N43ec71653bb543dda55f50d889aca016 a csvw:Column ;
     dct:description "Min 01-01-2010 00:00; Max 31-12-2019 23:59" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
@@ -109,15 +151,31 @@ _:N034d8c197c1a4161b459870cfcdeefdc a csvw:Column ;
     csvw:name "datetime_dmyhm" ;
     csvw:title "Datetime (dmy hm) [min, max]" .
 
-_:N1611393a62a94065b463733b08f2d41b a csvw:Column ;
-    dct:description "True/False" ;
+_:N54960d678a174c09b2b15a6a3178ebb7 a csvw:Column ;
+    dct:description "max: 100" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "truefalse" ;
-    csvw:datatype "boolean" ;
-    csvw:name "true_false" ;
-    csvw:title "True/False" .
+    dct:type "text" ;
+    csvw:datatype "decimal" ;
+    csvw:name "number" ;
+    csvw:title "Number [no min, max]" .
 
-_:N1dcd987537fe4a48afe16aa348c87a18 a csvw:Column ;
+_:N62bbb1020561471d99ab40a01253b4fb a csvw:Column ;
+    dct:description "Min: 01-01-2010" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date_mdy" ;
+    csvw:title "Date (MDY) [min, no max]" .
+
+_:N652a62315df145b5bc48f48638fc411e a csvw:Column ;
+    dct:description "Email" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "email" ;
+    csvw:title "Email" .
+
+_:N6b8e51800d0849f7b28bcfbff2b900c1 a csvw:Column ;
     dct:description "Drop Down (numeric code)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -128,73 +186,15 @@ _:N1dcd987537fe4a48afe16aa348c87a18 a csvw:Column ;
     csvw:name "dropdown_numeric" ;
     csvw:title "Drop Down (numeric code)" .
 
-_:N26bce5ce00f8409f8d808ee247b5a746 a csvw:Column ;
-    dct:description "Yes/No" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "yesno" ;
-    csvw:datatype "boolean" ;
-    csvw:name "yes_no" ;
-    csvw:title "Yes/No" .
-
-_:N2f1f1366af0f419ca969e214e99ba40e a csvw:Column ;
-    dct:description "Checkboxes (choice=Selection 1)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "checkbox___1" ;
-    csvw:title "Checkboxes (choice=Selection 1)" .
-
-_:N2f8829db76e84f898b79af2f7d44c736 a csvw:Column ;
-    dct:description "Record ID" ;
+_:N76abd3ebe95c4a5787f0bb3327823a08 a csvw:Column ;
+    dct:description "Min: 0" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID" ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:datatype "integer" ;
+    csvw:name "integer" ;
+    csvw:title "Integer [min, no max]" .
 
-_:N330dcc63762b45b89ee51d013e76a7a1 a csvw:Column ;
-    dct:description "Notes Box" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "notes" ;
-    csvw:title "Notes Box" .
-
-_:N33688bc89c79412285630127bcffe5b8 a csvw:Column ;
-    dct:description "Datetime (mdy hms)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "dateTime" ;
-    csvw:name "datetime_mdyhms" ;
-    csvw:title "Datetime (mdy hms)" .
-
-_:N34d60b96f05d451dbf84e4a8fab34070 a csvw:Column ;
-    dct:description "Email" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "email" ;
-    csvw:title "Email" .
-
-_:N3791be7577f74aa48bea310c070e8f3f a csvw:Column ;
-    dct:description "Checkboxes (choice=Selection 3)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "checkbox___3" ;
-    csvw:title "Checkboxes (choice=Selection 3)" .
-
-_:N47695bf0acdf438e8f47a7e81aa9d852 a csvw:Column ;
-    dct:description "Datetime (mdy hm)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "dateTime" ;
-    csvw:name "datetime_mdyhm" ;
-    csvw:title "Datetime (mdy hm)" .
-
-_:N4bc35e464bd442b69ebc37529368c768 a csvw:Column ;
+_:N77935eab17c54ee2928923d5a9e773a1 a csvw:Column ;
     dct:description "Radio Buttons" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "radio" ;
@@ -205,15 +205,23 @@ _:N4bc35e464bd442b69ebc37529368c768 a csvw:Column ;
     csvw:name "radio_buttons" ;
     csvw:title "Radio Buttons" .
 
-_:N50f9ec5636bd47f2a960c86b91cc3b7c a csvw:Column ;
-    dct:description "Min: 01-01-2010" ;
+_:N7bbd6e91144e44a8b36209454e4a4da9 a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 2)" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "date_mdy" ;
-    csvw:title "Date (MDY) [min, no max]" .
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___2" ;
+    csvw:title "Checkboxes (choice=Selection 2)" .
 
-_:N608298c9f7084595b7335c2c4cd503ae a csvw:Column ;
+_:N7d47d993b86f445ba1476bdfd3a20780 a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 3)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___3" ;
+    csvw:title "Checkboxes (choice=Selection 3)" .
+
+_:N7efe0ca02aef42a5abe490f51f8cea47 a csvw:Column ;
     dct:description "Drop Down (mixed)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -224,23 +232,31 @@ _:N608298c9f7084595b7335c2c4cd503ae a csvw:Column ;
     csvw:name "dropdown_mixed" ;
     csvw:title "Drop Down (mixed)" .
 
-_:N751aeeda069a40ff943af8a644e913ec a csvw:Column ;
-    dct:description "Checkboxes (choice=Selection 2)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "checkbox___2" ;
-    csvw:title "Checkboxes (choice=Selection 2)" .
-
-_:N7fea1cd8569b4cff836cd49e10830619 a csvw:Column ;
-    dct:description "Min: 0" ;
+_:N87ab783cefce4dc88bcea564a4efb960 a csvw:Column ;
+    dct:description "Date (DMY) [no min, no max]" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
-    csvw:datatype "integer" ;
-    csvw:name "integer" ;
-    csvw:title "Integer [min, no max]" .
+    csvw:datatype "date" ;
+    csvw:name "date_dmy" ;
+    csvw:title "Date (DMY) [no min, no max]" .
 
-_:N84711f8a525048bea1abf59d5133533b a csvw:Column ;
+_:N88f5ece3c6f0462081f303806bf5f961 a csvw:Column ;
+    dct:description "Time (HH:MM)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "time" ;
+    csvw:name "time" ;
+    csvw:title "Time (HH:MM)" .
+
+_:N93793c6ed44c4706bb33e84acb8be6d3 a csvw:Column ;
+    dct:description "Datetime (mdy hms)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_mdyhms" ;
+    csvw:title "Datetime (mdy hms)" .
+
+_:Na3409b1ff83a4b8a9a3bd7dc07dc83a5 a csvw:Column ;
     dct:description "Calculated Field (integer + number)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "calc" ;
@@ -249,47 +265,39 @@ _:N84711f8a525048bea1abf59d5133533b a csvw:Column ;
     csvw:name "calculated" ;
     csvw:title "Calculated Field (integer + number)" .
 
-_:N8e08c80424f4477e914522be9b453126 a csvw:Column ;
-    dct:description "Phone (North America)" ;
+_:Na5bc9c0035dc495cb037a09d22f1e0d7 a csvw:Column ;
+    dct:description "True/False" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "phone" ;
-    csvw:title "Phone (North America)" .
+    dct:type "truefalse" ;
+    csvw:datatype "boolean" ;
+    csvw:name "true_false" ;
+    csvw:title "True/False" .
 
-_:N96a5153a0dff4f46a502eb63c9853914 a csvw:Column ;
-    dct:description "Time (HH:MM)" ;
+_:Na950de1a67554c2ab7510ff161c90b23 a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 1)" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "time" ;
-    csvw:name "time" ;
-    csvw:title "Time (HH:MM)" .
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___1" ;
+    csvw:title "Checkboxes (choice=Selection 1)" .
 
-_:N9c45c6a2c9e4414bbb20cf36c1ced2b0 a csvw:Column ;
-    dct:description "ZIP Code" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "zip" ;
-    csvw:title "ZIP Code" .
-
-_:Na4fa8b2b2d9f4517ace357b5246fc053 a csvw:Column ;
-    dct:description "Datetime (dmy hms)" ;
+_:Naca383a8b04b4855a210859484e22e74 a csvw:Column ;
+    dct:description "Datetime (ymdhm)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
     csvw:datatype "dateTime" ;
-    csvw:name "datetime_dmyhms" ;
-    csvw:title "Datetime (dmy hms)" .
+    csvw:name "datetime_ymdhm" ;
+    csvw:title "Datetime (ymdhm)" .
 
-_:Naa0505cf604247d0b4589592f8dba2e4 a csvw:Column ;
-    dct:description "Max: 2019-12-31" ;
+_:Nb46ef12e51394f1a949ea90102b5dd55 a csvw:Column ;
+    dct:description "Datetime (mdy hm)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "date_ymd" ;
-    csvw:title "Date (YMD) [no min, max]" .
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_mdyhm" ;
+    csvw:title "Datetime (mdy hm)" .
 
-_:Nbad0af1598c24e119bfbe9597a0249c9 a csvw:Column ;
+_:Nc428a679a5b540258b2d1e70e4eb45eb a csvw:Column ;
     dct:description "Drop Down (character code)" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -300,7 +308,15 @@ _:Nbad0af1598c24e119bfbe9597a0249c9 a csvw:Column ;
     csvw:name "dropdown_character" ;
     csvw:title "Drop Down (character code)" .
 
-_:Nd559dce6fb494238ba38f3c7bc952ef6 a csvw:Column ;
+_:Ne16698391f3a4a6bab10869aae0c32a4 a csvw:Column ;
+    dct:description "Datetime (dmy hms)" ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_dmyhms" ;
+    csvw:title "Datetime (dmy hms)" .
+
+_:Nee67ad8a09764603adb0b7f5b51458c9 a csvw:Column ;
     dct:description "Unvalidated Text" ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "text" ;
@@ -308,35 +324,19 @@ _:Nd559dce6fb494238ba38f3c7bc952ef6 a csvw:Column ;
     csvw:name "unvalidated_text" ;
     csvw:title "Unvalidated Text" .
 
-_:Ne8581311e2b9440a9709e44f0401045c a csvw:Column ;
-    dct:description "Datetime (ymd hms)" ;
+_:Nf3d208b621e442148dad93c5e86d657d a csvw:Column ;
+    dct:description "Notes Box" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "dateTime" ;
-    csvw:name "datetime_ymdhms" ;
-    csvw:title "Datetime (ymd hms)" .
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "notes" ;
+    csvw:title "Notes Box" .
 
-_:Nef9643ee6bc5408cbd5211dc08758084 a csvw:Column ;
-    dct:description "Date (DMY) [no min, no max]" ;
+_:Nf6be7488c1474d1c9d0084a725280f3c a csvw:Column ;
+    dct:description "Slider" ;
     dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "date_dmy" ;
-    csvw:title "Date (DMY) [no min, no max]" .
-
-_:Nf1d4cb2cf29f47acb505e54c9699f85f a csvw:Column ;
-    dct:description "max: 100" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "decimal" ;
-    csvw:name "number" ;
-    csvw:title "Number [no min, max]" .
-
-_:Nf34cc2c7af0f447c868f11ce985261c5 a csvw:Column ;
-    dct:description "Datetime (ymdhm)" ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "dateTime" ;
-    csvw:name "datetime_ymdhm" ;
-    csvw:title "Datetime (ymdhm)" .
+    dct:type "slider" ;
+    csvw:datatype "integer" ;
+    csvw:name "slider" ;
+    csvw:title "Slider" .
 

@@ -233,9 +233,8 @@ def build_dataset(g: Graph, project: Project, config: Config) -> URIRef:
         if meta.grant_number:
             g.add((activity, DCTERMS.identifier, Literal(meta.grant_number)))
 
-    # Licence and funding come from the second source (a DMP), never from REDCap.
-    if meta.license:
-        g.add((uri, DCTERMS.license, URIRef(meta.license)))
+    # Funding comes from the second source (a DMP), never from REDCap. The licence,
+    # also from the DMP, belongs to the distribution.
     if meta.grant_number and _is_iri(meta.grant_number):
         g.add((uri, DCTERMS.isReferencedBy, URIRef(meta.grant_number)))
 
@@ -251,12 +250,13 @@ def build_dataset(g: Graph, project: Project, config: Config) -> URIRef:
                Literal(f"{meta.source_system} {meta.source_system_version}")))
 
     if config.access_url:
-        build_distribution(g, uri, config, lang)
+        build_distribution(g, uri, config, lang, license_iri=meta.license)
 
     return uri
 
 
-def build_distribution(g: Graph, dataset: URIRef, config: Config, lang: str) -> URIRef:
+def build_distribution(g: Graph, dataset: URIRef, config: Config, lang: str,
+                       license_iri: str = "") -> URIRef:
     """The one distribution a REDCap project has: record-level data on request.
 
     The access URL is the page where access is requested, not a download.
@@ -268,6 +268,8 @@ def build_distribution(g: Graph, dataset: URIRef, config: Config, lang: str) -> 
     g.add((dist, DCATAP.applicableLegislation, _LEGISLATION))
     g.add((dist, DCTERMS.format, _typed(g, FILE_TYPE.CSV, DCTERMS.MediaTypeOrExtent)))
     g.add((dist, DCTERMS.title, Literal("Record-level data, on request", lang="en")))
+    if license_iri:
+        g.add((dist, DCTERMS.license, _typed(g, URIRef(license_iri), DCTERMS.LicenseDocument)))
     return dist
 
 

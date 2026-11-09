@@ -72,68 +72,68 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-0> a csvw:Table ;
     dct:title "table_metadata"@en ;
-    csvw:column _:N0b3e4bdd18d049faa4870aa489df8935,
-        _:N0e72309a6dce4608a595b17f75e8b52c,
-        _:N0e83bd2557cf4e1f92dacad6d9b4a41e,
-        _:N1ab1d7be8e0a47a0b83b159fd6bf97a7,
-        _:N576e8f61dc2b4d6eb70b20be0482b2b3,
-        _:N57b60dd36e6e4ec7b2e667e794ae7b90,
-        _:N783f5729c63e4dd0838b90cefa927922,
-        _:Na03ff6f51cf8470c96b02ae042da72ec,
-        _:Na45582f7ab2949c2b96c181f976f412e,
-        _:Nb06c7106abd74db29bc9408ba1b305c3,
-        _:Nc764398ad7c04ef499d9b9e57d9cbcb0,
-        _:Nca4b8d95390d4cd08a9482060bdf86e5,
-        _:Nff0cb6956e7542839bb7489e211daf7c ;
+    csvw:column _:N158d533d0a6746aeac2bd743df94f5a7,
+        _:N1f178618613343129d202dbab884c932,
+        _:N39243d44639d4fc7981ee42ac039a049,
+        _:N39eb3fbe2e3c4b48b48835ee3d6eb8e5,
+        _:N59edbbd2b94d476384971391dff7c4ae,
+        _:N8138f87502c749ed8e36ebf8f2838e60,
+        _:N8b91f9730c3348eea3583c368e043ea5,
+        _:N93b63265e6c947acb25a6e78c34b38e3,
+        _:Nb425a6a46b8a456ba2466707935d9a46,
+        _:Nbc6f74ef27ab4f2586f25a4f8e718119,
+        _:Nbe4de5cd8e144a56bfa74e2364203f48,
+        _:Ne710eacdab2e43649c9fe1db2b9a0c0f,
+        _:Nfce0a2a512d94233900221d7e8a8a8eb ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N0b3e4bdd18d049faa4870aa489df8935,
-                _:N0e72309a6dce4608a595b17f75e8b52c,
-                _:N0e83bd2557cf4e1f92dacad6d9b4a41e,
-                _:N1ab1d7be8e0a47a0b83b159fd6bf97a7,
-                _:N576e8f61dc2b4d6eb70b20be0482b2b3,
-                _:N57b60dd36e6e4ec7b2e667e794ae7b90,
-                _:N783f5729c63e4dd0838b90cefa927922,
-                _:Na03ff6f51cf8470c96b02ae042da72ec,
-                _:Na45582f7ab2949c2b96c181f976f412e,
-                _:Nb06c7106abd74db29bc9408ba1b305c3,
-                _:Nc764398ad7c04ef499d9b9e57d9cbcb0,
-                _:Nca4b8d95390d4cd08a9482060bdf86e5,
-                _:Nff0cb6956e7542839bb7489e211daf7c ;
+            csvw:column _:N158d533d0a6746aeac2bd743df94f5a7,
+                _:N1f178618613343129d202dbab884c932,
+                _:N39243d44639d4fc7981ee42ac039a049,
+                _:N39eb3fbe2e3c4b48b48835ee3d6eb8e5,
+                _:N59edbbd2b94d476384971391dff7c4ae,
+                _:N8138f87502c749ed8e36ebf8f2838e60,
+                _:N8b91f9730c3348eea3583c368e043ea5,
+                _:N93b63265e6c947acb25a6e78c34b38e3,
+                _:Nb425a6a46b8a456ba2466707935d9a46,
+                _:Nbc6f74ef27ab4f2586f25a4f8e718119,
+                _:Nbe4de5cd8e144a56bfa74e2364203f48,
+                _:Ne710eacdab2e43649c9fe1db2b9a0c0f,
+                _:Nfce0a2a512d94233900221d7e8a8a8eb ;
             csvw:primaryKey "record_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-1> a csvw:Table ;
     dct:title "variable_metadata"@en ;
-    csvw:column _:N0d7b69c57bf245c7b6f56be27c01a7f8,
-        _:N1c89ca7c2aa64f74909a364a4394057d,
-        _:N4d78d60f81cb4ab19aec676b3cbe4a2c,
-        _:N5e6ea4bc0dda43449ed5b27a0492b97a,
-        _:N64419a2e55d749e1a7ad5671c5fdb58d,
-        _:N722ecf9082fc4d5183bb3ffcae9e0165,
-        _:N78d4d2790ed5484aa7f03831b4cac64b,
-        _:N87844e2f1777463ebfce7249c0fc8a15,
-        _:N98ec6436d1b84d67bc2d12531aebbca0,
-        _:Na52015ce953345f0a02a44df1646bf91,
-        _:Na5e7c67a8d224754812d3eaaa3741479,
-        _:Nae1f140faed24965b3f52b09a2df8c97,
-        _:Nb93b86b70f5a48b884f29bbcdd23ea8b,
-        _:Nc9270dd03cec43d197ec6946c397a24d,
-        _:Nec4454ab6488451dbace523ff562d925 ;
+    csvw:column _:N125b833aa24c482a8fc1887eec816846,
+        _:N305bc27c16ba48699716c39c882b7a02,
+        _:N34716920e847448f86ad92bcbbe3293c,
+        _:N35c9b70ce59a4a9a95c9867e0c0629ad,
+        _:N48c709a58a6f446cb7af61cddd14a7c4,
+        _:N5283e73f192b4560b353393d708a5b3d,
+        _:N62f3f6f22ff141c5911fa0f5b8035eaf,
+        _:N648785f442ae4489b7f311de6d328886,
+        _:N6cf4bc98bffd49f7a0389442c111a4e2,
+        _:N760acb7da0d14136858fffdb232afa75,
+        _:Nbedaac32546840a281fac9b0a4279d6c,
+        _:Nbf38c19a48c7478cb7ff54fb022ab041,
+        _:Nc2b795863bbe42408f25c40539eaea9b,
+        _:Nccc7faee8dc64eaf879f5622d88d9afc,
+        _:Nfa1f2628f14f430696601beba67539e6 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N0d7b69c57bf245c7b6f56be27c01a7f8,
-                _:N1c89ca7c2aa64f74909a364a4394057d,
-                _:N4d78d60f81cb4ab19aec676b3cbe4a2c,
-                _:N5e6ea4bc0dda43449ed5b27a0492b97a,
-                _:N64419a2e55d749e1a7ad5671c5fdb58d,
-                _:N722ecf9082fc4d5183bb3ffcae9e0165,
-                _:N78d4d2790ed5484aa7f03831b4cac64b,
-                _:N87844e2f1777463ebfce7249c0fc8a15,
-                _:N98ec6436d1b84d67bc2d12531aebbca0,
-                _:Na52015ce953345f0a02a44df1646bf91,
-                _:Na5e7c67a8d224754812d3eaaa3741479,
-                _:Nae1f140faed24965b3f52b09a2df8c97,
-                _:Nb93b86b70f5a48b884f29bbcdd23ea8b,
-                _:Nc9270dd03cec43d197ec6946c397a24d,
-                _:Nec4454ab6488451dbace523ff562d925 ] .
+            csvw:column _:N125b833aa24c482a8fc1887eec816846,
+                _:N305bc27c16ba48699716c39c882b7a02,
+                _:N34716920e847448f86ad92bcbbe3293c,
+                _:N35c9b70ce59a4a9a95c9867e0c0629ad,
+                _:N48c709a58a6f446cb7af61cddd14a7c4,
+                _:N5283e73f192b4560b353393d708a5b3d,
+                _:N62f3f6f22ff141c5911fa0f5b8035eaf,
+                _:N648785f442ae4489b7f311de6d328886,
+                _:N6cf4bc98bffd49f7a0389442c111a4e2,
+                _:N760acb7da0d14136858fffdb232afa75,
+                _:Nbedaac32546840a281fac9b0a4279d6c,
+                _:Nbf38c19a48c7478cb7ff54fb022ab041,
+                _:Nc2b795863bbe42408f25c40539eaea9b,
+                _:Nccc7faee8dc64eaf879f5622d88d9afc,
+                _:Nfa1f2628f14f430696601beba67539e6 ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/distribution> a dcat:Distribution ;
     dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
@@ -143,7 +143,65 @@
 
 <http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
 
-_:N0b3e4bdd18d049faa4870aa489df8935 a csvw:Column ;
+_:N125b833aa24c482a8fc1887eec816846 a csvw:Column ;
+    dct:description "Is this a coded variable?"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "yesno" ;
+    skos:notation "0 = No",
+        "1 = Yes" ;
+    csvw:datatype "boolean" ;
+    csvw:name "has_codes" ;
+    csvw:title "Is this a coded variable?"@en .
+
+_:N158d533d0a6746aeac2bd743df94f5a7 a csvw:Column ;
+    dct:description "Table display name (for human-readable documents)"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "table_display_name" ;
+    csvw:title "Table display name (for human-readable documents)"@en .
+
+_:N1f178618613343129d202dbab884c932 a csvw:Column ;
+    dct:description "Text (HTML-formatted) to display before the table definiton"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "text_top" ;
+    csvw:title "Text (HTML-formatted) to display before the table definiton"@en .
+
+_:N305bc27c16ba48699716c39c882b7a02 a csvw:Column ;
+    dct:description "Variable description"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "description" ;
+    csvw:title "Variable description"@en .
+
+_:N34716920e847448f86ad92bcbbe3293c a csvw:Column ;
+    dct:description "Variable name"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "variable_name" ;
+    csvw:title "Variable name"@en .
+
+_:N35c9b70ce59a4a9a95c9867e0c0629ad a csvw:Column ;
+    dct:description "(approximate, for DES version)"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "variable_deprecated_d" ;
+    csvw:title "Date of variable deprecation"@en .
+
+_:N39243d44639d4fc7981ee42ac039a049 a csvw:Column ;
+    dct:description "Table name"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "table_name" ;
+    csvw:title "Table name"@en .
+
+_:N39eb3fbe2e3c4b48b48835ee3d6eb8e5 a csvw:Column ;
     dct:description "(e.g., use 1.5 to place a table between tables 1 and 2)"@en ;
     dct:isPartOf "table_metadata" ;
     dct:type "text" ;
@@ -151,7 +209,15 @@ _:N0b3e4bdd18d049faa4870aa489df8935 a csvw:Column ;
     csvw:name "table_order" ;
     csvw:title "Display order for this table"@en .
 
-_:N0d7b69c57bf245c7b6f56be27c01a7f8 a csvw:Column ;
+_:N48c709a58a6f446cb7af61cddd14a7c4 a csvw:Column ;
+    dct:description "Extra text for variable description (subheader)"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "description_extra" ;
+    csvw:title "Extra text for variable description (subheader)"@en .
+
+_:N5283e73f192b4560b353393d708a5b3d a csvw:Column ;
     dct:description "Variable Status"@en ;
     dct:isPartOf "variable_metadata" ;
     dct:type "radio" ;
@@ -162,15 +228,7 @@ _:N0d7b69c57bf245c7b6f56be27c01a7f8 a csvw:Column ;
     csvw:name "variable_status" ;
     csvw:title "Variable Status"@en .
 
-_:N0e72309a6dce4608a595b17f75e8b52c a csvw:Column ;
-    dct:description "(approximate, for DES version)"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "table_deprecated_d" ;
-    csvw:title "Date of table deprecation"@en .
-
-_:N0e83bd2557cf4e1f92dacad6d9b4a41e a csvw:Column ;
+_:N59edbbd2b94d476384971391dff7c4ae a csvw:Column ;
     dct:description "Complete?"@en ;
     dct:isPartOf "table_metadata" ;
     dct:type "dropdown" ;
@@ -181,55 +239,26 @@ _:N0e83bd2557cf4e1f92dacad6d9b4a41e a csvw:Column ;
     csvw:name "table_metadata_complete" ;
     csvw:title "Complete?"@en .
 
-_:N1ab1d7be8e0a47a0b83b159fd6bf97a7 a csvw:Column ;
-    dct:description "Table name"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "table_name" ;
-    csvw:title "Table name"@en .
-
-_:N1c89ca7c2aa64f74909a364a4394057d a csvw:Column ;
-    dct:description "Complete?"@en ;
+_:N62f3f6f22ff141c5911fa0f5b8035eaf a csvw:Column ;
+    dct:description "Should code lists be printed for this variable?"@en ;
     dct:isPartOf "variable_metadata" ;
-    dct:type "dropdown" ;
-    skos:notation "0 = Incomplete",
-        "1 = Unverified",
-        "2 = Complete" ;
-    csvw:datatype "integer" ;
-    csvw:name "variable_metadata_complete" ;
-    csvw:title "Complete?"@en .
-
-_:N4d78d60f81cb4ab19aec676b3cbe4a2c a csvw:Column ;
-    dct:description "Variable name"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "variable_name" ;
-    csvw:title "Variable name"@en .
-
-_:N576e8f61dc2b4d6eb70b20be0482b2b3 a csvw:Column ;
-    dct:description "Display this table in human-readable documents and forms?"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "yesno" ;
+    dct:type "radio" ;
     skos:notation "0 = No",
         "1 = Yes" ;
-    csvw:datatype "boolean" ;
-    csvw:name "table_display_y" ;
-    csvw:title "Display this table in human-readable documents and forms?"@en .
-
-_:N57b60dd36e6e4ec7b2e667e794ae7b90 a csvw:Column ;
-    dct:description "Table type"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "radio" ;
-    skos:notation "0 = N/A (e.g., tblCENTER)",
-        "1 = One row per patient",
-        "2 = Multiple rows per patient" ;
     csvw:datatype "integer" ;
-    csvw:name "table_format" ;
-    csvw:title "Table type"@en .
+    csvw:name "codes_print" ;
+    csvw:title "Should code lists be printed for this variable?"@en .
 
-_:N5e6ea4bc0dda43449ed5b27a0492b97a a csvw:Column ;
+_:N648785f442ae4489b7f311de6d328886 a csvw:Column ;
+    dct:description "(e.g., use 1.5 to place a variable between variables 1 and 2)"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "decimal" ;
+    csvw:name "variable_order" ;
+    csvw:title """Display order for this variable
+(numbering is within table)"""@en .
+
+_:N6cf4bc98bffd49f7a0389442c111a4e2 a csvw:Column ;
     dct:description "Variable format"@en ;
     dct:isPartOf "variable_metadata" ;
     dct:type "dropdown" ;
@@ -242,44 +271,68 @@ _:N5e6ea4bc0dda43449ed5b27a0492b97a a csvw:Column ;
     csvw:name "data_format" ;
     csvw:title "Variable format"@en .
 
-_:N64419a2e55d749e1a7ad5671c5fdb58d a csvw:Column ;
-    dct:description "(e.g., use 1.5 to place a variable between variables 1 and 2)"@en ;
+_:N760acb7da0d14136858fffdb232afa75 a csvw:Column ;
+    dct:description "Report missing entries as data quality errors (choice=Yes)"@en ;
     dct:isPartOf "variable_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "decimal" ;
-    csvw:name "variable_order" ;
-    csvw:title """Display order for this variable
-(numbering is within table)"""@en .
-
-_:N722ecf9082fc4d5183bb3ffcae9e0165 a csvw:Column ;
-    dct:description "Is this a coded variable?"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "yesno" ;
-    skos:notation "0 = No",
-        "1 = Yes" ;
+    dct:type "checkbox" ;
     csvw:datatype "boolean" ;
-    csvw:name "has_codes" ;
-    csvw:title "Is this a coded variable?"@en .
+    csvw:name "variable_missingaction___1" ;
+    csvw:title "Report missing entries as data quality errors (choice=Yes)"@en .
 
-_:N783f5729c63e4dd0838b90cefa927922 a csvw:Column ;
-    dct:description "Text (HTML-formatted) to display before the table definiton"@en ;
+_:N8138f87502c749ed8e36ebf8f2838e60 a csvw:Column ;
+    dct:description "Text (HTML-formatted) to display after the table definition"@en ;
     dct:isPartOf "table_metadata" ;
     dct:type "notes" ;
     csvw:datatype "string" ;
-    csvw:name "text_top" ;
-    csvw:title "Text (HTML-formatted) to display before the table definiton"@en .
+    csvw:name "text_bottom" ;
+    csvw:title "Text (HTML-formatted) to display after the table definition"@en .
 
-_:N78d4d2790ed5484aa7f03831b4cac64b a csvw:Column ;
-    dct:description """Date variable added 
-(as draft or active)"""@en ;
-    dct:isPartOf "variable_metadata" ;
+_:N8b91f9730c3348eea3583c368e043ea5 a csvw:Column ;
+    dct:description "Table Status"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "radio" ;
+    skos:notation "0 = DRAFT (table under consideration)",
+        "1 = Active",
+        "2 = DEPRECATED (table retired from use)" ;
+    csvw:datatype "integer" ;
+    csvw:name "table_status" ;
+    csvw:title "Table Status"@en .
+
+_:N93b63265e6c947acb25a6e78c34b38e3 a csvw:Column ;
+    dct:description "Table definition (short text)"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "table_definition" ;
+    csvw:title "Table definition (short text)"@en .
+
+_:Nb425a6a46b8a456ba2466707935d9a46 a csvw:Column ;
+    dct:description "Record ID"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:Nbc6f74ef27ab4f2586f25a4f8e718119 a csvw:Column ;
+    dct:description "Date table added (as draft or active)"@en ;
+    dct:isPartOf "table_metadata" ;
     dct:type "text" ;
     csvw:datatype "date" ;
-    csvw:name "variable_added_d" ;
-    csvw:title """Date variable added 
-(as draft or active)"""@en .
+    csvw:name "table_added_d" ;
+    csvw:title "Date table added (as draft or active)"@en .
 
-_:N87844e2f1777463ebfce7249c0fc8a15 a csvw:Column ;
+_:Nbe4de5cd8e144a56bfa74e2364203f48 a csvw:Column ;
+    dct:description "(approximate, for DES version)"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "table_deprecated_d" ;
+    csvw:title "Date of table deprecation"@en .
+
+_:Nbedaac32546840a281fac9b0a4279d6c a csvw:Column ;
     dct:description "Select code list:"@en ;
     dct:isPartOf "variable_metadata" ;
     dct:type "dropdown" ;
@@ -341,81 +394,7 @@ _:N87844e2f1777463ebfce7249c0fc8a15 a csvw:Column ;
     csvw:name "code_list_ref" ;
     csvw:title "Select code list:"@en .
 
-_:N98ec6436d1b84d67bc2d12531aebbca0 a csvw:Column ;
-    dct:description "Extra text to show in \"Format\"/codes column"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "code_text" ;
-    csvw:title "Extra text to show in \"Format\"/codes column"@en .
-
-_:Na03ff6f51cf8470c96b02ae042da72ec a csvw:Column ;
-    dct:description "Table display name (for human-readable documents)"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "table_display_name" ;
-    csvw:title "Table display name (for human-readable documents)"@en .
-
-_:Na45582f7ab2949c2b96c181f976f412e a csvw:Column ;
-    dct:description "Date table added (as draft or active)"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "table_added_d" ;
-    csvw:title "Date table added (as draft or active)"@en .
-
-_:Na52015ce953345f0a02a44df1646bf91 a csvw:Column ;
-    dct:description "Extra text for variable description (subheader)"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "description_extra" ;
-    csvw:title "Extra text for variable description (subheader)"@en .
-
-_:Na5e7c67a8d224754812d3eaaa3741479 a csvw:Column ;
-    dct:description "(approximate, for DES version)"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "variable_deprecated_d" ;
-    csvw:title "Date of variable deprecation"@en .
-
-_:Nae1f140faed24965b3f52b09a2df8c97 a csvw:Column ;
-    dct:description "Should code lists be printed for this variable?"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "radio" ;
-    skos:notation "0 = No",
-        "1 = Yes" ;
-    csvw:datatype "integer" ;
-    csvw:name "codes_print" ;
-    csvw:title "Should code lists be printed for this variable?"@en .
-
-_:Nb06c7106abd74db29bc9408ba1b305c3 a csvw:Column ;
-    dct:description "Text (HTML-formatted) to display after the table definition"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "text_bottom" ;
-    csvw:title "Text (HTML-formatted) to display after the table definition"@en .
-
-_:Nb93b86b70f5a48b884f29bbcdd23ea8b a csvw:Column ;
-    dct:description "Report missing entries as data quality errors (choice=Yes)"@en ;
-    dct:isPartOf "variable_metadata" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "variable_missingaction___1" ;
-    csvw:title "Report missing entries as data quality errors (choice=Yes)"@en .
-
-_:Nc764398ad7c04ef499d9b9e57d9cbcb0 a csvw:Column ;
-    dct:description "Table definition (short text)"@en ;
-    dct:isPartOf "table_metadata" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "table_definition" ;
-    csvw:title "Table definition (short text)"@en .
-
-_:Nc9270dd03cec43d197ec6946c397a24d a csvw:Column ;
+_:Nbf38c19a48c7478cb7ff54fb022ab041 a csvw:Column ;
     dct:description """REQUIRED
 (This variable is required for database integrity and should always be included when data from this table is requested.) (choice=YES)"""@en ;
     dct:isPartOf "variable_metadata" ;
@@ -425,32 +404,53 @@ _:Nc9270dd03cec43d197ec6946c397a24d a csvw:Column ;
     csvw:title """REQUIRED
 (This variable is required for database integrity and should always be included when data from this table is requested.) (choice=YES)"""@en .
 
-_:Nca4b8d95390d4cd08a9482060bdf86e5 a csvw:Column ;
-    dct:description "Record ID"@en ;
-    dct:isPartOf "table_metadata" ;
+_:Nc2b795863bbe42408f25c40539eaea9b a csvw:Column ;
+    dct:description """Date variable added 
+(as draft or active)"""@en ;
+    dct:isPartOf "variable_metadata" ;
     dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:datatype "date" ;
+    csvw:name "variable_added_d" ;
+    csvw:title """Date variable added 
+(as draft or active)"""@en .
 
-_:Nec4454ab6488451dbace523ff562d925 a csvw:Column ;
-    dct:description "Variable description"@en ;
+_:Nccc7faee8dc64eaf879f5622d88d9afc a csvw:Column ;
+    dct:description "Complete?"@en ;
+    dct:isPartOf "variable_metadata" ;
+    dct:type "dropdown" ;
+    skos:notation "0 = Incomplete",
+        "1 = Unverified",
+        "2 = Complete" ;
+    csvw:datatype "integer" ;
+    csvw:name "variable_metadata_complete" ;
+    csvw:title "Complete?"@en .
+
+_:Ne710eacdab2e43649c9fe1db2b9a0c0f a csvw:Column ;
+    dct:description "Display this table in human-readable documents and forms?"@en ;
+    dct:isPartOf "table_metadata" ;
+    dct:type "yesno" ;
+    skos:notation "0 = No",
+        "1 = Yes" ;
+    csvw:datatype "boolean" ;
+    csvw:name "table_display_y" ;
+    csvw:title "Display this table in human-readable documents and forms?"@en .
+
+_:Nfa1f2628f14f430696601beba67539e6 a csvw:Column ;
+    dct:description "Extra text to show in \"Format\"/codes column"@en ;
     dct:isPartOf "variable_metadata" ;
     dct:type "notes" ;
     csvw:datatype "string" ;
-    csvw:name "description" ;
-    csvw:title "Variable description"@en .
+    csvw:name "code_text" ;
+    csvw:title "Extra text to show in \"Format\"/codes column"@en .
 
-_:Nff0cb6956e7542839bb7489e211daf7c a csvw:Column ;
-    dct:description "Table Status"@en ;
+_:Nfce0a2a512d94233900221d7e8a8a8eb a csvw:Column ;
+    dct:description "Table type"@en ;
     dct:isPartOf "table_metadata" ;
     dct:type "radio" ;
-    skos:notation "0 = DRAFT (table under consideration)",
-        "1 = Active",
-        "2 = DEPRECATED (table retired from use)" ;
+    skos:notation "0 = N/A (e.g., tblCENTER)",
+        "1 = One row per patient",
+        "2 = Multiple rows per patient" ;
     csvw:datatype "integer" ;
-    csvw:name "table_status" ;
-    csvw:title "Table Status"@en .
+    csvw:name "table_format" ;
+    csvw:title "Table type"@en .
 

@@ -70,21 +70,21 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml/dictionary/table-0> a csvw:Table ;
     dct:title "code_list"@en ;
-    csvw:column _:N27a130f2d4584fc6aa80e20360f628de,
-        _:N4a3ea908528a4633928e82cf5f759030,
-        _:N5857dc2eaaa54680b5e55f2d0bdd803e,
-        _:N72da463bab25496bbdea04d9c9350e5d,
-        _:N9afe647ce8694e23bbfa1f7777deb4fc,
-        _:Na2bf555b5b2b421490a712dc83905c82,
-        _:Nb8d66e1b398a449d9a9f9f9e60087e99 ;
+    csvw:column _:N009343f0aeb443a1a23cf7c3de4f460b,
+        _:N38857b9759d24261961371a7c6ad1a82,
+        _:N540012c743844c82a23327d45698a36f,
+        _:N616a28d6f8824349bdb16e2e7b637d3a,
+        _:N719896deee53450d9b9beea4db7aef06,
+        _:Nced34e6134ad4d0598dfe58ccf9c6463,
+        _:Nee87d26763244d3d863cb52ac5adeb03 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N27a130f2d4584fc6aa80e20360f628de,
-                _:N4a3ea908528a4633928e82cf5f759030,
-                _:N5857dc2eaaa54680b5e55f2d0bdd803e,
-                _:N72da463bab25496bbdea04d9c9350e5d,
-                _:N9afe647ce8694e23bbfa1f7777deb4fc,
-                _:Na2bf555b5b2b421490a712dc83905c82,
-                _:Nb8d66e1b398a449d9a9f9f9e60087e99 ;
+            csvw:column _:N009343f0aeb443a1a23cf7c3de4f460b,
+                _:N38857b9759d24261961371a7c6ad1a82,
+                _:N540012c743844c82a23327d45698a36f,
+                _:N616a28d6f8824349bdb16e2e7b637d3a,
+                _:N719896deee53450d9b9beea4db7aef06,
+                _:Nced34e6134ad4d0598dfe58ccf9c6463,
+                _:Nee87d26763244d3d863cb52ac5adeb03 ;
             csvw:primaryKey "record_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml/distribution> a dcat:Distribution ;
@@ -95,7 +95,7 @@
 
 <http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
 
-_:N27a130f2d4584fc6aa80e20360f628de a csvw:Column ;
+_:N009343f0aeb443a1a23cf7c3de4f460b a csvw:Column ;
     dct:description "Update Notes"@en ;
     dct:isPartOf "code_list" ;
     dct:type "notes" ;
@@ -103,7 +103,15 @@ _:N27a130f2d4584fc6aa80e20360f628de a csvw:Column ;
     csvw:name "codelist_update_txt" ;
     csvw:title "Update Notes"@en .
 
-_:N4a3ea908528a4633928e82cf5f759030 a csvw:Column ;
+_:N38857b9759d24261961371a7c6ad1a82 a csvw:Column ;
+    dct:description "Date code list last updated"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "codelist_update_d" ;
+    csvw:title "Date code list last updated"@en .
+
+_:N540012c743844c82a23327d45698a36f a csvw:Column ;
     dct:description "Choose a format for the code list:"@en ;
     dct:isPartOf "code_list" ;
     dct:type "radio" ;
@@ -113,15 +121,7 @@ _:N4a3ea908528a4633928e82cf5f759030 a csvw:Column ;
     csvw:name "code_format" ;
     csvw:title "Choose a format for the code list:"@en .
 
-_:N5857dc2eaaa54680b5e55f2d0bdd803e a csvw:Column ;
-    dct:description "Name of Code List"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "list_name" ;
-    csvw:title "Name of Code List"@en .
-
-_:N72da463bab25496bbdea04d9c9350e5d a csvw:Column ;
+_:N616a28d6f8824349bdb16e2e7b637d3a a csvw:Column ;
     dct:description "Complete?"@en ;
     dct:isPartOf "code_list" ;
     dct:type "dropdown" ;
@@ -132,7 +132,17 @@ _:N72da463bab25496bbdea04d9c9350e5d a csvw:Column ;
     csvw:name "code_list_complete" ;
     csvw:title "Complete?"@en .
 
-_:N9afe647ce8694e23bbfa1f7777deb4fc a csvw:Column ;
+_:N719896deee53450d9b9beea4db7aef06 a csvw:Column ;
+    dct:description "Record ID"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:Nced34e6134ad4d0598dfe58ccf9c6463 a csvw:Column ;
     dct:description """Code list
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field."""@en ;
@@ -144,21 +154,11 @@ The Pipe character is required between codes because line breaks will be lost if
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field."""@en .
 
-_:Na2bf555b5b2b421490a712dc83905c82 a csvw:Column ;
-    dct:description "Record ID"@en ;
+_:Nee87d26763244d3d863cb52ac5adeb03 a csvw:Column ;
+    dct:description "Name of Code List"@en ;
     dct:isPartOf "code_list" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
-
-_:Nb8d66e1b398a449d9a9f9f9e60087e99 a csvw:Column ;
-    dct:description "Date code list last updated"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "codelist_update_d" ;
-    csvw:title "Date code list last updated"@en .
+    csvw:name "list_name" ;
+    csvw:title "Name of Code List"@en .
 

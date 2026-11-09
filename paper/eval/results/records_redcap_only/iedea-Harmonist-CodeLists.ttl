@@ -34,24 +34,24 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml/dictionary/table-0> a csvw:Table ;
     dct:title "code_list" ;
-    csvw:column _:N1793d41aabaa4b07a46268db43045042,
-        _:N292dca03168046269b98127ac6c043e2,
-        _:N3554860e6bae46a88bc0b07ae2af0bad,
-        _:N50478e3d60a6467c8ed4943e82331731,
-        _:N95f7e42345064c4393385a61a3ceed07,
-        _:N9e47630380884dcfaf7b58fa6345de24,
-        _:Nafdd7323804047e59a75646608a90cda ;
+    csvw:column _:N02ac56d940e44e29bb02c3be34dcc803,
+        _:N114daf2eb4194da6ab68bb282c090f23,
+        _:N577f962092564701a251db701b2bb323,
+        _:N936e1ec83d984250822aba5f3ae9c249,
+        _:Nddc67303b6464665b408a7fb3b5dc5ff,
+        _:Ne349ab0511914123ac155bfa7845be9f,
+        _:Nffdbd39cee4747c5b80d23505bd19339 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N1793d41aabaa4b07a46268db43045042,
-                _:N292dca03168046269b98127ac6c043e2,
-                _:N3554860e6bae46a88bc0b07ae2af0bad,
-                _:N50478e3d60a6467c8ed4943e82331731,
-                _:N95f7e42345064c4393385a61a3ceed07,
-                _:N9e47630380884dcfaf7b58fa6345de24,
-                _:Nafdd7323804047e59a75646608a90cda ;
+            csvw:column _:N02ac56d940e44e29bb02c3be34dcc803,
+                _:N114daf2eb4194da6ab68bb282c090f23,
+                _:N577f962092564701a251db701b2bb323,
+                _:N936e1ec83d984250822aba5f3ae9c249,
+                _:Nddc67303b6464665b408a7fb3b5dc5ff,
+                _:Ne349ab0511914123ac155bfa7845be9f,
+                _:Nffdbd39cee4747c5b80d23505bd19339 ;
             csvw:primaryKey "record_id" ] .
 
-_:N1793d41aabaa4b07a46268db43045042 a csvw:Column ;
+_:N02ac56d940e44e29bb02c3be34dcc803 a csvw:Column ;
     dct:description "Name of Code List" ;
     dct:isPartOf "code_list" ;
     dct:type "text" ;
@@ -59,7 +59,15 @@ _:N1793d41aabaa4b07a46268db43045042 a csvw:Column ;
     csvw:name "list_name" ;
     csvw:title "Name of Code List" .
 
-_:N292dca03168046269b98127ac6c043e2 a csvw:Column ;
+_:N114daf2eb4194da6ab68bb282c090f23 a csvw:Column ;
+    dct:description "Update Notes" ;
+    dct:isPartOf "code_list" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "codelist_update_txt" ;
+    csvw:title "Update Notes" .
+
+_:N577f962092564701a251db701b2bb323 a csvw:Column ;
     dct:description "Date code list last updated" ;
     dct:isPartOf "code_list" ;
     dct:type "text" ;
@@ -67,7 +75,7 @@ _:N292dca03168046269b98127ac6c043e2 a csvw:Column ;
     csvw:name "codelist_update_d" ;
     csvw:title "Date code list last updated" .
 
-_:N3554860e6bae46a88bc0b07ae2af0bad a csvw:Column ;
+_:N936e1ec83d984250822aba5f3ae9c249 a csvw:Column ;
     dct:description "Choose a format for the code list:" ;
     dct:isPartOf "code_list" ;
     dct:type "radio" ;
@@ -77,7 +85,18 @@ _:N3554860e6bae46a88bc0b07ae2af0bad a csvw:Column ;
     csvw:name "code_format" ;
     csvw:title "Choose a format for the code list:" .
 
-_:N50478e3d60a6467c8ed4943e82331731 a csvw:Column ;
+_:Nddc67303b6464665b408a7fb3b5dc5ff a csvw:Column ;
+    dct:description "Complete?" ;
+    dct:isPartOf "code_list" ;
+    dct:type "dropdown" ;
+    skos:notation "0 = Incomplete",
+        "1 = Unverified",
+        "2 = Complete" ;
+    csvw:datatype "integer" ;
+    csvw:name "code_list_complete" ;
+    csvw:title "Complete?" .
+
+_:Ne349ab0511914123ac155bfa7845be9f a csvw:Column ;
     dct:description """Code list
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field.""" ;
@@ -89,7 +108,7 @@ The Pipe character is required between codes because line breaks will be lost if
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field.""" .
 
-_:N95f7e42345064c4393385a61a3ceed07 a csvw:Column ;
+_:Nffdbd39cee4747c5b80d23505bd19339 a csvw:Column ;
     dct:description "Record ID" ;
     dct:isPartOf "code_list" ;
     dct:type "text" ;
@@ -98,23 +117,4 @@ _:N95f7e42345064c4393385a61a3ceed07 a csvw:Column ;
     csvw:required true ;
     csvw:title "Record ID" ;
     dpv:hasPersonalData dpv-pd:Identifying .
-
-_:N9e47630380884dcfaf7b58fa6345de24 a csvw:Column ;
-    dct:description "Update Notes" ;
-    dct:isPartOf "code_list" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "codelist_update_txt" ;
-    csvw:title "Update Notes" .
-
-_:Nafdd7323804047e59a75646608a90cda a csvw:Column ;
-    dct:description "Complete?" ;
-    dct:isPartOf "code_list" ;
-    dct:type "dropdown" ;
-    skos:notation "0 = Incomplete",
-        "1 = Unverified",
-        "2 = Complete" ;
-    csvw:datatype "integer" ;
-    csvw:name "code_list_complete" ;
-    csvw:title "Complete?" .
 

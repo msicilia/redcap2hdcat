@@ -66,56 +66,56 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "demographics"@en ;
-    csvw:column _:N0667a970cd544180be8fc48526b763f6,
-        _:N09737c123a224eaf8608b04c0a01a654,
-        _:N0a33bb8e7051494ea6abba16b3ea5cd4,
-        _:N157b7284058f42bbb919709e3952ccdd,
-        _:N348d1be700164ff69415485a5b654f2c,
-        _:N414cf1b3f6684fa880fe453ddd75e556,
-        _:N41a1346ea55c497d9c86c2aa8860a39f,
-        _:Nbd354ba6a9df40f89e1778a20c014e1a,
-        _:Nd73cc6cc1af74cfab9a40e88c88bb6f9 ;
+    csvw:column _:N036decb4f2474463b0361829755b77c0,
+        _:N116448a3bb71400c8bdb3fabe5020fef,
+        _:N1b020bd63dd8432caf4922a82d51cde6,
+        _:N1b2815a1f31841e7986a59605dd01dc3,
+        _:N68b32503d3324944832e1b3e5f535d86,
+        _:N8d63325ef12f45769c0f38f83cc99c61,
+        _:Na1346e01c4a54e06b319a9cdfc7d3872,
+        _:Nbcfa8ec8063f4593ab16452de6890e37,
+        _:Nd0858702986f4233b53369a212987283 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N0667a970cd544180be8fc48526b763f6,
-                _:N09737c123a224eaf8608b04c0a01a654,
-                _:N0a33bb8e7051494ea6abba16b3ea5cd4,
-                _:N157b7284058f42bbb919709e3952ccdd,
-                _:N348d1be700164ff69415485a5b654f2c,
-                _:N414cf1b3f6684fa880fe453ddd75e556,
-                _:N41a1346ea55c497d9c86c2aa8860a39f,
-                _:Nbd354ba6a9df40f89e1778a20c014e1a,
-                _:Nd73cc6cc1af74cfab9a40e88c88bb6f9 ;
+            csvw:column _:N036decb4f2474463b0361829755b77c0,
+                _:N116448a3bb71400c8bdb3fabe5020fef,
+                _:N1b020bd63dd8432caf4922a82d51cde6,
+                _:N1b2815a1f31841e7986a59605dd01dc3,
+                _:N68b32503d3324944832e1b3e5f535d86,
+                _:N8d63325ef12f45769c0f38f83cc99c61,
+                _:Na1346e01c4a54e06b319a9cdfc7d3872,
+                _:Nbcfa8ec8063f4593ab16452de6890e37,
+                _:Nd0858702986f4233b53369a212987283 ;
             csvw:primaryKey "record_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/data-dictionary.csv/dictionary/table-1> a csvw:Table ;
     dct:title "health"@en ;
-    csvw:column _:N1dc19f888fe24586b9aeacc5b420d149,
-        _:N2c51bcce941a42fcb466cbd70a5329c8,
-        _:N6af1102603374a078b70a308f7911d3a,
-        _:Na077e7b6f10a4d5191ed541754491210 ;
+    csvw:column _:N709bfabc292f45f597dbc4513dcce913,
+        _:N911ccee350384cda83515400042214a6,
+        _:Na0ce6176b1584678a2f106275cfa0d7c,
+        _:Nf369f5a6ff564bb3999b845c84c61d25 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N1dc19f888fe24586b9aeacc5b420d149,
-                _:N2c51bcce941a42fcb466cbd70a5329c8,
-                _:N6af1102603374a078b70a308f7911d3a,
-                _:Na077e7b6f10a4d5191ed541754491210 ] .
+            csvw:column _:N709bfabc292f45f597dbc4513dcce913,
+                _:N911ccee350384cda83515400042214a6,
+                _:Na0ce6176b1584678a2f106275cfa0d7c,
+                _:Nf369f5a6ff564bb3999b845c84c61d25 ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/data-dictionary.csv/dictionary/table-2> a csvw:Table ;
     dct:title "race_and_ethnicity"@en ;
-    csvw:column _:N124ececb55f2488c948af43a4411d910,
-        _:N15353705c5da499480036adca8b65237,
-        _:N513eaca44f0c472ebc02e695e0d00585,
-        _:N5e428130105549599033cb9c9cbbcae5,
-        _:N89c97c634d144ac7aee363b8731a757f,
-        _:Na54b88e2cb1346529f7e75741f2044e0,
-        _:Ncc7bc3d97b5445c68d252a5905abb060 ;
+    csvw:column _:N0544ab9a4b3540219217257bd1bdff93,
+        _:N210d68786e8541988e9a042e07317e00,
+        _:N3f2621574778402fb02d80f5a0819f4e,
+        _:N4206c61b80e4443289108f58ea1a121f,
+        _:N4a78c56eb4f74b3aac532bbe88d88fe3,
+        _:N620bea8ed8c040e5b515876346a9ed2c,
+        _:N944da3bcea99466eb9aebe3262d9c226 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N124ececb55f2488c948af43a4411d910,
-                _:N15353705c5da499480036adca8b65237,
-                _:N513eaca44f0c472ebc02e695e0d00585,
-                _:N5e428130105549599033cb9c9cbbcae5,
-                _:N89c97c634d144ac7aee363b8731a757f,
-                _:Na54b88e2cb1346529f7e75741f2044e0,
-                _:Ncc7bc3d97b5445c68d252a5905abb060 ] .
+            csvw:column _:N0544ab9a4b3540219217257bd1bdff93,
+                _:N210d68786e8541988e9a042e07317e00,
+                _:N3f2621574778402fb02d80f5a0819f4e,
+                _:N4206c61b80e4443289108f58ea1a121f,
+                _:N4a78c56eb4f74b3aac532bbe88d88fe3,
+                _:N620bea8ed8c040e5b515876346a9ed2c,
+                _:N944da3bcea99466eb9aebe3262d9c226 ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/data-dictionary.csv/distribution> a dcat:Distribution ;
     dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
@@ -135,16 +135,24 @@ dpv-pd:TelephoneNumber a dpv:PersonalData .
 
 dpv-pd:Identifying a dpv:PersonalData .
 
-_:N0667a970cd544180be8fc48526b763f6 a csvw:Column ;
-    dct:description "Last Name"@en ;
+_:N036decb4f2474463b0361829755b77c0 a csvw:Column ;
+    dct:description "Date of birth"@en ;
     dct:isPartOf "demographics" ;
     dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "name_last" ;
-    csvw:title "Last Name"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:datatype "date" ;
+    csvw:name "dob" ;
+    csvw:title "Date of birth"@en ;
+    dpv:hasPersonalData dpv-pd:BirthDate .
 
-_:N09737c123a224eaf8608b04c0a01a654 a csvw:Column ;
+_:N0544ab9a4b3540219217257bd1bdff93 a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=White)"@en ;
+    dct:isPartOf "race_and_ethnicity" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "race___5" ;
+    csvw:title "Race (Select all that apply) (choice=White)"@en .
+
+_:N116448a3bb71400c8bdb3fabe5020fef a csvw:Column ;
     dct:description "Gender"@en ;
     dct:isPartOf "demographics" ;
     dct:type "radio" ;
@@ -154,16 +162,50 @@ _:N09737c123a224eaf8608b04c0a01a654 a csvw:Column ;
     csvw:name "sex" ;
     csvw:title "Gender"@en .
 
-_:N0a33bb8e7051494ea6abba16b3ea5cd4 a csvw:Column ;
-    dct:description "Include Area Code"@en ;
+_:N1b020bd63dd8432caf4922a82d51cde6 a csvw:Column ;
+    dct:description "Street, City, State, ZIP"@en ;
+    dct:isPartOf "demographics" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "address" ;
+    csvw:title "Street, City, State, ZIP"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N1b2815a1f31841e7986a59605dd01dc3 a csvw:Column ;
+    dct:description "Study ID"@en ;
     dct:isPartOf "demographics" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "telephone" ;
-    csvw:title "Phone number"@en ;
-    dpv:hasPersonalData dpv-pd:TelephoneNumber .
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Study ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
 
-_:N124ececb55f2488c948af43a4411d910 a csvw:Column ;
+_:N210d68786e8541988e9a042e07317e00 a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=Native Hawaiian or Other Pacific Islander)"@en ;
+    dct:isPartOf "race_and_ethnicity" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "race___3" ;
+    csvw:title "Race (Select all that apply) (choice=Native Hawaiian or Other Pacific Islander)"@en .
+
+_:N3f2621574778402fb02d80f5a0819f4e a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=American Indian/Alaska Native)"@en ;
+    dct:isPartOf "race_and_ethnicity" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "race___1" ;
+    csvw:title "Race (Select all that apply) (choice=American Indian/Alaska Native)"@en .
+
+_:N4206c61b80e4443289108f58ea1a121f a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=Asian)"@en ;
+    dct:isPartOf "race_and_ethnicity" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "race___2" ;
+    csvw:title "Race (Select all that apply) (choice=Asian)"@en .
+
+_:N4a78c56eb4f74b3aac532bbe88d88fe3 a csvw:Column ;
     dct:description "Ethnicity"@en ;
     dct:isPartOf "race_and_ethnicity" ;
     dct:type "radio" ;
@@ -174,15 +216,65 @@ _:N124ececb55f2488c948af43a4411d910 a csvw:Column ;
     csvw:name "ethnicity" ;
     csvw:title "Ethnicity"@en .
 
-_:N15353705c5da499480036adca8b65237 a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=Native Hawaiian or Other Pacific Islander)"@en ;
+_:N620bea8ed8c040e5b515876346a9ed2c a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=Black or African American)"@en ;
     dct:isPartOf "race_and_ethnicity" ;
     dct:type "checkbox" ;
     csvw:datatype "boolean" ;
-    csvw:name "race___3" ;
-    csvw:title "Race (Select all that apply) (choice=Native Hawaiian or Other Pacific Islander)"@en .
+    csvw:name "race___4" ;
+    csvw:title "Race (Select all that apply) (choice=Black or African American)"@en .
 
-_:N157b7284058f42bbb919709e3952ccdd a csvw:Column ;
+_:N68b32503d3324944832e1b3e5f535d86 a csvw:Column ;
+    dct:description "Last Name"@en ;
+    dct:isPartOf "demographics" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "name_last" ;
+    csvw:title "Last Name"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N709bfabc292f45f597dbc4513dcce913 a csvw:Column ;
+    dct:description "Height (cm)"@en ;
+    dct:isPartOf "health" ;
+    dct:type "text" ;
+    csvw:datatype "decimal" ;
+    csvw:name "height" ;
+    csvw:title "Height (cm)"@en .
+
+_:N8d63325ef12f45769c0f38f83cc99c61 a csvw:Column ;
+    dct:description "E-mail"@en ;
+    dct:isPartOf "demographics" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "email" ;
+    csvw:title "E-mail"@en ;
+    dpv:hasPersonalData dpv-pd:EmailAddress .
+
+_:N911ccee350384cda83515400042214a6 a csvw:Column ;
+    dct:description "Weight (kilograms)"@en ;
+    dct:isPartOf "health" ;
+    dct:type "text" ;
+    csvw:datatype "integer" ;
+    csvw:name "weight" ;
+    csvw:title "Weight (kilograms)"@en .
+
+_:N944da3bcea99466eb9aebe3262d9c226 a csvw:Column ;
+    dct:description "Race (Select all that apply) (choice=Unknown / Not Reported)"@en ;
+    dct:isPartOf "race_and_ethnicity" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "race___6" ;
+    csvw:title "Race (Select all that apply) (choice=Unknown / Not Reported)"@en .
+
+_:Na0ce6176b1584678a2f106275cfa0d7c a csvw:Column ;
+    dct:description "Comments"@en ;
+    dct:isPartOf "health" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "comments" ;
+    csvw:title "Comments"@en .
+
+_:Na1346e01c4a54e06b319a9cdfc7d3872 a csvw:Column ;
     dct:description "Age (years)"@en ;
     dct:isPartOf "demographics" ;
     dct:type "calc" ;
@@ -191,43 +283,16 @@ _:N157b7284058f42bbb919709e3952ccdd a csvw:Column ;
     csvw:name "age" ;
     csvw:title "Age (years)"@en .
 
-_:N1dc19f888fe24586b9aeacc5b420d149 a csvw:Column ;
-    dct:description "Comments"@en ;
-    dct:isPartOf "health" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "comments" ;
-    csvw:title "Comments"@en .
-
-_:N2c51bcce941a42fcb466cbd70a5329c8 a csvw:Column ;
-    dct:description "BMI"@en ;
-    dct:isPartOf "health" ;
-    dct:type "calc" ;
-    rdfs:comment "round(([weight]*10000)/(([height])^(2)),1)" ;
-    csvw:datatype "decimal" ;
-    csvw:name "bmi" ;
-    csvw:title "BMI"@en .
-
-_:N348d1be700164ff69415485a5b654f2c a csvw:Column ;
-    dct:description "Study ID"@en ;
+_:Nbcfa8ec8063f4593ab16452de6890e37 a csvw:Column ;
+    dct:description "Include Area Code"@en ;
     dct:isPartOf "demographics" ;
     dct:type "text" ;
     csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Study ID"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
+    csvw:name "telephone" ;
+    csvw:title "Phone number"@en ;
+    dpv:hasPersonalData dpv-pd:TelephoneNumber .
 
-_:N414cf1b3f6684fa880fe453ddd75e556 a csvw:Column ;
-    dct:description "Street, City, State, ZIP"@en ;
-    dct:isPartOf "demographics" ;
-    dct:type "notes" ;
-    csvw:datatype "string" ;
-    csvw:name "address" ;
-    csvw:title "Street, City, State, ZIP"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
-
-_:N41a1346ea55c497d9c86c2aa8860a39f a csvw:Column ;
+_:Nd0858702986f4233b53369a212987283 a csvw:Column ;
     dct:description "First Name"@en ;
     dct:isPartOf "demographics" ;
     dct:type "text" ;
@@ -236,77 +301,12 @@ _:N41a1346ea55c497d9c86c2aa8860a39f a csvw:Column ;
     csvw:title "First Name"@en ;
     dpv:hasPersonalData dpv-pd:Identifying .
 
-_:N513eaca44f0c472ebc02e695e0d00585 a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=Unknown / Not Reported)"@en ;
-    dct:isPartOf "race_and_ethnicity" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "race___6" ;
-    csvw:title "Race (Select all that apply) (choice=Unknown / Not Reported)"@en .
-
-_:N5e428130105549599033cb9c9cbbcae5 a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=Black or African American)"@en ;
-    dct:isPartOf "race_and_ethnicity" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "race___4" ;
-    csvw:title "Race (Select all that apply) (choice=Black or African American)"@en .
-
-_:N6af1102603374a078b70a308f7911d3a a csvw:Column ;
-    dct:description "Weight (kilograms)"@en ;
+_:Nf369f5a6ff564bb3999b845c84c61d25 a csvw:Column ;
+    dct:description "BMI"@en ;
     dct:isPartOf "health" ;
-    dct:type "text" ;
-    csvw:datatype "integer" ;
-    csvw:name "weight" ;
-    csvw:title "Weight (kilograms)"@en .
-
-_:N89c97c634d144ac7aee363b8731a757f a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=Asian)"@en ;
-    dct:isPartOf "race_and_ethnicity" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "race___2" ;
-    csvw:title "Race (Select all that apply) (choice=Asian)"@en .
-
-_:Na077e7b6f10a4d5191ed541754491210 a csvw:Column ;
-    dct:description "Height (cm)"@en ;
-    dct:isPartOf "health" ;
-    dct:type "text" ;
+    dct:type "calc" ;
+    rdfs:comment "round(([weight]*10000)/(([height])^(2)),1)" ;
     csvw:datatype "decimal" ;
-    csvw:name "height" ;
-    csvw:title "Height (cm)"@en .
-
-_:Na54b88e2cb1346529f7e75741f2044e0 a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=American Indian/Alaska Native)"@en ;
-    dct:isPartOf "race_and_ethnicity" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "race___1" ;
-    csvw:title "Race (Select all that apply) (choice=American Indian/Alaska Native)"@en .
-
-_:Nbd354ba6a9df40f89e1778a20c014e1a a csvw:Column ;
-    dct:description "Date of birth"@en ;
-    dct:isPartOf "demographics" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "dob" ;
-    csvw:title "Date of birth"@en ;
-    dpv:hasPersonalData dpv-pd:BirthDate .
-
-_:Ncc7bc3d97b5445c68d252a5905abb060 a csvw:Column ;
-    dct:description "Race (Select all that apply) (choice=White)"@en ;
-    dct:isPartOf "race_and_ethnicity" ;
-    dct:type "checkbox" ;
-    csvw:datatype "boolean" ;
-    csvw:name "race___5" ;
-    csvw:title "Race (Select all that apply) (choice=White)"@en .
-
-_:Nd73cc6cc1af74cfab9a40e88c88bb6f9 a csvw:Column ;
-    dct:description "E-mail"@en ;
-    dct:isPartOf "demographics" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "email" ;
-    csvw:title "E-mail"@en ;
-    dpv:hasPersonalData dpv-pd:EmailAddress .
+    csvw:name "bmi" ;
+    csvw:title "BMI"@en .
 

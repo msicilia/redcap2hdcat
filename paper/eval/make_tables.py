@@ -58,7 +58,8 @@ def source(row: dict) -> str:
 def elements() -> None:
     with (RESULTS / "contribution.csv").open(newline="", encoding="utf-8") as fh:
         rows = [r for r in csv.DictReader(fh) if r["section"] == "IR 2026/2098 element"]
-    lines = [r"\begin{tabular}{@{}rllcl@{}}", r"\toprule",
+    lines = [r"\begin{tabular}{@{}r>{\raggedright\arraybackslash}p{3.4cm}lc"
+             r">{\raggedright\arraybackslash}p{3.6cm}@{}}", r"\toprule",
              r"No. & Element & HealthDCAT-AP property & Obl. & Source \\", r"\midrule"]
     for r in rows:
         prop = r["r8_property"] or "--"
@@ -68,7 +69,7 @@ def elements() -> None:
     (TABLES / "elements.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-COLLECTION = {"nacc": "NACC UDS", "iedea": "IeDEA", "rtd": "REDCap test datasets"}
+COLLECTION = {"nacc": "NACC UDS", "iedea": "IeDEA", "rtd": "REDCap tests"}
 SHORT = {"FormF2COVIDImpactSurvey-Participantv1.3": "FormF2 COVID impact (participant)",
          "FormF3COVID-CoParticipant": "FormF3 COVID (co-participant)"}
 
@@ -77,7 +78,7 @@ def corpus() -> None:
     with (RESULTS / "corpus.csv").open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
     lines = [r"\begin{tabular}{@{}llllrrrl@{}}", r"\toprule",
-             r"Project & Collection & Format & Header & Forms & Fields & Columns & Violations \\",
+             r"Project & Collection & Format & Header & Forms & Fields & Columns & Viol. \\",
              r"\midrule"]
     for r in rows:
         name = r["source"].split("-", 1)[1]
