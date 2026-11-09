@@ -74,8 +74,19 @@ RULES = [
 
 
 def classify(row: dict) -> tuple[str, str]:
+    # From 0.2.0 on, the tool emits dct:type only when the configuration names a concept.
+    if row["path"] == "dct:type" and row["focus_type"] == "dcat:Dataset" \
+            and row["severity"] == "Violation":
+        return ("config", "dataset_type not configured: the recommended EU dataset-type table has "
+                "no concept for research data, so the tool does not choose one.")
+    if row["path"] == "dct:type" and row["focus_type"] == "dcat:Dataset" \
+            and row["severity"] == "Warning":
+        return ("config", "The placeholder dataset type is the institution's own concept; Release 8 "
+                "recommends also giving one from the EU dataset-type table, which has none for "
+                "research data.")
     if row["severity"] == "Warning" and row["component"] == "sh:MinCountConstraintComponent" \
-            and row["focus_type"] == "dcat:Dataset" and row["path"] != "dpv:hasPersonalData":
+            and row["focus_type"] in ("dcat:Dataset", "dcat:Distribution") \
+            and row["path"] != "dpv:hasPersonalData":
         return "tool-gap", "Recommended property not emitted."
     for path, comp, cause, why in RULES:
         if path and path != row["path"]:

@@ -1,10 +1,6 @@
 {
   "note": "Robustness/illustration only; not a data-quality metric.",
   "rules": {
-    "dangling-branching-reference": {
-      "sources_affected": 2,
-      "findings": 4
-    },
     "date-not-reviewed": {
       "sources_affected": 7,
       "findings": 29
@@ -80,12 +76,11 @@
       "variable_count": 28,
       "form_count": 2,
       "is_longitudinal": false,
-      "error_count": 1,
+      "error_count": 0,
       "counts_by_rule": {
         "unconstrained-text": 10,
         "numeric-without-range": 2,
-        "date-not-reviewed": 4,
-        "dangling-branching-reference": 1
+        "date-not-reviewed": 4
       },
       "findings": [
         {
@@ -178,13 +173,6 @@
           "variable": "variable_order",
           "message": "Numeric field declares neither minimum nor maximum.",
           "detail": ""
-        },
-        {
-          "rule": "dangling-branching-reference",
-          "severity": "error",
-          "variable": "variable_missingaction___1",
-          "message": "Branching logic references an undeclared variable.",
-          "detail": "variable_required"
         },
         {
           "rule": "date-not-reviewed",
@@ -329,14 +317,13 @@
     },
     "nacc-DownSyndromeModule": {
       "source": "DownSyndromeModule.REDCap.xml",
-      "variable_count": 378,
+      "variable_count": 353,
       "form_count": 6,
       "is_longitudinal": false,
-      "error_count": 3,
+      "error_count": 0,
       "counts_by_rule": {
         "unconstrained-text": 25,
-        "numeric-without-range": 122,
-        "dangling-branching-reference": 3
+        "numeric-without-range": 122
       },
       "findings": [
         {
@@ -536,13 +523,6 @@
           "detail": ""
         },
         {
-          "rule": "dangling-branching-reference",
-          "severity": "error",
-          "variable": "dsdxothx",
-          "message": "Branching logic references an undeclared variable.",
-          "detail": "dsntgdx"
-        },
-        {
           "rule": "unconstrained-text",
           "severity": "warning",
           "variable": "dslivx",
@@ -555,13 +535,6 @@
           "variable": "dssiglex",
           "message": "Free-text field with no validation declared.",
           "detail": ""
-        },
-        {
-          "rule": "dangling-branching-reference",
-          "severity": "error",
-          "variable": "dssiglex",
-          "message": "Branching logic references an undeclared variable.",
-          "detail": "dssigle"
         },
         {
           "rule": "numeric-without-range",
@@ -632,13 +605,6 @@
           "variable": "dsrepmo",
           "message": "Free-text field with no validation declared.",
           "detail": ""
-        },
-        {
-          "rule": "dangling-branching-reference",
-          "severity": "error",
-          "variable": "dsrepmo",
-          "message": "Branching logic references an undeclared variable.",
-          "detail": "dsrecomm"
         },
         {
           "rule": "numeric-without-range",

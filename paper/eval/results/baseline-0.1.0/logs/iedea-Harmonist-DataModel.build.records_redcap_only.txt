@@ -1,0 +1,5 @@
+exit=1
+--- stderr ---
+Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/mim/eval/results/records_redcap_only/iedea-Harmonist-DataModel.ttl (318 triples)
+
+Incomplete: healthdcatap:healthCategory, healthdcatap:hdab, dct:publisher not set in configuration.

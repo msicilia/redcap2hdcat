@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from ..model import Choice, Event, FieldType, Project, ProjectMetadata, Variable
+from .csv_dict import parse_choices
 
 ODM = "{http://www.cdisc.org/ns/odm/v1.3}"
 REDCAP = "{https://projectredcap.org}"
@@ -95,6 +96,15 @@ def _collect_codelists(mdv: ET.Element) -> dict[str, list[Choice]]:
     return out
 
 
+def _checkbox_choices(mdv: ET.Element, codelist_oid: str) -> list[Choice]:
+    """The field's own options, from redcap:CheckboxChoices on a per-option CodeList."""
+    for cl in mdv.findall(f"{ODM}CodeList"):
+        if cl.get("OID", "") == codelist_oid:
+            raw = cl.get(f"{REDCAP}CheckboxChoices", "")
+            return parse_choices(raw) if raw else []
+    return []
+
+
 def load(path: str | Path) -> Project:
     """Read a REDCap Project XML export into the intermediate representation."""
     path = Path(path)
@@ -136,6 +146,7 @@ def load(path: str | Path) -> Project:
     defs = {i.get("OID", ""): i for i in mdv.findall(f"{ODM}ItemDef")}
 
     variables: list[Variable] = []
+    checkbox_seen: set[str] = set()
     for oid in item_order:
         item = defs.get(oid)
         if item is None:
@@ -143,9 +154,25 @@ def load(path: str | Path) -> Project:
         question = item.find(f"{ODM}Question/{ODM}TranslatedText")
         cl_ref = item.find(f"{ODM}CodeListRef")
         choices = codelists.get(cl_ref.get("CodeListOID", ""), []) if cl_ref is not None else []
+        name = item.get("Name", oid)
+
+        # Recent REDCap versions already split a checkbox into one ItemDef per option
+        # (field___code, coded Checked/Unchecked) and point back to the field through
+        # redcap:Variable. Fold them into the one dictionary field, as the CSV
+        # dictionary has it, so that column expansion does not split them again.
+        parent = item.get(f"{REDCAP}Variable", "")
+        if _field_type(item) == FieldType.CHECKBOX and parent and parent != name:
+            if parent in checkbox_seen:
+                continue
+            checkbox_seen.add(parent)
+            name = parent
+            options = cl_ref is not None and _checkbox_choices(
+                mdv, cl_ref.get("CodeListOID", ""))
+            choices = options or []
+
         variables.append(
             Variable(
-                name=item.get("Name", oid),
+                name=name,
                 form=item_form.get(oid, ""),
                 field_type=_field_type(item),
                 label=_text_of(question),
@@ -156,7 +183,8 @@ def load(path: str | Path) -> Project:
                 validation_max=item.get(f"{REDCAP}TextValidationMax", ""),
                 choices=choices,
                 identifier=(item.get(f"{REDCAP}Identifier", "") or "").lower() in {"y", "yes"},
-                required=(item.get("Mandatory", "") or "").lower() == "yes",
+                required=(item.get("Mandatory", "") or "").lower() == "yes"
+                or (item.get(f"{REDCAP}RequiredField", "") or "").lower() == "y",
                 branching_logic=item.get(f"{REDCAP}BranchingLogic", ""),
                 annotation=item.get(f"{REDCAP}FieldAnnotation", ""),
             )

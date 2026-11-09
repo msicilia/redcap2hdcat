@@ -1,3 +1,3 @@
 exit=0
 --- stderr ---
-Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/mim/eval/results/records_hdab/iedea-Harmonist-DataModel.ttl (340 triples)
+Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/paper/eval/results/records_hdab/iedea-Harmonist-DataModel.ttl (407 triples)

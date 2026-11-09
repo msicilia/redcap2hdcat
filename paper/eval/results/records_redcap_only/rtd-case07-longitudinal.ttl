@@ -3,66 +3,103 @@
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dpv: <https://w3id.org/dpv#> .
+@prefix dpv-pd: <https://w3id.org/dpv/dpv-pd#> .
+@prefix eli: <http://data.europa.eu/eli/ontology#> .
+@prefix healthdcatap: <http://healthdataportal.eu/ns/health#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv> a dcat:Dataset ;
     dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    healthdcatap:hasStructuredData true ;
+    healthdcatap:hasVariables <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary> ;
     dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
-    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary> ;
     dct:description "test-case-07-data-dictionary.csv" ;
     dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv" ;
+    dct:provenance [ a dct:ProvenanceStatement ;
+            rdfs:label "Data captured through electronic case report forms in REDCap (2 instruments). This description was derived from the project's data dictionary by redcap2hdcat."@en ] ;
     dct:title "test-case-07-data-dictionary.csv" ;
     dcat:keyword "tree_environment",
         "tree_measurement" ;
-    dpv:hasPersonalData true .
+    dpv:hasPersonalData dpv-pd:Health,
+        dpv-pd:Identifying .
+
+<http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
+
+<http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> a dct:RightsStatement .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    dct:title "Data dictionary of test-case-07-data-dictionary.csv" ;
     csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0>,
         <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1> .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "tree_environment" ;
+    csvw:column _:N4ff313f9b07f496fb2cdb57f3d54e86e,
+        _:Ncabd7dd3d87c42f590c679fe52acecf4,
+        _:Ncf5302b1f0654f2084487e902428a6d0 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column [ a csvw:Column ;
-                    dct:isPartOf "tree_environment" ;
-                    dct:type "yesno" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "ozone" ;
-                    csvw:titles "Ozone enriched environment" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tree_environment" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "tree_id" ;
-                    csvw:required true ;
-                    csvw:titles "Tree ID" ;
-                    dpv:hasPersonalData true ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tree_environment" ;
-                    dct:type "radio" ;
-                    skos:notation "1 = Chamber 1",
-                        "2 = Chamber 2",
-                        "3 = Chamber 3",
-                        "4 = Chamber 4" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "chamber" ;
-                    csvw:titles "Controlled Environment Chamber" ] ;
+            csvw:column _:N4ff313f9b07f496fb2cdb57f3d54e86e,
+                _:Ncabd7dd3d87c42f590c679fe52acecf4,
+                _:Ncf5302b1f0654f2084487e902428a6d0 ;
             csvw:primaryKey "tree_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1> a csvw:Table ;
     dct:title "tree_measurement" ;
+    csvw:column _:N9a3f67c3a9424fde907fe5afc5e8567a,
+        _:Nf0d3c0b2f41a4591af3d4add4788434f ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column [ a csvw:Column ;
-                    dct:isPartOf "tree_measurement" ;
-                    dct:type "text" ;
-                    csvw:datatype "decimal" ;
-                    csvw:name "log_size" ;
-                    csvw:titles "Log size" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tree_measurement" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "date" ;
-                    csvw:titles "Date of measurement" ] ] .
+            csvw:column _:N9a3f67c3a9424fde907fe5afc5e8567a,
+                _:Nf0d3c0b2f41a4591af3d4add4788434f ] .
+
+dpv-pd:Health a dpv:PersonalData .
+
+dpv-pd:Identifying a dpv:PersonalData .
+
+_:N4ff313f9b07f496fb2cdb57f3d54e86e a csvw:Column ;
+    dct:description "Tree ID" ;
+    dct:isPartOf "tree_environment" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "tree_id" ;
+    csvw:required true ;
+    csvw:title "Tree ID" ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N9a3f67c3a9424fde907fe5afc5e8567a a csvw:Column ;
+    dct:description "Date of measurement" ;
+    dct:isPartOf "tree_measurement" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date" ;
+    csvw:title "Date of measurement" .
+
+_:Ncabd7dd3d87c42f590c679fe52acecf4 a csvw:Column ;
+    dct:description "Ozone enriched environment" ;
+    dct:isPartOf "tree_environment" ;
+    dct:type "yesno" ;
+    csvw:datatype "boolean" ;
+    csvw:name "ozone" ;
+    csvw:title "Ozone enriched environment" .
+
+_:Ncf5302b1f0654f2084487e902428a6d0 a csvw:Column ;
+    dct:description "Controlled Environment Chamber" ;
+    dct:isPartOf "tree_environment" ;
+    dct:type "radio" ;
+    skos:notation "1 = Chamber 1",
+        "2 = Chamber 2",
+        "3 = Chamber 3",
+        "4 = Chamber 4" ;
+    csvw:datatype "integer" ;
+    csvw:name "chamber" ;
+    csvw:title "Controlled Environment Chamber" .
+
+_:Nf0d3c0b2f41a4591af3d4add4788434f a csvw:Column ;
+    dct:description "Log size" ;
+    dct:isPartOf "tree_measurement" ;
+    dct:type "text" ;
+    csvw:datatype "decimal" ;
+    csvw:name "log_size" ;
+    csvw:title "Log size" .
 

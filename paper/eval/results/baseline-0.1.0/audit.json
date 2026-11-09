@@ -1,0 +1,1972 @@
+{
+  "note": "Robustness/illustration only; not a data-quality metric.",
+  "rules": {
+    "dangling-branching-reference": {
+      "sources_affected": 2,
+      "findings": 4
+    },
+    "date-not-reviewed": {
+      "sources_affected": 7,
+      "findings": 29
+    },
+    "inconsistent-coding": {
+      "sources_affected": 1,
+      "findings": 1
+    },
+    "numeric-without-range": {
+      "sources_affected": 4,
+      "findings": 145
+    },
+    "unconstrained-text": {
+      "sources_affected": 10,
+      "findings": 76
+    },
+    "unflagged-identifier": {
+      "sources_affected": 1,
+      "findings": 3
+    }
+  },
+  "per_source": {
+    "iedea-Harmonist-CodeLists": {
+      "source": "Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml",
+      "variable_count": 9,
+      "form_count": 1,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 4,
+        "date-not-reviewed": 1
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "list_name",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "code_list",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "codelist_update_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "codelist_update_txt",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    },
+    "iedea-Harmonist-DataModel": {
+      "source": "Harmonist0ADataModel_2017-12-21_1147.REDCap.xml",
+      "variable_count": 28,
+      "form_count": 2,
+      "is_longitudinal": false,
+      "error_count": 1,
+      "counts_by_rule": {
+        "unconstrained-text": 10,
+        "numeric-without-range": 2,
+        "date-not-reviewed": 4,
+        "dangling-branching-reference": 1
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "table_name",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "table_definition",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "table_display_name",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "table_order",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "text_top",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "text_bottom",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "table_added_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "table_deprecated_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "variable_name",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "description",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "description_extra",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "variable_order",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "dangling-branching-reference",
+          "severity": "error",
+          "variable": "variable_missingaction___1",
+          "message": "Branching logic references an undeclared variable.",
+          "detail": "variable_required"
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "variable_added_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "variable_deprecated_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "code_text",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    },
+    "iedea-tblCENTER": {
+      "source": "IeDEA_tblCENTER_2020-06-30.csv",
+      "variable_count": 24,
+      "form_count": 1,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 10,
+        "date-not-reviewed": 5
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "last_reviewed_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "center",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "name",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "program",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "province",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "district",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "city",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "geocode_lat",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "geocode_lon",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "open_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "close_d",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "add_center",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "drop_center",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "notes",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    },
+    "nacc-DownSyndromeModule": {
+      "source": "DownSyndromeModule.REDCap.xml",
+      "variable_count": 378,
+      "form_count": 6,
+      "is_longitudinal": false,
+      "error_count": 3,
+      "counts_by_rule": {
+        "unconstrained-text": 25,
+        "numeric-without-range": 122,
+        "dangling-branching-reference": 3
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "ptid",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsothacx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmomage",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dschdotx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsfractx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsthymex",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmnsage",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmnpage",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsagehrt",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dstumorx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dshrtrpx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dshrtryr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dscrdsrx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrdsyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsspinx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsspinyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dslwortx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslworyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsuportx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsuporyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsthysrx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsthysyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsoncsrx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsoncsyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsothsrx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsothsyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsdxothx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "dangling-branching-reference",
+          "severity": "error",
+          "variable": "dsdxothx",
+          "message": "Branching logic references an undeclared variable.",
+          "detail": "dsntgdx"
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dslivx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dssiglex",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "dangling-branching-reference",
+          "severity": "error",
+          "variable": "dssiglex",
+          "message": "Branching logic references an undeclared variable.",
+          "detail": "dssigle"
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmciyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdemyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsdxtype",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsdxbyx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsonstyr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsdemcom",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsmhothx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dscancx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dscomm",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "dsrepmo",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "dangling-branching-reference",
+          "severity": "error",
+          "variable": "dsrepmo",
+          "message": "Branching logic references an undeclared variable.",
+          "detail": "dsrecomm"
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldst2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldst4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldst5",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldst6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldst7",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldstm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldlt2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldlt3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldlt6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldlt8",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldlt9",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldltm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor8",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor9",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldor",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsp2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsp4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsp5",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsp6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsp",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldpr3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldpr4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldpr5",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldpr8",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldp10",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldprc",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldmd7",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldmd8",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldmd9",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldm10",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldmd",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai5",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai7",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldai",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd4",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd6",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd7",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd8",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldbd",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldscs",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsdldsos",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsprsinf",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsseasdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsortot1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsortot2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dssmimm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dssmdel",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dssmtot1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dssmtot2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmemimm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmemdel",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmmtot1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmmtot2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsapint",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsaptran",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsaptot1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsaptot2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgnam",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgrep1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgrep2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgcomp",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgtot1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dslgtot2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsvisuo",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsvistt1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsvistt2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsknowl",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsknwtt1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsknwtt2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmsere1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmsere2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmsett1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsmsett2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1c1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1c2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1c3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2c1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2c2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2c3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3c1",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3c2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3c3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1fr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1if",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1cr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt1ic",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2fr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2if",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2cr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt2ic",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3fr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3if",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3cr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrt3ic",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrttfr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dscrttif",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsccttcr",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsccttic",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "dsheadcm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        }
+      ]
+    },
+    "nacc-FormF2COVIDImpactSurvey-Participantv1.3": {
+      "source": "FormF2COVIDImpactSurvey-Participantv1.3.REDCap.xml",
+      "variable_count": 150,
+      "form_count": 3,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 10,
+        "date-not-reviewed": 6,
+        "numeric-without-range": 20,
+        "inconsistent-coding": 1
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "ptid",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "initials",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "f2_form_date",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "surveystarttime",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19syotx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19norm",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19normx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "q1to8timestamp",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19h1dys",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19h2dys",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19h3dys",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "q9timestamp",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19unvacmx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19unvacox",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19tvac1ox",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac1ady",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac1fdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac1mdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19tvac2ox",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac2ady",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac2fdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19vac2mdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19tbst1ox",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19bst1ady",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19bst1ady_label",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19bst1fdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "c19bst1mdy",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "q10timestamp",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "f2_completion_time",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "q1to8duration",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "q9duration",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "q10duration",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "q11to16duration",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "total_duration_f2",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "total_survey_duration",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        },
+        {
+          "rule": "inconsistent-coding",
+          "severity": "warning",
+          "variable": "c19tvac2, c19tbst1",
+          "message": "Same label coded differently in different fields.",
+          "detail": "which covid-19 vaccine did you receive?"
+        }
+      ]
+    },
+    "nacc-FormF3COVID-CoParticipant": {
+      "source": "FormF3COVIDImpactSurvey-Co-Participantv1.2.REDCap.xml",
+      "variable_count": 33,
+      "form_count": 2,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 5,
+        "date-not-reviewed": 3,
+        "numeric-without-range": 1
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "pt_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "initials",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "f2_form_date",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "f3surveystarttime",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c19kothx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "c10cospx",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "surveycompletiontime",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "numeric-without-range",
+          "severity": "warning",
+          "variable": "total_duration_f3",
+          "message": "Numeric field declares neither minimum nor maximum.",
+          "detail": ""
+        }
+      ]
+    },
+    "rtd-archer": {
+      "source": "data-dictionary.csv",
+      "variable_count": 16,
+      "form_count": 3,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 5
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "name_first",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "name_last",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "address",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "comments",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    },
+    "rtd-case01-crosssectional": {
+      "source": "test-case-01-data-dictionary.csv",
+      "variable_count": 30,
+      "form_count": 1,
+      "is_longitudinal": false,
+      "error_count": 3,
+      "counts_by_rule": {
+        "unconstrained-text": 3,
+        "date-not-reviewed": 9,
+        "unflagged-identifier": 3
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "unvalidated_text",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "date_dmy",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "date_mdy",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "date_ymd",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_dmyhm",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_mdyhm",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_ymdhm",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_dmyhms",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_mdyhms",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "datetime_ymdhms",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        },
+        {
+          "rule": "unflagged-identifier",
+          "severity": "error",
+          "variable": "email",
+          "message": "Field looks like a direct identifier but is not flagged.",
+          "detail": "email address"
+        },
+        {
+          "rule": "unflagged-identifier",
+          "severity": "error",
+          "variable": "phone",
+          "message": "Field looks like a direct identifier but is not flagged.",
+          "detail": "phone number"
+        },
+        {
+          "rule": "unflagged-identifier",
+          "severity": "error",
+          "variable": "zip",
+          "message": "Field looks like a direct identifier but is not flagged.",
+          "detail": "validation 'zipcode'"
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "notes",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    },
+    "rtd-case07-longitudinal": {
+      "source": "test-case-07-data-dictionary.csv",
+      "variable_count": 5,
+      "form_count": 2,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 1,
+        "date-not-reviewed": 1
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "tree_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "date-not-reviewed",
+          "severity": "info",
+          "variable": "date",
+          "message": "Date field: confirm it is not a date of birth.",
+          "detail": ""
+        }
+      ]
+    },
+    "rtd-case20-randomization": {
+      "source": "test-case-20-data-dictionary.csv",
+      "variable_count": 6,
+      "form_count": 1,
+      "is_longitudinal": false,
+      "error_count": 0,
+      "counts_by_rule": {
+        "unconstrained-text": 3
+      },
+      "findings": [
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "record_id",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "pre_test",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        },
+        {
+          "rule": "unconstrained-text",
+          "severity": "warning",
+          "variable": "post_test",
+          "message": "Free-text field with no validation declared.",
+          "detail": ""
+        }
+      ]
+    }
+  }
+}

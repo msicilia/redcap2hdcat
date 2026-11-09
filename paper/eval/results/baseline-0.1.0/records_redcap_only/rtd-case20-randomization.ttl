@@ -1,0 +1,73 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv> a dcat:Dataset ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
+    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary> ;
+    dct:description "test-case-20-data-dictionary.csv" ;
+    dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv" ;
+    dct:title "test-case-20-data-dictionary.csv" ;
+    dcat:keyword "my_first_instrument" .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
+    dct:title "my_first_instrument" ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "record_id" ;
+                    csvw:required true ;
+                    csvw:titles "Record ID" ;
+                    dpv:hasPersonalData true ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Female",
+                        "1 = Male" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "sex" ;
+                    csvw:titles "Sex" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "post_test" ;
+                    csvw:titles "Post test response" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "pre_test" ;
+                    csvw:titles "Pre test response" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Control",
+                        "1 = Treatment" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "treatment" ;
+                    csvw:titles "Treatment" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "1 = Maine",
+                        "2 = New Hampshire",
+                        "3 = Vermont",
+                        "4 = Massachusetts",
+                        "5 = Rhode Island",
+                        "6 = Connecticut" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "location" ;
+                    csvw:titles "Location" ] ;
+            csvw:primaryKey "record_id" ] .
+

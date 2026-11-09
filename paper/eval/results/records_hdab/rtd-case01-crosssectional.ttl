@@ -1,8 +1,11 @@
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix cv: <http://data.europa.eu/m8g/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dpv: <https://w3id.org/dpv#> .
+@prefix dpv-pd: <https://w3id.org/dpv/dpv-pd#> .
+@prefix eli: <http://data.europa.eu/eli/ontology#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix healthdcatap: <http://healthdataportal.eu/ns/health#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -12,230 +15,372 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv> a dcat:Dataset ;
     dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    healthdcatap:hasStructuredData true ;
+    healthdcatap:hasVariables <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary> ;
     healthdcatap:hdab [ a foaf:Agent ;
+            cv:contactPoint [ a cv:ContactPoint ;
+                    cv:contactPage <https://www.fictional-hdab.invalid> ;
+                    cv:email "hdab@fictional-hdab.invalid" ] ;
             foaf:homepage <https://www.fictional-hdab.invalid> ;
             foaf:mbox <mailto:hdab@fictional-hdab.invalid> ;
             foaf:name "Placeholder Health Data Access Body (fictional)" ] ;
     healthdcatap:healthCategory <https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS> ;
     dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
-    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary> ;
     dct:creator [ a foaf:Agent ;
+            cv:contactPoint [ a cv:ContactPoint ;
+                    cv:email "group@fictional-institute.invalid" ] ;
             foaf:mbox <mailto:group@fictional-institute.invalid> ;
             foaf:name "Fictional Research Group" ] ;
     dct:description "test-case-01-data-dictionary.csv"@en ;
     dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv" ;
-    dct:language "en" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:provenance [ a dct:ProvenanceStatement ;
+            rdfs:label "Data captured through electronic case report forms in REDCap (1 instrument). This description was derived from the project's data dictionary by redcap2hdcat."@en ] ;
     dct:publisher [ a foaf:Agent ;
+            cv:contactPoint [ a cv:ContactPoint ;
+                    cv:contactPage <https://www.fictional-institute.invalid> ;
+                    cv:email "catalogue@fictional-institute.invalid" ] ;
             dct:type <https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type/research-institute-org> ;
             foaf:homepage <https://www.fictional-institute.invalid> ;
             foaf:mbox <mailto:catalogue@fictional-institute.invalid> ;
             foaf:name "Fictional Health Research Institute" ] ;
     dct:title "test-case-01-data-dictionary.csv"@en ;
+    dct:type <https://catalogue.fictional-institute.invalid/concept/research-data> ;
     dcat:contactPoint [ a vcard:Kind ;
             vcard:fn "Fictional Data Office" ;
             vcard:hasEmail <mailto:data-office@fictional-institute.invalid> ] ;
+    dcat:distribution <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/distribution> ;
     dcat:keyword "my_first_instrument"@en ;
     dcat:theme <http://publications.europa.eu/resource/authority/data-theme/HEAL> .
 
+<http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> a dct:RightsStatement .
+
+<http://publications.europa.eu/resource/authority/file-type/CSV> a dct:MediaTypeOrExtent .
+
+<http://publications.europa.eu/resource/authority/language/ENG> a dct:LinguisticSystem .
+
+<https://catalogue.fictional-institute.invalid/concept/research-data> a skos:Concept ;
+    skos:prefLabel "Research data collected on electronic case report forms"@en .
+
 <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    dct:title "Data dictionary of test-case-01-data-dictionary.csv"@en ;
     csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary/table-0> .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "my_first_instrument"@en ;
+    csvw:column _:N1a1c328af66e46b1a222074669ab2f9b,
+        _:N1d5c2ecd54244f80b7fe80a51c34971b,
+        _:N284c47c830034b409c512d1549f87198,
+        _:N2f2b725253a04db0a157adc33c8c1c37,
+        _:N2ffc28232e394012bee1518952c2f0bd,
+        _:N319398761eb340c79cc8d913c5e90d40,
+        _:N559ba98174094d2fa741591a8a8278fc,
+        _:N5a3037617a1f4b709a6e85feb2ba75f5,
+        _:N65f8b9d5dcf34e22b5dbb948078a1309,
+        _:N6855bfe6bc6d40139ee0dffcb094ab79,
+        _:N6fd19125eb9141cba21b7573a0393788,
+        _:N709a8c76174a4f7f8f9c65577a6b0f2e,
+        _:N72ed36ab6be54a5dbf8d7ef713649371,
+        _:N90138d486b4a4d77a72f6fad2c4b6ada,
+        _:N97c5f42beb5f407f849d5daaff6a77aa,
+        _:N9aa0df4580934058a201ef7300356e17,
+        _:N9e869f6e858441c8bdaca1b86c58ebcc,
+        _:Nb0dcf97e8c7841b9841681627f007bb6,
+        _:Nb0e5cbd7213d486e8d0f6b0ab49cead6,
+        _:Nb586420884ba42cfbc9087dc3f123d8f,
+        _:Nbc6c3b51d9ef4fb3ad01cb0e540a3b1f,
+        _:Nc1b4aa11a92249f4a938d8334d761e97,
+        _:Nccbf44ad6ee54ba4ad1f7667506b3ee4,
+        _:Nd91714aef0544a1b8f64a17a356a1935,
+        _:Ne48805d9bccd4705bab276caf124501f,
+        _:Nf158cb28e85745569775bbe4de276f7e,
+        _:Nf7616f274a074b4b8a8a1ca9a53faa19,
+        _:Nfe4d329ecdc3487cabc13d1643f5d75a,
+        _:Nff655b5c7c3249fba00afbd50d4b0e0b ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_ymdhm" ;
-                    csvw:titles "Datetime (ymdhm)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "checkbox" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "checkbox___2" ;
-                    csvw:titles "Checkboxes (choice=Selection 2)"@en ],
-                [ a csvw:Column ;
-                    dct:description "Min: 01-01-2010"@en ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "date_mdy" ;
-                    csvw:titles "Date (MDY) [min, no max]"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "record_id" ;
-                    csvw:required true ;
-                    csvw:titles "Record ID"@en ;
-                    dpv:hasPersonalData true ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_dmyhms" ;
-                    csvw:titles "Datetime (dmy hms)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_mdyhm" ;
-                    csvw:titles "Datetime (mdy hm)"@en ],
-                [ a csvw:Column ;
-                    dct:description "max: 100"@en ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "decimal" ;
-                    csvw:name "number" ;
-                    csvw:titles "Number [no min, max]"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "dropdown" ;
-                    skos:notation "a_1 = Choice A1",
-                        "b_2 = Choice B2",
-                        "c_3 = Choice C3" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "dropdown_mixed" ;
-                    csvw:titles "Drop Down (mixed)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "phone" ;
-                    csvw:titles "Phone (North America)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "slider" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "slider" ;
-                    csvw:titles "Slider"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "dropdown" ;
-                    skos:notation "a = Choice A",
-                        "b = Choice B",
-                        "c = Choice C" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "dropdown_character" ;
-                    csvw:titles "Drop Down (character code)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "zip" ;
-                    csvw:titles "ZIP Code"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "checkbox" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "checkbox___1" ;
-                    csvw:titles "Checkboxes (choice=Selection 1)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "checkbox" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "checkbox___3" ;
-                    csvw:titles "Checkboxes (choice=Selection 3)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "email" ;
-                    csvw:titles "Email"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "dropdown" ;
-                    skos:notation "1 = Choice One",
-                        "2 = Choice Two",
-                        "3 = Choice Three" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "dropdown_numeric" ;
-                    csvw:titles "Drop Down (numeric code)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "notes" ;
-                    csvw:datatype "string" ;
-                    csvw:name "notes" ;
-                    csvw:titles "Notes Box"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "radio" ;
-                    skos:notation "1 = Choice 1",
-                        "2 = Choice 2",
-                        "3 = Choice 3" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "radio_buttons" ;
-                    csvw:titles "Radio Buttons"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "calc" ;
-                    rdfs:comment "[integer] + [number]" ;
-                    csvw:datatype "decimal" ;
-                    csvw:name "calculated" ;
-                    csvw:titles "Calculated Field (integer + number)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_mdyhms" ;
-                    csvw:titles "Datetime (mdy hms)"@en ],
-                [ a csvw:Column ;
-                    dct:description "Min 01-01-2010 00:00; Max 31-12-2019 23:59"@en ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_dmyhm" ;
-                    csvw:titles "Datetime (dmy hm) [min, max]"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "truefalse" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "true_false" ;
-                    csvw:titles "True/False"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "yesno" ;
-                    csvw:datatype "boolean" ;
-                    csvw:name "yes_no" ;
-                    csvw:titles "Yes/No"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "date_dmy" ;
-                    csvw:titles "Date (DMY) [no min, no max]"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "unvalidated_text" ;
-                    csvw:titles "Unvalidated Text"@en ],
-                [ a csvw:Column ;
-                    dct:description "Max: 2019-12-31"@en ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "date_ymd" ;
-                    csvw:titles "Date (YMD) [no min, max]"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "time" ;
-                    csvw:name "time" ;
-                    csvw:titles "Time (HH:MM)"@en ],
-                [ a csvw:Column ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "dateTime" ;
-                    csvw:name "datetime_ymdhms" ;
-                    csvw:titles "Datetime (ymd hms)"@en ],
-                [ a csvw:Column ;
-                    dct:description "Min: 0"@en ;
-                    dct:isPartOf "my_first_instrument" ;
-                    dct:type "text" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "integer" ;
-                    csvw:titles "Integer [min, no max]"@en ] ;
+            csvw:column _:N1a1c328af66e46b1a222074669ab2f9b,
+                _:N1d5c2ecd54244f80b7fe80a51c34971b,
+                _:N284c47c830034b409c512d1549f87198,
+                _:N2f2b725253a04db0a157adc33c8c1c37,
+                _:N2ffc28232e394012bee1518952c2f0bd,
+                _:N319398761eb340c79cc8d913c5e90d40,
+                _:N559ba98174094d2fa741591a8a8278fc,
+                _:N5a3037617a1f4b709a6e85feb2ba75f5,
+                _:N65f8b9d5dcf34e22b5dbb948078a1309,
+                _:N6855bfe6bc6d40139ee0dffcb094ab79,
+                _:N6fd19125eb9141cba21b7573a0393788,
+                _:N709a8c76174a4f7f8f9c65577a6b0f2e,
+                _:N72ed36ab6be54a5dbf8d7ef713649371,
+                _:N90138d486b4a4d77a72f6fad2c4b6ada,
+                _:N97c5f42beb5f407f849d5daaff6a77aa,
+                _:N9aa0df4580934058a201ef7300356e17,
+                _:N9e869f6e858441c8bdaca1b86c58ebcc,
+                _:Nb0dcf97e8c7841b9841681627f007bb6,
+                _:Nb0e5cbd7213d486e8d0f6b0ab49cead6,
+                _:Nb586420884ba42cfbc9087dc3f123d8f,
+                _:Nbc6c3b51d9ef4fb3ad01cb0e540a3b1f,
+                _:Nc1b4aa11a92249f4a938d8334d761e97,
+                _:Nccbf44ad6ee54ba4ad1f7667506b3ee4,
+                _:Nd91714aef0544a1b8f64a17a356a1935,
+                _:Ne48805d9bccd4705bab276caf124501f,
+                _:Nf158cb28e85745569775bbe4de276f7e,
+                _:Nf7616f274a074b4b8a8a1ca9a53faa19,
+                _:Nfe4d329ecdc3487cabc13d1643f5d75a,
+                _:Nff655b5c7c3249fba00afbd50d4b0e0b ;
             csvw:primaryKey "record_id" ] .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/distribution> a dcat:Distribution ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dct:title "Record-level data, on request"@en ;
+    dcat:accessURL <https://www.fictional-institute.invalid/data-access-request> .
+
+<http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
+
+_:N1a1c328af66e46b1a222074669ab2f9b a csvw:Column ;
+    dct:description "Unvalidated Text"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "unvalidated_text" ;
+    csvw:title "Unvalidated Text"@en .
+
+_:N1d5c2ecd54244f80b7fe80a51c34971b a csvw:Column ;
+    dct:description "Min: 01-01-2010"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date_mdy" ;
+    csvw:title "Date (MDY) [min, no max]"@en .
+
+_:N284c47c830034b409c512d1549f87198 a csvw:Column ;
+    dct:description "Datetime (ymd hms)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_ymdhms" ;
+    csvw:title "Datetime (ymd hms)"@en .
+
+_:N2f2b725253a04db0a157adc33c8c1c37 a csvw:Column ;
+    dct:description "Datetime (mdy hms)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_mdyhms" ;
+    csvw:title "Datetime (mdy hms)"@en .
+
+_:N2ffc28232e394012bee1518952c2f0bd a csvw:Column ;
+    dct:description "Date (DMY) [no min, no max]"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date_dmy" ;
+    csvw:title "Date (DMY) [no min, no max]"@en .
+
+_:N319398761eb340c79cc8d913c5e90d40 a csvw:Column ;
+    dct:description "ZIP Code"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "zip" ;
+    csvw:title "ZIP Code"@en .
+
+_:N559ba98174094d2fa741591a8a8278fc a csvw:Column ;
+    dct:description "True/False"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "truefalse" ;
+    csvw:datatype "boolean" ;
+    csvw:name "true_false" ;
+    csvw:title "True/False"@en .
+
+_:N5a3037617a1f4b709a6e85feb2ba75f5 a csvw:Column ;
+    dct:description "Datetime (dmy hms)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_dmyhms" ;
+    csvw:title "Datetime (dmy hms)"@en .
+
+_:N65f8b9d5dcf34e22b5dbb948078a1309 a csvw:Column ;
+    dct:description "Email"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "email" ;
+    csvw:title "Email"@en .
+
+_:N6855bfe6bc6d40139ee0dffcb094ab79 a csvw:Column ;
+    dct:description "Yes/No"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "yesno" ;
+    csvw:datatype "boolean" ;
+    csvw:name "yes_no" ;
+    csvw:title "Yes/No"@en .
+
+_:N6fd19125eb9141cba21b7573a0393788 a csvw:Column ;
+    dct:description "Record ID"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N709a8c76174a4f7f8f9c65577a6b0f2e a csvw:Column ;
+    dct:description "Calculated Field (integer + number)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "calc" ;
+    rdfs:comment "[integer] + [number]" ;
+    csvw:datatype "decimal" ;
+    csvw:name "calculated" ;
+    csvw:title "Calculated Field (integer + number)"@en .
+
+_:N72ed36ab6be54a5dbf8d7ef713649371 a csvw:Column ;
+    dct:description "Notes Box"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "notes" ;
+    csvw:title "Notes Box"@en .
+
+_:N90138d486b4a4d77a72f6fad2c4b6ada a csvw:Column ;
+    dct:description "Datetime (ymdhm)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_ymdhm" ;
+    csvw:title "Datetime (ymdhm)"@en .
+
+_:N97c5f42beb5f407f849d5daaff6a77aa a csvw:Column ;
+    dct:description "Max: 2019-12-31"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "date_ymd" ;
+    csvw:title "Date (YMD) [no min, max]"@en .
+
+_:N9aa0df4580934058a201ef7300356e17 a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 2)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___2" ;
+    csvw:title "Checkboxes (choice=Selection 2)"@en .
+
+_:N9e869f6e858441c8bdaca1b86c58ebcc a csvw:Column ;
+    dct:description "max: 100"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "decimal" ;
+    csvw:name "number" ;
+    csvw:title "Number [no min, max]"@en .
+
+_:Nb0dcf97e8c7841b9841681627f007bb6 a csvw:Column ;
+    dct:description "Phone (North America)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "phone" ;
+    csvw:title "Phone (North America)"@en .
+
+_:Nb0e5cbd7213d486e8d0f6b0ab49cead6 a csvw:Column ;
+    dct:description "Drop Down (mixed)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "dropdown" ;
+    skos:notation "a_1 = Choice A1",
+        "b_2 = Choice B2",
+        "c_3 = Choice C3" ;
+    csvw:datatype "integer" ;
+    csvw:name "dropdown_mixed" ;
+    csvw:title "Drop Down (mixed)"@en .
+
+_:Nb586420884ba42cfbc9087dc3f123d8f a csvw:Column ;
+    dct:description "Drop Down (numeric code)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = Choice One",
+        "2 = Choice Two",
+        "3 = Choice Three" ;
+    csvw:datatype "integer" ;
+    csvw:name "dropdown_numeric" ;
+    csvw:title "Drop Down (numeric code)"@en .
+
+_:Nbc6c3b51d9ef4fb3ad01cb0e540a3b1f a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 1)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___1" ;
+    csvw:title "Checkboxes (choice=Selection 1)"@en .
+
+_:Nc1b4aa11a92249f4a938d8334d761e97 a csvw:Column ;
+    dct:description "Min: 0"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "integer" ;
+    csvw:name "integer" ;
+    csvw:title "Integer [min, no max]"@en .
+
+_:Nccbf44ad6ee54ba4ad1f7667506b3ee4 a csvw:Column ;
+    dct:description "Slider"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "slider" ;
+    csvw:datatype "integer" ;
+    csvw:name "slider" ;
+    csvw:title "Slider"@en .
+
+_:Nd91714aef0544a1b8f64a17a356a1935 a csvw:Column ;
+    dct:description "Time (HH:MM)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "time" ;
+    csvw:name "time" ;
+    csvw:title "Time (HH:MM)"@en .
+
+_:Ne48805d9bccd4705bab276caf124501f a csvw:Column ;
+    dct:description "Checkboxes (choice=Selection 3)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "checkbox" ;
+    csvw:datatype "boolean" ;
+    csvw:name "checkbox___3" ;
+    csvw:title "Checkboxes (choice=Selection 3)"@en .
+
+_:Nf158cb28e85745569775bbe4de276f7e a csvw:Column ;
+    dct:description "Datetime (mdy hm)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_mdyhm" ;
+    csvw:title "Datetime (mdy hm)"@en .
+
+_:Nf7616f274a074b4b8a8a1ca9a53faa19 a csvw:Column ;
+    dct:description "Drop Down (character code)"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "dropdown" ;
+    skos:notation "a = Choice A",
+        "b = Choice B",
+        "c = Choice C" ;
+    csvw:datatype "integer" ;
+    csvw:name "dropdown_character" ;
+    csvw:title "Drop Down (character code)"@en .
+
+_:Nfe4d329ecdc3487cabc13d1643f5d75a a csvw:Column ;
+    dct:description "Min 01-01-2010 00:00; Max 31-12-2019 23:59"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "dateTime" ;
+    csvw:name "datetime_dmyhm" ;
+    csvw:title "Datetime (dmy hm) [min, max]"@en .
+
+_:Nff655b5c7c3249fba00afbd50d4b0e0b a csvw:Column ;
+    dct:description "Radio Buttons"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "radio" ;
+    skos:notation "1 = Choice 1",
+        "2 = Choice 2",
+        "3 = Choice 3" ;
+    csvw:datatype "integer" ;
+    csvw:name "radio_buttons" ;
+    csvw:title "Radio Buttons"@en .
 

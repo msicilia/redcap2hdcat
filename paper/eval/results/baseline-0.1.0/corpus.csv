@@ -1,0 +1,11 @@
+source,domain,input_format,header_convention,forms_tool,forms_in_source,variables_tool,fields_in_source,longitudinal_tool,longitudinal_per_repo_project_info,events_tool,events_in_source,arms_tool,arms_in_source,repeating_instruments_tool,build_success,build_exit_code,exceptions,csvw_columns,csvw_columns_double_checkbox_suffix,csvw_columns_july2026_record,audit_findings,audit_errors,check_conforms,mandatory_missing
+iedea-Harmonist-CodeLists,HIV cohort data standard (IeDEA DES metadata),Project XML (ODM),n/a (XML),1,1,9,8,n,,,0,,,0,y,1,,7,0,7,5,0,n,healthdcatap:hdab
+iedea-Harmonist-DataModel,HIV cohort data standard (IeDEA DES metadata),Project XML (ODM),n/a (XML),2,2,28,26,n,,,0,,,0,y,1,,30,4,30,17,1,n,healthdcatap:hdab
+iedea-tblCENTER,HIV care site registry (IeDEA DES),CSV data dictionary,UI (Variable / Field Name),1,1,24,24,n,,,,,,0,y,1,,22,0,22,15,0,n,healthdcatap:hdab
+nacc-DownSyndromeModule,Dementia / Down syndrome (NACC UDS),Project XML (ODM),n/a (XML),6,6,378,347,n,,,0,,,0,y,1,,386,58,386,150,3,n,healthdcatap:hdab
+nacc-FormF2COVIDImpactSurvey-Participantv1.3,Dementia cohort COVID impact survey (NACC),Project XML (ODM),n/a (XML),3,3,150,147,n,,,0,,,0,y,1,,119,0,119,37,0,n,healthdcatap:hdab
+nacc-FormF3COVID-CoParticipant,Dementia cohort COVID impact survey (NACC),Project XML (ODM),n/a (XML),2,2,33,31,n,,,0,,,0,y,1,,29,0,29,9,0,n,healthdcatap:hdab
+rtd-archer,Synthetic test project (REDCapR 'archer'),CSV data dictionary,UI (Variable / Field Name),3,3,16,16,n,,,,,,0,y,1,,20,0,20,5,0,n,healthdcatap:hdab
+rtd-case01-crosssectional,Synthetic test project (all field types),CSV data dictionary,UI (Variable / Field Name),1,1,30,30,n,n,,,,,0,y,1,,29,0,29,15,3,n,healthdcatap:hdab
+rtd-case07-longitudinal,"Synthetic test project (longitudinal, Sitka spruce)",CSV data dictionary,API (field_name),2,2,5,5,n,y,,,,,0,y,1,,5,0,5,2,0,n,healthdcatap:hdab
+rtd-case20-randomization,Synthetic test project (randomization module),CSV data dictionary,UI (Variable / Field Name),1,1,6,6,n,n,,,,,0,y,1,,6,0,6,3,0,n,healthdcatap:hdab

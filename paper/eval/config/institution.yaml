@@ -11,6 +11,8 @@ health_categories:
   - "https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS"
 themes:
   - HEAL
+# Fictional data-access request page (becomes the dcat:Distribution access URL).
+access_url: https://www.fictional-institute.invalid/data-access-request
 publisher:
   name: Fictional Health Research Institute
   email: catalogue@fictional-institute.invalid
@@ -22,6 +24,7 @@ creator:
 contact:
   name: Fictional Data Office
   email: data-office@fictional-institute.invalid
+# dataset_type left unset: the EU dataset-type table has no concept for research data.
 # Left empty as the tool intends (HDAB not designated).
 hdab:
   name: ""

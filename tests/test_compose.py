@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import pytest
-from rdflib.namespace import RDFS, SKOS
+from rdflib.namespace import PROV, RDFS, SKOS
 
 from redcap2hdcat.adapters import csv_dict
 from redcap2hdcat.core import rdf, snomed
@@ -18,7 +18,7 @@ class TestFieldNoteAndLabel:
     def test_label_is_the_title(self, dictionary_project, full_config):
         # The label always comes from the form and is the title.
         g = rdf.build(dictionary_project, full_config)
-        titles = {str(o) for o in g.objects(None, CSVW.titles)}
+        titles = {str(o) for o in g.objects(None, CSVW.title)}
         assert "Sexo" in titles
 
     def test_note_is_not_duplicated_from_label(self, tmp_path):
@@ -123,9 +123,22 @@ class TestDmpComposition:
     def test_license_comes_from_dmp(self, composed):
         assert (None, DCTERMS.license, None) in composed
 
-    def test_grant_recorded(self, composed):
-        refs = {str(o) for o in composed.objects(None, DCTERMS.isReferencedBy)}
-        assert "PMP24/00024" in refs
+    def test_grant_identifies_the_generating_project(self, composed):
+        # A grant number is not an IRI, so it cannot be dct:isReferencedBy; it
+        # identifies the project that generated the data.
+        activity = next(composed.objects(None, PROV.wasGeneratedBy))
+        assert str(composed.value(activity, DCTERMS.identifier)) == "PMP24/00024"
+        assert not list(composed.objects(None, DCTERMS.isReferencedBy))
+
+    def test_language_from_dmp_is_an_eu_language_iri(self, composed):
+        # Regression: the madmpy enum repr 'LanguageEnum.spa' used to give "La".
+        langs = {str(o) for o in composed.objects(None, DCTERMS.language)}
+        assert langs == {"http://publications.europa.eu/resource/authority/language/SPA"}
+
+    def test_dmp_texts_carry_the_dmp_language(self, composed):
+        descs = [o for o in composed.objects(None, DCTERMS.description)
+                 if "radiómica" in str(o)]
+        assert descs and all(d.language == "es" for d in descs)
 
     def test_dmp_asserts_personal_data(self, composed):
         # The REDCap dictionary flags an identifier too, but the DMP would assert it

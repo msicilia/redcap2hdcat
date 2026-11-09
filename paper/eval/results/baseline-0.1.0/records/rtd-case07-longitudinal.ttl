@@ -1,0 +1,85 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix healthdcatap: <http://healthdataportal.eu/ns/health#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv> a dcat:Dataset ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    healthdcatap:healthCategory <https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
+    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary> ;
+    dct:creator [ a foaf:Agent ;
+            foaf:mbox <mailto:group@fictional-institute.invalid> ;
+            foaf:name "Fictional Research Group" ] ;
+    dct:description "test-case-07-data-dictionary.csv"@en ;
+    dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv" ;
+    dct:language "en" ;
+    dct:publisher [ a foaf:Agent ;
+            dct:type <https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type/research-institute-org> ;
+            foaf:homepage <https://www.fictional-institute.invalid> ;
+            foaf:mbox <mailto:catalogue@fictional-institute.invalid> ;
+            foaf:name "Fictional Health Research Institute" ] ;
+    dct:title "test-case-07-data-dictionary.csv"@en ;
+    dcat:contactPoint [ a vcard:Kind ;
+            vcard:fn "Fictional Data Office" ;
+            vcard:hasEmail <mailto:data-office@fictional-institute.invalid> ] ;
+    dcat:keyword "tree_environment"@en,
+        "tree_measurement"@en ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/HEAL> ;
+    dpv:hasPersonalData true .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0>,
+        <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
+    dct:title "tree_environment"@en ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "tree_environment" ;
+                    dct:type "yesno" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "ozone" ;
+                    csvw:titles "Ozone enriched environment"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "tree_environment" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "tree_id" ;
+                    csvw:required true ;
+                    csvw:titles "Tree ID"@en ;
+                    dpv:hasPersonalData true ],
+                [ a csvw:Column ;
+                    dct:isPartOf "tree_environment" ;
+                    dct:type "radio" ;
+                    skos:notation "1 = Chamber 1",
+                        "2 = Chamber 2",
+                        "3 = Chamber 3",
+                        "4 = Chamber 4" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "chamber" ;
+                    csvw:titles "Controlled Environment Chamber"@en ] ;
+            csvw:primaryKey "tree_id" ] .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1> a csvw:Table ;
+    dct:title "tree_measurement"@en ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "tree_measurement" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "date" ;
+                    csvw:titles "Date of measurement"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "tree_measurement" ;
+                    dct:type "text" ;
+                    csvw:datatype "decimal" ;
+                    csvw:name "log_size" ;
+                    csvw:titles "Log size"@en ] ] .
+

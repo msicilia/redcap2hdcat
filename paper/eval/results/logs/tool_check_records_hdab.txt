@@ -1,0 +1,1 @@
+Conformant (SHACL, non-public shapes checked; 30 warning(s)).

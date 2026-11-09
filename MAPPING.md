@@ -3,9 +3,11 @@
 **Goal:** automatically derive a conformant HealthDCAT-AP record from a REDCap project,
 asking the human only for what cannot be derived.
 
-**Reference version:** HealthDCAT-AP Release 5 (EC Draft Specification, 2025-09-22).
-⚠️ Release 5 is marked *deprecated*; a `latest` version exists. Pin the version before
-implementing.
+**Reference version:** HealthDCAT-AP Release 8 (September 2026), the `latest` release
+required by Implementing Regulation (EU) 2026/2098, pinned at commit `cd7841fc` of
+`code.europa.eu/healthdataeu/healthdcat-ap` (see `paper/eval/shapes/PIN.txt`). The tool
+targets the non-public profile of that release. This note started from Release 5; the
+rows below give what the tool now emits.
 
 **REDCap sources used:** REST API, endpoints `content=project`, `content=metadata`,
 `content=instrument`, `content=exportFieldNames`, `content=user`, `content=record`
@@ -46,19 +48,24 @@ The marginal cost per project is low.
 
 | Property | Card. | REDCap source | Deriv. | Notes |
 |---|---|---|---|---|
-| `dct:language` | 0..* | `project.project_language` | **AUTO** | Needs a table → NAL `language` (URI, not ISO literal) |
+| `dct:language` | 0..* | DMP `language`, else configuration | **CONST** | IRI of the EU language table, typed `dct:LinguisticSystem` |
 | `dct:issued` | 0..1 | `project.creation_time` | **AUTO** | |
 | `dct:modified` | 0..1 | `content=log` (last change) | **SEMI** | Cheap alternative: export date |
 | `healthdcatap:numberOfRecords` | 0..1 | `count(records)` | **AUTO** | In longitudinal = rows, not patients |
 | `healthdcatap:numberOfUniqueIndividuals` | 0..1 | `distinct(record_id)` | **AUTO** | Distinguish from the previous |
 | `dct:temporal` | 0..* | min/max of date fields | **AUTO** | Date fields identified by `text_validation_type` |
 | `healthdcatap:minTypicalAge` / `maxTypicalAge` | 0..1 | age or birth-date field | **SEMI** | Heuristic detection by name/label |
-| `dpv:hasPersonalData` | 0..1 | dictionary `identifier` flag | **SEMI** | If ≥1 field flagged → `true`. Beware the false negative (§4) |
+| `dpv:hasPersonalData` | 0..* | dictionary `identifier` flag, DMP `personal_data` | **SEMI** | DPV-PD categories: `dpv-pd:Health`, plus one per flagged validation type (e-mail, phone, postcode…). Beware the false negative (§4) |
 | `dcat:contactPoint` | 0..n | `project_pi_*` + `content=user` | **SEMI** | Email with mandatory `mailto:` prefix |
 | `dct:creator` | 0..* | `project_pi_firstname/lastname` | **SEMI** | |
 | `dpv:hasPurpose` | 0..* | `project.purpose` (0–4) | **SEMI** | Partial mapping: 2=Research, 3=Quality Improvement… |
 | `dcat:keyword` | 0..* | instrument labels | **SEMI** | Weak heuristic; useful as a suggestion |
-| `dct:isReferencedBy` | 0..* | `project_irb_number`, `project_grant_number` | **MANUAL** | Not publications, but help find them |
+| `dct:isReferencedBy` | 0..* | DMP grant identifier, only when it is an IRI | **MANUAL** | A grant number that is not an IRI identifies the `prov:wasGeneratedBy` activity instead |
+| `prov:wasGeneratedBy` | 0..* | DMP project title and grant | **SEMI** | `prov:Activity` typed Health Activity `RESEARCH_PROJECT` |
+| `dct:provenance` | 1..* (non-public) | composed from the export (system, version, instruments, events) | **AUTO** | `dct:ProvenanceStatement`; configuration can override |
+| `healthdcatap:hasStructuredData` | 1 | constant `true` | **CONST** | Requires `healthdcatap:hasVariables` |
+| `dct:type` | 1..* (non-public) | configuration | **MANUAL** | SKOS concept. The EU dataset-type table has no concept for research data |
+| `dcat:distribution` | 1..* | configuration `access_url` | **MANUAL** | Access URL of the data-request page, format CSV |
 
 ---
 
@@ -69,28 +76,31 @@ Nothing in REDCap holds this information. It goes to configuration or a human fo
 `dct:publisher` (+ its mandatory `contactPoint` and NAL Health Publisher Types `type`) ·
 `dcat:theme` (NAL data-theme; in practice almost always `HEAL`) · `healthdcatap:healthTheme` ·
 `dpv:hasLegalBasis` · `healthdcatap:retentionPeriod` · `dct:accrualPeriodicity` ·
-`prov:wasGeneratedBy` (NAL Health Activity) · `dct:conformsTo` · `healthdcatap:hasCodingSystem` ·
+`dct:conformsTo` · `healthdcatap:hasCodingSystem` (unless `@CODE` annotations are used) ·
 `dqv:hasQualityAnnotation` · licence and `dct:rights`.
 
 > **Useful hook:** the dictionary `field_annotation` field accepts `@` action tags. Some
 > institutions already use it for ontology codes. If populated, `hasCodingSystem` and
-> `csvw:propertyUrl` stop being MANUAL. It is the natural entry point for OntoBridge.
+> field-level `skos:exactMatch` stop being MANUAL (the `@CODE=` convention). Action tags
+> are not IRIs and are never copied to `csvw:propertyUrl`.
 
 ---
 
 ## 4. Variable dictionary → CSVW
 
 **This is the strong finding.** The specification defines the variable dictionary through
-CSVW, linked from the *sample distribution*'s `dcat:downloadURL`. The REDCap dictionary maps
-almost 1:1.
+CSVW, linked from the dataset by `healthdcatap:hasVariables` (a `csvw:TableGroup` with a
+`dct:title`, one `csvw:Table` per instrument, columns attached with `csvw:column`). The
+REDCap dictionary maps almost 1:1.
 
 | `csvw:Column` | Card. | REDCap dictionary column | Deriv. |
 |---|---|---|---|
 | `csvw:name` | 1..n | `field_name` | **AUTO** |
-| `csvw:titles` | 1..n | `field_label` | **AUTO** |
-| `dct:description` | 1..n | `field_note` (only when present) | **AUTO** |
+| `csvw:title` | 1..n | `field_label` | **AUTO** |
+| `dct:description` | 1..n | `field_note`, else `field_label` (Release 8 requires one) | **AUTO** |
 | `csvw:datatype` | 1 | `field_type` + `text_validation_type_or_show_slider_number` | **AUTO** |
-| `csvw:propertyUrl` | 0..1 | `field_annotation` if codes present | **MANUAL** |
+| `csvw:propertyUrl` | 0..1 | never emitted: REDCap has no property IRI | — |
+| `skos:exactMatch` | 0..n | `@CODE=` in `field_annotation` | **AUTO** |
 
 ### Type table
 
@@ -115,6 +125,8 @@ almost 1:1.
 1. **`checkbox` explodes.** A checkbox field with 5 options produces 5 columns
    `field___1 … field___5` on export. The CSVW dictionary must describe **the exported
    shape**, not the dictionary shape. → use `content=exportFieldNames`, do not derive by hand.
+   Project XML exports from recent REDCap versions already list one ItemDef per option
+   (`redcap:Variable` names the field); the reader folds them back into one field first.
 2. **Longitudinal / repeating.** `redcap_event_name`, `redcap_repeat_instrument` and
    `redcap_repeat_instance` appear in the export but **do not exist in the dictionary**.
    Add them from `content=event` / `content=repeatingFormsEvents`.
@@ -131,8 +143,8 @@ almost 1:1.
 | **Catalogue** | `title` 1..*, `description` 1..*, `applicableLegislation` 1..*, `themeTaxonomy` must include the NAL data-theme | **MANUAL** (one per institution, not per project) |
 | **Distribution** | `accessURL` 1..*, `applicableLegislation` 1..* | **SEMI** — the project URL or API endpoint |
 | **Kind** (contact point) | email with `mailto:` prefix **or** a contact page | **SEMI** |
-| **Publisher** | `contactPoint` 1 (mandatory), NAL `type` | **MANUAL** |
-| **HDAB** | `name` 1..*, `contactPoint` 1 | **MANUAL** |
+| **Publisher** | `cv:contactPoint` 1 (a `cv:ContactPoint` with `cv:email` or `cv:contactPage`), Health Publisher Types `type` | **MANUAL** |
+| **HDAB** | `name` 1..*, `cv:contactPoint` 1 | **MANUAL** |
 
 **Identifiers:** DCAT-AP assumes global URIs because it is designed for harvesting
 networks. A REDCap `project_id` is local to the instance. Build a stable URI of the form

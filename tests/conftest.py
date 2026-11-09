@@ -23,7 +23,11 @@ def full_config():
     """A configuration with every mandatory slot filled."""
     return Config(
         base_uri="https://redcap.example.org",
-        health_categories=["http://healthdataportal.eu/ns/health#ElectronicHealthRecords"],
+        health_categories=[
+            "https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS"],
+        access_url="https://redcap.example.org/request",
+        dataset_type="https://redcap.example.org/concept/research-data",
+        dataset_type_label="Research data",
         publisher=Agent(name="Example Institute", email="data@example.org"),
         hdab=Agent(name="Example HDAB", email="hdab@example.org"),
         contact=Agent(name="DPO", email="dpo@example.org"),

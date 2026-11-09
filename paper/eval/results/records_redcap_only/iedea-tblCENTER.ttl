@@ -3,453 +3,566 @@
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dpv: <https://w3id.org/dpv#> .
+@prefix dpv-pd: <https://w3id.org/dpv/dpv-pd#> .
+@prefix eli: <http://data.europa.eu/eli/ontology#> .
+@prefix healthdcatap: <http://healthdataportal.eu/ns/health#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv> a dcat:Dataset ;
     dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    healthdcatap:hasStructuredData true ;
+    healthdcatap:hasVariables <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary> ;
     dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
-    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary> ;
     dct:description "IeDEA_tblCENTER_2020-06-30.csv" ;
     dct:identifier "https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv" ;
+    dct:provenance [ a dct:ProvenanceStatement ;
+            rdfs:label "Data captured through electronic case report forms in REDCap (1 instrument). This description was derived from the project's data dictionary by redcap2hdcat."@en ] ;
     dct:title "IeDEA_tblCENTER_2020-06-30.csv" ;
     dcat:keyword "tblcenter" .
 
+<http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
+
+<http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> a dct:RightsStatement .
+
 <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary> a csvw:TableGroup ;
+    dct:title "Data dictionary of IeDEA_tblCENTER_2020-06-30.csv" ;
     csvw:table <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary/table-0> .
 
 <https://catalogue.fictional-institute.invalid/dataset/IeDEA_tblCENTER_2020-06-30.csv/dictionary/table-0> a csvw:Table ;
     dct:title "tblcenter" ;
+    csvw:column _:N01adb64cecb14716b157e6448a698602,
+        _:N03186d6c249a4fea94d6b640aec0b39a,
+        _:N1ba5d13f5e7142ff83e08592adf03dbe,
+        _:N1f6240fd19564b82bd994acb15b5e832,
+        _:N26755dc719314f41a525b030644965a7,
+        _:N34fc9fabd73e49e0bdead8405e379fc1,
+        _:N464dd1a38e31464eb142269ac98fbe49,
+        _:N55fd67b769ca4f2387813df261ade903,
+        _:N5c5aae6736734dba92dd39f874ce1631,
+        _:N660e676d38f747b3baab6c850374a1e8,
+        _:N7f73a2a42ffd42d697c22c323047ca6c,
+        _:N89558917d70c4b7b9bce179795cf23e3,
+        _:N8f26e3ac62bb465d9de96d551f5af672,
+        _:Nab9f93f91f3546fab4685a73c8cae7c9,
+        _:Nc2f26077b8804ac2829400a2127ebece,
+        _:Nc9b136bd10e74ccaad50245dac619366,
+        _:Nd74a38cd8a4143db9d6f0f0892b39ffe,
+        _:Ndb036abec0e84de29744f84278f287d4,
+        _:Ne2109ddbc9ff4b52bde555c827fa3814,
+        _:Neddab2b057b5479b99f46783df3db6d3,
+        _:Nf0c0fb60263c46118cf56259ec2ed1cc,
+        _:Nff2228f166284bbfa59d0c2dac84d813 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "open_d" ;
-                    csvw:titles """Database Open Date (OPEN_D)
-<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "ADULT = Adults (ADULT)",
-                        "BOTH = Adults and children (BOTH)",
-                        "PED = Children (PED)" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "adultped" ;
-                    csvw:titles """ADULTPED
-<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "district" ;
-                    csvw:titles "DISTRICT" ],
-                [ a csvw:Column ;
-                    dct:description "Values: AP, EA, SA, WA, CA, CN, NA" ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "AP = Asia-Pacific",
-                        "CA = Central Africa",
-                        "CN = CCASAnet (Latin America)",
-                        "EA = East Africa",
-                        "NA = NA-ACCORD (North America)",
-                        "SA = Southern Africa",
-                        "WA = West Africa" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "region" ;
-                    csvw:titles """REGION
-<div style="font-weight:lighter;font-style:italic">IeDEA global region</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "geocode_lon" ;
-                    csvw:titles "Geocode - Longitude (GEOCODE_LON)" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "drop_center" ;
-                    csvw:titles """Site Exclusion date (DROP_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" ],
-                [ a csvw:Column ;
-                    dct:description "<a target=\"_blank\" href=\"http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3\">Coded as 3-letter ISO code (on back end)</a>" ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "ABW = Aruba",
-                        "AFG = Afghanistan",
-                        "AGO = Angola",
-                        "AIA = Anguilla",
-                        "ALA = Åland Islands",
-                        "ALB = Albania",
-                        "AND = Andorra",
-                        "ARE = United Arab Emirates (the)",
-                        "ARG = Argentina",
-                        "ARM = Armenia",
-                        "ASM = American Samoa",
-                        "ATA = Antarctica",
-                        "ATF = French Southern Territories (the)",
-                        "ATG = Antigua and Barbuda",
-                        "AUS = Australia",
-                        "AUT = Austria",
-                        "AZE = Azerbaijan",
-                        "BDI = Burundi",
-                        "BEL = Belgium",
-                        "BEN = Benin",
-                        "BES = Bonaire, Sint Eustatius and Saba",
-                        "BFA = Burkina Faso",
-                        "BGD = Bangladesh",
-                        "BGR = Bulgaria",
-                        "BHR = Bahrain",
-                        "BHS = Bahamas (the)",
-                        "BIH = Bosnia and Herzegovina",
-                        "BLM = Saint Barthélemy",
-                        "BLR = Belarus",
-                        "BLZ = Belize",
-                        "BMU = Bermuda",
-                        "BOL = Bolivia (Plurinational State of)",
-                        "BRA = Brazil",
-                        "BRB = Barbados",
-                        "BRN = Brunei Darussalam",
-                        "BTN = Bhutan",
-                        "BVT = Bouvet Island",
-                        "BWA = Botswana",
-                        "CAF = Central African Republic (the)",
-                        "CAN = Canada",
-                        "CCK = Cocos (Keeling) Islands (the)",
-                        "CHE = Switzerland",
-                        "CHL = Chile",
-                        "CHN = China",
-                        "CIV = Côte d'Ivoire",
-                        "CMR = Cameroon",
-                        "COD = Congo (the Democratic Republic of the)",
-                        "COG = Congo (the)",
-                        "COK = Cook Islands (the)",
-                        "COL = Colombia",
-                        "COM = Comoros (the)",
-                        "CPV = Cabo Verde",
-                        "CRI = Costa Rica",
-                        "CUB = Cuba",
-                        "CUW = Curaçao",
-                        "CXR = Christmas Island",
-                        "CYM = Cayman Islands (the)",
-                        "CYP = Cyprus",
-                        "CZE = Czechia",
-                        "DEU = Germany",
-                        "DJI = Djibouti",
-                        "DMA = Dominica",
-                        "DNK = Denmark",
-                        "DOM = Dominican Republic (the)",
-                        "DZA = Algeria",
-                        "ECU = Ecuador",
-                        "EGY = Egypt",
-                        "ERI = Eritrea",
-                        "ESH = Western Sahara",
-                        "ESP = Spain",
-                        "EST = Estonia",
-                        "ETH = Ethiopia",
-                        "FIN = Finland",
-                        "FJI = Fiji",
-                        "FLK = Falkland Islands (the) [Malvinas]",
-                        "FRA = France",
-                        "FRO = Faroe Islands (the)",
-                        "FSM = Micronesia (Federated States of)",
-                        "GAB = Gabon",
-                        "GBR = United Kingdom of Great Britain and Northern Ireland (the)",
-                        "GEO = Georgia",
-                        "GGY = Guernsey",
-                        "GHA = Ghana",
-                        "GIB = Gibraltar",
-                        "GIN = Guinea",
-                        "GLP = Guadeloupe",
-                        "GMB = Gambia (the)",
-                        "GNB = Guinea-Bissau",
-                        "GNQ = Equatorial Guinea",
-                        "GRC = Greece",
-                        "GRD = Grenada",
-                        "GRL = Greenland",
-                        "GTM = Guatemala",
-                        "GUF = French Guiana",
-                        "GUM = Guam",
-                        "GUY = Guyana",
-                        "HKG = Hong Kong",
-                        "HMD = Heard Island and McDonald Islands",
-                        "HND = Honduras",
-                        "HRV = Croatia",
-                        "HTI = Haiti",
-                        "HUN = Hungary",
-                        "IDN = Indonesia",
-                        "IMN = Isle of Man",
-                        "IND = India",
-                        "IOT = British Indian Ocean Territory (the)",
-                        "IRL = Ireland",
-                        "IRN = Iran (Islamic Republic of)",
-                        "IRQ = Iraq",
-                        "ISL = Iceland",
-                        "ISR = Israel",
-                        "ITA = Italy",
-                        "JAM = Jamaica",
-                        "JEY = Jersey",
-                        "JOR = Jordan",
-                        "JPN = Japan",
-                        "KAZ = Kazakhstan",
-                        "KEN = Kenya",
-                        "KGZ = Kyrgyzstan",
-                        "KHM = Cambodia",
-                        "KIR = Kiribati",
-                        "KNA = Saint Kitts and Nevis",
-                        "KOR = Korea (the Republic of)",
-                        "KWT = Kuwait",
-                        "LAO = Lao People's Democratic Republic (the)",
-                        "LBN = Lebanon",
-                        "LBR = Liberia",
-                        "LBY = Libya",
-                        "LCA = Saint Lucia",
-                        "LIE = Liechtenstein",
-                        "LKA = Sri Lanka",
-                        "LSO = Lesotho",
-                        "LTU = Lithuania",
-                        "LUX = Luxembourg",
-                        "LVA = Latvia",
-                        "MAC = Macao",
-                        "MAF = Saint Martin (French part)",
-                        "MAR = Morocco",
-                        "MCO = Monaco",
-                        "MDA = Moldova (the Republic of)",
-                        "MDG = Madagascar",
-                        "MDV = Maldives",
-                        "MEX = Mexico",
-                        "MHL = Marshall Islands (the)",
-                        "MKD = Macedonia (the former Yugoslav Republic of)",
-                        "MLI = Mali",
-                        "MLT = Malta",
-                        "MMR = Myanmar",
-                        "MNE = Montenegro",
-                        "MNG = Mongolia",
-                        "MNP = Northern Mariana Islands (the)",
-                        "MOZ = Mozambique",
-                        "MRT = Mauritania",
-                        "MSR = Montserrat",
-                        "MTQ = Martinique",
-                        "MUS = Mauritius",
-                        "MWI = Malawi",
-                        "MYS = Malaysia",
-                        "MYT = Mayotte",
-                        "NAM = Namibia",
-                        "NCL = New Caledonia",
-                        "NER = Niger (the)",
-                        "NFK = Norfolk Island",
-                        "NGA = Nigeria",
-                        "NIC = Nicaragua",
-                        "NIU = Niue",
-                        "NLD = Netherlands (the)",
-                        "NOR = Norway",
-                        "NPL = Nepal",
-                        "NRU = Nauru",
-                        "NZL = New Zealand",
-                        "OMN = Oman",
-                        "PAK = Pakistan",
-                        "PAN = Panama",
-                        "PCN = Pitcairn",
-                        "PER = Peru",
-                        "PHL = Philippines (the)",
-                        "PLW = Palau",
-                        "PNG = Papua New Guinea",
-                        "POL = Poland",
-                        "PRI = Puerto Rico",
-                        "PRK = Korea (the Democratic People's Republic of)",
-                        "PRT = Portugal",
-                        "PRY = Paraguay",
-                        "PSE = Palestine, State of",
-                        "PYF = French Polynesia",
-                        "QAT = Qatar",
-                        "REU = Réunion",
-                        "ROU = Romania",
-                        "RUS = Russian Federation (the)",
-                        "RWA = Rwanda",
-                        "SAU = Saudi Arabia",
-                        "SDN = Sudan (the)",
-                        "SEN = Senegal",
-                        "SGP = Singapore",
-                        "SGS = South Georgia and the South Sandwich Islands",
-                        "SHN = Saint Helena, Ascension and Tristan da Cunha",
-                        "SJM = Svalbard and Jan Mayen",
-                        "SLB = Solomon Islands",
-                        "SLE = Sierra Leone",
-                        "SLV = El Salvador",
-                        "SMR = San Marino",
-                        "SOM = Somalia",
-                        "SPM = Saint Pierre and Miquelon",
-                        "SRB = Serbia",
-                        "SSD = South Sudan",
-                        "STP = Sao Tome and Principe",
-                        "SUR = Suriname",
-                        "SVK = Slovakia",
-                        "SVN = Slovenia",
-                        "SWE = Sweden",
-                        "SWZ = Eswatini",
-                        "SXM = Sint Maarten (Dutch part)",
-                        "SYC = Seychelles",
-                        "SYR = Syrian Arab Republic",
-                        "TCA = Turks and Caicos Islands (the)",
-                        "TCD = Chad",
-                        "TGO = Togo",
-                        "THA = Thailand",
-                        "TJK = Tajikistan",
-                        "TKL = Tokelau",
-                        "TKM = Turkmenistan",
-                        "TLS = Timor-Leste",
-                        "TON = Tonga",
-                        "TTO = Trinidad and Tobago",
-                        "TUN = Tunisia",
-                        "TUR = Turkey",
-                        "TUV = Tuvalu",
-                        "TWN = Taiwan (Province of China)",
-                        "TZA = Tanzania, United Republic of",
-                        "UGA = Uganda",
-                        "UKR = Ukraine",
-                        "UMI = United States Minor Outlying Islands (the)",
-                        "URY = Uruguay",
-                        "USA = United States of America (the)",
-                        "UZB = Uzbekistan",
-                        "VAT = Holy See (the)",
-                        "VCT = Saint Vincent and the Grenadines",
-                        "VEN = Venezuela (Bolivarian Republic of)",
-                        "VGB = Virgin Islands (British)",
-                        "VIR = Virgin Islands (U.S.)",
-                        "VNM = Viet Nam",
-                        "VUT = Vanuatu",
-                        "WLF = Wallis and Futuna",
-                        "WSM = Samoa",
-                        "YEM = Yemen",
-                        "ZAF = South Africa",
-                        "ZMB = Zambia",
-                        "ZWE = Zimbabwe" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "country" ;
-                    csvw:titles "COUNTRY" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "name" ;
-                    csvw:titles """NAME
-<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "program" ;
-                    csvw:titles """PROGRAM
-<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "geocode_lat" ;
-                    csvw:titles """Geocode - Latitude (GEOCODE_LAT)
-<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
-Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "add_center" ;
-                    csvw:titles """Site Inclusion Date (ADD_CENTER_D)
-<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "notes" ;
-                    csvw:datatype "string" ;
-                    csvw:name "notes" ;
-                    csvw:titles "Notes about this site" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "city" ;
-                    csvw:titles "CITY" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "close_d" ;
-                    csvw:titles "Database Closing Date (CLOSE_D)" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "record_id" ;
-                    csvw:required true ;
-                    csvw:titles "Record ID" ;
-                    dpv:hasPersonalData true ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "1 = Health centre",
-                        "2 = District hospital",
-                        "3 = Regional, provincial or university hospital",
-                        "9 = Unknown" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "level" ;
-                    csvw:titles """LEVEL
-<div style="font-weight:lighter;font-style:italic">Facility level of care</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "province" ;
-                    csvw:titles "PROVINCE" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "1 = sufficient   access to complete online surveys",
-                        "2 = degraded access making online survey completion difficult",
-                        "3 = no internet access",
-                        "9 = Unknown" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "survey_internet" ;
-                    csvw:titles """SURVEY_INTERNET
-<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "1 = site has resources to print and transfer surveys",
-                        "2 = site has resources to print, but not to transfer surveys",
-                        "3 = site does not have resources to print, but can transfer surveys",
-                        "4 = site needs assistance in both printing and transferring surveys",
-                        "8 = not applicable",
-                        "9 = Unknown" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "survey_paper" ;
-                    csvw:titles """SURVEY_PAPER
-<div style="font-weight:lighter;font-style:italic">Resources for printing and transferring paper surveys to a central location for data entry</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "date" ;
-                    csvw:name "last_reviewed_d" ;
-                    csvw:titles """Last Reviewed Date 
-<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "dropdown" ;
-                    skos:notation "1 = Urban",
-                        "2 = Mostly urban",
-                        "3 = Mostly rural",
-                        "4 = Rural",
-                        "9 = Unknown" ;
-                    csvw:datatype "integer" ;
-                    csvw:name "rural" ;
-                    csvw:titles """RURAL
-<div style="font-weight:lighter;font-style:italic">Facility location</div>""" ],
-                [ a csvw:Column ;
-                    dct:isPartOf "tblcenter" ;
-                    dct:type "text" ;
-                    csvw:datatype "string" ;
-                    csvw:name "center" ;
-                    csvw:titles """CENTER
-<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
-Needs to be unique within each region.</div>""" ] ;
+            csvw:column _:N01adb64cecb14716b157e6448a698602,
+                _:N03186d6c249a4fea94d6b640aec0b39a,
+                _:N1ba5d13f5e7142ff83e08592adf03dbe,
+                _:N1f6240fd19564b82bd994acb15b5e832,
+                _:N26755dc719314f41a525b030644965a7,
+                _:N34fc9fabd73e49e0bdead8405e379fc1,
+                _:N464dd1a38e31464eb142269ac98fbe49,
+                _:N55fd67b769ca4f2387813df261ade903,
+                _:N5c5aae6736734dba92dd39f874ce1631,
+                _:N660e676d38f747b3baab6c850374a1e8,
+                _:N7f73a2a42ffd42d697c22c323047ca6c,
+                _:N89558917d70c4b7b9bce179795cf23e3,
+                _:N8f26e3ac62bb465d9de96d551f5af672,
+                _:Nab9f93f91f3546fab4685a73c8cae7c9,
+                _:Nc2f26077b8804ac2829400a2127ebece,
+                _:Nc9b136bd10e74ccaad50245dac619366,
+                _:Nd74a38cd8a4143db9d6f0f0892b39ffe,
+                _:Ndb036abec0e84de29744f84278f287d4,
+                _:Ne2109ddbc9ff4b52bde555c827fa3814,
+                _:Neddab2b057b5479b99f46783df3db6d3,
+                _:Nf0c0fb60263c46118cf56259ec2ed1cc,
+                _:Nff2228f166284bbfa59d0c2dac84d813 ;
             csvw:primaryKey "record_id" ] .
+
+_:N01adb64cecb14716b157e6448a698602 a csvw:Column ;
+    dct:description "Record ID" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID" ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:N03186d6c249a4fea94d6b640aec0b39a a csvw:Column ;
+    dct:description "DISTRICT" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "district" ;
+    csvw:title "DISTRICT" .
+
+_:N1ba5d13f5e7142ff83e08592adf03dbe a csvw:Column ;
+    dct:description "Database Closing Date (CLOSE_D)" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "close_d" ;
+    csvw:title "Database Closing Date (CLOSE_D)" .
+
+_:N1f6240fd19564b82bd994acb15b5e832 a csvw:Column ;
+    dct:description """LEVEL
+<div style="font-weight:lighter;font-style:italic">Facility level of care</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = Health centre",
+        "2 = District hospital",
+        "3 = Regional, provincial or university hospital",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "level" ;
+    csvw:title """LEVEL
+<div style="font-weight:lighter;font-style:italic">Facility level of care</div>""" .
+
+_:N26755dc719314f41a525b030644965a7 a csvw:Column ;
+    dct:description "<a target=\"_blank\" href=\"http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3\">Coded as 3-letter ISO code (on back end)</a>" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "ABW = Aruba",
+        "AFG = Afghanistan",
+        "AGO = Angola",
+        "AIA = Anguilla",
+        "ALA = Åland Islands",
+        "ALB = Albania",
+        "AND = Andorra",
+        "ARE = United Arab Emirates (the)",
+        "ARG = Argentina",
+        "ARM = Armenia",
+        "ASM = American Samoa",
+        "ATA = Antarctica",
+        "ATF = French Southern Territories (the)",
+        "ATG = Antigua and Barbuda",
+        "AUS = Australia",
+        "AUT = Austria",
+        "AZE = Azerbaijan",
+        "BDI = Burundi",
+        "BEL = Belgium",
+        "BEN = Benin",
+        "BES = Bonaire, Sint Eustatius and Saba",
+        "BFA = Burkina Faso",
+        "BGD = Bangladesh",
+        "BGR = Bulgaria",
+        "BHR = Bahrain",
+        "BHS = Bahamas (the)",
+        "BIH = Bosnia and Herzegovina",
+        "BLM = Saint Barthélemy",
+        "BLR = Belarus",
+        "BLZ = Belize",
+        "BMU = Bermuda",
+        "BOL = Bolivia (Plurinational State of)",
+        "BRA = Brazil",
+        "BRB = Barbados",
+        "BRN = Brunei Darussalam",
+        "BTN = Bhutan",
+        "BVT = Bouvet Island",
+        "BWA = Botswana",
+        "CAF = Central African Republic (the)",
+        "CAN = Canada",
+        "CCK = Cocos (Keeling) Islands (the)",
+        "CHE = Switzerland",
+        "CHL = Chile",
+        "CHN = China",
+        "CIV = Côte d'Ivoire",
+        "CMR = Cameroon",
+        "COD = Congo (the Democratic Republic of the)",
+        "COG = Congo (the)",
+        "COK = Cook Islands (the)",
+        "COL = Colombia",
+        "COM = Comoros (the)",
+        "CPV = Cabo Verde",
+        "CRI = Costa Rica",
+        "CUB = Cuba",
+        "CUW = Curaçao",
+        "CXR = Christmas Island",
+        "CYM = Cayman Islands (the)",
+        "CYP = Cyprus",
+        "CZE = Czechia",
+        "DEU = Germany",
+        "DJI = Djibouti",
+        "DMA = Dominica",
+        "DNK = Denmark",
+        "DOM = Dominican Republic (the)",
+        "DZA = Algeria",
+        "ECU = Ecuador",
+        "EGY = Egypt",
+        "ERI = Eritrea",
+        "ESH = Western Sahara",
+        "ESP = Spain",
+        "EST = Estonia",
+        "ETH = Ethiopia",
+        "FIN = Finland",
+        "FJI = Fiji",
+        "FLK = Falkland Islands (the) [Malvinas]",
+        "FRA = France",
+        "FRO = Faroe Islands (the)",
+        "FSM = Micronesia (Federated States of)",
+        "GAB = Gabon",
+        "GBR = United Kingdom of Great Britain and Northern Ireland (the)",
+        "GEO = Georgia",
+        "GGY = Guernsey",
+        "GHA = Ghana",
+        "GIB = Gibraltar",
+        "GIN = Guinea",
+        "GLP = Guadeloupe",
+        "GMB = Gambia (the)",
+        "GNB = Guinea-Bissau",
+        "GNQ = Equatorial Guinea",
+        "GRC = Greece",
+        "GRD = Grenada",
+        "GRL = Greenland",
+        "GTM = Guatemala",
+        "GUF = French Guiana",
+        "GUM = Guam",
+        "GUY = Guyana",
+        "HKG = Hong Kong",
+        "HMD = Heard Island and McDonald Islands",
+        "HND = Honduras",
+        "HRV = Croatia",
+        "HTI = Haiti",
+        "HUN = Hungary",
+        "IDN = Indonesia",
+        "IMN = Isle of Man",
+        "IND = India",
+        "IOT = British Indian Ocean Territory (the)",
+        "IRL = Ireland",
+        "IRN = Iran (Islamic Republic of)",
+        "IRQ = Iraq",
+        "ISL = Iceland",
+        "ISR = Israel",
+        "ITA = Italy",
+        "JAM = Jamaica",
+        "JEY = Jersey",
+        "JOR = Jordan",
+        "JPN = Japan",
+        "KAZ = Kazakhstan",
+        "KEN = Kenya",
+        "KGZ = Kyrgyzstan",
+        "KHM = Cambodia",
+        "KIR = Kiribati",
+        "KNA = Saint Kitts and Nevis",
+        "KOR = Korea (the Republic of)",
+        "KWT = Kuwait",
+        "LAO = Lao People's Democratic Republic (the)",
+        "LBN = Lebanon",
+        "LBR = Liberia",
+        "LBY = Libya",
+        "LCA = Saint Lucia",
+        "LIE = Liechtenstein",
+        "LKA = Sri Lanka",
+        "LSO = Lesotho",
+        "LTU = Lithuania",
+        "LUX = Luxembourg",
+        "LVA = Latvia",
+        "MAC = Macao",
+        "MAF = Saint Martin (French part)",
+        "MAR = Morocco",
+        "MCO = Monaco",
+        "MDA = Moldova (the Republic of)",
+        "MDG = Madagascar",
+        "MDV = Maldives",
+        "MEX = Mexico",
+        "MHL = Marshall Islands (the)",
+        "MKD = Macedonia (the former Yugoslav Republic of)",
+        "MLI = Mali",
+        "MLT = Malta",
+        "MMR = Myanmar",
+        "MNE = Montenegro",
+        "MNG = Mongolia",
+        "MNP = Northern Mariana Islands (the)",
+        "MOZ = Mozambique",
+        "MRT = Mauritania",
+        "MSR = Montserrat",
+        "MTQ = Martinique",
+        "MUS = Mauritius",
+        "MWI = Malawi",
+        "MYS = Malaysia",
+        "MYT = Mayotte",
+        "NAM = Namibia",
+        "NCL = New Caledonia",
+        "NER = Niger (the)",
+        "NFK = Norfolk Island",
+        "NGA = Nigeria",
+        "NIC = Nicaragua",
+        "NIU = Niue",
+        "NLD = Netherlands (the)",
+        "NOR = Norway",
+        "NPL = Nepal",
+        "NRU = Nauru",
+        "NZL = New Zealand",
+        "OMN = Oman",
+        "PAK = Pakistan",
+        "PAN = Panama",
+        "PCN = Pitcairn",
+        "PER = Peru",
+        "PHL = Philippines (the)",
+        "PLW = Palau",
+        "PNG = Papua New Guinea",
+        "POL = Poland",
+        "PRI = Puerto Rico",
+        "PRK = Korea (the Democratic People's Republic of)",
+        "PRT = Portugal",
+        "PRY = Paraguay",
+        "PSE = Palestine, State of",
+        "PYF = French Polynesia",
+        "QAT = Qatar",
+        "REU = Réunion",
+        "ROU = Romania",
+        "RUS = Russian Federation (the)",
+        "RWA = Rwanda",
+        "SAU = Saudi Arabia",
+        "SDN = Sudan (the)",
+        "SEN = Senegal",
+        "SGP = Singapore",
+        "SGS = South Georgia and the South Sandwich Islands",
+        "SHN = Saint Helena, Ascension and Tristan da Cunha",
+        "SJM = Svalbard and Jan Mayen",
+        "SLB = Solomon Islands",
+        "SLE = Sierra Leone",
+        "SLV = El Salvador",
+        "SMR = San Marino",
+        "SOM = Somalia",
+        "SPM = Saint Pierre and Miquelon",
+        "SRB = Serbia",
+        "SSD = South Sudan",
+        "STP = Sao Tome and Principe",
+        "SUR = Suriname",
+        "SVK = Slovakia",
+        "SVN = Slovenia",
+        "SWE = Sweden",
+        "SWZ = Eswatini",
+        "SXM = Sint Maarten (Dutch part)",
+        "SYC = Seychelles",
+        "SYR = Syrian Arab Republic",
+        "TCA = Turks and Caicos Islands (the)",
+        "TCD = Chad",
+        "TGO = Togo",
+        "THA = Thailand",
+        "TJK = Tajikistan",
+        "TKL = Tokelau",
+        "TKM = Turkmenistan",
+        "TLS = Timor-Leste",
+        "TON = Tonga",
+        "TTO = Trinidad and Tobago",
+        "TUN = Tunisia",
+        "TUR = Turkey",
+        "TUV = Tuvalu",
+        "TWN = Taiwan (Province of China)",
+        "TZA = Tanzania, United Republic of",
+        "UGA = Uganda",
+        "UKR = Ukraine",
+        "UMI = United States Minor Outlying Islands (the)",
+        "URY = Uruguay",
+        "USA = United States of America (the)",
+        "UZB = Uzbekistan",
+        "VAT = Holy See (the)",
+        "VCT = Saint Vincent and the Grenadines",
+        "VEN = Venezuela (Bolivarian Republic of)",
+        "VGB = Virgin Islands (British)",
+        "VIR = Virgin Islands (U.S.)",
+        "VNM = Viet Nam",
+        "VUT = Vanuatu",
+        "WLF = Wallis and Futuna",
+        "WSM = Samoa",
+        "YEM = Yemen",
+        "ZAF = South Africa",
+        "ZMB = Zambia",
+        "ZWE = Zimbabwe" ;
+    csvw:datatype "integer" ;
+    csvw:name "country" ;
+    csvw:title "COUNTRY" .
+
+_:N34fc9fabd73e49e0bdead8405e379fc1 a csvw:Column ;
+    dct:description """Site Exclusion date (DROP_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "drop_center" ;
+    csvw:title """Site Exclusion date (DROP_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was dropped from IeDEA (if dropped)</div>""" .
+
+_:N464dd1a38e31464eb142269ac98fbe49 a csvw:Column ;
+    dct:description """Geocode - Latitude (GEOCODE_LAT)
+<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
+Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "geocode_lat" ;
+    csvw:title """Geocode - Latitude (GEOCODE_LAT)
+<div style="font-weight:lighter;font-style:italic">Approximated geocodes (fewer decimal points) are acceptable. 
+Example look-up website: <a target="_blank" href="https://itouchmap.com/latlong.html">iTouchMap</a> </div>""" .
+
+_:N55fd67b769ca4f2387813df261ade903 a csvw:Column ;
+    dct:description """SURVEY_PAPER
+<div style="font-weight:lighter;font-style:italic">Resources for printing and transferring paper surveys to a central location for data entry</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = site has resources to print and transfer surveys",
+        "2 = site has resources to print, but not to transfer surveys",
+        "3 = site does not have resources to print, but can transfer surveys",
+        "4 = site needs assistance in both printing and transferring surveys",
+        "8 = not applicable",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "survey_paper" ;
+    csvw:title """SURVEY_PAPER
+<div style="font-weight:lighter;font-style:italic">Resources for printing and transferring paper surveys to a central location for data entry</div>""" .
+
+_:N5c5aae6736734dba92dd39f874ce1631 a csvw:Column ;
+    dct:description """PROGRAM
+<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "program" ;
+    csvw:title """PROGRAM
+<div style="font-weight:lighter;font-style:italic">Care program with which the center is associated (if applicable)</div>""" .
+
+_:N660e676d38f747b3baab6c850374a1e8 a csvw:Column ;
+    dct:description "Notes about this site" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "notes" ;
+    csvw:datatype "string" ;
+    csvw:name "notes" ;
+    csvw:title "Notes about this site" .
+
+_:N7f73a2a42ffd42d697c22c323047ca6c a csvw:Column ;
+    dct:description """ADULTPED
+<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "ADULT = Adults (ADULT)",
+        "BOTH = Adults and children (BOTH)",
+        "PED = Children (PED)" ;
+    csvw:datatype "integer" ;
+    csvw:name "adultped" ;
+    csvw:title """ADULTPED
+<div style="font-weight:lighter;font-style:italic">Population the center serves</div>""" .
+
+_:N89558917d70c4b7b9bce179795cf23e3 a csvw:Column ;
+    dct:description "PROVINCE" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "province" ;
+    csvw:title "PROVINCE" .
+
+_:N8f26e3ac62bb465d9de96d551f5af672 a csvw:Column ;
+    dct:description """CENTER
+<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
+Needs to be unique within each region.</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "center" ;
+    csvw:title """CENTER
+<div style="font-weight:lighter;font-style:italic">Code for Clinic/Centre/Hospital where patient is seen.
+Needs to be unique within each region.</div>""" .
+
+_:Nab9f93f91f3546fab4685a73c8cae7c9 a csvw:Column ;
+    dct:description """RURAL
+<div style="font-weight:lighter;font-style:italic">Facility location</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = Urban",
+        "2 = Mostly urban",
+        "3 = Mostly rural",
+        "4 = Rural",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "rural" ;
+    csvw:title """RURAL
+<div style="font-weight:lighter;font-style:italic">Facility location</div>""" .
+
+_:Nc2f26077b8804ac2829400a2127ebece a csvw:Column ;
+    dct:description "CITY" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "city" ;
+    csvw:title "CITY" .
+
+_:Nc9b136bd10e74ccaad50245dac619366 a csvw:Column ;
+    dct:description """NAME
+<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "name" ;
+    csvw:title """NAME
+<div style="font-weight:lighter;font-style:italic">Proper name to identify center</div>""" .
+
+_:Nd74a38cd8a4143db9d6f0f0892b39ffe a csvw:Column ;
+    dct:description "Values: AP, EA, SA, WA, CA, CN, NA" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "AP = Asia-Pacific",
+        "CA = Central Africa",
+        "CN = CCASAnet (Latin America)",
+        "EA = East Africa",
+        "NA = NA-ACCORD (North America)",
+        "SA = Southern Africa",
+        "WA = West Africa" ;
+    csvw:datatype "integer" ;
+    csvw:name "region" ;
+    csvw:title """REGION
+<div style="font-weight:lighter;font-style:italic">IeDEA global region</div>""" .
+
+_:Ndb036abec0e84de29744f84278f287d4 a csvw:Column ;
+    dct:description """Site Inclusion Date (ADD_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "add_center" ;
+    csvw:title """Site Inclusion Date (ADD_CENTER_D)
+<div style="font-weight:lighter;font-style:italic">Date that the site was added to IeDEA</div>""" .
+
+_:Ne2109ddbc9ff4b52bde555c827fa3814 a csvw:Column ;
+    dct:description """Database Open Date (OPEN_D)
+<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "open_d" ;
+    csvw:title """Database Open Date (OPEN_D)
+<div style="font-weight:lighter;font-style:italic">(optional) earliest date for which data were included for this site</div>""" .
+
+_:Neddab2b057b5479b99f46783df3db6d3 a csvw:Column ;
+    dct:description """SURVEY_INTERNET
+<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "dropdown" ;
+    skos:notation "1 = sufficient   access to complete online surveys",
+        "2 = degraded access making online survey completion difficult",
+        "3 = no internet access",
+        "9 = Unknown" ;
+    csvw:datatype "integer" ;
+    csvw:name "survey_internet" ;
+    csvw:title """SURVEY_INTERNET
+<div style="font-weight:lighter;font-style:italic">Quality of Internet access for completing online surveys.</div>""" .
+
+_:Nf0c0fb60263c46118cf56259ec2ed1cc a csvw:Column ;
+    dct:description "Geocode - Longitude (GEOCODE_LON)" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "geocode_lon" ;
+    csvw:title "Geocode - Longitude (GEOCODE_LON)" .
+
+_:Nff2228f166284bbfa59d0c2dac84d813 a csvw:Column ;
+    dct:description """Last Reviewed Date 
+<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" ;
+    dct:isPartOf "tblcenter" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "last_reviewed_d" ;
+    csvw:title """Last Reviewed Date 
+<div style="font-weight:lighter;font-style:italic">Date when this center's data was last reviewed and/or updated</div>""" .
 

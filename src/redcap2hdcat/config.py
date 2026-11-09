@@ -43,6 +43,19 @@ class Config:
     # this comes from configuration until the API adapter exists.
     creator: Agent = field(default_factory=Agent)
     default_description: str = ""
+    # Where a data user requests access: the institution's data-request page or, once
+    # designated, the HDAB's. HealthDCAT-AP needs at least one dcat:Distribution and
+    # REDCap knows nothing about access procedures, so this has to be configured.
+    access_url: str = ""
+    # dct:type of each dataset, a SKOS concept (mandatory for non-public datasets in
+    # Release 8). The recommended EU dataset-type table has no concept for research
+    # data collected on case report forms, so the tool does not choose one.
+    dataset_type: str = ""
+    # Label of that concept, needed when it is the institution's own and no published
+    # vocabulary supplies its skos:prefLabel.
+    dataset_type_label: str = ""
+    # Overrides the provenance statement the tool composes from the REDCap export.
+    provenance: str = ""
 
     @classmethod
     def load(cls, path: str | Path) -> Config:
@@ -66,6 +79,10 @@ class Config:
             gaps.append("healthdcatap:hdab")
         if not self.publisher.name:
             gaps.append("dct:publisher")
+        if not self.access_url:
+            gaps.append("dcat:distribution (access_url)")
+        if not self.dataset_type:
+            gaps.append("dct:type (dataset_type)")
         return gaps
 
 
@@ -106,18 +123,27 @@ language: en
 # Article 77 is about describing datasets, not granting access.
 access_rights: NON_PUBLIC
 
-# EHDS Article 51 vocabulary. Mandatory.
+# EHDS Article 51 categories, from the HealthDCAT-AP vocabulary. Mandatory.
 health_categories:
-  - "http://healthdataportal.eu/ns/health#ElectronicHealthRecords"
+  - "https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS"
 
 themes:
   - HEAL
+
+# Page where a data user requests access (becomes the dcat:Distribution). Mandatory.
+access_url: https://example.org/data-access-request
+
+# dct:type of the datasets: a SKOS concept, mandatory for non-public datasets. The EU
+# dataset-type table (http://publications.europa.eu/resource/authority/dataset-type)
+# is recommended but has no concept for research data; a concept from the
+# institution's own vocabulary is allowed.
+dataset_type: ""
 
 publisher:
   name: Example Institute
   email: data@example.org
   homepage: https://example.org
-  type: http://publications.europa.eu/resource/authority/health-publisher-type/RESEARCH_ORG
+  type: https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type/research-institute-org
 
 # Producer of the data: the research group or unit that generated it. A file
 # export carries no principal investigator, so it has to be stated here.

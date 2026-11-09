@@ -1,0 +1,10 @@
+rule,severity,sources_affected,total_findings,sources_total
+unflagged-identifier,error,1,3,10
+coded-without-choices,error,0,0,10
+duplicate-choice-code,error,0,0,10
+dangling-branching-reference,error,2,4,10
+inconsistent-coding,warning,1,1,10
+numeric-without-range,warning,4,145,10
+unconstrained-text,warning,10,76,10
+missing-label,warning,0,0,10
+date-not-reviewed,info,7,29,10

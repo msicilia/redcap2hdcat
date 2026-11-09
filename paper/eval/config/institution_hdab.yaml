@@ -1,4 +1,5 @@
-# Same as institution.yaml plus a placeholder HDAB. Neutral institutional configuration for the evaluation. ALL VALUES ARE FICTIONAL.
+# Same as institution.yaml plus placeholders for the two values no source can supply:
+# the HDAB (not designated) and the dataset type (no fitting concept in the EU table). Neutral institutional configuration for the evaluation. ALL VALUES ARE FICTIONAL.
 # Controlled-vocabulary IRIs are taken from the HealthDCAT-AP Release 8 vocabularies bundled with the
 # pinned shapes (shapes/release-8/ehds/catalogue/healthcategories.rdf, publisher-type.rdf), not from the
 # tool's init-config template (whose IRIs are not in the Release 8 vocabularies; see report).
@@ -11,6 +12,8 @@ health_categories:
   - "https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS"
 themes:
   - HEAL
+# Fictional data-access request page (becomes the dcat:Distribution access URL).
+access_url: https://www.fictional-institute.invalid/data-access-request
 publisher:
   name: Fictional Health Research Institute
   email: catalogue@fictional-institute.invalid
@@ -22,6 +25,9 @@ creator:
 contact:
   name: Fictional Data Office
   email: data-office@fictional-institute.invalid
+# Placeholder dataset type: a concept of the fictional institution's own vocabulary.
+dataset_type: https://catalogue.fictional-institute.invalid/concept/research-data
+dataset_type_label: Research data collected on electronic case report forms
 # Placeholder HDAB, used only to isolate violations caused by the undesignated HDAB.
 hdab:
   name: Placeholder Health Data Access Body (fictional)

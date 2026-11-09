@@ -4,28 +4,28 @@ IR 2026/2098 element,2,Applicable legislation,dcatap:applicableLegislation,dcata
 IR 2026/2098 element,3,Code values,healthdcatap:hasCodeValues,,Recommended(0..*),10,0,0,0,0,0,,
 IR 2026/2098 element,4,Coding system,healthdcatap:hasCodingSystem,,Recommended(0..*),10,0,0,0,0,0,,
 IR 2026/2098 element,5,Contact point,dcat:contactPoint,dcat:contactPoint,Mandatory(1..*),10,0,0,0,10,10,,
-IR 2026/2098 element,6,Conforms to,dct:conformsTo,dct:conformsTo,Optional(0..*),10,10,10,0,0,10,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;iedea-tblCENTER;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant;rtd-archer;rtd-case01-crosssectional;rtd-case07-longitudinal;rtd-case20-randomization,"present only because the tool points dct:conformsTo at its own csvw:TableGroup (the variable dictionary), not at a dct:Standard from the HealthData@EU standard CV; the same triple is what is counted under Variables"
+IR 2026/2098 element,6,Conforms to,dct:conformsTo,,Optional(0..*),10,0,0,0,0,0,,
 IR 2026/2098 element,7,Custodian,geodcatap:custodian,,Recommended(0..1),10,0,0,0,0,0,,
 IR 2026/2098 element,8,Description,dct:description,dct:description,Mandatory(1..*),10,10,0,10,0,10,,falls back to a copy of the title unless a DMP (or config default_description) supplies one
-IR 2026/2098 element,9,Distribution,dcat:distribution,,Mandatory(1..*),10,0,0,0,0,0,,
+IR 2026/2098 element,9,Distribution,dcat:distribution,dcat:distribution,Mandatory(1..*),10,0,0,0,10,10,,"access URL of the data-request page from configuration (access_url), format CSV"
 IR 2026/2098 element,10,Geographical coverage,dct:spatial,,Optional(0..*),10,0,0,0,0,0,,
-IR 2026/2098 element,11,Has personal data,dpv:hasPersonalData,dpv:hasPersonalData,Recommended(0..*),10,3,3,0,0,3,nacc-DownSyndromeModule;rtd-archer;rtd-case07-longitudinal,emitted as the literal true; Release 8 expects dpv-pd concept IRIs
+IR 2026/2098 element,11,Has personal data,dpv:hasPersonalData,dpv:hasPersonalData,Recommended(0..*),10,3,3,0,0,3,nacc-DownSyndromeModule;rtd-archer;rtd-case07-longitudinal,"DPV-PD categories: dpv-pd:Health whenever personal data are present, plus the category implied by each flagged field's validation type"
 IR 2026/2098 element,12,Health data access body,healthdcatap:hdab,,Mandatory(1..1),10,0,0,0,0,0,,
 IR 2026/2098 element,13,Health data category,healthdcatap:healthCategory,healthdcatap:healthCategory,Mandatory(1..*),10,0,0,0,10,10,,
 IR 2026/2098 element,14,Health theme,healthdcatap:healthTheme,,Recommended(0..*),10,0,0,0,0,0,,
 IR 2026/2098 element,15,Identifier,dct:identifier,dct:identifier,Mandatory(1..*),10,10,0,10,0,10,,"literal of the dataset URI = base_uri + '/dataset/' + input file name (file exports carry no project_id), so it changes if the file is renamed"
-IR 2026/2098 element,16,Is structured,healthdcatap:hasStructuredData,,Mandatory(1..1),10,0,0,0,0,0,,
+IR 2026/2098 element,16,Is structured,healthdcatap:hasStructuredData,healthdcatap:hasStructuredData,Mandatory(1..1),10,10,0,10,0,10,,"constant true, emitted with the variable description"
 IR 2026/2098 element,17,Keyword,dcat:keyword,dcat:keyword,Mandatory(1..*),10,10,10,0,0,10,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;iedea-tblCENTER;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant;rtd-archer;rtd-case01-crosssectional;rtd-case07-longitudinal;rtd-case20-randomization,"REDCap instrument (form) names, plus DMP keywords at stage c"
-IR 2026/2098 element,18,Language,dct:language,dct:language,Recommended(0..*),10,0,0,0,10,10,,emitted as a plain literal; Release 8 expects an EU language NAL IRI
+IR 2026/2098 element,18,Language,dct:language,dct:language,Recommended(0..*),10,0,0,0,10,10,,IRI of the EU language table (configuration language; the DMP language at stage c)
 IR 2026/2098 element,19,Number of records,healthdcatap:numberOfRecords,,Recommended(0..1),10,0,0,0,0,0,,
 IR 2026/2098 element,20,Number of unique individuals,healthdcatap:numberOfUniqueIndividuals,,Recommended(0..1),10,0,0,0,0,0,,
-IR 2026/2098 element,21,Provenance,dct:provenance,,Mandatory(1..*),10,0,0,0,0,0,,
+IR 2026/2098 element,21,Provenance,dct:provenance,dct:provenance,Mandatory(1..*),10,10,0,10,0,10,,"statement composed by the tool from the export (REDCap version, instruments, events); names the DMP when one is used"
 IR 2026/2098 element,22,Publisher,dct:publisher,dct:publisher,Recommended(0..1),10,0,0,0,10,10,,
 IR 2026/2098 element,23,Temporal coverage,dct:temporal,,Recommended(0..*),10,0,0,0,0,0,,
 IR 2026/2098 element,24,Title,dct:title,dct:title,Mandatory(1..*),10,10,5,5,0,10,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant,Project XML: <StudyName>; CSV dictionary: tool falls back to the input file name
 IR 2026/2098 element,25,Type,dct:type,,Mandatory(1..*),10,0,0,0,0,0,,
-IR 2026/2098 element,26,Variables,healthdcatap:hasVariables,dct:conformsTo,Recommended(0..*),10,10,10,0,0,10,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;iedea-tblCENTER;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant;rtd-archer;rtd-case01-crosssectional;rtd-case07-longitudinal;rtd-case20-randomization,"content derived from REDCap but emitted as dct:conformsTo -> csvw:TableGroup, not as healthdcatap:hasVariables (Release 8 property)"
-IR 2026/2098 element,27,Was generated by,prov:wasGeneratedBy,,Optional(0..*),10,0,0,0,0,0,,
+IR 2026/2098 element,26,Variables,healthdcatap:hasVariables,healthdcatap:hasVariables,Recommended(0..*),10,10,10,0,0,10,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;iedea-tblCENTER;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant;rtd-archer;rtd-case01-crosssectional;rtd-case07-longitudinal;rtd-case20-randomization,csvw:TableGroup built from the data dictionary (one csvw:Table per instrument)
+IR 2026/2098 element,27,Was generated by,prov:wasGeneratedBy,,Optional(0..*),10,0,0,0,0,0,,"prov:Activity of type Health Activity RESEARCH_PROJECT, titled with the DMP project and identified by its grant"
 extra (outside the 27),,,adms:versionNotes,adms:versionNotes,Optional(0..*),10,5,5,0,0,5,iedea-Harmonist-CodeLists;iedea-Harmonist-DataModel;nacc-DownSyndromeModule;nacc-FormF2COVIDImpactSurvey-Participantv1.3;nacc-FormF3COVID-CoParticipant,
 extra (outside the 27),,,dcat:theme,dcat:theme,Mandatory(1..*),10,0,0,0,10,10,,
 extra (outside the 27),,,dct:creator,dct:creator,Optional(0..*),10,0,0,0,10,10,,

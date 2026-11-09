@@ -1,0 +1,6 @@
+  missing: dct:type
+  missing: healthdcatap:hdab
+  violation [http://healthdataportal.eu/ns/health#hdab]: Each dcat:Dataset must have exactly one healthdcatap:hdab
+  violation [http://purl.org/dc/terms/type]: Each dcat:Dataset must have at least one dct:type.
+2 violation(s), 28 warning(s) (non-public shapes).
+exit=1

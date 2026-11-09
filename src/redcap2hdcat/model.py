@@ -106,6 +106,11 @@ class ProjectMetadata:
     funder: str = ""
     dmp_keywords: list[str] = field(default_factory=list)
     personal_data: bool | None = None
+    # Language of the texts taken from the DMP (description, keywords), which may
+    # differ from the catalogue language set in the configuration.
+    dmp_text_language: str = ""
+    # The research project that generated the data (prov:wasGeneratedBy).
+    project_title: str = ""
 
 
 @dataclass

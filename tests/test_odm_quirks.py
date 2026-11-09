@@ -76,3 +76,76 @@ class TestFormCompleteFields:
 
     def test_data_access_group_is_kept(self, quirks):
         assert quirks.by_name("redcap_data_access_group") is not None
+
+
+_SPLIT_CHECKBOX = """<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:redcap="https://projectredcap.org"
+     SourceSystem="REDCap" SourceSystemVersion="14.0.0">
+ <Study OID="S">
+  <GlobalVariables><StudyName>Split checkbox</StudyName></GlobalVariables>
+  <MetaDataVersion OID="M" Name="M">
+   <FormDef OID="Form.f" Name="F" redcap:FormName="f">
+    <ItemGroupRef ItemGroupOID="f.record_id" Mandatory="No"/>
+   </FormDef>
+   <ItemGroupDef OID="f.record_id" Name="F">
+    <ItemRef ItemOID="record_id" Mandatory="No"/>
+    <ItemRef ItemOID="dx___a" Mandatory="No"/>
+    <ItemRef ItemOID="dx___b" Mandatory="No"/>
+   </ItemGroupDef>
+   <ItemDef OID="record_id" Name="record_id" DataType="text" redcap:FieldType="text">
+    <Question><TranslatedText>Record ID</TranslatedText></Question>
+   </ItemDef>
+   <ItemDef OID="dx___a" Name="dx___a" DataType="boolean" redcap:Variable="dx"
+            redcap:FieldType="checkbox" redcap:RequiredField="y">
+    <Question><TranslatedText>Diagnosis</TranslatedText></Question>
+    <CodeListRef CodeListOID="dx___a.choices"/>
+   </ItemDef>
+   <ItemDef OID="dx___b" Name="dx___b" DataType="boolean" redcap:Variable="dx"
+            redcap:FieldType="checkbox" redcap:RequiredField="y">
+    <Question><TranslatedText>Diagnosis</TranslatedText></Question>
+    <CodeListRef CodeListOID="dx___b.choices"/>
+   </ItemDef>
+   <CodeList OID="dx___a.choices" Name="dx___a" DataType="boolean" redcap:Variable="dx"
+             redcap:CheckboxChoices="a, Asthma | b, Bronchitis">
+    <CodeListItem CodedValue="1">
+     <Decode><TranslatedText>Checked</TranslatedText></Decode>
+    </CodeListItem>
+    <CodeListItem CodedValue="0">
+     <Decode><TranslatedText>Unchecked</TranslatedText></Decode>
+    </CodeListItem>
+   </CodeList>
+   <CodeList OID="dx___b.choices" Name="dx___b" DataType="boolean" redcap:Variable="dx"
+             redcap:CheckboxChoices="a, Asthma | b, Bronchitis">
+    <CodeListItem CodedValue="1">
+     <Decode><TranslatedText>Checked</TranslatedText></Decode>
+    </CodeListItem>
+    <CodeListItem CodedValue="0">
+     <Decode><TranslatedText>Unchecked</TranslatedText></Decode>
+    </CodeListItem>
+   </CodeList>
+  </MetaDataVersion>
+ </Study>
+</ODM>
+"""
+
+
+class TestPreSplitCheckboxes:
+    """Newer exports already split a checkbox into one ItemDef per option. Splitting
+    them again produced columns such as dx___a___0 and dx___a___1."""
+
+    @pytest.fixture
+    def project(self, tmp_path):
+        path = tmp_path / "split.xml"
+        path.write_text(_SPLIT_CHECKBOX, encoding="utf-8")
+        return odm.load(path)
+
+    def test_options_fold_into_one_field(self, project):
+        assert [v.name for v in project.variables] == ["record_id", "dx"]
+        dx = project.by_name("dx")
+        assert dx.field_type == FieldType.CHECKBOX
+        assert [(c.code, c.label) for c in dx.choices] == [("a", "Asthma"), ("b", "Bronchitis")]
+        assert dx.required
+
+    def test_columns_are_not_split_twice(self, project):
+        from redcap2hdcat.core.columns import expand
+        assert [c.name for c in expand(project)] == ["record_id", "dx___a", "dx___b"]

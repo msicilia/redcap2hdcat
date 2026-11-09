@@ -1,10 +1,19 @@
-from rdflib import URIRef
-from rdflib.namespace import RDF
+from rdflib import Literal, URIRef
+from rdflib.namespace import RDF, RDFS
 
 from redcap2hdcat.config import Config
 from redcap2hdcat.core import rdf
 from redcap2hdcat.core.validate import check_mandatory, validate
-from redcap2hdcat.core.vocab import CSVW, DCAT, DCTERMS, DPV, EHDS_LEGISLATION
+from redcap2hdcat.core.vocab import (
+    CSVW,
+    CV,
+    DCAT,
+    DCTERMS,
+    DPV,
+    DPV_PD,
+    EHDS_LEGISLATION,
+    HEALTHDCATAP,
+)
 
 
 class TestDatasetNode:
@@ -44,9 +53,77 @@ class TestCsvwLayer:
         g = rdf.build(dictionary_project, full_config)
         assert str(next(g.objects(None, CSVW.primaryKey))) == "record_id"
 
-    def test_dataset_conforms_to_dictionary(self, dictionary_project, full_config):
+    def test_dataset_links_its_variables(self, dictionary_project, full_config):
+        # Release 8: healthdcatap:hasVariables, not dct:conformsTo (whose range is a
+        # standard), and hasStructuredData true whenever variables are described.
         g = rdf.build(dictionary_project, full_config)
-        assert (None, DCTERMS.conformsTo, None) in g
+        assert (None, HEALTHDCATAP.hasVariables, None) in g
+        assert (None, DCTERMS.conformsTo, None) not in g
+        assert (None, HEALTHDCATAP.hasStructuredData, Literal(True)) in g
+
+    def test_columns_use_csvw_title_and_always_have_a_description(
+            self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        columns = list(g.subjects(RDF.type, CSVW.Column))
+        assert not list(g.objects(None, CSVW.titles))
+        assert all(g.value(c, CSVW.title) is not None for c in columns)
+        assert all(g.value(c, DCTERMS.description) is not None for c in columns)
+
+    def test_columns_hang_from_the_table(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        for table in g.subjects(RDF.type, CSVW.Table):
+            assert list(g.objects(table, CSVW.column))
+
+    def test_annotations_are_not_property_urls(self, tmp_path, full_config):
+        path = tmp_path / "d.csv"
+        path.write_text(
+            "field_name,form_name,field_type,field_label,field_annotation\n"
+            "record_id,f,text,Record ID,\n"
+            "mes,f,text,Mes,@PLACEHOLDER='Month'\n"
+        )
+        from redcap2hdcat.adapters import csv_dict
+        g = rdf.build(csv_dict.load(path), full_config)
+        assert not list(g.objects(None, CSVW.propertyUrl))
+
+
+class TestRelease8Values:
+    def test_language_is_an_eu_language_iri(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        lang = URIRef("http://publications.europa.eu/resource/authority/language/ENG")
+        assert set(g.objects(None, DCTERMS.language)) == {lang}
+        assert (lang, RDF.type, DCTERMS.LinguisticSystem) in g
+
+    def test_personal_data_are_dpv_categories(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        values = set(g.objects(rdf.dataset_uri(full_config, dictionary_project),
+                               DPV.hasPersonalData))
+        assert values and all(str(v).startswith(str(DPV_PD)) for v in values)
+        assert DPV_PD.Health in values
+
+    def test_agents_have_a_contact_point(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        for prop in (DCTERMS.publisher, HEALTHDCATAP.hdab):
+            agent = next(g.objects(None, prop))
+            contact = g.value(agent, CV.contactPoint)
+            assert (contact, RDF.type, CV.ContactPoint) in g
+
+    def test_distribution_from_access_url(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        dist = next(g.objects(None, DCAT.distribution))
+        assert str(g.value(dist, DCAT.accessURL)) == full_config.access_url
+
+    def test_provenance_and_type(self, dictionary_project, full_config):
+        g = rdf.build(dictionary_project, full_config)
+        uri = rdf.dataset_uri(full_config, dictionary_project)
+        prov = g.value(uri, DCTERMS.provenance)
+        assert (prov, RDF.type, DCTERMS.ProvenanceStatement) in g
+        assert "REDCap" in str(g.value(prov, RDFS.label))
+        assert str(g.value(uri, DCTERMS.type)) == full_config.dataset_type
+
+    def test_missing_access_url_and_type_are_reported(self):
+        gaps = Config().missing_mandatory()
+        assert "dcat:distribution (access_url)" in gaps
+        assert "dct:type (dataset_type)" in gaps
 
 
 class TestConformance:

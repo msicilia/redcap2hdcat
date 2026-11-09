@@ -24,3 +24,5 @@ paper/*.fls
 paper/eval/corpus/*/
 paper/eval/results/rectal/
 paper/eval/results/contribution.csv
+# Records generated from NACC forms reproduce copyrighted question text; regenerate locally.
+paper/eval/results/**/records*/nacc-*.ttl

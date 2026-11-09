@@ -1,5 +1,5 @@
 exit=1
 --- stderr ---
-Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/mim/eval/results/records/rtd-archer.ttl (201 triples)
+Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/paper/eval/results/records/rtd-archer.ttl (271 triples)
 
-Incomplete: healthdcatap:hdab not set in configuration.
+Incomplete: healthdcatap:hdab, dct:type (dataset_type) not set in configuration.

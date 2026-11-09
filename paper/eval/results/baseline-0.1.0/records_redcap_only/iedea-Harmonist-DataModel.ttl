@@ -1,0 +1,303 @@
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml> a dcat:Dataset ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
+    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary> ;
+    dct:description "Harmonist 0A: Data Model (IeDEA-DES)" ;
+    dct:identifier "https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml" ;
+    dct:title "Harmonist 0A: Data Model (IeDEA-DES)" ;
+    adms:versionNotes "REDCap 8.1.1" ;
+    dcat:keyword "table_metadata",
+        "variable_metadata" .
+
+<https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary> a csvw:TableGroup ;
+    csvw:table <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-0>,
+        <https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-1> .
+
+<https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-0> a csvw:Table ;
+    dct:title "table_metadata" ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "radio" ;
+                    skos:notation "0 = DRAFT (table under consideration)",
+                        "1 = Active",
+                        "2 = DEPRECATED (table retired from use)" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "table_status" ;
+                    csvw:titles "Table Status" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "radio" ;
+                    skos:notation "0 = N/A (e.g., tblCENTER)",
+                        "1 = One row per patient",
+                        "2 = Multiple rows per patient" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "table_format" ;
+                    csvw:titles "Table type" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "table_display_name" ;
+                    csvw:titles "Table display name (for human-readable documents)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "table_added_d" ;
+                    csvw:titles "Date table added (as draft or active)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "table_definition" ;
+                    csvw:titles "Table definition (short text)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "yesno" ;
+                    skos:notation "0 = No",
+                        "1 = Yes" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "table_display_y" ;
+                    csvw:titles "Display this table in human-readable documents and forms?" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "text_bottom" ;
+                    csvw:titles "Text (HTML-formatted) to display after the table definition" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "record_id" ;
+                    csvw:required true ;
+                    csvw:titles "Record ID" ;
+                    dpv:hasPersonalData true ],
+                [ a csvw:Column ;
+                    dct:description "(approximate, for DES version)" ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "table_deprecated_d" ;
+                    csvw:titles "Date of table deprecation" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "text_top" ;
+                    csvw:titles "Text (HTML-formatted) to display before the table definiton" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "table_name" ;
+                    csvw:titles "Table name" ],
+                [ a csvw:Column ;
+                    dct:description "(e.g., use 1.5 to place a table between tables 1 and 2)" ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "decimal" ;
+                    csvw:name "table_order" ;
+                    csvw:titles "Display order for this table" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "table_metadata" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Incomplete",
+                        "1 = Unverified",
+                        "2 = Complete" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "table_metadata_complete" ;
+                    csvw:titles "Complete?" ] ;
+            csvw:primaryKey "record_id" ] .
+
+<https://catalogue.fictional-institute.invalid/dataset/Harmonist0ADataModel_2017-12-21_1147.REDCap.xml/dictionary/table-1> a csvw:Table ;
+    dct:title "variable_metadata" ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "description_extra" ;
+                    csvw:titles "Extra text for variable description (subheader)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "variable_required___1___1" ;
+                    csvw:titles """REQUIRED
+(This variable is required for database integrity and should always be included when data from this table is requested.) (choice=Checked)""" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "dropdown" ;
+                    skos:notation "1 = Character",
+                        "2 = Numeric",
+                        "3 = Character or Numeric",
+                        "4 = YYYY-MM-DD",
+                        "5 = YYYY-MM-DD hh:mm" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "data_format" ;
+                    csvw:titles "Variable format" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "variable_missingaction___1___1" ;
+                    csvw:titles "Report missing entries as data quality errors (choice=Checked)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "variable_missingaction___1___0" ;
+                    csvw:titles "Report missing entries as data quality errors (choice=Unchecked)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "variable_added_d" ;
+                    csvw:titles """Date variable added 
+(as draft or active)""" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "radio" ;
+                    skos:notation "0 = DRAFT (variable under consideration)",
+                        "1 = Active",
+                        "2 = DEPRECATED (variable retired from use)" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "variable_status" ;
+                    csvw:titles "Variable Status" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "description" ;
+                    csvw:titles "Variable description" ],
+                [ a csvw:Column ;
+                    dct:description "(approximate, for DES version)" ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "variable_deprecated_d" ;
+                    csvw:titles "Date of variable deprecation" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "variable_name" ;
+                    csvw:titles "Variable name" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "yesno" ;
+                    skos:notation "0 = No",
+                        "1 = Yes" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "has_codes" ;
+                    csvw:titles "Is this a coded variable?" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "code_text" ;
+                    csvw:titles "Extra text to show in \"Format\"/codes column" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Incomplete",
+                        "1 = Unverified",
+                        "2 = Complete" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "variable_metadata_complete" ;
+                    csvw:titles "Complete?" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "radio" ;
+                    skos:notation "0 = No",
+                        "1 = Yes" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "codes_print" ;
+                    csvw:titles "Should code lists be printed for this variable?" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "variable_required___1___0" ;
+                    csvw:titles """REQUIRED
+(This variable is required for database integrity and should always be included when data from this table is requested.) (choice=Unchecked)""" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "dropdown" ;
+                    skos:notation "1 = ART_ID code (ATC drug code)",
+                        "10 = IeDEA Regions",
+                        "11 = COUNTRY code (ISO alpha-3)",
+                        "12 = RURAL code",
+                        "13 = LEVEL code",
+                        "14 = ADULTPED code",
+                        "15 = SURVEY_INTERNET code",
+                        "16 = SURVEY_PAPER code",
+                        "17 = DELIV_M code",
+                        "18 = DELIV_LOCATION code",
+                        "19 = DELIV_ASSIST code",
+                        "2 = _D_A code (date approximation)",
+                        "20 = DIS_ID code",
+                        "21 = DIS_WD code",
+                        "22 = DIS_SITE code",
+                        "23 = DIS_OUTCOME code",
+                        "24 = BP_U code",
+                        "25 = CD4_U code",
+                        "26 = _NoYes",
+                        "27 = MED_ID code (ATC drug code)",
+                        "28 = VS_ID code",
+                        "29 = RNA_T code",
+                        "3 = ART_RS/MED_RS code",
+                        "30 = LAB_ID code",
+                        "31 = LAB_U code",
+                        "32 = DROP_RS code",
+                        "33 = ABNORM code",
+                        "34 = LOC_CODE code",
+                        "35 = ROM_DUR_A code",
+                        "36 = LAB_R/VS_R code",
+                        "37 = LAB_ST code",
+                        "38 = TESTTYPE code",
+                        "39 = VIRUSTYPE code",
+                        "4 = ART_FORM code",
+                        "40 = GENE code",
+                        "41 = AA_POS_SUB code",
+                        "42 = RES_SCOR_ID code",
+                        "43 = MEDSTART_RS code",
+                        "44 = MED_FR code",
+                        "45 = ULTR code",
+                        "46 = VS_U code",
+                        "47 = OUTCOM code",
+                        "48 = HIV_STATUS code",
+                        "49 = CAREGIVER code",
+                        "5 = ART_COMB code",
+                        "50 = CDC_STAGE code",
+                        "51 = WHO_STAGE code",
+                        "52 = STATUS_KNOWN code",
+                        "53 = SCHOOL_LVL code",
+                        "54 = GENDER_ID code",
+                        "6 = ARTSTART_RS code",
+                        "7 = GENDER code",
+                        "8 = MODE code",
+                        "9 = _NoYesUnknown" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "code_list_ref" ;
+                    csvw:titles "Select code list:" ],
+                [ a csvw:Column ;
+                    dct:description "(e.g., use 1.5 to place a variable between variables 1 and 2)" ;
+                    dct:isPartOf "variable_metadata" ;
+                    dct:type "text" ;
+                    csvw:datatype "decimal" ;
+                    csvw:name "variable_order" ;
+                    csvw:titles """Display order for this variable
+(numbering is within table)""" ] ] .
+

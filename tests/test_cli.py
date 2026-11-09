@@ -36,7 +36,10 @@ class TestBuildCommand:
         config = tmp_path / "inst.yaml"
         config.write_text(
             "base_uri: https://redcap.example.org\n"
-            "health_categories: ['http://healthdataportal.eu/ns/health#ElectronicHealthRecords']\n"
+            "health_categories: ['https://hdeu-dcat.data.health.europa.eu/resource/authority/"
+            "healthcategories/EHRS']\n"
+            "access_url: https://redcap.example.org/request\n"
+            "dataset_type: https://redcap.example.org/concept/research-data\n"
             "publisher:\n  name: Example\n  email: a@example.org\n"
             "hdab:\n  name: HDAB\n  email: h@example.org\n"
         )

@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/bin/redcap2hdcat", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/src/redcap2hdcat/cli.py", line 211, in main
+    return args.func(args)
+           ^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/src/redcap2hdcat/cli.py", line 99, in cmd_check
+    result = validate.validate(graph, args.shapes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/src/redcap2hdcat/core/validate.py", line 85, in validate
+    conforms, _, text = shacl_validate(graph, shacl_graph=shapes, advanced=True)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/lib/python3.12/site-packages/pyshacl/entrypoints.py", line 243, in validate
+    conforms, report_graph, report_text = validator.run()
+                                          ^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/lib/python3.12/site-packages/pyshacl/validator.py", line 333, in run
+    _is_conform, _reports = s.validate(executor, g, focus=on_focus_nodes)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/lib/python3.12/site-packages/pyshacl/shape.py", line 774, in validate
+    _is_conform, _reports = c.evaluate(executor, target_graph, focus_value_nodes, _e_p_copy)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/lib/python3.12/site-packages/pyshacl/constraints/core/shape_based_constraints.py", line 101, in evaluate
+    _nc, _r = self._evaluate_property_shape(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/.venv/lib/python3.12/site-packages/pyshacl/constraints/core/shape_based_constraints.py", line 123, in _evaluate_property_shape
+    raise ReportableRuntimeError(
+pyshacl.errors.ReportableRuntimeError: 'n28908e12b6f64fee876545b671f04291b44' exists but is not a well-formed SHACL PropertyShape. Ensure it has the correct type (sh:PropertyShape) and all required properties.
+exit=1
