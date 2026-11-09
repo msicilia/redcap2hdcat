@@ -1,0 +1,11 @@
+# Stage (a): supplies nothing beyond base_uri. Agents empty, no health categories, no themes,
+# no language. access_rights cannot be unset (the tool's Config has a NON_PUBLIC default and
+# every record gets it); it is attributed to "tool default" in the contribution tables.
+base_uri: https://catalogue.fictional-institute.invalid
+language: ""
+health_categories: []
+themes: []
+publisher: {}
+creator: {}
+contact: {}
+hdab: {}

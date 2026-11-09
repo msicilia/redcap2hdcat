@@ -1,0 +1,94 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix healthdcatap: <http://healthdataportal.eu/ns/health#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv> a dcat:Dataset ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    healthdcatap:hdab [ a foaf:Agent ;
+            foaf:homepage <https://www.fictional-hdab.invalid> ;
+            foaf:mbox <mailto:hdab@fictional-hdab.invalid> ;
+            foaf:name "Placeholder Health Data Access Body (fictional)" ] ;
+    healthdcatap:healthCategory <https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
+    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary> ;
+    dct:creator [ a foaf:Agent ;
+            foaf:mbox <mailto:group@fictional-institute.invalid> ;
+            foaf:name "Fictional Research Group" ] ;
+    dct:description "test-case-20-data-dictionary.csv"@en ;
+    dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv" ;
+    dct:language "en" ;
+    dct:publisher [ a foaf:Agent ;
+            dct:type <https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type/research-institute-org> ;
+            foaf:homepage <https://www.fictional-institute.invalid> ;
+            foaf:mbox <mailto:catalogue@fictional-institute.invalid> ;
+            foaf:name "Fictional Health Research Institute" ] ;
+    dct:title "test-case-20-data-dictionary.csv"@en ;
+    dcat:contactPoint [ a vcard:Kind ;
+            vcard:fn "Fictional Data Office" ;
+            vcard:hasEmail <mailto:data-office@fictional-institute.invalid> ] ;
+    dcat:keyword "my_first_instrument"@en ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/HEAL> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
+    dct:title "my_first_instrument"@en ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Female",
+                        "1 = Male" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "sex" ;
+                    csvw:titles "Sex"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "1 = Maine",
+                        "2 = New Hampshire",
+                        "3 = Vermont",
+                        "4 = Massachusetts",
+                        "5 = Rhode Island",
+                        "6 = Connecticut" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "location" ;
+                    csvw:titles "Location"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "record_id" ;
+                    csvw:required true ;
+                    csvw:titles "Record ID"@en ;
+                    dpv:hasPersonalData true ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "pre_test" ;
+                    csvw:titles "Pre test response"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "post_test" ;
+                    csvw:titles "Post test response"@en ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "0 = Control",
+                        "1 = Treatment" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "treatment" ;
+                    csvw:titles "Treatment"@en ] ;
+            csvw:primaryKey "record_id" ] .
+

@@ -1,0 +1,537 @@
+PREFIX :             <https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/range.ttl#>
+PREFIX adms:         <http://www.w3.org/ns/adms#>
+PREFIX as:           <https://www.w3.org/ns/activitystreams#>
+PREFIX at:           <http://publications.europa.eu/ontology/authority/>
+PREFIX atold:        <http://publications.europa.eu/resource/authority/>
+PREFIX cc:           <http://creativecommons.org/ns#>
+PREFIX csvw:         <http://www.w3.org/ns/csvw#>
+PREFIX ctag:         <http://commontag.org/ns#>
+PREFIX cv:           <http://data.europa.eu/m8g/>
+PREFIX daq:          <http://purl.org/eis/vocab/daq#>
+PREFIX dash:         <http://datashapes.org/dash#>
+PREFIX dc:           <http://purl.org/dc/elements/1.1/>
+PREFIX dc11:         <http://purl.org/dc/elements/1.1/>
+PREFIX dcam:         <http://purl.org/dc/dcam/>
+PREFIX dcat:         <http://www.w3.org/ns/dcat#>
+PREFIX dcatap:       <http://data.europa.eu/r5r/>
+PREFIX dct:          <http://purl.org/dc/terms/>
+PREFIX dcterms:      <http://purl.org/dc/terms/>
+PREFIX dctype:       <http://purl.org/dc/dcmitype/>
+PREFIX dctypes:      <http://purl.org/dc/dcmitype/>
+PREFIX doap:         <http://usefulinc.com/ns/doap#>
+PREFIX dpv:          <https://w3id.org/dpv#>
+PREFIX dqv:          <http://www.w3.org/ns/dqv#>
+PREFIX duv:          <https://www.w3.org/TR/vocab-duv#>
+PREFIX eli:          <http://data.europa.eu/eli/ontology#>
+PREFIX euvoc:        <http://publications.europa.eu/ontology/euvoc#>
+PREFIX foaf:         <http://xmlns.com/foaf/0.1/>
+PREFIX frbr:         <http://purl.org/vocab/frbr/core#>
+PREFIX geo:          <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX geodcatap:    <http://data.europa.eu/930/>
+PREFIX gr:           <http://purl.org/goodrelations/v1#>
+PREFIX graphql:      <http://datashapes.org/graphql#>
+PREFIX grddl:        <http://www.w3.org/2003/g/data-view#>
+PREFIX gsp:          <http://www.opengis.net/ont/geosparql#>
+PREFIX healthdcatap: <http://healthdataportal.eu/ns/health#>
+PREFIX ical:         <http://www.w3.org/2002/12/cal/icaltzd#>
+PREFIX lcon:         <http://www.w3.org/ns/locn#>
+PREFIX ldp:          <http://www.w3.org/ns/ldp#>
+PREFIX locn:         <http://www.w3.org/ns/locn#>
+PREFIX ma:           <http://www.w3.org/ns/ma-ont#>
+PREFIX ns:           <http://www.w3.org/2003/06/sw-vocab-status/ns#>
+PREFIX oa:           <http://www.w3.org/ns/oa#>
+PREFIX odrl:         <http://www.w3.org/ns/odrl/2/>
+PREFIX og:           <http://ogp.me/ns#>
+PREFIX org:          <http://www.w3.org/ns/org#>
+PREFIX owl:          <http://www.w3.org/2002/07/owl#>
+PREFIX prov:         <http://www.w3.org/ns/prov#>
+PREFIX qb:           <http://purl.org/linked-data/cube#>
+PREFIX rdf:          <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfa:         <http://www.w3.org/ns/rdfa#>
+PREFIX rdfs:         <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rec:          <http://www.w3.org/2001/02pd/rec54#>
+PREFIX rev:          <http://purl.org/stuff/rev#>
+PREFIX rif:          <http://www.w3.org/2007/rif#>
+PREFIX rr:           <http://www.w3.org/ns/r2rml#>
+PREFIX schema:       <http://schema.org/>
+PREFIX sd:           <http://www.w3.org/ns/sparql-service-description#>
+PREFIX sdo:          <http://schema.org/>
+PREFIX sf:           <http://www.opengis.net/ont/sf#>
+PREFIX sh:           <http://www.w3.org/ns/shacl#>
+PREFIX sioc:         <http://rdfs.org/sioc/ns#>
+PREFIX skos:         <http://www.w3.org/2004/02/skos/core#>
+PREFIX skosxl:       <http://www.w3.org/2008/05/skos-xl#>
+PREFIX spdx:         <http://spdx.org/rdf/terms#>
+PREFIX swa:          <http://topbraid.org/swa#>
+PREFIX time:         <http://www.w3.org/2006/time#>
+PREFIX tosh:         <http://topbraid.org/tosh#>
+PREFIX v:            <http://rdf.data-vocabulary.org/#>
+PREFIX vann:         <http://purl.org/vocab/vann/>
+PREFIX vcard:        <http://www.w3.org/2006/vcard/ns#>
+PREFIX voaf:         <http://purl.org/vocommons/voaf#>
+PREFIX void:         <http://rdfs.org/ns/void#>
+PREFIX vs:           <http://www.w3.org/2003/06/sw-vocab-status/ns#>
+PREFIX wdr:          <http://www.w3.org/2007/05/powder#>
+PREFIX wdrs:         <http://www.w3.org/2007/05/powder-s#>
+PREFIX wdsr:         <http://www.w3.org/2007/05/powder-s#>
+PREFIX wot:          <http://xmlns.com/wot/0.1/>
+PREFIX wrds:         <http://www.w3.org/2007/05/powder-s#>
+PREFIX xhv:          <http://www.w3.org/1999/xhtml/vocab#>
+PREFIX xml:          <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd:          <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  false;
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary>;
+                 sh:resultMessage              "Each csvw:TableGroup must have at least one title (dct:title) as a literal.";
+                 sh:resultPath                 dct:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0>;
+                 sh:resultMessage              "Each csvw:Table must have at least one column (csvw:column) defined as a blank node or IRI.";
+                 sh:resultPath                 csvw:column;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1>;
+                 sh:resultMessage              "Each csvw:Table must have at least one column (csvw:column) defined as a blank node or IRI.";
+                 sh:resultPath                 csvw:column;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Each dcat:Dataset must have exactly one healthdcatap:hasStructuredData as an xsd:boolean.";
+                 sh:resultPath                 healthdcatap:hasStructuredData;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Each dcat:Dataset must have exactly one healthdcatap:hdab";
+                 sh:resultPath                 healthdcatap:hdab;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Each dcat:Dataset must have at least one dcat:distribution.";
+                 sh:resultPath                 dcat:distribution;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Each dcat:Dataset must have at least one dct:provenance.";
+                 sh:resultPath                 dct:provenance;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Each dcat:Dataset must have at least one dct:type.";
+                 sh:resultPath                 dct:type;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "dct:publisher must conform to the :HealthPublisherAgent_Shape, which requires exactly one cv:contactPoint, at most one dct:description";
+                 sh:resultPath                 dct:publisher;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value does not have node kind BlankNodeOrIRI";
+                 sh:resultPath                 dct:language;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      "en"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:relation;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:temporal;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:maxTypicalAge;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:populationCoverage;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:numberOfUniqueIndividuals;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dcat:temporalResolution;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:retentionPeriod;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 adms:sample;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:hasCodeValues;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:numberOfRecords;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dpv:hasLegalBasis;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:minTypicalAge;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dpv:hasPurpose;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 geodcatap:custodian;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:accrualPeriodicity;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:source;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:isReferencedBy;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dqv:hasQualityAnnotation;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:hasCodingSystem;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dcat:landingPage;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 foaf:page;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:healthTheme;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 healthdcatap:analytics;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value must be an instance of dpv:PersonalData";
+                 sh:resultPath                 dpv:hasPersonalData;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:ClassConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      true
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value must be an instance of dct:Standard";
+                 sh:resultPath                 dct:conformsTo;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:ClassConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary>
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value must be an instance of dct:LinguisticSystem";
+                 sh:resultPath                 dct:language;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:ClassConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      "en"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value must be an instance of dct:RightsStatement";
+                 sh:resultPath                 dct:accessRights;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:ClassConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC>
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "Value must be an instance of eli:LegalResource";
+                 sh:resultPath                 dcatap:applicableLegislation;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:ClassConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      <http://data.europa.eu/eli/reg/2025/327/oj>
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b1;
+                 sh:resultMessage              "Each csvw:Column must have at least one title (csvw:title) as a literal.";
+                 sh:resultPath                 csvw:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b2
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b3;
+                 sh:resultMessage              "Each csvw:Column must have at least one title (csvw:title) as a literal.";
+                 sh:resultPath                 csvw:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b2
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "A non-DPV managed concept is used to indicate personal data. Please align with a concept from the DPV Personal Data vocabulary https://w3id.org/dpv/dpv-pd# (e.g. https://w3id.org/dpv/dpv-pd#Age).";
+                 sh:resultPath                 dpv:hasPersonalData;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent;
+                 sh:sourceShape                _:b4;
+                 sh:value                      true
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "A non-DPV managed concept is used to indicate personal data. Please align with a concept from the DPV Personal Data vocabulary https://w3id.org/dpv/dpv-pd# (e.g. https://w3id.org/dpv/dpv-pd#Age).";
+                 sh:resultPath                 dpv:hasPersonalData;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent;
+                 sh:sourceShape                _:b4;
+                 sh:value                      true
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "A non-EU managed concept is used to indicate the standard (dct:conformsTo). Please align with a concept from https://hdeu-dcat.data.health.europa.eu/resource/authority/standard. If no match is found, inform the vocabulary maintainer.";
+                 sh:resultPath                 dct:conformsTo;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent;
+                 sh:sourceShape                [] ;
+                 sh:value                      <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary>
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "A non-EU managed concept is used to indicate the language. Please align with a concept from http://publications.europa.eu/resource/authority/language. If no match is found, inform the maintainer of the EU language NAL.";
+                 sh:resultPath                 dct:language;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent;
+                 sh:sourceShape                _:b5;
+                 sh:value                      "en"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  <https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv>;
+                 sh:resultMessage              "A non-EU managed concept is used to indicate the language. Please align with a concept from http://publications.europa.eu/resource/authority/language. If no match is found, inform the maintainer of the EU language NAL.";
+                 sh:resultPath                 dct:language;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent;
+                 sh:sourceShape                _:b5;
+                 sh:value                      "en"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  [] ;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:type;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b6
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  [] ;
+                 sh:resultMessage              "Property needs to have at least 1 value";
+                 sh:resultPath                 dct:type;
+                 sh:resultSeverity             sh:Warning;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b6
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b7;
+                 sh:resultMessage              "Each csvw:Column must have at least one description (dct:description) as a literal.";
+                 sh:resultPath                 dct:description;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b8
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b9;
+                 sh:resultMessage              "Each csvw:Column must have at least one description (dct:description) as a literal.";
+                 sh:resultPath                 dct:description;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b8
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b10;
+                 sh:resultMessage              "Each csvw:Column must have at least one description (dct:description) as a literal.";
+                 sh:resultPath                 dct:description;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b8
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b3;
+                 sh:resultMessage              "Each csvw:Column must have at least one description (dct:description) as a literal.";
+                 sh:resultPath                 dct:description;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b8
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b1;
+                 sh:resultMessage              "Each csvw:Column must have at least one description (dct:description) as a literal.";
+                 sh:resultPath                 dct:description;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b8
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b7;
+                 sh:resultMessage              "Each csvw:Column must have at least one title (csvw:title) as a literal.";
+                 sh:resultPath                 csvw:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b2
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b9;
+                 sh:resultMessage              "Each csvw:Column must have at least one title (csvw:title) as a literal.";
+                 sh:resultPath                 csvw:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b2
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  _:b10;
+                 sh:resultMessage              "Each csvw:Column must have at least one title (csvw:title) as a literal.";
+                 sh:resultPath                 csvw:title;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent;
+                 sh:sourceShape                _:b2
+               ]
+] .

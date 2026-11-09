@@ -1,0 +1,13 @@
+"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
+record_id,demographics,,text,"Record ID",,,,,,,,,,,,,
+nhc,demographics,,text,"Numero de historia clinica",,"Identificador del hospital",,,,,,,,,,,
+fecha_nacimiento,demographics,,text,"Fecha de nacimiento",,,date_ymd,,,y,,y,,,,,
+sexo,demographics,,radio,"Sexo","1, Hombre | 2, Mujer | 3, Otro",,,,,,,y,,,,,
+email_contacto,demographics,,text,"Correo de contacto",,,email,,,,,,,,,,
+peso,clinical,,text,"Peso (kg)",,,number_1dp,30,250,,,,,,,,
+altura,clinical,,text,"Altura (cm)",,,integer,,,,,,,,,,
+comorbilidades,clinical,,checkbox,"Comorbilidades","1, Diabetes | 2, HTA | 3, EPOC",,,,,,,,,,,,
+tratamiento,clinical,,dropdown,"Sexo","1, Si | 2, No",,,,,,,,,,,,
+observaciones,clinical,,notes,"Observaciones",,,,,,,,,,,,,
+seguimiento,followup,,text,"Fecha de seguimiento",,,date_ymd,,,,"[peso] > 100 and [inexistente] = 1",,,,,,
+consentimiento,followup,,yesno,"Consentimiento firmado",,,,,,,,y,,,,,

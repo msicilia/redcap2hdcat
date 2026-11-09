@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Must be refused: carries records, not just structure. -->
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3"
+     xmlns:redcap="https://projectredcap.org"
+     CreationDateTime="2026-07-20T10:00:00"
+     SourceSystem="REDCap">
+  <Study OID="Project.Leaky">
+    <GlobalVariables><StudyName>Leaky</StudyName></GlobalVariables>
+    <MetaDataVersion OID="Metadata.1" Name="Leaky">
+      <ItemGroupDef OID="Group.f" Name="F" Repeating="No" redcap:FormName="f">
+        <ItemRef ItemOID="Item.record_id" Mandatory="Yes"/>
+      </ItemGroupDef>
+      <ItemDef OID="Item.record_id" Name="record_id" DataType="text" redcap:FieldType="text">
+        <Question><TranslatedText>Record ID</TranslatedText></Question>
+      </ItemDef>
+    </MetaDataVersion>
+  </Study>
+  <ClinicalData StudyOID="Project.Leaky" MetaDataVersionOID="Metadata.1">
+    <SubjectData SubjectKey="1">
+      <FormData FormOID="Form.f">
+        <ItemGroupData ItemGroupOID="Group.f">
+          <ItemData ItemOID="Item.record_id" Value="1"/>
+        </ItemGroupData>
+      </FormData>
+    </SubjectData>
+  </ClinicalData>
+</ODM>

@@ -1,0 +1,2 @@
+severity,path,component,focus_node,focus_types,source_shape,message
+Warning,http://purl.org/dc/terms/type,MinCountConstraintComponent,_:b,foaf:Person,<http://data.europa.eu/r5r#Agent_Shape>[dct:type],"Less than 1 values on [ <http://schema.org/affiliation> [ foaf:homepage <https://csiro.au> ; foaf:name Literal(""Commonwealth Scientific and Industrial Research Organisation"") ] ; foaf:name Literal(""Simon J D Cox"") ; foaf:workInfoHomepage <http://people.csiro.au/Simon-Cox> ; rdf:type foaf:Person ; rdfs:seeAlso <https://orcid.org/0000-0002-3884-3420> ]->dcterms:type"

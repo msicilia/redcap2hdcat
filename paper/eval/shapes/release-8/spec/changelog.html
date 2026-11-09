@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthDCAT-AP Release 8 – Changelog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px 40px;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 10px;
+      margin-top: 20px;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+      margin-top: 32px;
+    }
+    h3 {
+      color: #34495e;
+      margin-top: 20px;
+      margin-bottom: 6px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    ul ul {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+    code {
+      background: #f4f4f4;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 0.93em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 16px;
+      font-size: 0.95em;
+    }
+    th {
+      background: #2c3e50;
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+    }
+    tr:nth-child(even) td {
+      background: #f9f9f9;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .badge {
+      display: inline-block;
+      background: #27ae60;
+      color: #fff;
+      border-radius: 3px;
+      padding: 1px 8px;
+      font-size: 0.82em;
+      font-weight: bold;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge-update {
+      background: #f1c40f;
+      color: #333;
+    }
+    dl.spec {
+      background: #f9f9f9;
+      border-left: 4px solid #2c3e50;
+      padding: 10px 16px;
+      margin: 10px 0 16px 0;
+    }
+    dl.spec dt {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-top: 6px;
+    }
+    dl.spec dd {
+      margin: 2px 0 6px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HealthDCAT-AP Release 8 – Changelog</h1>
+  <p>This page documents all changes introduced in Release 8 of HealthDCAT-AP, including new model elements, controlled vocabulary updates and migrations to production, documentation improvements, the new specification URL, licensing information, and resolved community issues.</p>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>1. New Model Elements</h2>
+
+  <h3>1.1 Health Data Access Body Coordinator <span class="badge">New</span></h3>
+  <p>A new optional HealthDCAT-AP property <strong>healthdcatap:hdabCoordinator</strong> has been introduced in <strong>dcat:Dataset</strong> to identify the Coordinating HDAB for the relevant data access process, where such a role has been formally designated.</p>
+  <dl class="spec">
+    <dt>Property</dt>
+    <dd>healthdcatap:hdabCoordinator</dd>
+    <dt>Class</dt>
+    <dd>dcat:Dataset</dd>
+    <dt>Cardinality</dt>
+    <dd>0..1 (Optional)</dd>
+    <dt>Range</dt>
+    <dd>foaf:Agent</dd>
+    <dt>Description</dt>
+    <dd>The Health Data Access Body acting as coordinator for the relevant data access process.</dd>
+    <dt>Usage note</dt>
+    <dd>This property should be used where a coordinating HDAB has been designated. It should identify the organisation acting in this coordinating role. Where no coordinator has been designated or where the role is not applicable, the property may be omitted.</dd>
+  </dl>
+
+  <h3>1.2 Table Group Title <span class="badge">New</span></h3>
+  <p>A new mandatory property <strong>dct:title</strong> has been added to the <strong>csvw:TableGroup</strong> class to support a human-readable title for the group of tables describing dataset variables.</p>
+  <dl class="spec">
+    <dt>Property</dt>
+    <dd>dct:title</dd>
+    <dt>Class</dt>
+    <dd>csvw:TableGroup</dd>
+    <dt>Cardinality</dt>
+    <dd>1..n (Mandatory)</dd>
+    <dt>Range</dt>
+    <dd>rdfs:Literal</dd>
+    <dt>Description</dt>
+    <dd>Table Group title.</dd>
+    <dt>Usage note</dt>
+    <dd>Used to provide a human-readable title for the Table Group. Can appear in multiple languages.</dd>
+  </dl>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>2. Documentation Improvements</h2>
+
+  <h3>2.1 Property Ordering in Class Tables <span class="badge badge-update">Updated</span></h3>
+  <p>To improve readability and navigation, the HealthDCAT-AP technical specification now lists properties in <strong>ascending alphabetical order by name</strong>.
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>3. Controlled Vocabulary Updates</h2>
+
+  <h3>3.1 Migration from Acceptance to Production <span class="badge badge-update">Updated</span></h3>
+  <p>All DG SANTE controlled vocabulary base URLs have been migrated from the <strong>Acceptance</strong> environment to the <strong>Production</strong> environment.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Controlled Vocabulary</th>
+        <th>Property</th>
+        <th>Release 7 URL (Acceptance)</th>
+        <th>Release 8 URL (Production)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Health Categories</td>
+        <td>healthdcatap:healthCategory</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/healthcategories">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/healthcategories</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories">https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories</a></td>
+      </tr>
+      <tr>
+        <td>Health Theme</td>
+        <td>healthdcatap:healthTheme</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/health-theme">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/health-theme</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme">https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme</a></td>
+      </tr>
+      <tr>
+        <td>Publisher Type</td>
+        <td>dct:type</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/publisher-type">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/publisher-type</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type">https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type</a></td>
+      </tr>
+      <tr>
+        <td>Health Activity</td>
+        <td>prov:wasGeneratedBy</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/health-activity">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/health-activity</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity">https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity</a></td>
+      </tr>
+      <tr>
+        <td>Standard</td>
+        <td>dct:conformsTo</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/standard/">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/standard/</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/standard/">https://hdeu-dcat.data.health.europa.eu/resource/authority/standard/</a></td>
+      </tr>
+      <tr>
+        <td>Coding System</td>
+        <td>healthdcatap:hasCodingSystem</td>
+        <td><a href="https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/coding-system/">https://hdeu-dcat.acceptance.data.health.europa.eu/resource/authority/coding-system/</a></td>
+        <td><a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/">https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 Technical Standard and Coding System Vocabularies Review <span class="badge badge-update">Updated</span></h3>
+  <p>The <strong>Technical Standard</strong> (dct:conformsTo) and <strong>Coding System</strong> (healthdcatap:hasCodingSystem) controlled vocabularies have been reviewed and extended based on feedback from the C1 group and the Community of Practice (CoP SG2).</p>
+  <p>A new <strong>Type of standard</strong> column has been added to the <strong> Technical standard</strong> (dct:conformsTo) controlled vocabulary, structured as a tree to classify standards by their nature. Available at: <a href="https://hdeu-dcat.data.health.europa.eu/resource/authority/standard">https://hdeu-dcat.data.health.europa.eu/resource/authority/standard</a>.</p>
+  <p>The <strong>Coding System</strong> controlled vocabulary has been extended with additional entries proposed by CoP SG2: EMDN, DICOM-CT, EMA-SPOR, NCIT, HPO, ORDO, OHDSI-VOCAB, NPU and WHODRUG.</p>
+  <p>Two placeholder categories have also been introduced for national terminologies, ICD-10-NAT (National ICD-10 variants) and PROC-CODES-NAT (National procedure codes), pending further CoP SG2 feedback and the future Article 15 implementing act.</p>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>4. Specification Migration <span class="badge badge-update">Updated</span></h2>
+  <p>The HealthDCAT-AP specifications have been migrated to a new stable URL under the HealthData@EU production environment:</p>
+  <p><a href="https://data.health.europa.eu/healthdcat-ap/latest">https://data.health.europa.eu/healthdcat-ap/latest</a></p>
+  <p>Bookmarking or linking to this URL ensures users always land on the current release without needing to update their links between versions.</p>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>5. Licence <span class="badge">New</span></h2>
+  <p>Licence information has been added to the HealthDCAT-AP repository on <a href="https://code.europa.eu/healthdataeu/healthdcat-ap">code.europa.eu</a>.</p>
+  <p>The licence is applicable to all artefacts of the HealthDCAT-AP code.europa.eu repository (specification, examples, SHACL shapes, controlled vocabularies references, etc.).</p>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2>6. Resolved Community Issues</h2>
+  <p>The following issues reported on the Code Europa issue tracker have been resolved in this release.</p>
+  <table>
+    <thead>
+      <tr><th>Issue</th><th>Title</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/4">#4</a></td>
+        <td>Including value ranges in CSVW sample distribution</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/7">#7</a></td>
+        <td>Properties order in Dataset table</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/14">#14</a></td>
+        <td>Questions related to retention period property</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/20">#20</a></td>
+        <td>Release 6: Use csvw:title instead of csvw:titles for column labels in CSVW examples and SHACL files</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/23">#23</a></td>
+        <td>English label for EHRS</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/24">#24</a></td>
+        <td>Distribution identifier</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/31">#31</a></td>
+        <td>CSVW Table should have a mandatory name field</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/32">#32</a></td>
+        <td>Dataset deprecation, Add adms:status to Dataset class to mark withdrawn/deprecated datasets</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/33">#33</a></td>
+        <td>Controlled vocabulary for linked schemas in Distribution class</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/34">#34</a></td>
+        <td>CSVW column property name should not be multilingual</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/35">#35</a></td>
+        <td>Redundancy in controlled vocabularies</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/36">#36</a></td>
+        <td>Release 7: Incorrect RDF predicate used for Dataset other identifier in example-healthdcat-dataset.ttl</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/39">#39</a></td>
+        <td>Relax dcat:theme</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/38">#38</a></td>
+        <td>healthTheme vocabulary</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/40">#40</a></td>
+        <td>Make it clearer that healthdcatap:hasVariables is mandatory when structured data = true</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/46">#46</a></td>
+        <td>Missing sh:class foaf:Agent constraint for geodcatap:custodian</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/47">#47</a></td>
+        <td>Inconsistent CSVW Table shape naming between profile shapes and range shapes</td>
+      </tr>
+      <tr>
+        <td><a href="https://code.europa.eu/healthdataeu/healthdcat-ap/-/work_items/45">#45</a></td>
+        <td>Incorrect namespace for dcatap prefix in some SHACL files</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

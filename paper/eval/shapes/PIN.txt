@@ -1,0 +1,290 @@
+HealthDCAT-AP pinned release for the evaluation
+==============================================
+Download date: 2026-11-08, about 19:05-19:10 UTC (files fetched with curl from the published site, then
+cross-checked byte for byte against the git commit below).
+
+Release name:     HealthDCAT-AP Release 8
+"latest" URL:     https://data.health.europa.eu/healthdcat-ap/releases/latest/
+  resolved to:    HTTP 200 + <meta http-equiv="refresh" content="0; url=https://data.health.europa.eu/healthdcat-ap/releases/release-8/">
+                  (checked 2026-11-08)
+  legacy URL:     https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/latest/ -> HTTP 301 -> the URL above
+  Also: https://data.health.europa.eu/healthdcat-ap/latest -> 301 -> .../healthdcat-ap/latest/
+Release page:     https://data.health.europa.eu/healthdcat-ap/releases/release-8/
+                  (respec: specStatus "base", publishDate "2026-09" shown as "September 2026";
+                   "Previous version": .../releases/release-7/, which now shows a DEPRECATED banner; release-7 publishDate "2026-05")
+Changelog:        https://data.health.europa.eu/healthdcat-ap/releases/release-8/changelog.html
+Repository:       https://code.europa.eu/healthdataeu/healthdcat-ap  (GitLab project id 1256; no git tags and no GitLab releases)
+Commit (pin):     cd7841fcb98bedbc567364e27ae0d8740fde84cd   (branch main = HEAD on 2026-11-08; commit title "Release 8")
+                  authored 2026-09-18T14:00:41Z, committed 2026-10-08T14:01:45+02:00
+                  This is the last commit that touched public/releases/release-8/html/shacl.
+                  Earlier Release-8 commits: 83eb90e1 "HDCAT Release 8 deployement" (2026-09-04), b79fe64a "Update Release 8 examples" (2026-09-18).
+                  Commit cd7841fc changed SHACL after 18 Sep 2026: dcatap prefix fixed to <http://data.europa.eu/r5r/>;
+                  sh:class foaf:Agent added for geodcatap:custodian in range.ttl; :CSVWTableShape renamed :CSVWTable_Shape.
+                  "Release 8" is therefore not frozen at one date; the commit SHA is the only exact pin.
+Release date:     "September 2026" (respec publishDate 2026-09). Final SHACL state: 2026-10-08 (commit above).
+Other places checked:
+  https://healthdcat-ap.github.io/ is the older TEHDAS/community site and not the official release line.
+  The GitHub repos found by `gh search repos healthdcat` are community or third-party projects.
+  The official source is code.europa.eu plus data.health.europa.eu.
+
+CAUTION about the moving "latest" target:
+  The Wayback Machine has captures of the legacy URL https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/latest/
+  from 2026-05-11, 2026-05-19 and 2026-09-21 (all with the same digest). All three redirect to "../release-7/".
+  On the OJ publication day of Implementing Regulation (EU) 2026/2098 (21.9.2026), "latest" at the legacy host
+  still meant RELEASE 7. There are no captures of the data.health.europa.eu/.../latest/ URL (the one the regulation cites).
+  Today (2026-11-08) "latest" = Release 8.
+
+Integrity check
+  All 59 files under release-8/ except spec/index.html are byte-identical (sha256) between
+    (a) the published site https://data.health.europa.eu/healthdcat-ap/releases/release-8/<path> and
+    (b) the GitLab API raw blob at commit cd7841fc (public/releases/release-8/<path>).
+  spec/index.html (saved from the site) differs from git only in 4 lines: the deployment rewrites
+  healthdataeu.pages.code.europa.eu -> data.health.europa.eu in the edDraftURI, latestVersion, previous and this-version links.
+  sha256 of the git version of index.html: bd1c8b4bdeda5130870574c0ae73419c82d306192690a2fcc49c26edfa78df39
+
+Local layout (original filenames kept, nothing modified):
+  release-8/ehds/...    = mirror of html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/ (the ITB validator
+                          domain config "ehds", with config.properties). The directory structure is kept so that the
+                          relative paths in config.properties still resolve (the same filename appears in several
+                          directories, e.g. mdr-vocabularies.shape.ttl and range.ttl).
+  release-8/shacl/      = dcat-ap-SHACL.ttl, ranges.ttl (DCAT-AP 3.0.1 shapes linked from the respec page; NOT used by
+                          the HealthDCAT-AP validator config)
+  release-8/spec/       = the spec page (index.html), changelog.html, CHANGELOG.md (stale DCAT-AP 3.0.1 text),
+                          context/healthdcat-cardinality-rules.json (per-access-level cardinalities and obligations the spec page loads),
+                          context/dcat-ap.jsonld
+  release-8/dataset_obligations.csv = DERIVED by us (not an upstream file); see its source_note column.
+
+Which shapes the official validator uses (from ehds/config.properties):
+  validator.type = public, non-public, restricted
+  validator.shaclFile.<type> = shapes/graph-guard.ttl, deprecated/deprecateduris.ttl, imports/mdr_imports.ttl,
+      imports/imports.ttl, ranges/range.ttl, shapes/<type>-shapes.ttl,
+      controlled-vocabularies/mdr-vocabularies.shape.ttl, recommended/<type>-shapes_recommended.ttl
+  validator.preloadOwlImports = true, and owlImportMapping.0..36 map each owl:imports IRI to a local file in ehds/catalogue/.
+
+Imports and vocabularies (needed for meaningful validation)
+  - The shapes owl:imports the DCAT-AP 3.0.0 shapes:
+      shapes/*-shapes.ttl          -> https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/shapes.ttl
+      ranges/range.ttl             -> .../3.0.0/html/shacl/range.ttl
+      recommended/public- and non-public-shapes_recommended.ttl -> .../3.0.0/html/shacl/shapes_recommended.ttl
+        (restricted-shapes_recommended.ttl does NOT import it)
+    The validator maps these to the bundled copies ehds/catalogue/shapes.ttl, range.ttl, shapes_recommended.ttl and
+    mdr-vocabularies.shape.ttl. These copies are LOCALLY MODIFIED relative to upstream SEMIC 3.0.0:
+    - catalogue/shapes.ttl: skos:ConceptScheme title uses sh:alternativePath (dct:title|skos:prefLabel|rdfs:label);
+      one datatype changed from xsd:decimal to xsd:nonNegativeInteger.
+    - The other three differ in bytes; range.ttl differs only in whitespace.
+    Use the bundled copies, not upstream, to reproduce the official validator.
+  - imports/imports.ttl owl:imports the ontologies (dcat2, DC terms, FOAF, LOCN, SPDX, PROV-O, OWL-Time, vCard, ADMS,
+    DQV, CSVW, m8g). They are bundled as ehds/catalogue/{dcat2.ttl, dublin_core_terms.ttl, index.rdf, locn.ttl,
+    spdx-ontology.owl.rdf, prov-o.ttl, time.ttl, ns.ttl, adms.ttl, dqv.ttl, csvw.ttl, m8g.ttl, schema.ttl, eli.rdf}.
+  - imports/mdr_imports.ttl owl:imports the controlled vocabularies. This matters because
+    controlled-vocabularies/mdr-vocabularies.shape.ttl checks NAL membership with
+    sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue <scheme> ] ], so the concept data must be in the data graph.
+    Snapshots bundled in the release (ehds/catalogue/):
+      EU Publications Office NALs: languages.rdf (language), corporatebodies.rdf (corporate-body), continents.rdf,
+        countries.rdf, dataset-types.rdf, data-theme.rdf, filetypes.rdf, frequencies.rdf, places.rdf,
+        planned-availability.rdf, access-right.rdf, distribution-status.rdf
+        (IRIs http://publications.europa.eu/resource/authority/<name>)
+      ADMS: ADMS_SKOS_v1.00.rdf (https://github.com/SEMICeu/ADMS-AP/raw/master/purl.org/ADMS_SKOS_v1.00.rdf; publisher type)
+      DG SANTE HealthData@EU CVs (https://hdeu-dcat.data.health.europa.eu/resource/authority/<name>):
+        healthcategories.rdf, publisher-type.rdf, health-theme.rdf, health-activity.rdf, coding-system.rdf, standard.rdf
+    Personal data (dpv:hasPersonalData) is checked only by an IRI regex (^https://w3id.org/dpv/dpv-pd#.+), so DPV does not need to be loaded.
+    Skipped import: http://publications.europa.eu/ontology/euvoc (validator.owlImportSkippedUris).
+    We did NOT download live versions of the NALs/CVs. The release-bundled snapshots ARE the vocabularies the official
+    validator config uses, which is the reproducible choice. They therefore live in release-8/ehds/catalogue/ and not
+    in a separate vocabularies/ folder.
+    Also bundled but not referenced by config.properties: dcat-ap_2.0.1.rdf, geodcat-ap-SHACL.ttl.
+  - The ehds/catalogue copy of the ADMS/DQV/etc. imports keeps the reproduction offline.
+
+Files (sha256, local path, source URL on the published site, equivalent git raw URL at the pinned commit)
+-------------------------------------------------------------------------------------------------------
+18f5c694fd53f56d081f69b865e66c4bf57ad61ad2779e079190103036f0babc  release-8/ehds/catalogue/ADMS_SKOS_v1.00.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/ADMS_SKOS_v1.00.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/ADMS_SKOS_v1.00.rdf
+4b8066d73ad5d8cabcfa872ed00548d2d7eb69b96a43f55ca208a270c1f2f74c  release-8/ehds/catalogue/access-right.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/access-right.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/access-right.rdf
+634d8bfa4a9854c47cc4ebd1416362f6f05bf1bebb507d670a430ae838c1c8d2  release-8/ehds/catalogue/adms.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/adms.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/adms.ttl
+73e08fcdb34a5690445e4aa1f5650c69245caba42472f1df6ac72e7eb1d98cb1  release-8/ehds/catalogue/coding-system.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/coding-system.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/coding-system.rdf
+ade16c177069d2f2f36d029be6eab82d195865586a702685b9a7f9b61e7ec2fb  release-8/ehds/catalogue/continents.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/continents.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/continents.rdf
+0d6c3ca1d5e72352bb12c6138d7e2ab11de6dc8c01815266d2ed247dfec03496  release-8/ehds/catalogue/corporatebodies.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/corporatebodies.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/corporatebodies.rdf
+e216fc41a0b146476256a1b8f8f220d4c6189cb1e1e6ab21cd040e51fbd8abca  release-8/ehds/catalogue/countries.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/countries.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/countries.rdf
+ad9296569d3203c771a0ca51ac7c4180d8ad2bdd85adec5c7881555ddb409f3a  release-8/ehds/catalogue/csvw.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/csvw.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/csvw.ttl
+93f8632c883fd1f9848fc84d562587043146bd6a46a1f8c5fc46b8010a8d277f  release-8/ehds/catalogue/data-theme.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/data-theme.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/data-theme.rdf
+19d4dacc1ba3acb5c4d40e6b6ceebfe4d9875d8da9dd2d3bcdd3c846763652ed  release-8/ehds/catalogue/dataset-types.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dataset-types.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dataset-types.rdf
+d939611b553dde9b080ccdd33941c2161ddf47bd68ec09039d60145de8a8642a  release-8/ehds/catalogue/dcat-ap_2.0.1.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dcat-ap_2.0.1.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dcat-ap_2.0.1.rdf
+4f7eb189dfbabfdb1d0ef20936ca3d96462e98ed4495bed436c127c629e1b8bc  release-8/ehds/catalogue/dcat2.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dcat2.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dcat2.ttl
+889c640b8343302146b09f5827f00507bf5e0329c104811ff67dd13dca7ad23c  release-8/ehds/catalogue/distribution-status.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/distribution-status.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/distribution-status.rdf
+cc333223d13c663e027456ea43b15a63c1a25505bc752599953f380420573863  release-8/ehds/catalogue/dqv.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dqv.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dqv.ttl
+075287f7774f59bf450d0d464bf5e4d3c101358da36b061ab7a45140d96feaf8  release-8/ehds/catalogue/dublin_core_terms.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dublin_core_terms.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/dublin_core_terms.ttl
+35bba63a0945e089817ddeb25512d31bfa101344282a4dfbce58e92ad756111c  release-8/ehds/catalogue/eli.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/eli.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/eli.rdf
+f8e53ef048ede8cc64bc21957beb3d52f7080c7e475a4260801434d17ede8a31  release-8/ehds/catalogue/filetypes.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/filetypes.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/filetypes.rdf
+c631775bd137d8fb1b3c67eb9b549dd2f38fd96a68f34d70d7ff9b8feb270df7  release-8/ehds/catalogue/frequencies.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/frequencies.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/frequencies.rdf
+c1da0ebe3ad0f4be2a9b41a0b839142d6a31e2443f0f12650eaabd27cb71c39b  release-8/ehds/catalogue/geodcat-ap-SHACL.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/geodcat-ap-SHACL.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/geodcat-ap-SHACL.ttl
+5358bb9dc0d1d2e65ae34af5e48ee96fd58199562df046ca3f64272b4fa23775  release-8/ehds/catalogue/health-activity.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/health-activity.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/health-activity.rdf
+e4f829c88e33d1d22853c66d00c957dd823eb57faaf5766669361fccccca4733  release-8/ehds/catalogue/health-theme.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/health-theme.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/health-theme.rdf
+39d8144b32f33287e8bd742290db70160f7d9142fe6437128d769a9cde54f0bf  release-8/ehds/catalogue/healthcategories.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/healthcategories.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/healthcategories.rdf
+3d859b5d92a2c3d041545d014fa826f682ca06d056af8c7b31e32d930abf2bc5  release-8/ehds/catalogue/index.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/index.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/index.rdf
+5e05e710b20c0ecab705e1ab90b093bdffc8e5f6c244fd13a03dfdaa0cabdd1a  release-8/ehds/catalogue/languages.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/languages.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/languages.rdf
+b6661139db549f0a277a4b1842ed6cb25ee6980f89291f3629b786213de0258e  release-8/ehds/catalogue/locn.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/locn.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/locn.ttl
+9b903b8f7904081e0be73cba290646580b2a9477d7bacdf630beb95493bdcd94  release-8/ehds/catalogue/m8g.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/m8g.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/m8g.ttl
+c7b44e735f44107079ce07b93c0deff35ea28c32895bb5588323412e0bc90170  release-8/ehds/catalogue/mdr-vocabularies.shape.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/mdr-vocabularies.shape.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/mdr-vocabularies.shape.ttl
+2442baf3d07d660910a0e24dd96b1efe1ec22cb26d12cdfd415195da91b43a0c  release-8/ehds/catalogue/ns.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/ns.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/ns.ttl
+5e0c6dfa43b1ab394d52e2e354b4fc1832a45aff83ec1ff287a77d4fa9fbe554  release-8/ehds/catalogue/places.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/places.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/places.rdf
+e8f509f207f90b5934bb690a7d07631b7e01b8af03185f97f19bde3c5a2cb28b  release-8/ehds/catalogue/planned-availability.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/planned-availability.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/planned-availability.rdf
+7d203989f67b38bca572253942acc5a1bf24ce3ccfece16f072dcb4be2b79a96  release-8/ehds/catalogue/prov-o.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/prov-o.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/prov-o.ttl
+de53acfa49e88ff64d0b6b39781070860d2bdc02d14ffb3e9f05b238f7b8cfac  release-8/ehds/catalogue/publisher-type.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/publisher-type.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/publisher-type.rdf
+e4c42ebf74e0e0fdbb542bb85ce4628013a1ed810da08471186a5df32ed8d108  release-8/ehds/catalogue/range.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/range.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/range.ttl
+53c065de889903257cecab7b41dca4e65073df8a1200750578ad86bb2885ca66  release-8/ehds/catalogue/schema.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/schema.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/schema.ttl
+0462c70f9a8db33e859aa986656e4411dfdad5fe42d9ab672abca6595c22bf85  release-8/ehds/catalogue/shapes.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/shapes.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/shapes.ttl
+74c801288209c2b3c9a5c06ef1fbdbe1d155020a12e3f7ccb1fa71edea3c786d  release-8/ehds/catalogue/shapes_recommended.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/shapes_recommended.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/shapes_recommended.ttl
+206aac1eba354f9b2faf28e978af6ef2e560af6224bef8424c1a8a9aeba91d48  release-8/ehds/catalogue/spdx-ontology.owl.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/spdx-ontology.owl.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/spdx-ontology.owl.rdf
+2dc134e8bdb1940bfcdc823c52ce276676470ff584946ac3400917ba27c126b6  release-8/ehds/catalogue/standard.rdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/standard.rdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/standard.rdf
+251bd6970b0d7a5efa97ff681afe81a297df85deab3d860fa4f8eeba72d8f16c  release-8/ehds/catalogue/time.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/time.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/catalogue/time.ttl
+f5ba3daf385e34fe22be52a1d97d91e3f2ae2c68a4cd20196ad88f50a8d88f4e  release-8/ehds/config.properties
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/config.properties
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/config.properties
+da998b04c76c863d74dd6f5f67414815cebdb6cf056fe0b75f61c0dcebc2ed34  release-8/ehds/controlled-vocabularies/mdr-vocabularies.shape.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/controlled-vocabularies/mdr-vocabularies.shape.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/controlled-vocabularies/mdr-vocabularies.shape.ttl
+a0094d2669228a1d3744dbbf99560e6f4dc221485f8d08fee993a8324c57dc4d  release-8/ehds/deprecated/deprecateduris.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/deprecated/deprecateduris.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/deprecated/deprecateduris.ttl
+718fda7ef71127c4a3aa22780a919bcb24ce269cd0550a144f88d370b2e811df  release-8/ehds/evidence/report.pdf
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/evidence/report.pdf
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/evidence/report.pdf
+6c4668174bfb0f7993eb26ea2f316666065365546be64deef8c5653b0958e96e  release-8/ehds/imports/imports.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/imports/imports.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/imports/imports.ttl
+e77d238fa25a8b97495e835e9a592a023bfaa7b41e4657ff63714f4772f683f3  release-8/ehds/imports/mdr_imports.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/imports/mdr_imports.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/imports/mdr_imports.ttl
+819e118441efaf0221a090ac080e92735112239bf88a2acb08b9e8361711418a  release-8/ehds/ranges/range.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/ranges/range.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/ranges/range.ttl
+f8b190a6f082010c71e973a521634aad020a6a57e6d43d88b9ff8bd31e064e48  release-8/ehds/recommended/non-public-shapes_recommended.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/non-public-shapes_recommended.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/non-public-shapes_recommended.ttl
+d576682e0a2ffadc986e67e1c602fd1c5e59aac0df234d0903f404ebb0a69503  release-8/ehds/recommended/public-shapes_recommended.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/public-shapes_recommended.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/public-shapes_recommended.ttl
+0db61297b23c052ba9d21bf43d7a022e2f57488d623709af0102f017a25a7abd  release-8/ehds/recommended/restricted-shapes_recommended.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/restricted-shapes_recommended.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/recommended/restricted-shapes_recommended.ttl
+0df9d8580c584edac0af3829464d5a30ed549320a27b68be7314ec9d35d6d8e3  release-8/ehds/shapes/graph-guard.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/graph-guard.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/graph-guard.ttl
+a3a437940302d3915042b986b0885c73f56f16ea2f6af66920e3cc13454adf75  release-8/ehds/shapes/non-public-shapes.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/non-public-shapes.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/non-public-shapes.ttl
+64865de17c1e02995faafc5277b6879aad09ee65e9779b3ed6c5af63b8b17a48  release-8/ehds/shapes/public-shapes.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/public-shapes.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/public-shapes.ttl
+f3bb4d39502d46229eeb7d3de87741e02bc5bd8384a8ce46a78e00c26b109e19  release-8/ehds/shapes/restricted-shapes.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/restricted-shapes.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/html/shacl/HealthDCAT-AP_validator/config/rdf-validator/ehds/shapes/restricted-shapes.ttl
+990d3e42721de6a4be8cc338a7171559f195e62dea89c0b56531356b78cc026f  release-8/shacl/dcat-ap-SHACL.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/shacl/dcat-ap-SHACL.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/shacl/dcat-ap-SHACL.ttl
+a6eed0fae8d0f5ca977fe2098ca12081ac60b0efe1ddce802d5c08e49505ebcc  release-8/shacl/ranges.ttl
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/shacl/ranges.ttl
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/shacl/ranges.ttl
+d93dccf6b36be726400f58fc3c181c522bb8788dd48577786d53da5815c51a87  release-8/spec/CHANGELOG.md
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/CHANGELOG.md
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/CHANGELOG.md
+fb4c165a7c8d6b43d06d1e303e952266400ca4e720f2746458bcbcfc41869b8f  release-8/spec/changelog.html
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/changelog.html
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/changelog.html
+9294fc1019ba6eb847c6c42e76e68a6689dfbc17a971866c92514834a89b84ab  release-8/spec/context/dcat-ap.jsonld
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/context/dcat-ap.jsonld
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/context/dcat-ap.jsonld
+5c932223380a2a0ac6bee40a70a36b914ccde7a028287df2d3fa876b762a7029  release-8/spec/context/healthdcat-cardinality-rules.json
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/context/healthdcat-cardinality-rules.json
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/context/healthdcat-cardinality-rules.json
+b8df9c38732cad66135ad7cd12ab6ddb5f093f6a2c562b6b8ed417c5c45386c8  release-8/spec/index.html
+    url: https://data.health.europa.eu/healthdcat-ap/releases/release-8/index.html
+    git: https://code.europa.eu/healthdataeu/healthdcat-ap/-/raw/cd7841fcb98bedbc567364e27ae0d8740fde84cd/public/releases/release-8/index.html
+
+Derived file (ours, not upstream):
+  release-8/dataset_obligations.csv: obligation per dcat:Dataset property and access level. Built from
+    the Dataset class table (row anchors #Dataset.*) of https://data.health.europa.eu/healthdcat-ap/releases/release-8/
+    and from spec/context/healthdcat-cardinality-rules.json, which the page's JavaScript loads to fill the
+    card/requirement cells for the selected access level (the static HTML cells are placeholders and sometimes disagree).
+    Each row is cross-checked against the SHACL (sh:minCount Violation = mandatory, Warning = recommended).
+    Disagreements found:
+    - dct:conformsTo: spec RESTRICTED=R, NON-PUBLIC=O; shapes NON-PUBLIC=R, RESTRICTED=O.
+    - healthdcatap:hasVariables: spec R; shapes have no Warning, only the conditional Violation when hasStructuredData=true.
+    The JSON also contains the typo "RecommendEd" (normalised) and "0..n" (= 0..*).

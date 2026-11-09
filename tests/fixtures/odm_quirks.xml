@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reduced from a real REDCap 13.4.11 Project XML export. Structure only.
+     Reproduces the quirks that broke the adapter:
+       - ItemGroupDef is a section, not an instrument; redcap:FormName absent
+       - redcap:FieldType uses 'select' and 'textarea'
+       - redcap:TextValidationType uses 'int', not 'integer'
+       - some items carry only the standard ODM DataType
+       - StudyEventDef Name embeds the arm
+       - *_complete and redcap_data_access_group exist in no data dictionary -->
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3"
+     xmlns:redcap="https://projectredcap.org"
+     FileType="Snapshot"
+     CreationDateTime="2026-07-20T15:59:00"
+     SourceSystem="REDCap"
+     SourceSystemVersion="13.4.11">
+  <Study OID="Project.Quirks">
+    <GlobalVariables>
+      <StudyName>Quirks cohort</StudyName>
+      <StudyDescription>This file contains the metadata for the project.</StudyDescription>
+      <ProtocolName>Quirks cohort</ProtocolName>
+    </GlobalVariables>
+    <MetaDataVersion OID="Metadata.1" Name="Quirks cohort">
+      <StudyEventDef OID="Event.event_1_arm_1" Name="Event 1 (Arm 1: PTS 1)" Repeating="No"
+                     Type="Common" redcap:EventName="Event 1"
+                     redcap:UniqueEventName="event_1_arm_1"
+                     redcap:ArmNum="1" redcap:ArmName="PTS 1">
+        <FormRef FormOID="Form.caracteristicas_clinicas" Mandatory="No"/>
+        <FormRef FormOID="Form.analisis" Mandatory="No"/>
+      </StudyEventDef>
+      <StudyEventDef OID="Event.event_1_arm_2" Name="Event 1 (Arm 2: PTS 2)" Repeating="No"
+                     Type="Common" redcap:EventName="Event 1"
+                     redcap:UniqueEventName="event_1_arm_2"
+                     redcap:ArmNum="2" redcap:ArmName="PTS 2">
+        <FormRef FormOID="Form.caracteristicas_clinicas" Mandatory="No"/>
+      </StudyEventDef>
+
+      <FormDef OID="Form.caracteristicas_clinicas" Name="Caracteristicas clinicas" Repeating="No">
+        <ItemGroupRef ItemGroupOID="caracteristicas_clinicas.record_id" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="caracteristicas_clinicas.edad" Mandatory="No"/>
+      </FormDef>
+      <FormDef OID="Form.analisis" Name="Analisis" Repeating="No">
+        <ItemGroupRef ItemGroupOID="analisis.marcador" Mandatory="No"/>
+      </FormDef>
+
+      <!-- Name is the section header, not the instrument. -->
+      <ItemGroupDef OID="caracteristicas_clinicas.record_id" Name="Caracteristicas clinicas"
+                    Repeating="No">
+        <ItemRef ItemOID="record_id" Mandatory="No"/>
+        <ItemRef ItemOID="redcap_data_access_group" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="caracteristicas_clinicas.edad" Name="Caracteristicas del paciente"
+                    Repeating="No">
+        <ItemRef ItemOID="edad" Mandatory="No"/>
+        <ItemRef ItemOID="sexo" Mandatory="No"/>
+        <ItemRef ItemOID="fecha_diagnostico" Mandatory="No"/>
+        <ItemRef ItemOID="localizacion" Mandatory="No"/>
+        <ItemRef ItemOID="comentario" Mandatory="No"/>
+        <ItemRef ItemOID="caracteristicas_clinicas_complete" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="analisis.marcador" Name="Analisis" Repeating="No">
+        <ItemRef ItemOID="marcador" Mandatory="No"/>
+        <ItemRef ItemOID="recuento" Mandatory="No"/>
+      </ItemGroupDef>
+
+      <ItemDef OID="record_id" Name="record_id" DataType="text" Length="999"
+               redcap:Variable="record_id" redcap:FieldType="text">
+        <Question><TranslatedText>Record ID</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="redcap_data_access_group" Name="redcap_data_access_group" DataType="text"
+               Length="999" redcap:Variable="redcap_data_access_group" redcap:FieldType="text">
+        <Question><TranslatedText>Data Access Group</TranslatedText></Question>
+      </ItemDef>
+      <!-- 'int', not 'integer'. -->
+      <ItemDef OID="edad" Name="edad" DataType="integer" Length="999"
+               redcap:Variable="edad" redcap:FieldType="text" redcap:TextValidationType="int">
+        <Question><TranslatedText>Edad</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="sexo" Name="sexo" DataType="text" Length="999"
+               redcap:Variable="sexo" redcap:FieldType="radio">
+        <Question><TranslatedText>Sexo</TranslatedText></Question>
+        <CodeListRef CodeListOID="CodeList.sexo"/>
+      </ItemDef>
+      <ItemDef OID="fecha_diagnostico" Name="fecha_diagnostico" DataType="date" Length="999"
+               redcap:Variable="fecha_diagnostico" redcap:FieldType="text"
+               redcap:TextValidationType="date_dmy">
+        <Question><TranslatedText>Fecha de diagnostico</TranslatedText></Question>
+      </ItemDef>
+      <!-- 'select', not 'dropdown'. -->
+      <ItemDef OID="localizacion" Name="localizacion" DataType="text" Length="999"
+               redcap:Variable="localizacion" redcap:FieldType="select">
+        <Question><TranslatedText>Localizacion</TranslatedText></Question>
+        <CodeListRef CodeListOID="CodeList.localizacion"/>
+      </ItemDef>
+      <!-- 'textarea', not 'notes'. -->
+      <ItemDef OID="comentario" Name="comentario" DataType="text" Length="999"
+               redcap:Variable="comentario" redcap:FieldType="textarea">
+        <Question><TranslatedText>Comentario</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="caracteristicas_clinicas_complete" Name="caracteristicas_clinicas_complete"
+               DataType="text" Length="999"
+               redcap:Variable="caracteristicas_clinicas_complete" redcap:FieldType="select">
+        <Question><TranslatedText>Complete?</TranslatedText></Question>
+        <CodeListRef CodeListOID="CodeList.complete"/>
+      </ItemDef>
+      <ItemDef OID="marcador" Name="marcador" DataType="text" Length="999"
+               redcap:Variable="marcador" redcap:FieldType="text">
+        <Question><TranslatedText>Marcador</TranslatedText></Question>
+      </ItemDef>
+      <!-- No redcap:TextValidationType; only the standard ODM DataType. -->
+      <ItemDef OID="recuento" Name="recuento" DataType="integer" Length="999"
+               redcap:Variable="recuento" redcap:FieldType="text">
+        <Question><TranslatedText>Recuento</TranslatedText></Question>
+      </ItemDef>
+
+      <CodeList OID="CodeList.sexo" Name="sexo" DataType="text">
+        <CodeListItem CodedValue="1"><Decode><TranslatedText>Hombre</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="2"><Decode><TranslatedText>Mujer</TranslatedText></Decode></CodeListItem>
+      </CodeList>
+      <CodeList OID="CodeList.localizacion" Name="localizacion" DataType="text">
+        <CodeListItem CodedValue="1"><Decode><TranslatedText>Alto</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="2"><Decode><TranslatedText>Medio</TranslatedText></Decode></CodeListItem>
+      </CodeList>
+      <CodeList OID="CodeList.complete" Name="complete" DataType="text">
+        <CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+      </CodeList>
+    </MetaDataVersion>
+  </Study>
+</ODM>

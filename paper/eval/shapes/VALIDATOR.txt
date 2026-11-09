@@ -1,0 +1,83 @@
+HealthData@EU validator (ITB SHACL validator), checked 2026-11-08
+===============================================================
+No data was submitted. Only GET requests were made: the upload page, api/info, healthcheck, the OpenAPI document and the WSDL.
+
+How we found it
+  - It is NOT hosted on the public ITB at www.itb.ec.europa.eu. GET https://www.itb.ec.europa.eu/shacl/<d>/upload returned
+    HTTP 500 for d in {ehds, healthdcat-ap, healthdcatap, healthdataeu, healthdata, hdeu, healthdcat}; /api/info returned 404.
+  - The spec page links no validator URL. The HealthData@EU Central Platform SPA (https://data.health.europa.eu/,
+    bundle /assets/main-CXwqQUXt.js) contains a link labelled "SHACL Validator" in the text
+    "Health DCAT-AP Validator for HealthData@EU Dataset Catalogue - ":
+      https://health-data-itb-rdf-validator.acceptance.data.health.europa.eu/shacl/ehds/upload
+    The same service also exists on the production host (see below).
+  - The domain name is "ehds", matching the release's config directory .../config/rdf-validator/ehds/.
+
+Endpoints (both hosts answered HTTP 200 on 2026-11-08)
+  PRODUCTION  base https://health-data-itb-rdf-validator.data.health.europa.eu/shacl
+  ACCEPTANCE  base https://health-data-itb-rdf-validator.acceptance.data.health.europa.eu/shacl
+    UI upload:      {base}/ehds/upload
+    REST validate:  POST {base}/ehds/api/validate          (one RDF instance)
+    REST multiple:  POST {base}/ehds/api/validateMultiple
+    REST info:      GET  {base}/ehds/api/info   and  GET {base}/api/info
+    Healthcheck:    GET  {base}/ehds/api/healthcheck  (200 on both)
+    OpenAPI:        GET  {base}/v3/api-docs  ;  Swagger UI {base}/swagger-ui/index.html
+    SOAP (GITB):    {base}/soap/ehds/validation?wsdl  -> operations getModuleDefinition, validate;
+                    soap:address https://health-data-itb-rdf-validator.data.health.europa.eu/shacl/soap/ehds/validation
+  OpenAPI title "SHACL Validator REST API" v1.0.0. The page footer shows build.version 1.9.1 (ITB SHACL validator),
+  build.timestamp 2025-09-09 07:04:39Z.
+
+Validation types (GET /ehds/api/info, identical on both hosts)
+  {"domain":"ehds","validationTypes":[
+     {"type":"public","description":"HealthDCAT-AP PUBLIC Data"},
+     {"type":"non-public","description":"HealthDCAT-AP NON_PUBLIC Data"},
+     {"type":"restricted","description":"HealthDCAT-AP RESTRICTED Data"}]}
+  There are no per-release validation types; the service validates against whatever release is deployed.
+  These three types match validator.type in the Release 8 config.properties, but Release 6/7 used the same
+  names, so this does not prove which release is deployed.
+
+UNCERTAIN: which release is deployed?
+  The footer timestamps are:
+    production: startup 2026-10-08 11:40:41Z, resource.timestamp 2026-06-22 22:50:35Z
+    acceptance: startup 2026-09-28 15:45:37Z, resource.timestamp 2025-09-22 07:58:19Z
+  The production startup time matches the day of the Release 8 commit cd7841fc (2026-10-08), but resource.timestamp
+  predates the Release 8 SHACL changes (Jul-Oct 2026), and the meaning of resource.timestamp is not documented.
+  The deployed banner text also differs from Release 8 config.properties:
+    deployed: "upload your JSON-LD, N-Triples, RDF/XML or Turtle data"
+    repo:     "upload your RDF/XML or Turtle data"
+  So the deployed config is not byte-identical to the repo's Release 8 config.properties.
+  -> Before relying on it, probe with a known input (e.g. a Release-8-only rule such as dct:title on csvw:TableGroup,
+     or healthdcatap:hdabCoordinator range), or validate locally with the pinned shapes in release-8/ehds/.
+  A third-party report (github.com/SemanticDataCharter/sdc_healthdcat_ap README, 9 Oct 2026) claimed that the platform
+  validator path answered 404. That is not what we observed today: both hosts answer 200 on the paths above.
+
+Request format (REST, from the OpenAPI "Input" schema)
+  POST {base}/ehds/api/validate
+  Content-Type: application/json
+  {
+    "contentToValidate": "<BASE64 of the RDF file>",   // or a plain string, or a URL
+    "embeddingMethod":   "BASE64",                      // STRING | URL | BASE64 (auto-detected if omitted)
+    "contentSyntax":     "text/turtle",                 // or application/rdf+xml, application/ld+json, application/n-triples
+    "validationType":    "non-public",                  // public | non-public | restricted (required: several types exist)
+    "reportSyntax":      "application/json",            // GITB TRL as JSON; "application/xml" for TRL XML; an RDF mime
+                                                        // (text/turtle, application/ld+json, application/rdf+xml,
+                                                        // application/n-triples) returns a SHACL ValidationReport; default application/rdf+xml
+    "locale":            "en",                          // optional
+    "loadImports":       false,                         // optional: load owl:imports found in the INPUT (domain config preloads its own)
+    "addInputToReport":  false, "addShapesToReport": false, "addRdfReportToReport": false   // TRL-only options
+  }
+  Other optional fields: externalRules[] ({ruleSet, embeddingMethod, ruleSyntax}), reportQuery (SPARQL CONSTRUCT
+  post-processing), contentQueryEndpoint/contentQuery/contentQueryUsername/contentQueryPassword, rdfReportSyntax,
+  wrapReportDataInCDATA.
+  validateMultiple takes a JSON array of the same objects.
+
+Example (NOT executed):
+  curl -sS -X POST https://health-data-itb-rdf-validator.data.health.europa.eu/shacl/ehds/api/validate \
+       -H 'Content-Type: application/json' \
+       -d "{\"contentToValidate\":\"$(base64 -i dataset.ttl)\",\"embeddingMethod\":\"BASE64\",\"contentSyntax\":\"text/turtle\",\"validationType\":\"non-public\",\"reportSyntax\":\"application/json\"}"
+
+Verdict: reachable and usable programmatically (public REST and SOAP, no authentication seen on the GET endpoints).
+Caveats:
+  (1) The deployed release cannot be confirmed without submitting data.
+  (2) Sending data sends it to an EC-run service; check this is acceptable for the evaluation records.
+  (3) For exact reproducibility, a local run is preferable: ITB SHACL validator docker image isaitb/shacl-validator
+      with release-8/ehds as the domain config, or pySHACL over the same file set.

@@ -1,0 +1,1205 @@
+{
+  "PUBLIC": {
+    "access rights": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Information that indicates whether the Dataset is publicly accessible, has access restrictions or is not public.",
+      "usage_note": "This property allows you to indicate whether the dataset is publicly accessible, has restrictions, or is not publicly available. This is a mandatory property in HealthDCAT-AP. Use one of the following values :public, :restricted, :non-public, which means:<br>\n<ul>\n<li><strong>NON_PUBLIC</strong> — The dataset is not publicly available and access is subject to restrictions.</li>\n<li><strong>PUBLIC</strong> — The dataset is openly accessible to everyone.</li>\n<li><strong>RESTRICTED</strong> — The dataset has access restrictions but may be available under specific conditions.</li>\n</ul>\n<br>RDF example: <a href=\"#dctaccessRights\">dct:accessRights</a>",
+      "reuse": "E"
+    },
+    "alternative": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An alternative name for the Dataset.",
+      "usage_note": "This property contains an alternative name for the Dataset. This property can be repeated for parallel language versions of the alternative name.<br>RDF example: <a href=\"#dctalternative\">dct:alternative</a>",
+      "reuse": "P"
+    },
+    "analytics": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "An analytics distribution of the dataset.",
+      "usage_note": "Publishers are encouraged to provide URLs pointing to document repositories where users can access or request associated resources such as technical reports of the dataset, quality measurements, usability indicators, etc.<br>RDF example: <a href=\"#healthdcatapanalytics\">healthdcatap:analytics</a>",
+      "reuse": "P"
+    },
+    "applicable legislation": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The legislation that mandates the creation or management of the Dataset.",
+      "usage_note": "The ELI of the EHDS Regulation, published in March 2025, can now be used as the applicable legislation where relevant: http://data.europa.eu/eli/reg/2025/327/oj.\nAs multiple legislations may apply to the resource the maximum cardinality is not limited.<br>RDF example: <a href=\"#dcatapapplicableLegislation\">dcatap:applicableLegislation</a>",
+      "reuse": "E"
+    },
+    "code values": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free-text description of any health classification, terminology, ontology, thesaurus, or coding system used in the dataset.",
+      "usage_note": "Use this field to describe, in free text, the code values of the coding systems used that apply to the dataset (e.g. U07.1, Y59.0). No controlled vocabulary is required at this stage.<br>RDF example: <a href=\"#healthdcataphasCodeValues\">healthdcatap:hasCodeValues</a>",
+      "reuse": "P"
+    },
+    "coding system": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Coding systems in use (ex: ICD-10-CM, SNOMED-CT).",
+      "usage_note": "This property allows you to specify the coding systems used within your dataset. For example, if a dataset uses ICD-10 for disease classification, this property allows data users to search for datasets with the same coding system. As a machine-actionable property, it also facilitates automated processes, making dataset discovery more efficient. \nSpecify the standardised coding systems used in the dataset (e.g. ICD-10-CM, SNOMED-CT). The coding systems controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/) MUST be used.<br>RDF example: <a href=\"#healthdcataphasCodingSystem\">healthdcatap:hasCodingSystem</a>",
+      "reuse": "P"
+    },
+    "conforms to": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An established technical standard to which the described resource conforms.",
+      "usage_note": "If your data conforms to an established technical standard or specification, use this property to indicate which one. The Health Technical Standards controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/standard/) MUST be used.<br>RDF example: <a href=\"#dctconformsTo\">dct:conformsTo</a>",
+      "reuse": "A"
+    },
+    "contact point": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Contact information that can be used for sending comments about the Dataset.",
+      "usage_note": "This property informs about a contact point (Individual, Organization, Location, Group) that can answer questions about the dataset. Details on how to describe these are provided under class vcard:Kind.<br>RDF example: <a href=\"#dcatcontactPoint\">dcat:contactPoint</a>",
+      "reuse": "A"
+    },
+    "creator": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An entity responsible for producing the dataset.",
+      "usage_note": "This property points to an Agent who plays the creation role of the dataset.<br>RDF example: <a href=\"#dctcreator\">dct:creator</a>",
+      "reuse": "A"
+    },
+    "custodian": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource [ISO-19115].",
+      "usage_note": "Use this property to identify the entity that technically holds and maintains the dataset. In the EHDS context, this field represents the legally defined health data holder, (Article 2(2)(t) EHDS Regulation), i.e. the entity responsible for holding and maintaining the dataset. This entity may differ from the publisher.<br>RDF example: <a href=\"#geodcatapcustodian\">geodcatap:custodian</a>",
+      "reuse": "P"
+    },
+    "description": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A free-text information about the Dataset.",
+      "usage_note": "Brief description of the dataset. This property can be repeated for including several language versions of the description.<br>RDF example: <a href=\"#dctdescription\">dct:description</a>",
+      "reuse": "A"
+    },
+    "dataset distribution": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "An available Distribution for the Dataset.",
+      "usage_note": "For Health DCAT Application Profile a distribution is mandatory independently of the access rights. A distribution must include information on the  Health Data Access Body supporting data access.<br>RDF example: <a href=\"#dcatdistribution\">dcat:distribution</a>",
+      "reuse": "E"
+    },
+    "documentation": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A page or document about this Dataset.",
+      "usage_note": "Any additional source of infomation about the Dataset.<br>RDF example: <a href=\"#foafpage\">foaf:page</a>",
+      "reuse": "A"
+    },
+    "frequency": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The frequency at which the Dataset is updated.",
+      "usage_note": "The value of this property should be the IRI from the listed controlled vocabulary indicating the frequency at which the dataset is updated.\nFor example: http://publications.europa.eu/resource/authority/frequency/WEEKLY<br>RDF example: <a href=\"#dctaccrualPeriodicity\">dct:accrualPeriodicity</a>",
+      "reuse": "A"
+    },
+    "geographical coverage": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A geographic region that is covered by the Dataset.",
+      "usage_note": "The EU Vocabularies Name Authority Lists MAY be used for continents, countries and places that are in those lists; if a particular location is not in one of the mentioned Named Authority Lists, Geonames URIs MAY be used.<br>RDF example: <a href=\"#dctspatial\">dct:spatial</a>",
+      "reuse": "E"
+    },
+    "has version": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related Dataset that is a version, edition, or adaptation of the described Dataset.",
+      "usage_note": "This property identifies another Dataset that is a version, a edition or a an adaptation of the dataset that is being described.\n\nNote: dct:hasVersion from DCAT-AP 2 was replaced by dcat:hasVersion in DCAT-AP 3<br>RDF example: <a href=\"#dcathasVersion\">dcat:hasVersion</a>",
+      "reuse": "A"
+    },
+    "health category": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The health category to which this dataset belongs as described in the Commission Regulation on the European Health Data Space laying down a list of categories of electronic data for secondary use, Art.51.",
+      "usage_note": "This property indicates the EHDS data category the dataset belongs to, based on Article 51 (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202500327#ntr35-L_202500327EN.000101-E0035 )\nof the EHDS Regulation. Use the controlled vocabulary https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/ to ensure standardised\nclassification across all datasets<br>RDF example: <a href=\"#healthdcataphealthCategory\">healthdcatap:healthCategory</a>",
+      "reuse": "P"
+    },
+    "structured data": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Indicates whether the Dataset contains structured data for which a machine-readable description of the data variables can be provided.",
+      "usage_note": "Use this boolean property to state whether the dataset contains structured data. Set it to <code>true</code> when a machine-readable description of the data variables can be published, and to <code>false</code> when such structured variables do not apply. When the value is <code>true</code>, at least one <code>healthdcatap:hasVariables</code> MUST be provided.<br>RDF example: <a href=\"#healthdcataphasStructuredData\">healthdcatap:hasStructuredData</a>",
+      "reuse": "P"
+    },
+    "variables": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Links the Dataset to a CSVW TableGroup that provides a machine-readable description of the data variables.",
+      "usage_note": "Use this property to link a structured dataset to a CSVW <code>TableGroup</code> that documents its data variables, columns, or fields in a machine-readable way. This property becomes mandatory when <code>healthdcatap:hasStructuredData</code> is <code>true</code>.<br>RDF example: <a href=\"#healthdcataphasVariables\">healthdcatap:hasVariables</a>",
+      "reuse": "P"
+    },
+    "health theme": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A category of the Dataset or tag describing the Dataset.",
+      "usage_note": "A dataset may be associated with multiple health themes. The Health Theme controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme) MUST be used.<br>RDF example: <a href=\"#healthdcataphealththeme\">healthdcatap:healthTheme</a>",
+      "reuse": "P"
+    },
+    "identifier": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The main identifier for the Dataset, e.g. the URI or other unique identifier in the context of the Catalogue.",
+      "usage_note": "For Health DCAT Application Profile the identifier is mandatory and its value must be unique from the origin database of the Dataset.\nIn the process of dataset transmition to the next database, the 'identifier' property is overwriten by the new database identifier, and the original identifier becomes the value of the 'other identifier' property.<br>RDF example: <a href=\"#dctidentifier\">dct:identifier</a>",
+      "reuse": "E"
+    },
+    "in series": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A dataset series of which the dataset is part.",
+      "usage_note": "This property points to which Dataset Series the Dataset is part of.",
+      "reuse": "A"
+    },
+    "is referenced by": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related resource, such as a publication, that references, cites, or otherwise points to the dataset.",
+      "usage_note": "In relation to the use case of data citation related to the Dataset, the isReferencedBy property allows to relate the dataset to the resources (such as scholarly publications) that cite or point to the dataset. Multiple isReferencedBy properties can be used to indicate the dataset has been referenced by multiple publications, or other resources.<br>RDF example: <a href=\"#dctisReferencedBy\">dct:isReferencedBy</a>",
+      "reuse": "A"
+    },
+    "keyword": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A keyword or tag describing the Dataset.",
+      "usage_note": "Add keywords to increase dataset discoverability. You can include keywords in different languages, submitting each keyword as a separate entry. Example: Physiological measures, Heart Rate, Stress Measures.<br>RDF example: <a href=\"#dcatkeyword\">dcat:keyword</a>",
+      "reuse": "A"
+    },
+    "language": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A language of the Dataset.",
+      "usage_note": "For this property the values from the EU Vocabularies Languages Named Authority List must be used. If your Dataset contains multiple languages, this property can be repeated.<br>RDF example: <a href=\"#dctlanguage\">dct:language</a>",
+      "reuse": "A"
+    },
+    "legal basis": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "The legal basis used to justify processing of personal data.",
+      "usage_note": "While applicable legislation identifies the legal act that mandates the creation and management of the dataset (using the ELI namespace), the legal basis is used in addition to describe the specific legal grounds and context for processing personal data.<br>RDF example: <a href=\"#dpvhasLegalBasis\">dpv:hasLegalBasis</a>",
+      "reuse": "P"
+    },
+    "modification date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The most recent date on which the Dataset was changed or modified.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth.<br>RDF example: <a href=\"#dctmodified\">dct:modified</a>",
+      "reuse": "A"
+    },
+    "number of records": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Size of the dataset in terms of the number of records.",
+      "usage_note": "Use this property to indicate the total number of records in the dataset, giving users an idea of the dataset's size and whether it suits their analysis or research needs. You can provide the exact count or an approximate average if the exact figure is unavailable.\nIt reflects the total data entries (e.g., consultations, prescriptions, lab results, hospital admissions) according to the dataset's content.<br>RDF example: <a href=\"#healthdcatapnumberOfRecords\">healthdcatap:numberOfRecords</a>",
+      "reuse": "P"
+    },
+    "number of unique individuals": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Number of records for unique individuals.",
+      "usage_note": "Use this property to indicate the number of unique individuals represented in the dataset. It helps users understand the dataset's scale and assess whether it meets their needs for secondary use.\n\nProvide the total or an approximate count of distinct individuals whose data is included.<br>RDF example: <a href=\"#healthdcatapnumberOfUniqueIndividuals\">healthdcatap:numberOfUniqueIndividuals</a>",
+      "reuse": "P"
+    },
+    "other identifier": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A secondary identifier of the Dataset, such as MAST/ADS17, DataCite18, DOI19, EZID20 or W3ID21.",
+      "usage_note": "Examples for secondary identifiers are MAST/ADS, DataCite, DOI, EZID or W3ID (if not used for the original identifier). This property makes use of another, small class: adms:Identifier, where you provide the identifier and the name of the identifier schema (eg. DOI).\n\nThis property will hold the original 'identifier' of the dataset provided during creation.<br>RDF example: <a href=\"#admsidentifier\">adms:identifier</a>",
+      "reuse": "A"
+    },
+    "personal data": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Key elements that represent an individual in the dataset, Indicates association with Personal Data.",
+      "usage_note": "This property is used to indicate the types of personal data contained in the dataset itself (i.e. the actual data, not the metadata record).<br> The Data Privacy Vocabulary for Personal Data at https://w3id.org/dpv/dpv-pd MUST be used for this property.<br><br>Examples of allowed values include:<br>Gender → https://w3id.org/dpv/dpv-pd#Gender <br>Age → https://w3id.org/dpv/dpv-pd#Age <br>RDF example: <a href=\"#dpvhasPersonalData\">dpv:hasPersonalData</a>",
+      "reuse": "P"
+    },
+    "population coverage": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A definition of the population within the dataset",
+      "usage_note": "This field is a free text description of the population covered in the dataset. For example, \"Children under 12 years old with asthma treated in public hospitals in France between 2018 and 2023.\"<br>RDF example: <a href=\"#healthdcatappopulationCoverage\">healthdcatap:populationCoverage</a>",
+      "reuse": "P"
+    },
+    "provenance": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A statement about the lineage of a Dataset.",
+      "usage_note": "Information about how the data was collected, including methodologies, tools, and protocols used, this property can be repeated for different versions of the provenance (e.g. the provenance in different languages).<br>RDF example: <a href=\"#dctprovenance\">dct:provenance</a>",
+      "reuse": "A"
+    },
+    "publisher": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "An entity (organisation) responsible for making the Dataset available.",
+      "usage_note": "Use this property to identify the agent that publishes the dataset description in the catalogue. In the EHDS context, this may be the data holder or another organisation such as an intermediation entity.<br>RDF example: <a href=\"#dctpublisher\">dct:publisher</a>",
+      "reuse": "E"
+    },
+    "purpose": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free text statement of the purpose of the processing of data or personal data.",
+      "usage_note": "Information about the purpose for which the data or personal data is processed; this property may be expressed as free text and can be repeated for different versions of the purpose statement (e.g. the purpose in different languages).<br>RDF example: <a href=\"#dpvhasPurpose\">dpv:hasPurpose</a>",
+      "reuse": "P"
+    },
+    "qualified attribution": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An Agent having some form of responsibility for the resource.",
+      "usage_note": "Used to link to an Agent where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dct:creator, dct:publisher, healthdcatap:hdab). Use dcat:hadRole on the prov:Attribution to capture the responsibility of the Agent with respect to the Resource.<br>RDF example: <a href=\"#provqualifiedAttribution\">prov:qualifiedAttribution</a>",
+      "reuse": "A"
+    },
+    "qualified relation": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "Link to a description of a relationship with another resource.",
+      "usage_note": "Used to link to another resource where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or [PROV-O] properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf).<br>RDF example: <a href=\"#dcatqualifiedRelation\">dcat:qualifiedRelation</a>",
+      "reuse": "A"
+    },
+    "quality annotation": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A statement related to quality of the Dataset, including rating, quality certificate, feedback that can be associated to the dataset.",
+      "usage_note": "This property makes use class (dqv:QualityCertificate) from Data Quality Vocabulary, in which you indicate the quality certificate, linked to the described dataset.<br>RDF example: <a href=\"#dqvhasqualityannotation\">dqv:hasQualityAnnotation/a>",
+      "reuse": "P"
+    },
+    "release date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The date of formal issuance (e.g.: publication) of the Dataset.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth\nExample: 2023-12-10T13:16:10.246Z.<br>RDF example: <a href=\"#dctissued\">dct:issued</a>",
+      "reuse": "A"
+    },
+    "related resource": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related resource.",
+      "usage_note": "This property allows you to indicate a general link between this dataset and another resource\n(e.g., another dataset, document, or service). Use it when there is a connection, but none of\nthe more specific relation properties below apply.\n - This is the most generic way to describe a connection.\n- Use it when you want to indicate a related resource but cannot define the relationship more precisely.\nWhen the relationship is known and semantically clear , use one of the more specific properties instead<br>RDF example: <a href=\"#dctrelation\">dct:relation</a>",
+      "reuse": "A"
+    },
+    "retention period": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "A temporal period which the dataset is available for secondary use",
+      "usage_note": "This property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab).\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively. The interval can also be open - i.e., it can have just a start or just an end<br>RDF example: <a href=\"#healthdcatapretentionperiod\">healthdcatap:retentionPeriod</a>",
+      "reuse": "P"
+    },
+    "sample": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A sample distribution of the dataset.",
+      "usage_note": "This property makes use of the dcat:Distribution class to describe a sample distribution of the dataset, which can be anonymized or synthetic data.<br>RDF example: <a href=\"#admssample\">adms:sample</a>",
+      "reuse": "E"
+    },
+    "source": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related Dataset from which the described Dataset is derived.",
+      "usage_note": "Indicate the dataset on which this described dataset is based.<br>RDF example: <a href=\"#dctsource\">dct:source</a>",
+      "reuse": "E"
+    },
+    "temporal coverage": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A temporal period that the Dataset covers.",
+      "usage_note": "The start and end date of the period that the dataset covers. This property makes use of a Period of Time class\nThis property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab )\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively.<br>RDF example: <a href=\"#dcttemporal\">dct:temporal</a>",
+      "reuse": "E"
+    },
+    "temporal resolution": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "An interval of time that is named or defined by its start and end dates).",
+      "usage_note": "If the dataset is a time-series, this should correspond to the spacing of items in the series. For other kinds of dataset, this property will usually indicate the smallest time difference between items in the dataset. The time period has to be provided in the xsd:duration format.<br>RDF example: <a href=\"#dcattemporalResolution\">dcat:temporalResolution</a>",
+      "reuse": "A"
+    },
+    "theme": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A category of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple themes. <br> The EU data-theme controlled vocabulary (http://publications.europa.eu/resource/authority/data-theme) MUST be used.<br>RDF example: <a href=\"#dcattheme\">dcat:theme</a>",
+      "reuse": "E"
+    },
+    "title": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A name given to the Dataset.",
+      "usage_note": "Provide a title(s) for your Dataset, which can be repeated in multiple languages. Example: Healthy Brain Study - Physiological Data<br>RDF example: <a href=\"#dcttitle\">dct:title</a>",
+      "reuse": "A"
+    },
+    "type": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A type of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple types. <br> The EU Dataset-type controlled vocabulary (http://publications.europa.eu/resource/authority/dataset-type) SHOULD be used.<br>RDF example: <a href=\"#dcttype\">dct:type</a>",
+      "reuse": "A"
+    },
+    "version": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The version indicator (name or identifier) of a resource.",
+      "usage_note": "HealthDCAT-AP specification does not impose any additional requirements to dcat:version. <br> DCAT does not prescribe how a version name / identifier should be specified, for more info : https://www.w3.org/TR/vocab-dcat-3/#Property:resource_version.<br>RDF example: <a href=\"#dcatversion\">dcat:version</a>",
+      "reuse": "A"
+    },
+    "version notes": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A description of changes between this version and the previous version of the Asset.",
+      "usage_note": "A description of the differences between this version and a previous version of the Dataset.\nThis property can be repeated for parallel language versions of the version notes.<br>RDF example: <a href=\"#admsversionNotes\">adms:versionNotes</a>",
+      "reuse": "A"
+    },
+    "was generated by": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An activity that generated, or provides the business context for, the creation of the dataset.",
+      "usage_note": "The activity associated with generation of a dataset. <br> The Health activity controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity) MUST be used.<br>RDF example: <a href=\"#provwasGeneratedBy\">prov:wasGeneratedBy</a>",
+      "reuse": "A"
+    },
+    "health data access body": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Health Data Access Body supporting access to data in the Member State.",
+      "usage_note": "Member state-designated authority that facilitates the secondary use\nof electronic health data. HDABs assess the information provided by\nthe health data applicant and decide on health data requests and\naccess applications, authorise and issue data permits, obtain data\nfrom data holders and make data available in Secure Processing\nEnvironments. HDABs systematically track the data request and\ndata access applications received and the data permits issued. As\nper Article 58 of the EHDS, HDABs are required to publicly list\ninformation on the data permits issued. (Article 55; Recital 52 of\nEHDS Regulation).<br>RDF example: <a href=\"#healthdcataphdab\">healthdcatap:hdab</a>",
+      "reuse": "P"
+    },
+    "health data access body coordinator": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The Health Data Access Body acting as coordinator for the relevant data access process.",
+      "usage_note": "This property should be used where a coordinating HDAB has been designated. It should identify the organisation acting in this coordinating role. Where no coordinator has been designated or where the role is not applicable, the property may be omitted.<br>RDF example: <a href=\"#healthdcataphdabCoordinator\">healthdcatap:hdabCoordinator</a>",
+      "reuse": "P"
+    },
+    "landing page": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A web page that provides access to the Dataset, its Distributions and/or additional information.",
+      "usage_note": "It is intended to point to a landing page at the original data provider, not to a page on a site of a third party, such as an aggregator.<br>RDF example: <a href=\"#dcatlandingPage\">dcat:landingPage</a>",
+      "reuse": "A"
+    },
+    "spatial resolution": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The minimum spatial separation resolvable in a dataset, measured in meters.",
+      "usage_note": "If the dataset is an image or grid this should correspond to the spacing of items. For other kinds of spatial datasets, this property will usually indicate the smallest distance between items in the dataset.<br>RDF example: <a href=\"#dcatspatialResolutionInMeters\">dcat:spatialResolutionInMeters</a>",
+      "reuse": "A"
+    },
+    "minimum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Minimum typical age of the population within the dataset.",
+      "usage_note": "The approximate minimum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapminTypicalAge\">healthdcatap:minTypicalAge</a>",
+      "reuse": "P"
+    },
+    "maximum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Maximum typical age of the population within the dataset.",
+      "usage_note": "The approximate maximum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapmaxTypicalAge\">healthdcatap:maxTypicalAge</a>",
+      "reuse": "P"
+    }
+  },
+  "NON-PUBLIC": {
+    "access rights": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Information that indicates whether the Dataset is publicly accessible, has access restrictions or is not public.",
+      "usage_note": "This property allows you to indicate whether the dataset is publicly accessible, has restrictions, or is not publicly available. This is a mandatory property in HealthDCAT-AP. Use one of the following values :public, :restricted, :non-public, which means:<br>\n<ul>\n<li><strong>NON_PUBLIC</strong> — The dataset is not publicly available and access is subject to restrictions.</li>\n<li><strong>PUBLIC</strong> — The dataset is openly accessible to everyone.</li>\n<li><strong>RESTRICTED</strong> — The dataset has access restrictions but may be available under specific conditions.</li>\n</ul>\n<br>RDF example: <a href=\"#dctaccessRights\">dct:accessRights</a>",
+      "reuse": "E"
+    },
+    "alternative": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An alternative name for the Dataset.",
+      "usage_note": "This property contains an alternative name for the Dataset. This property can be repeated for parallel language versions of the alternative name.<br>RDF example: <a href=\"#dctalternative\">dct:alternative</a>",
+      "reuse": "P"
+    },
+    "analytics": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "An analytics distribution of the dataset.",
+      "usage_note": "Publishers are encouraged to provide URLs pointing to document repositories where users can access or request associated resources such as technical reports of the dataset, quality measurements, usability indicators, etc.<br>RDF example: <a href=\"#healthdcatapanalytics\">healthdcatap:analytics</a>",
+      "reuse": "P"
+    },
+    "applicable legislation": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The legislation that mandates the creation or management of the Dataset.",
+      "usage_note": "The ELI of the EHDS Regulation, published in March 2025, can now be used as the applicable legislation where relevant: http://data.europa.eu/eli/reg/2025/327/oj.\nAs multiple legislations may apply to the resource the maximum cardinality is not limited.<br>RDF example: <a href=\"#dcatapapplicableLegislation\">dcatap:applicableLegislation</a>",
+      "reuse": "E"
+    },
+    "code values": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free-text description of any health classification, terminology, ontology, thesaurus, or coding system used in the dataset.",
+      "usage_note": "Use this field to describe, in free text, the code values of the coding systems used that apply to the dataset (e.g. U07.1, Y59.0). No controlled vocabulary is required at this stage.<br>RDF example: <a href=\"#healthdcataphasCodeValues\">healthdcatap:hasCodeValues</a>",
+      "reuse": "P"
+    },
+    "coding system": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Coding systems in use (ex: ICD-10-CM, SNOMED-CT).",
+      "usage_note": "This property allows you to specify the coding systems used within your dataset. For example, if a dataset uses ICD-10 for disease classification, this property allows data users to search for datasets with the same coding system. As a machine-actionable property, it also facilitates automated processes, making dataset discovery more efficient. \nSpecify the standardised coding systems used in the dataset (e.g. ICD-10-CM, SNOMED-CT). The coding systems controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/) MUST be used.<br>RDF example: <a href=\"#healthdcataphasCodingSystem\">healthdcatap:hasCodingSystem</a>",
+      "reuse": "P"
+    },
+    "conforms to": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An established technical standard to which the described resource conforms.",
+      "usage_note": "If your data conforms to an established technical standard or specification, use this property to indicate which one. The Health Technical Standards controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/standard/) MUST be used.<br>RDF example: <a href=\"#dctconformsTo\">dct:conformsTo</a>",
+      "reuse": "E"
+    },
+    "contact point": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "Contact information that can be used for sending comments about the Dataset.",
+      "usage_note": "This property informs about a contact point (Individual, Organization, Location, Group) that can answer questions about the dataset. Details on how to describe these are provided under class vcard:Kind.<br>RDF example: <a href=\"#dcatcontactPoint\">dcat:contactPoint</a>",
+      "reuse": "E"
+    },
+    "creator": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An entity responsible for producing the dataset.",
+      "usage_note": "This property points to an Agent who plays the creation role of the dataset.<br>RDF example: <a href=\"#dctcreator\">dct:creator</a>",
+      "reuse": "A"
+    },
+    "custodian": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource [ISO-19115].",
+      "usage_note": "Use this property to identify the entity that technically holds and maintains the dataset. In the EHDS context, this field represents the legally defined health data holder, (Article 2(2)(t) EHDS Regulation), i.e. the entity responsible for holding and maintaining the dataset. This entity may differ from the publisher.<br>RDF example: <a href=\"#geodcatapcustodian\">geodcatap:custodian</a>",
+      "reuse": "P"
+    },
+    "description": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A free-text information about the Dataset.",
+      "usage_note": "Brief description of the dataset. This property can be repeated for including several language versions of the description.<br>RDF example: <a href=\"#dctdescription\">dct:description</a>",
+      "reuse": "A"
+    },
+    "dataset distribution": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "An available Distribution for the Dataset.",
+      "usage_note": "For Health DCAT Application Profile a distribution is mandatory independently of the access rights. A distribution must include information on the  Health Data Access Body supporting data access.<br>RDF example: <a href=\"#dcatdistribution\">dcat:distribution</a>",
+      "reuse": "E"
+    },
+    "documentation": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A page or document about this Dataset.",
+      "usage_note": "Any additional source of infomation about the Dataset.<br>RDF example: <a href=\"#foafpage\">foaf:page</a>",
+      "reuse": "E"
+    },
+    "frequency": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "The frequency at which the Dataset is updated.",
+      "usage_note": "The value of this property should be the IRI from the listed controlled vocabulary indicating the frequency at which the dataset is updated.\nFor example: http://publications.europa.eu/resource/authority/frequency/WEEKLY<br>RDF example: <a href=\"#dctaccrualPeriodicity\">dct:accrualPeriodicity</a>",
+      "reuse": "E"
+    },
+    "geographical coverage": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A geographic region that is covered by the Dataset.",
+      "usage_note": "The EU Vocabularies Name Authority Lists MAY be used for continents, countries and places that are in those lists; if a particular location is not in one of the mentioned Named Authority Lists, Geonames URIs MAY be used.<br>RDF example: <a href=\"#dctspatial\">dct:spatial</a>",
+      "reuse": "E"
+    },
+    "has version": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related Dataset that is a version, edition, or adaptation of the described Dataset.",
+      "usage_note": "This property identifies another Dataset that is a version, a edition or a an adaptation of the dataset that is being described.\n\nNote: dct:hasVersion from DCAT-AP 2 was replaced by dcat:hasVersion in DCAT-AP 3<br>RDF example: <a href=\"#dcathasVersion\">dcat:hasVersion</a>",
+      "reuse": "A"
+    },
+    "health category": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The health category to which this dataset belongs as described in the Commission Regulation on the European Health Data Space laying down a list of categories of electronic data for secondary use, Art.51.",
+      "usage_note": "This property indicates the EHDS data category the dataset belongs to, based on Article 51 (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202500327#ntr35-L_202500327EN.000101-E0035 )\nof the EHDS Regulation. Use the controlled vocabulary https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/ to ensure standardised\nclassification across all datasets<br>RDF example: <a href=\"#healthdcataphealthCategory\">healthdcatap:healthCategory</a>",
+      "reuse": "P"
+    },
+    "structured data": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Indicates whether the Dataset contains structured data for which a machine-readable description of the data variables can be provided.",
+      "usage_note": "Use this boolean property to state whether the dataset contains structured data. Set it to <code>true</code> when a machine-readable description of the data variables can be published, and to <code>false</code> when such structured variables do not apply. When the value is <code>true</code>, at least one <code>healthdcatap:hasVariables</code> MUST be provided.<br>RDF example: <a href=\"#healthdcataphasStructuredData\">healthdcatap:hasStructuredData</a>",
+      "reuse": "P"
+    },
+    "variables": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Links the Dataset to a CSVW TableGroup that provides a machine-readable description of the data variables.",
+      "usage_note": "Use this property to link a structured dataset to a CSVW <code>TableGroup</code> that documents its data variables, columns, or fields in a machine-readable way. This property becomes mandatory when <code>healthdcatap:hasStructuredData</code> is <code>true</code>.<br>RDF example: <a href=\"#healthdcataphasVariables\">healthdcatap:hasVariables</a>",
+      "reuse": "P"
+    },
+    "health theme": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A category of the Dataset or tag describing the Dataset.",
+      "usage_note": "A dataset may be associated with multiple health themes. The Health Theme controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme) MUST be used.<br>RDF example: <a href=\"#healthdcataphealththeme\">healthdcatap:healthTheme</a>",
+      "reuse": "P"
+    },
+    "identifier": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The main identifier for the Dataset, e.g. the URI or other unique identifier in the context of the Catalogue.",
+      "usage_note": "For Health DCAT Application Profile the identifier is mandatory and its value must be unique from the origin database of the Dataset.\nIn the process of dataset transmition to the next database, the 'identifier' property is overwriten by the new database identifier, and the original identifier becomes the value of the 'other identifier' property.<br>RDF example: <a href=\"#dctidentifier\">dct:identifier</a>",
+      "reuse": "E"
+    },
+    "in series": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A dataset series of which the dataset is part.",
+      "usage_note": "This property points to which Dataset Series the Dataset is part of.",
+      "reuse": "A"
+    },
+    "is referenced by": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A related resource, such as a publication, that references, cites, or otherwise points to the dataset.",
+      "usage_note": "In relation to the use case of data citation related to the Dataset, the isReferencedBy property allows to relate the dataset to the resources (such as scholarly publications) that cite or point to the dataset. Multiple isReferencedBy properties can be used to indicate the dataset has been referenced by multiple publications, or other resources.<br>RDF example: <a href=\"#dctisReferencedBy\">dct:isReferencedBy</a>",
+      "reuse": "E"
+    },
+    "keyword": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A keyword or tag describing the Dataset.",
+      "usage_note": "Add keywords to increase dataset discoverability. You can include keywords in different languages, submitting each keyword as a separate entry. Example: Physiological measures, Heart Rate, Stress Measures.<br>RDF example: <a href=\"#dcatkeyword\">dcat:keyword</a>",
+      "reuse": "E"
+    },
+    "language": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A language of the Dataset.",
+      "usage_note": "For this property the values from the EU Vocabularies Languages Named Authority List must be used. If your Dataset contains multiple languages, this property can be repeated.<br>RDF example: <a href=\"#dctlanguage\">dct:language</a>",
+      "reuse": "E"
+    },
+    "legal basis": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "The legal basis used to justify processing of personal data.",
+      "usage_note": "While applicable legislation identifies the legal act that mandates the creation and management of the dataset (using the ELI namespace), the legal basis is used in addition to describe the specific legal grounds and context for processing personal data.<br>RDF example: <a href=\"#dpvhasLegalBasis\">dpv:hasLegalBasis</a>",
+      "reuse": "P"
+    },
+    "modification date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The most recent date on which the Dataset was changed or modified.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth.<br>RDF example: <a href=\"#dctmodified\">dct:modified</a>",
+      "reuse": "A"
+    },
+    "number of records": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Size of the dataset in terms of the number of records.",
+      "usage_note": "Use this property to indicate the total number of records in the dataset, giving users an idea of the dataset's size and whether it suits their analysis or research needs. You can provide the exact count or an approximate average if the exact figure is unavailable.\nIt reflects the total data entries (e.g., consultations, prescriptions, lab results, hospital admissions) according to the dataset's content.<br>RDF example: <a href=\"#healthdcatapnumberOfRecords\">healthdcatap:numberOfRecords</a>",
+      "reuse": "P"
+    },
+    "number of unique individuals": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Number of records for unique individuals.",
+      "usage_note": "Use this property to indicate the number of unique individuals represented in the dataset. It helps users understand the dataset's scale and assess whether it meets their needs for secondary use.\n\nProvide the total or an approximate count of distinct individuals whose data is included.<br>RDF example: <a href=\"#healthdcatapnumberOfUniqueIndividuals\">healthdcatap:numberOfUniqueIndividuals</a>",
+      "reuse": "P"
+    },
+    "other identifier": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A secondary identifier of the Dataset, such as MAST/ADS17, DataCite18, DOI19, EZID20 or W3ID21.",
+      "usage_note": "Examples for secondary identifiers are MAST/ADS, DataCite, DOI, EZID or W3ID (if not used for the original identifier). This property makes use of another, small class: adms:Identifier, where you provide the identifier and the name of the identifier schema (eg. DOI).\n\nThis property will hold the original 'identifier' of the dataset provided during creation.<br>RDF example: <a href=\"#admsidentifier\">adms:identifier</a>",
+      "reuse": "A"
+    },
+    "personal data": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Key elements that represent an individual in the dataset, Indicates association with Personal Data.",
+      "usage_note": "This property is used to indicate the types of personal data contained in the dataset itself (i.e. the actual data, not the metadata record).<br> The Data Privacy Vocabulary for Personal Data at https://w3id.org/dpv/dpv-pd MUST be used for this property.<br><br>Examples of allowed values include:<br>Gender → https://w3id.org/dpv/dpv-pd#Gender <br>Age → https://w3id.org/dpv/dpv-pd#Age <br>RDF example: <a href=\"#dpvhasPersonalData\">dpv:hasPersonalData</a>",
+      "reuse": "P"
+    },
+    "population coverage": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A definition of the population within the dataset",
+      "usage_note": "This field is a free text description of the population covered in the dataset. For example, \"Children under 12 years old with asthma treated in public hospitals in France between 2018 and 2023.\"<br>RDF example: <a href=\"#healthdcatappopulationCoverage\">healthdcatap:populationCoverage</a>",
+      "reuse": "P"
+    },
+    "provenance": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A statement about the lineage of a Dataset.",
+      "usage_note": "Information about how the data was collected, including methodologies, tools, and protocols used, this property can be repeated for different versions of the provenance (e.g. the provenance in different languages).<br>RDF example: <a href=\"#dctprovenance\">dct:provenance</a>",
+      "reuse": "E"
+    },
+    "publisher": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "An entity (organisation) responsible for making the Dataset available.",
+      "usage_note": "Use this property to identify the agent that publishes the dataset description in the catalogue. In the EHDS context, this may be the data holder or another organisation such as an intermediation entity.<br>RDF example: <a href=\"#dctpublisher\">dct:publisher</a>",
+      "reuse": "E"
+    },
+    "purpose": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free text statement of the purpose of the processing of data or personal data.",
+      "usage_note": "Information about the purpose for which the data or personal data is processed; this property may be expressed as free text and can be repeated for different versions of the purpose statement (e.g. the purpose in different languages).<br>RDF example: <a href=\"#dpvhasPurpose\">dpv:hasPurpose</a>",
+      "reuse": "P"
+    },
+    "qualified attribution": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An Agent having some form of responsibility for the resource.",
+      "usage_note": "Used to link to an Agent where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dct:creator, dct:publisher, healthdcatap:hdab). Use dcat:hadRole on the prov:Attribution to capture the responsibility of the Agent with respect to the Resource.<br>RDF example: <a href=\"#provqualifiedAttribution\">prov:qualifiedAttribution</a>",
+      "reuse": "A"
+    },
+    "qualified relation": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "Link to a description of a relationship with another resource.",
+      "usage_note": "Used to link to another resource where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or [PROV-O] properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf).<br>RDF example: <a href=\"#dcatqualifiedRelation\">dcat:qualifiedRelation</a>",
+      "reuse": "A"
+    },
+    "quality annotation": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A statement related to quality of the Dataset, including rating, quality certificate, feedback that can be associated to the dataset.",
+      "usage_note": "This property makes use class (dqv:QualityCertificate) from Data Quality Vocabulary, in which you indicate the quality certificate, linked to the described dataset.<br>RDF example: <a href=\"#dqvhasqualityannotation\">dqv:hasQualityAnnotation</a>",
+      "reuse": "P"
+    },
+    "release date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The date of formal issuance (e.g.: publication) of the Dataset.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth\nExample: 2023-12-10T13:16:10.246Z.<br>RDF example: <a href=\"#dctissued\">dct:issued</a>",
+      "reuse": "A"
+    },
+    "related resource": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A related resource.",
+      "usage_note": "This property allows you to indicate a general link between this dataset and another resource\n(e.g., another dataset, document, or service). Use it when there is a connection, but none of\nthe more specific relation properties below apply.\n - This is the most generic way to describe a connection.\n- Use it when you want to indicate a related resource but cannot define the relationship more precisely.\nWhen the relationship is known and semantically clear , use one of the more specific properties instead<br>RDF example: <a href=\"#dctrelation\">dct:relation</a>",
+      "reuse": "E"
+    },
+    "retention period": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "A temporal period which the dataset is available for secondary use",
+      "usage_note": "This property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab).\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively. The interval can also be open - i.e., it can have just a start or just an end<br>RDF example: <a href=\"#healthdcatapretentionperiod\">healthdcatap:retentionPeriod</a>",
+      "reuse": "P"
+    },
+    "sample": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A sample distribution of the dataset.",
+      "usage_note": "This property makes use of the dcat:Distribution class to describe a sample distribution of the dataset, which can be anonymized or synthetic data.<br>RDF example: <a href=\"#admssample\">adms:sample</a>",
+      "reuse": "E"
+    },
+    "source": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A related Dataset from which the described Dataset is derived.",
+      "usage_note": "Indicate the dataset on which this described dataset is based.<br>RDF example: <a href=\"#dctsource\">dct:source</a>",
+      "reuse": "E"
+    },
+    "temporal coverage": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A temporal period that the Dataset covers.",
+      "usage_note": "The start and end date of the period that the dataset covers. This property makes use of a Period of Time class\nThis property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab )\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively.<br>RDF example: <a href=\"#dcttemporal\">dct:temporal</a>",
+      "reuse": "A"
+    },
+    "temporal resolution": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "An interval of time that is named or defined by its start and end dates).",
+      "usage_note": "If the dataset is a time-series, this should correspond to the spacing of items in the series. For other kinds of dataset, this property will usually indicate the smallest time difference between items in the dataset. The time period has to be provided in the xsd:duration format.<br>RDF example: <a href=\"#dcattemporalResolution\">dcat:temporalResolution</a>",
+      "reuse": "E"
+    },
+    "theme": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A category of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple themes. <br> The EU data-theme controlled vocabulary (http://publications.europa.eu/resource/authority/data-theme) MUST be used.<br>RDF example: <a href=\"#dcattheme\">dcat:theme</a>",
+      "reuse": "E"
+    },
+    "title": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A name given to the Dataset.",
+      "usage_note": "Provide a title(s) for your Dataset, which can be repeated in multiple languages. Example: Healthy Brain Study - Physiological Data<br>RDF example: <a href=\"#dcttitle\">dct:title</a>",
+      "reuse": "A"
+    },
+    "type": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A type of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple types. <br> The EU Dataset-type controlled vocabulary (http://publications.europa.eu/resource/authority/dataset-type) SHOULD be used.<br>RDF example: <a href=\"#dcttype\">dct:type</a>",
+      "reuse": "E"
+    },
+    "version": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The version indicator (name or identifier) of a resource.",
+      "usage_note": "HealthDCAT-AP specification does not impose any additional requirements to dcat:version. <br> DCAT does not prescribe how a version name / identifier should be specified, for more info : https://www.w3.org/TR/vocab-dcat-3/#Property:resource_version.<br>RDF example: <a href=\"#dcatversion\">dcat:version</a>",
+      "reuse": "A"
+    },
+    "version notes": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A description of changes between this version and the previous version of the Asset.",
+      "usage_note": "A description of the differences between this version and a previous version of the Dataset.\nThis property can be repeated for parallel language versions of the version notes.<br>RDF example: <a href=\"#admsversionNotes\">adms:versionNotes</a>",
+      "reuse": "A"
+    },
+    "was generated by": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An activity that generated, or provides the business context for, the creation of the dataset.",
+      "usage_note": "The activity associated with generation of a dataset. <br> The Health activity controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity) MUST be used.<br>RDF example: <a href=\"#provwasGeneratedBy\">prov:wasGeneratedBy</a>",
+      "reuse": "A"
+    },
+    "health data access body": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Health Data Access Body supporting access to data in the Member State.",
+      "usage_note": "Member state-designated authority that facilitates the secondary use\nof electronic health data. HDABs assess the information provided by\nthe health data applicant and decide on health data requests and\naccess applications, authorise and issue data permits, obtain data\nfrom data holders and make data available in Secure Processing\nEnvironments. HDABs systematically track the data request and\ndata access applications received and the data permits issued. As\nper Article 58 of the EHDS, HDABs are required to publicly list\ninformation on the data permits issued. (Article 55; Recital 52 of\nEHDS Regulation).<br>RDF example: <a href=\"#healthdcataphdab\">healthdcatap:hdab</a>",
+      "reuse": "P"
+    },
+    "health data access body coordinator": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The Health Data Access Body acting as coordinator for the relevant data access process.",
+      "usage_note": "This property should be used where a coordinating HDAB has been designated. It should identify the organisation acting in this coordinating role. Where no coordinator has been designated or where the role is not applicable, the property may be omitted.<br>RDF example: <a href=\"#healthdcataphdabCoordinator\">healthdcatap:hdabCoordinator</a>",
+      "reuse": "P"
+    },
+    "landing page": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A web page that provides access to the Dataset, its Distributions and/or additional information.",
+      "usage_note": "It is intended to point to a landing page at the original data provider, not to a page on a site of a third party, such as an aggregator.<br>RDF example: <a href=\"#dcatlandingPage\">dcat:landingPage</a>",
+      "reuse": "A"
+    },
+    "spatial resolution": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The minimum spatial separation resolvable in a dataset, measured in meters.",
+      "usage_note": "If the dataset is an image or grid this should correspond to the spacing of items. For other kinds of spatial datasets, this property will usually indicate the smallest distance between items in the dataset.<br>RDF example: <a href=\"#dcatspatialResolutionInMeters\">dcat:spatialResolutionInMeters</a>",
+      "reuse": "A"
+    },
+    "minimum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Minimum typical age of the population within the dataset.",
+      "usage_note": "The approximate minimum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapminTypicalAge\">healthdcatap:minTypicalAge</a>",
+      "reuse": "P"
+    },
+    "maximum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Maximum typical age of the population within the dataset.",
+      "usage_note": "The approximate maximum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapmaxTypicalAge\">healthdcatap:maxTypicalAge</a>",
+      "reuse": "P"
+    }
+  },
+  "RESTRICTED": {
+    "access rights": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Information that indicates whether the Dataset is publicly accessible, has access restrictions or is not public.",
+      "usage_note": "This property allows you to indicate whether the dataset is publicly accessible, has restrictions, or is not publicly available. This is a mandatory property in HealthDCAT-AP. Use one of the following values :public, :restricted, :non-public, which means:<br>\n<ul>\n<li><strong>NON_PUBLIC</strong> — The dataset is not publicly available and access is subject to restrictions.</li>\n<li><strong>PUBLIC</strong> — The dataset is openly accessible to everyone.</li>\n<li><strong>RESTRICTED</strong> — The dataset has access restrictions but may be available under specific conditions.</li>\n</ul>\n<br>RDF example: <a href=\"#dctaccessRights\">dct:accessRights</a>",
+      "reuse": "E"
+    },
+    "alternative": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An alternative name for the Dataset.",
+      "usage_note": "This property contains an alternative name for the Dataset. This property can be repeated for parallel language versions of the alternative name.<br>RDF example: <a href=\"#dctalternative\">dct:alternative</a>",
+      "reuse": "P"
+    },
+    "analytics": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "An analytics distribution of the dataset.",
+      "usage_note": "Publishers are encouraged to provide URLs pointing to document repositories where users can access or request associated resources such as technical reports of the dataset, quality measurements, usability indicators, etc.<br>RDF example: <a href=\"#healthdcatapanalytics\">healthdcatap:analytics</a>",
+      "reuse": "P"
+    },
+    "applicable legislation": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The legislation that mandates the creation or management of the Dataset.",
+      "usage_note": "The ELI of the EHDS Regulation, published in March 2025, can now be used as the applicable legislation where relevant: http://data.europa.eu/eli/reg/2025/327/oj.\nAs multiple legislations may apply to the resource the maximum cardinality is not limited.<br>RDF example: <a href=\"#dcatapapplicableLegislation\">dcatap:applicableLegislation</a>",
+      "reuse": "E"
+    },
+    "code values": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free-text description of any health classification, terminology, ontology, thesaurus, or coding system used in the dataset.",
+      "usage_note": "Use this field to describe, in free text, the code values of the coding systems used that apply to the dataset (e.g. U07.1, Y59.0). No controlled vocabulary is required at this stage.<br>RDF example: <a href=\"#healthdcataphasCodeValues\">healthdcatap:hasCodeValues</a>",
+      "reuse": "P"
+    },
+    "coding system": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Coding systems in use (ex: ICD-10-CM, SNOMED-CT).",
+      "usage_note": "This property allows you to specify the coding systems used within your dataset. For example, if a dataset uses ICD-10 for disease classification, this property allows data users to search for datasets with the same coding system. As a machine-actionable property, it also facilitates automated processes, making dataset discovery more efficient. \nSpecify the standardised coding systems used in the dataset (e.g. ICD-10-CM, SNOMED-CT). The coding systems controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system/) MUST be used.<br>RDF example: <a href=\"#healthdcataphasCodingSystem\">healthdcatap:hasCodingSystem</a>",
+      "reuse": "P"
+    },
+    "conforms to": {
+      "card": "0..*",
+      "requirement": "RecommendEd",
+      "definition": "An established technical standard to which the described resource conforms.",
+      "usage_note": "If your data conforms to an established technical standard or specification, use this property to indicate which one. The Health Technical Standards controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/standard/) MUST be used.<br>RDF example: <a href=\"#dctconformsTo\">dct:conformsTo</a>",
+      "reuse": "E"
+    },
+    "contact point": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Contact information that can be used for sending comments about the Dataset.",
+      "usage_note": "This property informs about a contact point (Individual, Organization, Location, Group) that can answer questions about the dataset. Details on how to describe these are provided under class vcard:Kind.<br>RDF example: <a href=\"#dcatcontactPoint\">dcat:contactPoint</a>",
+      "reuse": "A"
+    },
+    "creator": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An entity responsible for producing the dataset.",
+      "usage_note": "This property points to an Agent who plays the creation role of the dataset.<br>RDF example: <a href=\"#dctcreator\">dct:creator</a>",
+      "reuse": "A"
+    },
+    "custodian": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource [ISO-19115].",
+      "usage_note": "Use this property to identify the entity that technically holds and maintains the dataset. In the EHDS context, this field represents the legally defined health data holder, (Article 2(2)(t) EHDS Regulation), i.e. the entity responsible for holding and maintaining the dataset. This entity may differ from the publisher.<br>RDF example: <a href=\"#geodcatapcustodian\">geodcatap:custodian</a>",
+      "reuse": "P"
+    },
+    "description": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A free-text information about the Dataset.",
+      "usage_note": "Brief description of the dataset. This property can be repeated for including several language versions of the description.<br>RDF example: <a href=\"#dctdescription\">dct:description</a>",
+      "reuse": "A"
+    },
+    "dataset distribution": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "An available Distribution for the Dataset.",
+      "usage_note": "For Health DCAT Application Profile a distribution is mandatory independently of the access rights. A distribution must include information on the  Health Data Access Body supporting data access.<br>RDF example: <a href=\"#dcatdistribution\">dcat:distribution</a>",
+      "reuse": "E"
+    },
+    "documentation": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A page or document about this Dataset.",
+      "usage_note": "Any additional source of infomation about the Dataset.<br>RDF example: <a href=\"#foafpage\">foaf:page</a>",
+      "reuse": "A"
+    },
+    "frequency": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The frequency at which the Dataset is updated.",
+      "usage_note": "The value of this property should be the IRI from the listed controlled vocabulary indicating the frequency at which the dataset is updated.\nFor example: http://publications.europa.eu/resource/authority/frequency/WEEKLY<br>RDF example: <a href=\"#dctaccrualPeriodicity\">dct:accrualPeriodicity</a>",
+      "reuse": "A"
+    },
+    "geographical coverage": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A geographic region that is covered by the Dataset.",
+      "usage_note": "The EU Vocabularies Name Authority Lists MAY be used for continents, countries and places that are in those lists; if a particular location is not in one of the mentioned Named Authority Lists, Geonames URIs MAY be used.<br>RDF example: <a href=\"#dctspatial\">dct:spatial</a>",
+      "reuse": "E"
+    },
+    "has version": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related Dataset that is a version, edition, or adaptation of the described Dataset.",
+      "usage_note": "This property identifies another Dataset that is a version, a edition or a an adaptation of the dataset that is being described.\n\nNote: dct:hasVersion from DCAT-AP 2 was replaced by dcat:hasVersion in DCAT-AP 3<br>RDF example: <a href=\"#dcathasVersion\">dcat:hasVersion</a>",
+      "reuse": "A"
+    },
+    "health category": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The health category to which this dataset belongs as described in the Commission Regulation on the European Health Data Space laying down a list of categories of electronic data for secondary use, Art.51.",
+      "usage_note": "This property indicates the EHDS data category the dataset belongs to, based on Article 51 (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202500327#ntr35-L_202500327EN.000101-E0035 )\nof the EHDS Regulation. Use the controlled vocabulary https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/ to ensure standardised\nclassification across all datasets<br>RDF example: <a href=\"#healthdcataphealthCategory\">healthdcatap:healthCategory</a>",
+      "reuse": "P"
+    },
+    "structured data": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Indicates whether the Dataset contains structured data for which a machine-readable description of the data variables can be provided.",
+      "usage_note": "Use this boolean property to state whether the dataset contains structured data. Set it to <code>true</code> when a machine-readable description of the data variables can be published, and to <code>false</code> when such structured variables do not apply. When the value is <code>true</code>, at least one <code>healthdcatap:hasVariables</code> MUST be provided.<br>RDF example: <a href=\"#healthdcataphasStructuredData\">healthdcatap:hasStructuredData</a>",
+      "reuse": "P"
+    },
+    "variables": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Links the Dataset to a CSVW TableGroup that provides a machine-readable description of the data variables.",
+      "usage_note": "Use this property to link a structured dataset to a CSVW <code>TableGroup</code> that documents its data variables, columns, or fields in a machine-readable way. This property becomes mandatory when <code>healthdcatap:hasStructuredData</code> is <code>true</code>.<br>RDF example: <a href=\"#healthdcataphasVariables\">healthdcatap:hasVariables</a>",
+      "reuse": "P"
+    },
+    "health theme": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A category of the Dataset or tag describing the Dataset.",
+      "usage_note": "A dataset may be associated with multiple health themes. The Health Theme controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme) MUST be used.<br>RDF example: <a href=\"#healthdcataphealththeme\">healthdcatap:healthTheme</a>",
+      "reuse": "P"
+    },
+    "identifier": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "The main identifier for the Dataset, e.g. the URI or other unique identifier in the context of the Catalogue.",
+      "usage_note": "For Health DCAT Application Profile the identifier is mandatory and its value must be unique from the origin database of the Dataset.\nIn the process of dataset transmition to the next database, the 'identifier' property is overwriten by the new database identifier, and the original identifier becomes the value of the 'other identifier' property.<br>RDF example: <a href=\"#dctidentifier\">dct:identifier</a>",
+      "reuse": "E"
+    },
+    "in series": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A dataset series of which the dataset is part.",
+      "usage_note": "This property points to which Dataset Series the Dataset is part of.",
+      "reuse": "A"
+    },
+    "is referenced by": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related resource, such as a publication, that references, cites, or otherwise points to the dataset.",
+      "usage_note": "In relation to the use case of data citation related to the Dataset, the isReferencedBy property allows to relate the dataset to the resources (such as scholarly publications) that cite or point to the dataset. Multiple isReferencedBy properties can be used to indicate the dataset has been referenced by multiple publications, or other resources.<br>RDF example: <a href=\"#dctisReferencedBy\">dct:isReferencedBy</a>",
+      "reuse": "A"
+    },
+    "keyword": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A keyword or tag describing the Dataset.",
+      "usage_note": "Add keywords to increase dataset discoverability. You can include keywords in different languages, submitting each keyword as a separate entry. Example: Physiological measures, Heart Rate, Stress Measures.<br>RDF example: <a href=\"#dcatkeyword\">dcat:keyword</a>",
+      "reuse": "A"
+    },
+    "language": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A language of the Dataset.",
+      "usage_note": "For this property the values from the EU Vocabularies Languages Named Authority List must be used. If your Dataset contains multiple languages, this property can be repeated.<br>RDF example: <a href=\"#dctlanguage\">dct:language</a>",
+      "reuse": "A"
+    },
+    "legal basis": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "The legal basis used to justify processing of personal data.",
+      "usage_note": "While applicable legislation identifies the legal act that mandates the creation and management of the dataset (using the ELI namespace), the legal basis is used in addition to describe the specific legal grounds and context for processing personal data.<br>RDF example: <a href=\"#dpvhasLegalBasis\">dpv:hasLegalBasis</a>",
+      "reuse": "P"
+    },
+    "modification date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The most recent date on which the Dataset was changed or modified.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth.<br>RDF example: <a href=\"#dctmodified\">dct:modified</a>",
+      "reuse": "A"
+    },
+    "number of records": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Size of the dataset in terms of the number of records.",
+      "usage_note": "Use this property to indicate the total number of records in the dataset, giving users an idea of the dataset's size and whether it suits their analysis or research needs. You can provide the exact count or an approximate average if the exact figure is unavailable.\nIt reflects the total data entries (e.g., consultations, prescriptions, lab results, hospital admissions) according to the dataset's content.<br>RDF example: <a href=\"#healthdcatapnumberOfRecords\">healthdcatap:numberOfRecords</a>",
+      "reuse": "P"
+    },
+    "number of unique individuals": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Number of records for unique individuals.",
+      "usage_note": "Use this property to indicate the number of unique individuals represented in the dataset. It helps users understand the dataset's scale and assess whether it meets their needs for secondary use.\n\nProvide the total or an approximate count of distinct individuals whose data is included.<br>RDF example: <a href=\"#healthdcatapnumberOfUniqueIndividuals\">healthdcatap:numberOfUniqueIndividuals</a>",
+      "reuse": "P"
+    },
+    "other identifier": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A secondary identifier of the Dataset, such as MAST/ADS17, DataCite18, DOI19, EZID20 or W3ID21.",
+      "usage_note": "Examples for secondary identifiers are MAST/ADS, DataCite, DOI, EZID or W3ID (if not used for the original identifier). This property makes use of another, small class: adms:Identifier, where you provide the identifier and the name of the identifier schema (eg. DOI).\n\nThis property will hold the original 'identifier' of the dataset provided during creation.<br>RDF example: <a href=\"#admsidentifier\">adms:identifier</a>",
+      "reuse": "A"
+    },
+    "personal data": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "Key elements that represent an individual in the dataset, Indicates association with Personal Data.",
+      "usage_note": "This property is used to indicate the types of personal data contained in the dataset itself (i.e. the actual data, not the metadata record).<br> The Data Privacy Vocabulary for Personal Data at https://w3id.org/dpv/dpv-pd MUST be used for this property.<br><br>Examples of allowed values include:<br>Gender → https://w3id.org/dpv/dpv-pd#Gender <br>Age → https://w3id.org/dpv/dpv-pd#Age <br>RDF example: <a href=\"#dpvhasPersonalData\">dpv:hasPersonalData</a>",
+      "reuse": "P"
+    },
+    "population coverage": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A definition of the population within the dataset",
+      "usage_note": "This field is a free text description of the population covered in the dataset. For example, \"Children under 12 years old with asthma treated in public hospitals in France between 2018 and 2023.\"<br>RDF example: <a href=\"#healthdcatappopulationCoverage\">healthdcatap:populationCoverage</a>",
+      "reuse": "P"
+    },
+    "provenance": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A statement about the lineage of a Dataset.",
+      "usage_note": "Information about how the data was collected, including methodologies, tools, and protocols used, this property can be repeated for different versions of the provenance (e.g. the provenance in different languages).<br>RDF example: <a href=\"#dctprovenance\">dct:provenance</a>",
+      "reuse": "A"
+    },
+    "publisher": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "An entity (organisation) responsible for making the Dataset available.",
+      "usage_note": "Use this property to identify the agent that publishes the dataset description in the catalogue. In the EHDS context, this may be the data holder or another organisation such as an intermediation entity.<br>RDF example: <a href=\"#dctpublisher\">dct:publisher</a>",
+      "reuse": "E"
+    },
+    "purpose": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A free text statement of the purpose of the processing of data or personal data.",
+      "usage_note": "Information about the purpose for which the data or personal data is processed; this property may be expressed as free text and can be repeated for different versions of the purpose statement (e.g. the purpose in different languages).<br>RDF example: <a href=\"#dpvhasPurpose\">dpv:hasPurpose</a>",
+      "reuse": "P"
+    },
+    "qualified attribution": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An Agent having some form of responsibility for the resource.",
+      "usage_note": "Used to link to an Agent where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dct:creator, dct:publisher, healthdcatap:hdab). Use dcat:hadRole on the prov:Attribution to capture the responsibility of the Agent with respect to the Resource.<br>RDF example: <a href=\"#provqualifiedAttribution\">prov:qualifiedAttribution</a>",
+      "reuse": "A"
+    },
+    "qualified relation": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "Link to a description of a relationship with another resource.",
+      "usage_note": "Used to link to another resource where the nature of the relationship is known but does not match one of the standard [DCTERMS] properties (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or [PROV-O] properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf).<br>RDF example: <a href=\"#dcatqualifiedRelation\">dcat:qualifiedRelation</a>",
+      "reuse": "A"
+    },
+    "quality annotation": {
+      "card": "0..n",
+      "requirement": "Recommended",
+      "definition": "A statement related to quality of the Dataset, including rating, quality certificate, feedback that can be associated to the dataset.",
+      "usage_note": "This property makes use class (dqv:QualityCertificate) from Data Quality Vocabulary, in which you indicate the quality certificate, linked to the described dataset.<br>RDF example: <a href=\"#dqvhasqualityannotation\">dqv:hasQualityAnnotation</a>",
+      "reuse": "P"
+    },
+    "release date": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The date of formal issuance (e.g.: publication) of the Dataset.",
+      "usage_note": "The values must be data typed as either xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth\nExample: 2023-12-10T13:16:10.246Z.<br>RDF example: <a href=\"#dctissued\">dct:issued</a>",
+      "reuse": "A"
+    },
+    "related resource": {
+      "card": "0..n",
+      "requirement": "Optional",
+      "definition": "A related resource.",
+      "usage_note": "This property allows you to indicate a general link between this dataset and another resource\n(e.g., another dataset, document, or service). Use it when there is a connection, but none of\nthe more specific relation properties below apply.\n - This is the most generic way to describe a connection.\n- Use it when you want to indicate a related resource but cannot define the relationship more precisely.\nWhen the relationship is known and semantically clear , use one of the more specific properties instead<br>RDF example: <a href=\"#dctrelation\">dct:relation</a>",
+      "reuse": "A"
+    },
+    "retention period": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "A temporal period which the dataset is available for secondary use",
+      "usage_note": "This property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab).\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively. The interval can also be open - i.e., it can have just a start or just an end<br>RDF example: <a href=\"#healthdcatapretentionperiod\">healthdcatap:retentionPeriod</a>",
+      "reuse": "P"
+    },
+    "sample": {
+      "card": "0..*",
+      "requirement": "Recommended",
+      "definition": "A sample distribution of the dataset.",
+      "usage_note": "This property makes use of the dcat:Distribution class to describe a sample distribution of the dataset, which can be anonymized or synthetic data.<br>RDF example: <a href=\"#admssample\">adms:sample</a>",
+      "reuse": "E"
+    },
+    "source": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A related Dataset from which the described Dataset is derived.",
+      "usage_note": "Indicate the dataset on which this described dataset is based.<br>RDF example: <a href=\"#dctsource\">dct:source</a>",
+      "reuse": "E"
+    },
+    "temporal coverage": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A temporal period that the Dataset covers.",
+      "usage_note": "The start and end date of the period that the dataset covers. This property makes use of a Period of Time class\nThis property makes use of the class dct:PeriodOfTime (more details on PeriodOfTime class tab )\nThe start and end of the interval SHOULD be given by using properties dcat:startDate or time:hasBeginning, and dcat:endDate or time:hasEnd, respectively.<br>RDF example: <a href=\"#dcttemporal\">dct:temporal</a>",
+      "reuse": "E"
+    },
+    "temporal resolution": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "An interval of time that is named or defined by its start and end dates).",
+      "usage_note": "If the dataset is a time-series, this should correspond to the spacing of items in the series. For other kinds of dataset, this property will usually indicate the smallest time difference between items in the dataset. The time period has to be provided in the xsd:duration format.<br>RDF example: <a href=\"#dcattemporalResolution\">dcat:temporalResolution</a>",
+      "reuse": "A"
+    },
+    "theme": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A category of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple themes. <br> The EU data-theme controlled vocabulary (http://publications.europa.eu/resource/authority/data-theme) MUST be used.<br>RDF example: <a href=\"#dcattheme\">dcat:theme</a>",
+      "reuse": "E"
+    },
+    "title": {
+      "card": "1..*",
+      "requirement": "Mandatory",
+      "definition": "A name given to the Dataset.",
+      "usage_note": "Provide a title(s) for your Dataset, which can be repeated in multiple languages. Example: Healthy Brain Study - Physiological Data<br>RDF example: <a href=\"#dcttitle\">dct:title</a>",
+      "reuse": "A"
+    },
+    "type": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A type of the Dataset.",
+      "usage_note": "A Dataset may be associated with multiple types. <br> The EU Dataset-type controlled vocabulary (http://publications.europa.eu/resource/authority/dataset-type) SHOULD be used.<br>RDF example: <a href=\"#dcttype\">dct:type</a>",
+      "reuse": "A"
+    },
+    "version": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The version indicator (name or identifier) of a resource.",
+      "usage_note": "HealthDCAT-AP specification does not impose any additional requirements to dcat:version. <br> DCAT does not prescribe how a version name / identifier should be specified, for more info : https://www.w3.org/TR/vocab-dcat-3/#Property:resource_version.<br>RDF example: <a href=\"#dcatversion\">dcat:version</a>",
+      "reuse": "A"
+    },
+    "version notes": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A description of changes between this version and the previous version of the Asset.",
+      "usage_note": "A description of the differences between this version and a previous version of the Dataset.\nThis property can be repeated for parallel language versions of the version notes.<br>RDF example: <a href=\"#admsversionNotes\">adms:versionNotes</a>",
+      "reuse": "A"
+    },
+    "was generated by": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "An activity that generated, or provides the business context for, the creation of the dataset.",
+      "usage_note": "The activity associated with generation of a dataset. <br> The Health activity controlled vocabulary (https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity) MUST be used.<br>RDF example: <a href=\"#provwasGeneratedBy\">prov:wasGeneratedBy</a>",
+      "reuse": "A"
+    },
+    "health data access body": {
+      "card": "1..1",
+      "requirement": "Mandatory",
+      "definition": "Health Data Access Body supporting access to data in the Member State.",
+      "usage_note": "Member state-designated authority that facilitates the secondary use\nof electronic health data. HDABs assess the information provided by\nthe health data applicant and decide on health data requests and\naccess applications, authorise and issue data permits, obtain data\nfrom data holders and make data available in Secure Processing\nEnvironments. HDABs systematically track the data request and\ndata access applications received and the data permits issued. As\nper Article 58 of the EHDS, HDABs are required to publicly list\ninformation on the data permits issued. (Article 55; Recital 52 of\nEHDS Regulation).<br>RDF example: <a href=\"#healthdcataphdab\">healthdcatap:hdab</a>",
+      "reuse": "P"
+    },
+    "health data access body coordinator": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The Health Data Access Body acting as coordinator for the relevant data access process.",
+      "usage_note": "This property should be used where a coordinating HDAB has been designated. It should identify the organisation acting in this coordinating role. Where no coordinator has been designated or where the role is not applicable, the property may be omitted.<br>RDF example: <a href=\"#healthdcataphdabCoordinator\">healthdcatap:hdabCoordinator</a>",
+      "reuse": "P"
+    },
+    "landing page": {
+      "card": "0..*",
+      "requirement": "Optional",
+      "definition": "A web page that provides access to the Dataset, its Distributions and/or additional information.",
+      "usage_note": "It is intended to point to a landing page at the original data provider, not to a page on a site of a third party, such as an aggregator.<br>RDF example: <a href=\"#dcatlandingPage\">dcat:landingPage</a>",
+      "reuse": "A"
+    },
+    "spatial resolution": {
+      "card": "0..1",
+      "requirement": "Optional",
+      "definition": "The minimum spatial separation resolvable in a dataset, measured in meters.",
+      "usage_note": "If the dataset is an image or grid this should correspond to the spacing of items. For other kinds of spatial datasets, this property will usually indicate the smallest distance between items in the dataset.<br>RDF example: <a href=\"#dcatspatialResolutionInMeters\">dcat:spatialResolutionInMeters</a>",
+      "reuse": "A"
+    },
+    "minimum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Minimum typical age of the population within the dataset.",
+      "usage_note": "The approximate minimum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapminTypicalAge\">healthdcatap:minTypicalAge</a>",
+      "reuse": "P"
+    },
+    "maximum typical age": {
+      "card": "0..1",
+      "requirement": "Recommended",
+      "definition": "Maximum typical age of the population within the dataset.",
+      "usage_note": "The approximate maximum age of subjects in the dataset, if applicable. Approximate age is given to protect potentially sensitive information of subjects in the dataset.<br>RDF example: <a href=\"#healthdcatapmaxTypicalAge\">healthdcatap:maxTypicalAge</a>",
+      "reuse": "P"
+    }
+  }
+}

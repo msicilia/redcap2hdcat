@@ -1,0 +1,337 @@
+"""Task 4: per-source contribution to the dcat:Dataset record.
+
+Rows are the 27 minimum metadata elements of Commission Implementing Regulation (EU) 2026/2098,
+Annex Part B, mapped to HealthDCAT-AP Release 8 properties (results/ir2026_2098/element_property_map.csv,
+built by name-matching against the Release 8 Dataset table; the regulation itself names no properties).
+Everything else the tool emits on the dataset node is listed separately as "extra".
+
+Stages (cumulative), all built with the tool's CLI:
+  a  REDCap export only        config/redcap_only.yaml   (base_uri only; nothing else)
+  b  + institutional config    config/institution.yaml
+  c  + DMP                     config/institution.yaml --dmp tests/fixtures/dmp.json
+     (the DMP is the tool's SYNTHETIC test fixture, not the study's real DMP)
+
+Outputs
+  results/ir2026_2098_elements.csv        the 27 Annex elements + source URL
+  results/rectal/stage_{a,b,c}.ttl         rectal records (internal project: local only)
+  results/contribution.csv                 rectal project, one row per element / extra predicate
+  results/contribution_corpus.csv          Corpus A, stages a and b, counts per element
+  results/rectal/identifier_flags.txt      identifier flags in the rectal REDCap exports
+"""
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+from rdflib import BNode, Graph, Literal, URIRef
+from rdflib.namespace import RDF
+
+from evallib import (CONFIG, DMP_FIXTURE, EVAL, RECTAL_CSV, RECTAL_XML, RESULTS, load_sources,
+                     run_cli, write_csv)
+from redcap2hdcat.adapters import load_project
+
+DCAT_DATASET = URIRef("http://www.w3.org/ns/dcat#Dataset")
+CSVW_COLUMN = URIRef("http://www.w3.org/ns/csvw#Column")
+CSVW_NAME = URIRef("http://www.w3.org/ns/csvw#name")
+DPV_PD = URIRef("https://w3id.org/dpv#hasPersonalData")
+ELI = "https://eur-lex.europa.eu/eli/reg_impl/2026/2098/oj"
+OJ_HTML = "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202602098"
+MAP = RESULTS / "ir2026_2098" / "element_property_map.csv"
+OBLIG = EVAL / "shapes" / "release-8" / "dataset_obligations.csv"
+
+PREFIX = {
+    "http://www.w3.org/ns/dcat#": "dcat:", "http://purl.org/dc/terms/": "dct:",
+    "http://data.europa.eu/r5r/": "dcatap:", "https://w3id.org/dpv#": "dpv:",
+    "http://healthdataportal.eu/ns/health#": "healthdcatap:", "http://www.w3.org/ns/adms#": "adms:",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#": "rdf:", "http://www.w3.org/ns/prov#": "prov:",
+    "http://data.europa.eu/930/": "geodcatap:",
+}
+
+
+def curie(u) -> str:
+    s = str(u)
+    for ns, p in PREFIX.items():
+        if s.startswith(ns):
+            return p + s[len(ns):]
+    return s
+
+
+# Where the tool puts an element under a different property than the Release 8 one.
+ALT_PROPERTY = {"Variables": "dct:conformsTo"}
+
+# Conformance caveats on what the tool emits (verified against the pinned shapes; see shacl_summary.csv).
+NOTES = {
+    "Conforms to": "present only because the tool points dct:conformsTo at its own csvw:TableGroup "
+                   "(the variable dictionary), not at a dct:Standard from the HealthData@EU standard CV; "
+                   "the same triple is what is counted under Variables",
+    "Variables": "content derived from REDCap but emitted as dct:conformsTo -> csvw:TableGroup, "
+                 "not as healthdcatap:hasVariables (Release 8 property)",
+    "Has personal data": "emitted as the literal true; Release 8 expects dpv-pd concept IRIs",
+    "Language": "emitted as a plain literal; Release 8 expects an EU language NAL IRI",
+    "Title": "Project XML: <StudyName>; CSV dictionary: tool falls back to the input file name",
+    "Description": "falls back to a copy of the title unless a DMP (or config default_description) supplies one",
+    "Identifier": "literal of the dataset URI = base_uri + '/dataset/' + input file name "
+                  "(file exports carry no project_id), so it changes if the file is renamed",
+    "Keyword": "REDCap instrument (form) names, plus DMP keywords at stage c",
+    "Access rights": "Config default NON_PUBLIC; cannot be left unset",
+}
+
+# For elements no stage supplies: where the value would have to come from. Judgement, stated
+# per element; "REDCap API" = REST endpoints the tool does not call yet (README: "The API
+# adapter is not built yet; record counts and temporal coverage depend on it").
+IF_NOT_SUPPLIED = {
+    "Code values": "human / terminology mapping (REDCap has no native slot; @CODE annotations could carry them)",
+    "Custodian": "institutional configuration (the tool has no configuration key for it)",
+    "Distribution": "human / institutional configuration (access URL, format); not in REDCap metadata",
+    "Geographical coverage": "human (or DMP); not in REDCap metadata",
+    "Health theme": "human / configuration (the tool has no configuration key for it)",
+    "Is structured": "constant true for any REDCap project (tool could emit it; it does not)",
+    "Number of records": "REDCap API (content=record, aggregate count)",
+    "Number of unique individuals": "REDCap API (distinct record ids)",
+    "Provenance": "human or DMP (the fixture has no provenance statement field the tool reads)",
+    "Temporal coverage": "REDCap API (min/max of date fields over records)",
+    "Type": "human / configuration (EU dataset-type NAL)",
+    "Was generated by": "human or DMP (study activity); REDCap API 'purpose' gives a partial hint",
+    "Coding system": "REDCap field annotations (@CODE=...) if the project uses them; otherwise human",
+    "Health data access body": "institutional configuration once the HDAB is designated",
+    "Has personal data": "REDCap identifier flags (if set) or DMP personal_data",
+    "Language": "institutional configuration, DMP, or REDCap API project_language",
+}
+
+
+def dataset_values(path: Path) -> dict[str, set[str]]:
+    g = Graph().parse(path)
+    ds = next(g.subjects(RDF.type, DCAT_DATASET))
+    out: dict[str, set[str]] = {}
+    for p, o in g.predicate_objects(ds):
+        out.setdefault(curie(p), set()).add(render(g, o))
+    return out
+
+
+def render(g: Graph, o) -> str:
+    if isinstance(o, BNode):
+        inner = sorted(f"{curie(p)}={render(g, x)}" for p, x in g.predicate_objects(o))
+        return "[" + "; ".join(inner) + "]"
+    if isinstance(o, Literal):
+        tag = f"@{o.language}" if o.language else (f"^^{curie(o.datatype)}" if o.datatype else "")
+        return f'"{o}"{tag}'
+    return str(o)
+
+
+def column_pd(path: Path) -> list[str]:
+    g = Graph().parse(path)
+    return sorted(str(g.value(c, CSVW_NAME)) for c in g.subjects(RDF.type, CSVW_COLUMN)
+                  if (c, DPV_PD, None) in g)
+
+
+def untag(values: set[str]) -> set[str]:
+    """Drop a trailing language tag so that config.language alone does not count as a change."""
+    import re
+    return {re.sub(r'"@[A-Za-z-]+$', '"', v) for v in values}
+
+
+def stage_a_attribution(element: str, prop: str, vals: set[str], source_file: str) -> str:
+    """Who supplies a value present at stage a (no config, no DMP)."""
+    if prop in ("dcatap:applicableLegislation", "rdf:type"):
+        return "tool constant"
+    if prop == "dct:accessRights":
+        return "tool default (Config.access_rights=NON_PUBLIC)"
+    if prop == "dct:identifier":
+        return "tool-constructed (base_uri + project_id or input file name)"
+    if prop == "dct:title":
+        return ("tool fallback (input file name)" if any(source_file in v for v in vals)
+                else "REDCap export")
+    if prop == "dct:description":
+        return "tool fallback (copy of title)"
+    return "REDCap export"
+
+
+def element_rows() -> list[dict]:
+    with MAP.open(newline="", encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
+
+
+def obligations() -> dict[str, str]:
+    with OBLIG.open(newline="", encoding="utf-8") as fh:
+        return {r["property_curie"]: r["obligation"] for r in csv.DictReader(fh)}
+
+
+def nonpublic(oblig: str) -> str:
+    return next((x.split("=", 1)[1] for x in oblig.split(";") if x.startswith("NON-PUBLIC=")), oblig)
+
+
+def write_elements() -> None:
+    write_csv(RESULTS / "ir2026_2098_elements.csv", [
+        {"n": r["n"], "element": r["element"], "condition_in_annex": r["condition"],
+         "healthdcatap_r8_property": r["property_curie"],
+         "source": f"Commission Implementing Regulation (EU) 2026/2098, Annex Part B; {ELI} ; {OJ_HTML}",
+         "numbering_note": "Part B is an unnumbered table; n follows its order"}
+        for r in element_rows()])
+
+
+def contribution_table(stages: dict[str, Path], source_file: str) -> list[dict]:
+    vals = {s: dataset_values(p) for s, p in stages.items()}
+    order = list(stages)
+    obl = obligations()
+    rows, mapped = [], set()
+    labels = {"a": "REDCap export", "b": "institutional configuration", "c": "DMP"}
+
+    def describe(prop: str) -> dict:
+        present = [s for s in order if prop in vals[s]]
+        if not present:
+            return {"first_stage": "", "supplied_by": "not supplied", "changed_later": ""}
+        first = present[0]
+        by = (stage_a_attribution("", prop, vals["a"][prop], source_file) if first == "a"
+              else labels[first])
+        notes = []
+        for i, s in enumerate(order[1:], 1):
+            prev = order[i - 1]
+            if prop not in vals[s] or prop not in vals[prev] or vals[s][prop] == vals[prev][prop]:
+                continue
+            if untag(vals[s][prop]) == untag(vals[prev][prop]):
+                notes.append(f"language tag only at {s} ({labels[s]}: config language)")
+            else:
+                notes.append(f"value changed at {s} ({labels[s]})")
+        return {"first_stage": first, "supplied_by": by, "changed_later": ";".join(notes) or "no"}
+
+    for el in element_rows():
+        prop = el["property_curie"]
+        emitted = ALT_PROPERTY.get(el["element"], prop)
+        mapped.add(emitted)
+        d = describe(emitted)
+        row = {"section": "IR 2026/2098 element", "n": el["n"], "element": el["element"],
+               "annex_condition": el["condition"], "r8_property": prop,
+               "emitted_as": emitted if d["first_stage"] else "",
+               "r8_obligation_non_public": nonpublic(el["obligation_in_release"]),
+               "obligation_source": el["mapping_source_url"], **d}
+        for s in order:
+            row[f"value_{s}"] = " | ".join(sorted(vals[s].get(emitted, set())))[:300]
+        row["if_not_supplied"] = "" if d["first_stage"] else IF_NOT_SUPPLIED.get(el["element"], "human")
+        row["note"] = NOTES.get(el["element"], "") if d["first_stage"] else ""
+        rows.append(row)
+    extras = sorted({p for s in order for p in vals[s]} - mapped)
+    for prop in extras:
+        d = describe(prop)
+        row = {"section": "extra (outside the 27)", "n": "", "element": "", "annex_condition": "",
+               "r8_property": prop, "emitted_as": prop,
+               "r8_obligation_non_public": nonpublic(obl.get(prop, "not a Dataset property in R8"))
+               if prop != "rdf:type" else "n/a",
+               "obligation_source": str(OBLIG.relative_to(EVAL)), **d}
+        for s in order:
+            row[f"value_{s}"] = " | ".join(sorted(vals[s].get(prop, set())))[:300]
+        row["if_not_supplied"] = ""
+        rows.append(row)
+    # Column-level personal-data flags.
+    pd = {s: column_pd(p) for s, p in stages.items()}
+    row = {"section": "column level", "element": "csvw:Column dpv:hasPersonalData",
+           "r8_property": "dpv:hasPersonalData (on csvw:Column; not a HealthDCAT-AP use)",
+           "emitted_as": "dpv:hasPersonalData", "first_stage": next((s for s in order if pd[s]), ""),
+           "supplied_by": "tool rule (record-id column always flagged) + REDCap Identifier? flags"
+           if pd["a"] else "",
+           "changed_later": "no" if len({tuple(v) for v in pd.values()}) == 1 else "yes"}
+    for s in order:
+        row[f"value_{s}"] = f"{len(pd[s])} column(s): " + ",".join(pd[s])[:250]
+    rows.append(row)
+    return rows
+
+
+def build(source: Path, cfg: Path, out: Path, dmp: Path | None = None) -> None:
+    out.parent.mkdir(parents=True, exist_ok=True)
+    args = ["build", source, "-c", cfg, "-o", out] + (["--dmp", dmp] if dmp else [])
+    proc = run_cli(*args)
+    (out.with_suffix(".log.txt")).write_text(f"exit={proc.returncode}\n{proc.stderr}",
+                                             encoding="utf-8")
+    if not out.exists():
+        raise SystemExit(f"build failed for {source}: {proc.stderr}")
+
+
+def identifier_flags() -> str:
+    xml = load_project(RECTAL_XML)
+    lines = [f"Project XML {RECTAL_XML.name}: {len(xml.variables)} variables, "
+             f"{sum(v.identifier for v in xml.variables)} with redcap:Identifier=y"]
+    with RECTAL_CSV.open(newline="", encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh))
+    col = next(h for h in rows[0] if h.strip().lower().startswith("identifier"))
+    flagged = [r for r in rows if (r[col] or "").strip().lower() in {"y", "yes"}]
+    lines.append(f"CSV dictionary {RECTAL_CSV.name}: {len(rows)} rows, {len(flagged)} with "
+                 f"'{col}' = y")
+    from evallib import source_structure
+    arms = {e.arm for e in xml.events} - {""}
+    lines.append(f"Tool view of Project XML: forms={len(xml.forms)} variables={len(xml.variables)} "
+                 f"events={len(xml.events)} arms={len(arms)} repeating={len(xml.repeating_forms)}")
+    lines.append(f"Independent count, Project XML: {source_structure(RECTAL_XML)}")
+    lines.append(f"Independent count, CSV dictionary: {source_structure(RECTAL_CSV)}")
+    return "\n".join(lines) + "\n"
+
+
+def main() -> None:
+    write_elements()
+
+    # Rectal project (internal; outputs stay in results/rectal/, git-ignored).
+    rectal = RESULTS / "rectal"
+    stages = {"a": rectal / "stage_a.ttl", "b": rectal / "stage_b.ttl", "c": rectal / "stage_c.ttl"}
+    build(RECTAL_XML, CONFIG / "redcap_only.yaml", stages["a"])
+    build(RECTAL_XML, CONFIG / "institution.yaml", stages["b"])
+    build(RECTAL_XML, CONFIG / "institution.yaml", stages["c"], dmp=DMP_FIXTURE)
+    (rectal / "identifier_flags.txt").write_text(identifier_flags(), encoding="utf-8")
+    rows = contribution_table(stages, RECTAL_XML.name)
+    fields = ["section", "n", "element", "annex_condition", "r8_property", "emitted_as",
+              "r8_obligation_non_public", "first_stage", "supplied_by", "changed_later",
+              "if_not_supplied", "note", "value_a", "value_b", "value_c", "obligation_source"]
+    write_csv(RESULTS / "contribution.csv", rows, fields)
+
+    # Corpus A: stages a and b (no DMPs exist). Records come from run_corpus.py.
+    per_el: dict[str, dict] = {}
+    srcs = load_sources()
+    for src in srcs:
+        sid = src["source_id"]
+        st = {"a": RESULTS / "records_redcap_only" / f"{sid}.ttl",
+              "b": RESULTS / "records" / f"{sid}.ttl"}
+        for r in contribution_table_ab(st, Path(src["path"]).name):
+            if r["section"] == "column level":
+                continue
+            key = (r["section"], r.get("n", ""), r["element"], r["r8_property"])
+            c = per_el.setdefault(key, {"section": r["section"], "n": r.get("n", ""),
+                                        "element": r["element"], "r8_property": r["r8_property"],
+                                        "emitted_as": set(), "r8_obligation_non_public":
+                                        r["r8_obligation_non_public"],
+                                        "present_a": 0, "redcap_export_a": 0,
+                                        "tool_a": 0, "present_b": 0, "config_b": 0,
+                                        "sources_redcap_export_a": [],
+                                        "note": NOTES.get(r["element"], "")})
+            if r["emitted_as"]:
+                c["emitted_as"].add(r["emitted_as"])
+            if r["first_stage"] == "a":
+                c["present_a"] += 1
+                if r["supplied_by"] == "REDCap export":
+                    c["redcap_export_a"] += 1
+                    c["sources_redcap_export_a"].append(sid)
+                else:
+                    c["tool_a"] += 1
+            if r["first_stage"] in ("a", "b"):
+                c["present_b"] += 1
+            if r["first_stage"] == "b":
+                c["config_b"] += 1
+    out = []
+    for c in per_el.values():
+        if c["section"] == "column level":
+            continue
+        c["emitted_as"] = ";".join(sorted(c["emitted_as"]))
+        c["sources_redcap_export_a"] = ";".join(c["sources_redcap_export_a"])
+        c["n_sources"] = len(srcs)
+        out.append(c)
+    out.sort(key=lambda c: (c["section"] != "IR 2026/2098 element", int(c["n"] or 0),
+                            c["r8_property"]))
+    write_csv(RESULTS / "contribution_corpus.csv", out,
+              ["section", "n", "element", "r8_property", "emitted_as", "r8_obligation_non_public",
+               "n_sources", "present_a", "redcap_export_a", "tool_a", "config_b", "present_b",
+               "sources_redcap_export_a", "note"])
+
+
+def contribution_table_ab(stages: dict[str, Path], source_file: str) -> list[dict]:
+    return contribution_table(stages, source_file)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,1 @@
+{"domain":"ehds","validationTypes":[{"type":"public","description":"HealthDCAT-AP PUBLIC Data"},{"type":"non-public","description":"HealthDCAT-AP NON_PUBLIC Data"},{"type":"restricted","description":"HealthDCAT-AP RESTRICTED Data"}]}

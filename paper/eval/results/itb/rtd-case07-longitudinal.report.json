@@ -1,0 +1,194 @@
+{
+  "date" : "2026-11-09T11:12:46.992+0000",
+  "result" : "FAILURE",
+  "overview" : {
+    "profileID" : "non-public"
+  },
+  "counters" : {
+    "nrOfAssertions" : 0,
+    "nrOfErrors" : 30,
+    "nrOfWarnings" : 25
+  },
+  "context" : { },
+  "reports" : {
+    "error" : [ {
+      "description" : "Each csvw:Table must have at least one column (csvw:column) defined as a blank node or IRI.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-0] - [Result path] - [http://www.w3.org/ns/csvw#column]"
+    }, {
+      "description" : "Each csvw:Column must have at least one title (csvw:title) as a literal.",
+      "location" : "[Result path] - [http://www.w3.org/ns/csvw#title]"
+    }, {
+      "description" : "Value must be an instance of dct:LinguisticSystem",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/language]",
+      "test" : "[Value] - [en]"
+    }, {
+      "description" : "Each csvw:Column must have at least one title (csvw:title) as a literal.",
+      "location" : "[Result path] - [http://www.w3.org/ns/csvw#title]"
+    }, {
+      "description" : "Each csvw:Table must have at least one column (csvw:column) defined as a blank node or IRI.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary/table-1] - [Result path] - [http://www.w3.org/ns/csvw#column]"
+    }, {
+      "description" : "A non-EU managed concept is used to indicate the language. Please align with a concept from http://publications.europa.eu/resource/authority/language. If no match is found, inform the maintainer of the EU language NAL.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/language]",
+      "test" : "[Value] - [en]"
+    }, {
+      "description" : "Each dcat:Dataset must have at least one dct:type.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/type]"
+    }, {
+      "description" : "Each csvw:Column must have at least one description (dct:description) as a literal.",
+      "location" : "[Result path] - [http://purl.org/dc/terms/description]"
+    }, {
+      "description" : "Each csvw:Column must have at least one title (csvw:title) as a literal.",
+      "location" : "[Result path] - [http://www.w3.org/ns/csvw#title]"
+    }, {
+      "description" : "Value must be an instance of dct:RightsStatement",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/accessRights]",
+      "test" : "[Value] - [http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC]"
+    }, {
+      "description" : "Each dcat:Dataset must have exactly one healthdcatap:hdab",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#hdab]"
+    }, {
+      "description" : "dct:publisher must conform to the :HealthPublisherAgent_Shape, which requires exactly one cv:contactPoint, at most one dct:description",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/publisher]"
+    }, {
+      "description" : "A non-DPV managed concept is used to indicate personal data. Please align with a concept from the DPV Personal Data vocabulary https://w3id.org/dpv/dpv-pd# (e.g. https://w3id.org/dpv/dpv-pd#Age).",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [https://w3id.org/dpv#hasPersonalData]",
+      "test" : "[Value] - [true]"
+    }, {
+      "description" : "Each csvw:Column must have at least one description (dct:description) as a literal.",
+      "location" : "[Result path] - [http://purl.org/dc/terms/description]"
+    }, {
+      "description" : "Each csvw:Column must have at least one description (dct:description) as a literal.",
+      "location" : "[Result path] - [http://purl.org/dc/terms/description]"
+    }, {
+      "description" : "A non-DPV managed concept is used to indicate personal data. Please align with a concept from the DPV Personal Data vocabulary https://w3id.org/dpv/dpv-pd# (e.g. https://w3id.org/dpv/dpv-pd#Age).",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [https://w3id.org/dpv#hasPersonalData]",
+      "test" : "[Value] - [true]"
+    }, {
+      "description" : "Each dcat:Dataset must have at least one dct:provenance.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/provenance]"
+    }, {
+      "description" : "Value must be an instance of dpv:PersonalData",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [https://w3id.org/dpv#hasPersonalData]",
+      "test" : "[Value] - [true]"
+    }, {
+      "description" : "Each dcat:Dataset must have at least one dcat:distribution.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://www.w3.org/ns/dcat#distribution]"
+    }, {
+      "description" : "A non-EU managed concept is used to indicate the standard (dct:conformsTo). Please align with a concept from https://hdeu-dcat.data.health.europa.eu/resource/authority/standard. If no match is found, inform the vocabulary maintainer.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/conformsTo]",
+      "test" : "[Value] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary]"
+    }, {
+      "description" : "Each csvw:TableGroup must have at least one title (dct:title) as a literal.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary] - [Result path] - [http://purl.org/dc/terms/title]"
+    }, {
+      "description" : "Value must be an instance of dct:Standard",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/conformsTo]",
+      "test" : "[Value] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv/dictionary]"
+    }, {
+      "description" : "Value must be an instance of eli:LegalResource",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://data.europa.eu/r5r/applicableLegislation]",
+      "test" : "[Value] - [http://data.europa.eu/eli/reg/2025/327/oj]"
+    }, {
+      "description" : "Each dcat:Dataset must have exactly one healthdcatap:hasStructuredData as an xsd:boolean.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#hasStructuredData]"
+    }, {
+      "description" : "Each csvw:Column must have at least one description (dct:description) as a literal.",
+      "location" : "[Result path] - [http://purl.org/dc/terms/description]"
+    }, {
+      "description" : "Each csvw:Column must have at least one description (dct:description) as a literal.",
+      "location" : "[Result path] - [http://purl.org/dc/terms/description]"
+    }, {
+      "description" : "A non-EU managed concept is used to indicate the language. Please align with a concept from http://publications.europa.eu/resource/authority/language. If no match is found, inform the maintainer of the EU language NAL.",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/language]",
+      "test" : "[Value] - [en]"
+    }, {
+      "description" : "Each csvw:Column must have at least one title (csvw:title) as a literal.",
+      "location" : "[Result path] - [http://www.w3.org/ns/csvw#title]"
+    }, {
+      "description" : "Value does not have node kind BlankNodeOrIRI",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/language]",
+      "test" : "[Value] - [en]"
+    }, {
+      "description" : "Each csvw:Column must have at least one title (csvw:title) as a literal.",
+      "location" : "[Result path] - [http://www.w3.org/ns/csvw#title]"
+    } ],
+    "warning" : [ {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://xmlns.com/foaf/0.1/page]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#numberOfUniqueIndividuals]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#numberOfRecords]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/isReferencedBy]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://www.w3.org/ns/dqv#hasQualityAnnotation]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [https://w3id.org/dpv#hasPurpose]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#hasCodeValues]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://www.w3.org/ns/adms#sample]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://data.europa.eu/930/custodian]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#hasCodingSystem]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#healthTheme]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Result path] - [http://purl.org/dc/terms/type]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#analytics]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/accrualPeriodicity]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/relation]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#maxTypicalAge]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#populationCoverage]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://www.w3.org/ns/dcat#landingPage]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Result path] - [http://purl.org/dc/terms/type]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#minTypicalAge]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://healthdataportal.eu/ns/health#retentionPeriod]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [https://w3id.org/dpv#hasLegalBasis]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/temporal]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://purl.org/dc/terms/source]"
+    }, {
+      "description" : "Property needs to have at least 1 value",
+      "location" : "[Focus node] - [https://catalogue.fictional-institute.invalid/dataset/test-case-07-data-dictionary.csv] - [Result path] - [http://www.w3.org/ns/dcat#temporalResolution]"
+    } ]
+  },
+  "name" : "SHACL Validation"
+}

@@ -1,0 +1,21 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Target the entire data graph by targeting any subject in it
+<#DatasetPresenceGuard>
+    a sh:NodeShape ;
+    sh:targetNode <urn:x-shacl:guard> ;   # sentinel — never present in real data, so:
+    # Use SPARQL to check the whole graph
+    sh:sparql [
+        sh:message "The submitted RDF graph must contain at least one dcat:Dataset instance. A shapes file, ontology, or other non-dataset document was submitted." ;
+        sh:severity sh:Violation ;
+        sh:select """
+            PREFIX dcat: <http://www.w3.org/ns/dcat#>
+            PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            SELECT $this WHERE {
+                FILTER NOT EXISTS { ?s rdf:type dcat:Dataset }
+            }
+        """ ;
+    ] .

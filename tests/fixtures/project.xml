@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3"
+     xmlns:redcap="https://projectredcap.org"
+     FileType="Snapshot"
+     CreationDateTime="2026-07-20T10:00:00"
+     SourceSystem="REDCap"
+     SourceSystemVersion="14.5.11">
+  <Study OID="Project.SampleCohort">
+    <GlobalVariables>
+      <StudyName>SampleCohort</StudyName>
+      <StudyDescription>This file contains the metadata for the project.</StudyDescription>
+      <ProtocolName>SampleCohort</ProtocolName>
+    </GlobalVariables>
+    <MetaDataVersion OID="Metadata.1" Name="SampleCohort">
+      <StudyEventDef OID="Event.baseline" Name="Baseline" Repeating="No" Type="Common"
+                     redcap:UniqueEventName="baseline_arm_1" redcap:ArmName="Arm 1"/>
+      <StudyEventDef OID="Event.month12" Name="Month 12" Repeating="No" Type="Common"
+                     redcap:UniqueEventName="month12_arm_1" redcap:ArmName="Arm 1"/>
+      <ItemGroupDef OID="Group.demographics" Name="Demographics" Repeating="No"
+                    redcap:FormName="demographics">
+        <ItemRef ItemOID="Item.record_id" Mandatory="Yes"/>
+        <ItemRef ItemOID="Item.nhc" Mandatory="No"/>
+        <ItemRef ItemOID="Item.sexo" Mandatory="Yes"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="Group.clinical" Name="Clinical" Repeating="No"
+                    redcap:FormName="clinical">
+        <ItemRef ItemOID="Item.peso" Mandatory="No"/>
+        <ItemRef ItemOID="Item.comorbilidades" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemDef OID="Item.record_id" Name="record_id" DataType="text"
+               redcap:Variable="record_id" redcap:FieldType="text">
+        <Question><TranslatedText>Record ID</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="Item.nhc" Name="nhc" DataType="text" redcap:FieldType="text">
+        <Question><TranslatedText>Numero de historia clinica</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="Item.sexo" Name="sexo" DataType="text" redcap:FieldType="radio">
+        <Question><TranslatedText>Sexo</TranslatedText></Question>
+        <CodeListRef CodeListOID="CodeList.sexo"/>
+      </ItemDef>
+      <ItemDef OID="Item.peso" Name="peso" DataType="float" redcap:FieldType="text"
+               redcap:TextValidationType="number_1dp" redcap:TextValidationMin="30"
+               redcap:TextValidationMax="250">
+        <Question><TranslatedText>Peso (kg)</TranslatedText></Question>
+      </ItemDef>
+      <ItemDef OID="Item.comorbilidades" Name="comorbilidades" DataType="text"
+               redcap:FieldType="checkbox">
+        <Question><TranslatedText>Comorbilidades</TranslatedText></Question>
+        <CodeListRef CodeListOID="CodeList.comorb"/>
+      </ItemDef>
+      <CodeList OID="CodeList.sexo" Name="sexo" DataType="text">
+        <CodeListItem CodedValue="1"><Decode><TranslatedText>Hombre</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="2"><Decode><TranslatedText>Mujer</TranslatedText></Decode></CodeListItem>
+      </CodeList>
+      <CodeList OID="CodeList.comorb" Name="comorbilidades" DataType="text">
+        <CodeListItem CodedValue="1"><Decode><TranslatedText>Diabetes</TranslatedText></Decode></CodeListItem>
+        <CodeListItem CodedValue="2"><Decode><TranslatedText>HTA</TranslatedText></Decode></CodeListItem>
+      </CodeList>
+    </MetaDataVersion>
+  </Study>
+</ODM>

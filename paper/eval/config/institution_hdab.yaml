@@ -1,0 +1,29 @@
+# Same as institution.yaml plus a placeholder HDAB. Neutral institutional configuration for the evaluation. ALL VALUES ARE FICTIONAL.
+# Controlled-vocabulary IRIs are taken from the HealthDCAT-AP Release 8 vocabularies bundled with the
+# pinned shapes (shapes/release-8/ehds/catalogue/healthcategories.rdf, publisher-type.rdf), not from the
+# tool's init-config template (whose IRIs are not in the Release 8 vocabularies; see report).
+base_uri: https://catalogue.fictional-institute.invalid
+catalogue_title: Dataset catalogue of the Fictional Health Research Institute
+catalogue_description: Fictional catalogue used only to evaluate redcap2hdcat.
+language: en
+access_rights: NON_PUBLIC
+health_categories:
+  - "https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories/EHRS"
+themes:
+  - HEAL
+publisher:
+  name: Fictional Health Research Institute
+  email: catalogue@fictional-institute.invalid
+  homepage: https://www.fictional-institute.invalid
+  type: https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type/research-institute-org
+creator:
+  name: Fictional Research Group
+  email: group@fictional-institute.invalid
+contact:
+  name: Fictional Data Office
+  email: data-office@fictional-institute.invalid
+# Placeholder HDAB, used only to isolate violations caused by the undesignated HDAB.
+hdab:
+  name: Placeholder Health Data Access Body (fictional)
+  email: hdab@fictional-hdab.invalid
+  homepage: https://www.fictional-hdab.invalid

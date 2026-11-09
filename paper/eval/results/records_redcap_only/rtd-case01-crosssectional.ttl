@@ -1,0 +1,220 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv> a dcat:Dataset ;
+    dcatap:applicableLegislation <http://data.europa.eu/eli/reg/2025/327/oj> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC> ;
+    dct:conformsTo <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary> ;
+    dct:description "test-case-01-data-dictionary.csv" ;
+    dct:identifier "https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv" ;
+    dct:title "test-case-01-data-dictionary.csv" ;
+    dcat:keyword "my_first_instrument" .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary> a csvw:TableGroup ;
+    csvw:table <https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary/table-0> .
+
+<https://catalogue.fictional-institute.invalid/dataset/test-case-01-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
+    dct:title "my_first_instrument" ;
+    csvw:tableSchema [ a csvw:Schema ;
+            csvw:column [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "slider" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "slider" ;
+                    csvw:titles "Slider" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "date_dmy" ;
+                    csvw:titles "Date (DMY) [no min, no max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_mdyhm" ;
+                    csvw:titles "Datetime (mdy hm)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "1 = Choice One",
+                        "2 = Choice Two",
+                        "3 = Choice Three" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "dropdown_numeric" ;
+                    csvw:titles "Drop Down (numeric code)" ],
+                [ a csvw:Column ;
+                    dct:description "Min: 01-01-2010" ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "date_mdy" ;
+                    csvw:titles "Date (MDY) [min, no max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_mdyhms" ;
+                    csvw:titles "Datetime (mdy hms)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "email" ;
+                    csvw:titles "Email" ],
+                [ a csvw:Column ;
+                    dct:description "max: 100" ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "decimal" ;
+                    csvw:name "number" ;
+                    csvw:titles "Number [no min, max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "calc" ;
+                    rdfs:comment "[integer] + [number]" ;
+                    csvw:datatype "decimal" ;
+                    csvw:name "calculated" ;
+                    csvw:titles "Calculated Field (integer + number)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "notes" ;
+                    csvw:datatype "string" ;
+                    csvw:name "notes" ;
+                    csvw:titles "Notes Box" ],
+                [ a csvw:Column ;
+                    dct:description "Max: 2019-12-31" ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "date" ;
+                    csvw:name "date_ymd" ;
+                    csvw:titles "Date (YMD) [no min, max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_ymdhms" ;
+                    csvw:titles "Datetime (ymd hms)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_ymdhm" ;
+                    csvw:titles "Datetime (ymdhm)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "a = Choice A",
+                        "b = Choice B",
+                        "c = Choice C" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "dropdown_character" ;
+                    csvw:titles "Drop Down (character code)" ],
+                [ a csvw:Column ;
+                    dct:description "Min 01-01-2010 00:00; Max 31-12-2019 23:59" ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_dmyhm" ;
+                    csvw:titles "Datetime (dmy hm) [min, max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "dateTime" ;
+                    csvw:name "datetime_dmyhms" ;
+                    csvw:titles "Datetime (dmy hms)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "checkbox___2" ;
+                    csvw:titles "Checkboxes (choice=Selection 2)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "truefalse" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "true_false" ;
+                    csvw:titles "True/False" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "yesno" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "yes_no" ;
+                    csvw:titles "Yes/No" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "time" ;
+                    csvw:name "time" ;
+                    csvw:titles "Time (HH:MM)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "zip" ;
+                    csvw:titles "ZIP Code" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "radio" ;
+                    skos:notation "1 = Choice 1",
+                        "2 = Choice 2",
+                        "3 = Choice 3" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "radio_buttons" ;
+                    csvw:titles "Radio Buttons" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "unvalidated_text" ;
+                    csvw:titles "Unvalidated Text" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "checkbox___1" ;
+                    csvw:titles "Checkboxes (choice=Selection 1)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "record_id" ;
+                    csvw:required true ;
+                    csvw:titles "Record ID" ;
+                    dpv:hasPersonalData true ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "dropdown" ;
+                    skos:notation "a_1 = Choice A1",
+                        "b_2 = Choice B2",
+                        "c_3 = Choice C3" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "dropdown_mixed" ;
+                    csvw:titles "Drop Down (mixed)" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "checkbox" ;
+                    csvw:datatype "boolean" ;
+                    csvw:name "checkbox___3" ;
+                    csvw:titles "Checkboxes (choice=Selection 3)" ],
+                [ a csvw:Column ;
+                    dct:description "Min: 0" ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "integer" ;
+                    csvw:name "integer" ;
+                    csvw:titles "Integer [min, no max]" ],
+                [ a csvw:Column ;
+                    dct:isPartOf "my_first_instrument" ;
+                    dct:type "text" ;
+                    csvw:datatype "string" ;
+                    csvw:name "phone" ;
+                    csvw:titles "Phone (North America)" ] ;
+            csvw:primaryKey "record_id" ] .
+

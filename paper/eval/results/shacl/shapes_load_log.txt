@@ -1,0 +1,49 @@
+profile=non-public
+shapes+imports triples=460771
+shaclFile: shapes/graph-guard.ttl
+shaclFile: deprecated/deprecateduris.ttl
+shaclFile: imports/mdr_imports.ttl
+shaclFile: imports/imports.ttl
+shaclFile: ranges/range.ttl
+shaclFile: shapes/non-public-shapes.ttl
+shaclFile: controlled-vocabularies/mdr-vocabularies.shape.ttl
+shaclFile: recommended/non-public-shapes_recommended.ttl
+import http://dublincore.org/2020/01/20/dublin_core_terms.ttl -> catalogue/dublin_core_terms.ttl
+import http://publications.europa.eu/resource/authority/access-right -> catalogue/access-right.rdf
+import http://publications.europa.eu/resource/authority/continent -> catalogue/continents.rdf
+import http://publications.europa.eu/resource/authority/corporate-body -> catalogue/corporatebodies.rdf
+import http://publications.europa.eu/resource/authority/country -> catalogue/countries.rdf
+import http://publications.europa.eu/resource/authority/data-theme -> catalogue/data-theme.rdf
+import http://publications.europa.eu/resource/authority/dataset-type -> catalogue/dataset-types.rdf
+import http://publications.europa.eu/resource/authority/distribution-status -> catalogue/distribution-status.rdf
+import http://publications.europa.eu/resource/authority/file-type -> catalogue/filetypes.rdf
+import http://publications.europa.eu/resource/authority/frequency -> catalogue/frequencies.rdf
+import http://publications.europa.eu/resource/authority/language -> catalogue/languages.rdf
+import http://publications.europa.eu/resource/authority/place -> catalogue/places.rdf
+import http://publications.europa.eu/resource/authority/planned-availability -> catalogue/planned-availability.rdf
+import http://www.w3.org/2006/time.ttl -> catalogue/time.ttl
+import http://www.w3.org/2006/vcard/ns.ttl -> catalogue/ns.ttl
+import http://www.w3.org/ns/adms.ttl -> catalogue/adms.ttl
+import http://www.w3.org/ns/csvw.ttl -> catalogue/csvw.ttl
+import http://www.w3.org/ns/dqv.ttl -> catalogue/dqv.ttl
+import http://www.w3.org/ns/prov-o.ttl -> catalogue/prov-o.ttl
+import http://xmlns.com/foaf/spec/index.rdf -> catalogue/index.rdf
+import https://github.com/SEMICeu/ADMS-AP/raw/master/purl.org/ADMS_SKOS_v1.00.rdf -> catalogue/ADMS_SKOS_v1.00.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/coding-system -> catalogue/coding-system.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/health-activity -> catalogue/health-activity.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/health-theme -> catalogue/health-theme.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/healthcategories -> catalogue/healthcategories.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/publisher-type -> catalogue/publisher-type.rdf
+import https://hdeu-dcat.data.health.europa.eu/resource/authority/standard -> catalogue/standard.rdf
+import https://raw.githubusercontent.com/SEMICeu/uri.semic.eu-puris/main/releases/m8g/m8g.ttl -> catalogue/m8g.ttl
+import https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/range.ttl -> catalogue/range.ttl
+import https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/shapes.ttl -> catalogue/shapes.ttl
+import https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/shapes_recommended.ttl -> catalogue/shapes_recommended.ttl
+import https://spdx.org/rdf/terms/spdx-ontology.owl.xml -> catalogue/spdx-ontology.owl.rdf
+import https://www.w3.org/ns/dcat2.ttl -> catalogue/dcat2.ttl
+import https://www.w3.org/ns/locn.ttl -> catalogue/locn.ttl
+import UNRESOLVED (no mapping): http://purl.org/dc/terms/
+import UNRESOLVED (no mapping): http://www.w3.org/2004/02/skos/core
+import UNRESOLVED (no mapping): http://www.w3.org/ns/prov
+import UNRESOLVED (no mapping): http://www.w3.org/ns/prov-o#
+PATCH: pathless sh:property of dcatap-shapes:Dataset_Shape (message: If healthdcatap:hasStructuredData is true, the dataset must include at least one healthdcatap:hasVariables.) re-attached as node shape targeting ['dcat:Dataset']
