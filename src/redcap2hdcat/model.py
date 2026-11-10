@@ -36,7 +36,8 @@ class FieldType(StrEnum):
     @property
     def is_data_column(self) -> bool:
         """False for presentational fields that never appear as export columns."""
-        return self not in {FieldType.DESCRIPTIVE, FieldType.FILE, FieldType.SIGNATURE}
+        # File upload and signature fields are exported as columns (the document name).
+        return self is not FieldType.DESCRIPTIVE
 
 
 @dataclass(frozen=True)
@@ -121,6 +122,10 @@ class Project:
     variables: list[Variable] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
     repeating_forms: list[str] = field(default_factory=list)
+    # Events whose every instrument repeats as a whole (a repeated visit).
+    repeating_events: list[str] = field(default_factory=list)
+    # Instruments enabled as surveys, answered by participants.
+    survey_forms: list[str] = field(default_factory=list)
     provenance: dict[str, str] = field(default_factory=dict)
 
     @property

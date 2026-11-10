@@ -121,7 +121,8 @@ REDCap dictionary maps almost 1:1.
 | `checkbox` | — | **explodes into N boolean columns** — see below |
 | `calc` | — | `decimal` |
 | `slider` | — | `integer` |
-| `descriptive`, `file`, `signature` | — | not data columns → omit |
+| `file` (incl. signature validation) | — | `string` (the export holds the document name) |
+| `descriptive` | — | not a data column → omit |
 
 ### Known pitfalls
 
@@ -132,9 +133,19 @@ REDCap dictionary maps almost 1:1.
    (`redcap:Variable` names the field); the reader folds them back into one field first.
 2. **Longitudinal / repeating.** `redcap_event_name`, `redcap_repeat_instrument` and
    `redcap_repeat_instance` appear in the export but **do not exist in the dictionary**.
-   Add them from `content=event` / `content=repeatingFormsEvents`.
-3. **`record_id`** (first field) is the identifier; its name is configurable.
-4. **The sample distribution must be synthetic and anonymised.** Real data cannot be
+   Add them from `content=event` / `content=repeatingFormsEvents`. In a Project XML
+   export they are declared under `GlobalVariables`, as `redcap:RepeatingEvent
+   redcap:UniqueEventName` and `redcap:RepeatingInstrument redcap:RepeatInstrument`. The
+   two repeat columns appear when anything repeats; the instrument is empty for a
+   repeated event.
+3. **Columns added on export.** Each instrument gets `<form>_complete` (0 Incomplete,
+   1 Unverified, 2 Complete). An instrument enabled as a survey
+   (`redcap:Surveys survey_enabled="1"`) adds `<form>_timestamp`, and the project adds
+   `redcap_survey_identifier`. A metadata-only Project XML lists the status columns and
+   `redcap_data_access_group` as items but not the survey columns; a data dictionary
+   lists none of them. The reader adds whichever are absent.
+4. **`record_id`** (first field) is the identifier; its name is configurable.
+5. **The sample distribution must be synthetic and anonymised.** Real data cannot be
    published. See §6.
 
 ---

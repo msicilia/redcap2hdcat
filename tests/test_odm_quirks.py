@@ -148,4 +148,5 @@ class TestPreSplitCheckboxes:
 
     def test_columns_are_not_split_twice(self, project):
         from redcap2hdcat.core.columns import expand
-        assert [c.name for c in expand(project)] == ["record_id", "dx___a", "dx___b"]
+        assert [c.name for c in expand(project)] == [
+            "record_id", "dx___a", "dx___b", "f_complete"]

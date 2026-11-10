@@ -152,4 +152,5 @@ def datatype_for(field_type: str, validation: str = "", coded: bool = False) -> 
         return "decimal"
     if ft == "slider":
         return "integer"
+    # file and signature: the export holds the name of the stored document.
     return "string"

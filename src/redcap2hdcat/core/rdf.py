@@ -119,11 +119,17 @@ def provenance_statement(project: Project, config: Config) -> str:
     meta = project.metadata
     system = " ".join(x for x in (meta.source_system or "REDCap", meta.source_system_version) if x)
     forms = len(project.forms)
-    text = (f"Data captured through electronic case report forms in {system} "
-            f"({forms} instrument{'s' if forms != 1 else ''}")
+    # REDCap instruments are filled in by study staff, or by participants when enabled
+    # as surveys; data may also be imported (e.g. from the EHR), which the export does
+    # not record. The statement therefore names only what the export shows.
+    text = f"Data collected in {system} on {forms} instrument{'s' if forms != 1 else ''}"
+    surveys = [f for f in project.forms if f in set(project.survey_forms)]
+    if surveys:
+        text += (f", {len(surveys)} of them enabled as "
+                 f"{'a survey' if len(surveys) == 1 else 'surveys'} for participants")
     if project.events:
-        text += f", {len(project.events)} longitudinal events"
-    text += "). "
+        text += f", over {len(project.events)} longitudinal events"
+    text += ". "
     source = {"odm": "Project XML export", "csv_dict": "data dictionary"}.get(
         project.provenance.get("adapter", ""), "metadata export")
     text += f"This description was derived from the project's {source} by redcap2hdcat"

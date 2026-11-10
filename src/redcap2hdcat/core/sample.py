@@ -45,6 +45,8 @@ def _value(project: Project, column, rng: random.Random) -> str:
         return str(rng.randint(0, 1))
     if var is not None and var.is_coded:
         return rng.choice([c.code for c in var.choices])
+    if column.choices:  # status columns added on export
+        return rng.choice([code for code, _ in column.choices])
 
     dtype = column.datatype
     lo = var.validation_min if var else ""
