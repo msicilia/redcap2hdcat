@@ -26,8 +26,9 @@
 %% Values still to be decided by the authors.
 \newcommand{\TBD}[1]{\textcolor{red}{[#1]}}
 
-%% Revision apparatus: numbered paragraphs (left margin, beyond the line numbers) and a
-%% movable \revisedhere marker. Set \revisionfalse for the submitted version.
+%% Review copy (\revisiontrue): figure and tables next to their first citation. Paragraph
+%% numbers can be switched on again with \revpartrue after \maketitle, and a \revisedhere
+%% marker placed anywhere. Set \revisionfalse for the submitted layout.
 \newif\ifrevision \revisiontrue
 \newif\ifrevpar      % numbering is on (from the abstract to the references)
 \newif\ifrevparskip  % the current paragraph is a heading or sits inside a box
@@ -73,7 +74,6 @@ University of Alcal\'a, Ctra. Madrid-Barcelona km 33.6, 28871 Alcal\'a de Henare
 \newcommand{\FigOneCaption}{Architecture of the method. Square boxes are inputs and
 outputs; rounded boxes are processing steps.}
 \maketitle
-\revpartrue
 
 \section*{Abstract}
 
@@ -366,8 +366,6 @@ It declared personal data in the three projects that flag at least one field as 
 identifier. The institutional settings added the same five elements in every project.
 
 \subsection{Conformance}
-
-\revisedhere
 
 Each public record had exactly two violations, the missing health data
 access body and the missing dataset type. With placeholders for both, all ten records
