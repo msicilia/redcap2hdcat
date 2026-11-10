@@ -25,7 +25,7 @@ for v in records records_hdab; do
 done
 # 5. optional, sends ONE public corpus record to the official HealthData@EU validator and
 #    compares its report with the local results (results/itb/). Run for 0.2.0 on
-#    2026-11-09 with the placeholder record (results/itb/SENT.log); the 0.1.0 comparison
+#    2026-11-09 and again on 2026-11-10, after the project-type fixes, with the placeholder record (results/itb/SENT.log); the 0.1.0 comparison
 #    is kept in results/baseline-0.1.0/itb/.
 # ./itb_validate.sh results/records_hdab/rtd-case07-longitudinal.ttl
 # "${PY[@]}" itb_compare.py rtd-case07-longitudinal records_hdab

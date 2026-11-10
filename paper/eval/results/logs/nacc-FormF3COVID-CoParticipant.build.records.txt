@@ -1,5 +1,5 @@
 exit=1
 --- stderr ---
-Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/paper/eval/results/records/nacc-FormF3COVID-CoParticipant.ttl (463 triples)
+Wrote /Users/msicilia/_code/irycis/impactdata2/papers/redcap2hdcat/redcap2healthdcat/paper/eval/results/records/nacc-FormF3COVID-CoParticipant.ttl (491 triples)
 
 Incomplete: healthdcatap:hdab, dct:type (dataset_type) not set in configuration.

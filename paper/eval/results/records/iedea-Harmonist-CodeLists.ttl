@@ -29,7 +29,7 @@
     dct:identifier "https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml" ;
     dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
     dct:provenance [ a dct:ProvenanceStatement ;
-            rdfs:label "Data captured through electronic case report forms in REDCap 8.1.1 (1 instrument). This description was derived from the project's Project XML export by redcap2hdcat."@en ] ;
+            rdfs:label "Data collected in REDCap 8.1.1 on 1 instrument. This description was derived from the project's Project XML export by redcap2hdcat."@en ] ;
     dct:publisher [ a foaf:Agent ;
             cv:contactPoint [ a cv:ContactPoint ;
                     cv:contactPage <https://www.fictional-institute.invalid> ;
@@ -59,21 +59,23 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml/dictionary/table-0> a csvw:Table ;
     dct:title "code_list"@en ;
-    csvw:column _:N61135324e7a048ac8a9f5fbd15206398,
-        _:N61ab87ef13b34e4b86554ce4f5920b9a,
-        _:N6a21552266b74f3db7a517a0f70f6fb2,
-        _:N72b8d7eadcf64f94b8edf2d29ab6c4c8,
-        _:Nc5ef015cc3644ab797ac3769e7bf4b9b,
-        _:Ncc29a2b0d5f649939dfeba09a382d8b6,
-        _:Nde8062c019c64c339e493cff021ad7b2 ;
+    csvw:column _:N14613d9de29d461697adc38d5fd190a1,
+        _:N1a05122e2d4c421fb6dbccc8b08c8fde,
+        _:N667235b6d0584026a782bbf33f075f16,
+        _:N9c44ac45c3da470c99851e0eb5d255ef,
+        _:Nc2738b56133d4072bc69ce2a7cfb0803,
+        _:Nc6f60bc2683b4588b4e849023f0c8c21,
+        _:Nd0b23a36bd0043ceb4799a721bf94a7f,
+        _:Ndb223de1a63a45e5abbe24668eb10b6a ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N61135324e7a048ac8a9f5fbd15206398,
-                _:N61ab87ef13b34e4b86554ce4f5920b9a,
-                _:N6a21552266b74f3db7a517a0f70f6fb2,
-                _:N72b8d7eadcf64f94b8edf2d29ab6c4c8,
-                _:Nc5ef015cc3644ab797ac3769e7bf4b9b,
-                _:Ncc29a2b0d5f649939dfeba09a382d8b6,
-                _:Nde8062c019c64c339e493cff021ad7b2 ;
+            csvw:column _:N14613d9de29d461697adc38d5fd190a1,
+                _:N1a05122e2d4c421fb6dbccc8b08c8fde,
+                _:N667235b6d0584026a782bbf33f075f16,
+                _:N9c44ac45c3da470c99851e0eb5d255ef,
+                _:Nc2738b56133d4072bc69ce2a7cfb0803,
+                _:Nc6f60bc2683b4588b4e849023f0c8c21,
+                _:Nd0b23a36bd0043ceb4799a721bf94a7f,
+                _:Ndb223de1a63a45e5abbe24668eb10b6a ;
             csvw:primaryKey "record_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/Harmonist0BCodeLists_2017-12-21_1148.REDCap.xml/distribution> a dcat:Distribution ;
@@ -84,7 +86,51 @@
 
 <http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
 
-_:N61135324e7a048ac8a9f5fbd15206398 a csvw:Column ;
+_:N14613d9de29d461697adc38d5fd190a1 a csvw:Column ;
+    dct:description "Date code list last updated"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "text" ;
+    csvw:datatype "date" ;
+    csvw:name "codelist_update_d" ;
+    csvw:title "Date code list last updated"@en .
+
+_:N1a05122e2d4c421fb6dbccc8b08c8fde a csvw:Column ;
+    dct:description "Choose a format for the code list:"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "radio" ;
+    skos:notation "1 = List of codes separated by pipe character",
+        "3 = CSV file upload with codes in column 1 and labels in column 2." ;
+    csvw:datatype "integer" ;
+    csvw:name "code_format" ;
+    csvw:title "Choose a format for the code list:"@en .
+
+_:N667235b6d0584026a782bbf33f075f16 a csvw:Column ;
+    dct:description "Name of Code List"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "list_name" ;
+    csvw:title "Name of Code List"@en .
+
+_:N9c44ac45c3da470c99851e0eb5d255ef a csvw:Column ;
+    dct:description "Record ID"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:Nc2738b56133d4072bc69ce2a7cfb0803 a csvw:Column ;
+    dct:description "Code CSV file"@en ;
+    dct:isPartOf "code_list" ;
+    dct:type "file" ;
+    csvw:datatype "string" ;
+    csvw:name "code_file" ;
+    csvw:title "Code CSV file"@en .
+
+_:Nc6f60bc2683b4588b4e849023f0c8c21 a csvw:Column ;
     dct:description "Complete?"@en ;
     dct:isPartOf "code_list" ;
     dct:type "dropdown" ;
@@ -95,7 +141,7 @@ _:N61135324e7a048ac8a9f5fbd15206398 a csvw:Column ;
     csvw:name "code_list_complete" ;
     csvw:title "Complete?"@en .
 
-_:N61ab87ef13b34e4b86554ce4f5920b9a a csvw:Column ;
+_:Nd0b23a36bd0043ceb4799a721bf94a7f a csvw:Column ;
     dct:description "Update Notes"@en ;
     dct:isPartOf "code_list" ;
     dct:type "notes" ;
@@ -103,7 +149,7 @@ _:N61ab87ef13b34e4b86554ce4f5920b9a a csvw:Column ;
     csvw:name "codelist_update_txt" ;
     csvw:title "Update Notes"@en .
 
-_:N6a21552266b74f3db7a517a0f70f6fb2 a csvw:Column ;
+_:Ndb223de1a63a45e5abbe24668eb10b6a a csvw:Column ;
     dct:description """Code list
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field."""@en ;
@@ -114,40 +160,4 @@ The Pipe character is required between codes because line breaks will be lost if
     csvw:title """Code list
 Format is "1 = Chocolate | 2 = Strawberry | 3 = Vanilla".
 The Pipe character is required between codes because line breaks will be lost if the data dictionary (CSV) is used to update this field."""@en .
-
-_:N72b8d7eadcf64f94b8edf2d29ab6c4c8 a csvw:Column ;
-    dct:description "Name of Code List"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "list_name" ;
-    csvw:title "Name of Code List"@en .
-
-_:Nc5ef015cc3644ab797ac3769e7bf4b9b a csvw:Column ;
-    dct:description "Record ID"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
-
-_:Ncc29a2b0d5f649939dfeba09a382d8b6 a csvw:Column ;
-    dct:description "Date code list last updated"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "text" ;
-    csvw:datatype "date" ;
-    csvw:name "codelist_update_d" ;
-    csvw:title "Date code list last updated"@en .
-
-_:Nde8062c019c64c339e493cff021ad7b2 a csvw:Column ;
-    dct:description "Choose a format for the code list:"@en ;
-    dct:isPartOf "code_list" ;
-    dct:type "radio" ;
-    skos:notation "1 = List of codes separated by pipe character",
-        "3 = CSV file upload with codes in column 1 and labels in column 2." ;
-    csvw:datatype "integer" ;
-    csvw:name "code_format" ;
-    csvw:title "Choose a format for the code list:"@en .
 

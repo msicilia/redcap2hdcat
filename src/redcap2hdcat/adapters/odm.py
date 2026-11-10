@@ -201,12 +201,27 @@ def load(path: str | Path) -> Project:
         for se in mdv.findall(f"{ODM}StudyEventDef")
     ]
 
-    # Repeating instruments appear either as a vendor element or as Repeating="Yes"
-    # on the FormDef, depending on REDCap version.
-    repeating = [
-        rf.get(f"{REDCAP}FormName", "")
-        for rf in mdv.findall(f".//{REDCAP}RepeatingInstrument")
-        if rf.get(f"{REDCAP}FormName")
+    # Repeating instruments and events are declared under GlobalVariables:
+    #   <redcap:RepeatingInstrumentsAndEvents>
+    #     <redcap:RepeatingEvent redcap:UniqueEventName="event_2_arm_1"/>
+    #     <redcap:RepeatingInstruments>
+    #       <redcap:RepeatingInstrument redcap:UniqueEventName="event_1_arm_1"
+    #           redcap:RepeatInstrument="data_types" redcap:CustomLabel=""/>
+    # (as in REDCap's own validation exports, vanderbilt-redcap/redcap_rsvc). Older
+    # versions mark the FormDef with Repeating="Yes" instead.
+    repeating: list[str] = []
+    for rf in root.iter(f"{REDCAP}RepeatingInstrument"):
+        name = rf.get(f"{REDCAP}RepeatInstrument", "")
+        if name and name not in repeating:
+            repeating.append(name)
+    repeating_events = [
+        name for re_ in root.iter(f"{REDCAP}RepeatingEvent")
+        if (name := re_.get(f"{REDCAP}UniqueEventName", ""))
+    ]
+    # Instruments enabled as surveys: <redcap:SurveysGroup><redcap:Surveys form_name=...>
+    survey_forms = [
+        name for sv in root.iter(f"{REDCAP}Surveys")
+        if (name := sv.get("form_name", "")) and sv.get("survey_enabled", "1") == "1"
     ]
     for form_def in mdv.findall(f"{ODM}FormDef"):
         if (form_def.get("Repeating") or "").lower() == "yes":
@@ -230,6 +245,8 @@ def load(path: str | Path) -> Project:
         variables=variables,
         events=events,
         repeating_forms=repeating,
+        repeating_events=repeating_events,
+        survey_forms=survey_forms,
         provenance={
             "adapter": "odm",
             "source_file": path.name,

@@ -47,7 +47,8 @@ class TestCsvwLayer:
 
     def test_one_column_per_exported_column(self, dictionary_project, full_config):
         g = rdf.build(dictionary_project, full_config)
-        assert len(list(g.subjects(RDF.type, CSVW.Column))) == 14
+        # 14 data columns and one status column per instrument.
+        assert len(list(g.subjects(RDF.type, CSVW.Column))) == 14 + len(dictionary_project.forms)
 
     def test_declares_primary_key(self, dictionary_project, full_config):
         g = rdf.build(dictionary_project, full_config)

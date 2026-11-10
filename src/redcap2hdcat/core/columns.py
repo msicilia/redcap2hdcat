@@ -68,7 +68,9 @@ def _structural_columns(project: Project) -> list[Column]:
                 datatype="string",
             )
         )
-    if project.repeating_forms:
+    # Both columns appear once anything repeats; the instrument is empty for a
+    # repeated event.
+    if project.repeating_forms or project.repeating_events:
         out.extend(
             [
                 Column(
@@ -85,15 +87,68 @@ def _structural_columns(project: Project) -> list[Column]:
                 ),
             ]
         )
+    if project.survey_forms and not project.by_name("redcap_survey_identifier"):
+        out.append(
+            Column(
+                name="redcap_survey_identifier",
+                title="Survey Identifier",
+                description="Identifier of the survey participant, when one is set.",
+                datatype="string",
+            )
+        )
     return out
+
+
+# Status column that REDCap adds to every instrument on export.
+_COMPLETE_CHOICES = [("0", "Incomplete"), ("1", "Unverified"), ("2", "Complete")]
+
+
+def _complete_column(form: str) -> Column:
+    return Column(
+        name=f"{form}_complete",
+        title="Complete?",
+        description="Completion status of the instrument.",
+        datatype="integer",
+        form=form,
+        redcap_type="dropdown",
+        choices=list(_COMPLETE_CHOICES),
+    )
+
+
+def _timestamp_column(form: str) -> Column:
+    return Column(
+        name=f"{form}_timestamp",
+        title="Survey Timestamp",
+        description="Date and time at which the survey was completed.",
+        datatype="dateTime",
+        form=form,
+    )
 
 
 def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
     """Return the export columns, with checkboxes expanded to one flag each."""
     columns: list[Column] = []
     record_id = project.record_id_field
+    # A Project XML export lists the status and survey columns as items; a CSV data
+    # dictionary does not, so they are added here when absent.
+    present = {v.name for v in project.variables}
+    surveys = set(project.survey_forms)
+    first_timestamp: list[Column] = []
+    current_form: str | None = None
+
+    def close_form(form: str | None) -> None:
+        if form and f"{form}_complete" not in present:
+            columns.append(_complete_column(form))
 
     for index, var in enumerate(project.variables):
+        if var.form != current_form:
+            close_form(current_form)
+            current_form = var.form
+            if current_form in surveys and f"{current_form}_timestamp" not in present:
+                # The first instrument's timestamp follows the record identifier and
+                # the structural columns.
+                (first_timestamp if index == 0 else columns).append(
+                    _timestamp_column(current_form))
         if not var.field_type.is_data_column:
             continue
 
@@ -148,8 +203,10 @@ def expand(project: Project, snomed_demo: bool = False) -> list[Column]:
             )
         )
 
+    close_form(current_form)
+
     # Structural columns sit right after the record identifier in a real export.
-    structural = _structural_columns(project)
+    structural = _structural_columns(project) + first_timestamp
     if structural and columns:
         return columns[:1] + structural + columns[1:]
     return structural + columns

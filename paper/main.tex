@@ -26,50 +26,87 @@
 %% Values still to be decided by the authors.
 \newcommand{\TBD}[1]{\textcolor{red}{[#1]}}
 
+%% Revision apparatus: numbered paragraphs (left margin, beyond the line numbers) and a
+%% movable \revisedhere marker. Set \revisionfalse for the submitted version.
+\newif\ifrevision \revisiontrue
+\newif\ifrevpar      % numbering is on (from the abstract to the references)
+\newif\ifrevparskip  % the current paragraph is a heading or sits inside a box
+\newcounter{revpar}
+\makeatletter
+\AddToHook{para/before}{\ifinner\revparskiptrue\fi}
+\AddToHook{cmd/@hangfrom/before}{\revparskiptrue}
+\AddToHook{para/begin}{%
+  \ifrevision\ifrevpar\ifrevparskip\else
+    \stepcounter{revpar}%
+    \llap{\normalfont\footnotesize\sffamily\bfseries\color{gray}\P\arabic{revpar}\hskip2.8em}%
+  \fi\fi\fi
+  \revparskipfalse}
+\AddToHook{env/thebibliography/begin}{\revparfalse}
+\newcommand{\revisedhere}{\ifrevision\par\medskip
+  \hbox to\linewidth{\color{red}\leaders\hrule height 2.6pt depth -1.4pt\hfill
+    \enspace\normalfont\small\sffamily\bfseries REVISED TO HERE\enspace
+    \leaders\hrule height 2.6pt depth -1.4pt\hfill}\medskip\fi}
+\makeatother
+
 \doublespacing
 \linenumbers
 
 \title{Composing HealthDCAT-AP Dataset Descriptions from REDCap Projects and
 Machine-Actionable Data Management Plans}
-\author{\TBD{Authors, degrees, departments, affiliations; corresponding author's
-mailing address, telephone and e-mail}}
+\author{\parbox{\textwidth}{\centering\singlespacing
+Miguel-Angel Sicilia$^{1,2,*}$, Alberto Ballesteros-Rodr\'iguez$^{1,2}$,
+Elena Garc\'ia-Barriocanal$^{1,2}$, Mar\c{c}al Mora-Cantallops$^{1,2}$,
+Alberto Nogales$^{1,2}$\\[1ex]
+\small $^1$Computer Science Department, University of Alcal\'a, Alcal\'a de Henares,
+Spain\\
+$^2$Instituto Ram\'on y Cajal de Investigaci\'on Sanitaria (IRyCIS), Madrid,
+Spain\\[1ex]
+$^*$Corresponding author: Miguel-Angel Sicilia, Computer Science Department,
+University of Alcal\'a, Ctra. Madrid-Barcelona km 33.6, 28871 Alcal\'a de Henares
+(Madrid), Spain. E-mail: \href{mailto:msicilia@uah.es}{msicilia@uah.es}}}
 \date{}
 
 \begin{document}
+%% Floats: in the review copy (\revisiontrue) each table and the figure stand next to their
+%% first citation; in the submitted version the tables follow the references and the
+%% figure is supplied as a separate file, with its caption listed after the references.
+\newcommand{\FigOneCaption}{Architecture of the method. Square boxes are inputs and
+outputs; rounded boxes are processing steps.}
 \maketitle
+\revpartrue
 
 \section*{Abstract}
 
-\paragraph{Background} From March 2029 the European Health Data Space requires health
-data holders to describe their datasets in the HealthDCAT-AP profile. Much clinical
-research data is collected in REDCap, whose dictionaries describe the variables; how
-the dataset is governed is recorded in the study's data management plan.
+\paragraph{Background} Under the European Health Data Space, health data holders must
+describe their datasets for national catalogues in the HealthDCAT-AP metadata profile.
+Much clinical research data is collected in REDCap, an electronic data capture system
+whose dictionaries describe each study's variables. How a dataset is governed, however,
+is recorded in the study's data management plan, which software can read when the plan
+is machine-actionable (maDMP).
 
-\paragraph{Objectives} To compose a HealthDCAT-AP description from a REDCap project, a
-machine-actionable data management plan and institutional settings, with terminology
-codes for the dataset, its forms and its fields, and to determine which legally required
-elements each source supplies.
+\paragraph{Objectives} To design a method that composes a HealthDCAT-AP description from
+a REDCap project, a maDMP and institutional settings, with terminology codes at the
+dataset, form and field levels, and to examine which required elements each source can
+supply.
 
-\paragraph{Methods} An open-source tool reads a REDCap
-dictionary or metadata-only export and a plan in the Research Data Alliance common
-standard, and it emits HealthDCAT-AP with a variable description in CSV on the Web. We
-built the description of a clinical research project in three cumulative stages, ran the
-tool over ten public REDCap projects, and validated every record against the official
-SHACL shapes.
+\paragraph{Methods} Each of the required elements is assigned to the source that holds its
+value. An open-source proof-of-concept tool implements the method and creates the
+description, including the label, type and permitted values of each variable. We described a clinical
+research project in three cumulative stages, ran the tool over ten public REDCap
+projects and validated every record against the official
+validation rules.
 
-\paragraph{Results} The REDCap export supplied the title, the keywords and the variable
-description, from which the tool also derived a provenance statement.
-Institutional settings, written once, supplied the publisher, the contact point, the
-distribution, the language and the health data category. The plan supplied the
-research project that generated the data and the declaration of personal data, which
-the clinical project lacked because no field was flagged as an identifier. Record counts and temporal coverage require the REDCap programming interface. Two
-mandatory elements had no source: the health data access body, not yet designated in
-Spain, and the dataset type, for which the recommended vocabulary has no suitable
-concept. With placeholders for both, all public records conformed.
+\paragraph{Results} The three sources each supplied part of the required
+elements. The REDCap export supplied the variable description,
+the title and the keywords. Institutional settings, written once, supplied the
+publisher, the contact point and the distribution. In REDCap, no field of the clinical project was flagged as an
+identifier. The maDMP supplied the declaration of personal data and the funded project. Two mandatory elements, the health data access
+body and the dataset type, had no source. With placeholders for both, all public records passed validation.
 
-\paragraph{Conclusions} Most of the required description can be composed from what a
-research institution already holds. A person still supplies the topic and coverage of
-each dataset, and two mandatory elements depend on decisions outside the institution.
+\paragraph{Conclusions} Most of the required metadata can be generated automatically
+from a REDCap project, its maDMP and settings provided by the institution. The topic and
+coverage must still be provided by curators. The two elements without a source require a
+national designation and a new concept in the vocabulary.
 
 \paragraph{Keywords} Metadata; Electronic Data Capture; Data Management; Systematized
 Nomenclature of Medicine; Semantic Web
@@ -83,46 +120,51 @@ data access body to publish a catalogue of the datasets available for secondary 
 (Article~77).\citep{ehds2025} Implementing Regulation (EU) 2026/2098 sets the minimum
 metadata elements that health data holders must provide for these catalogues. It
 requires the elements to be expressed with the definitions and controlled vocabularies of
-HealthDCAT-AP, the health extension of the DCAT application profile for data portals in
-Europe, and it applies from 26 March 2029.\citep{ir20262098,healthdcatap,dcatap} Every
+HealthDCAT-AP, the health extension of DCAT-AP, the application profile of the Data Catalog Vocabulary (DCAT) of the World Wide Web
+Consortium (W3C) for data portals in Europe.\citep{ir20262098,healthdcatap,dcatap}
+These requirements apply from 26 March 2029. Every
 dataset that a research institute holds and that falls under the regulation will
 therefore need a HealthDCAT-AP description.
 
-In academic clinical research a large share of these datasets is collected with REDCap,
+In academic clinical research many of these datasets are collected with REDCap,
 an electronic data capture platform used by institutions in many countries.%
 \citep{harris2009redcap,harris2019redcap} Each REDCap project carries a data dictionary
-that defines its forms, its fields, their types and their permitted values. The variable
-description that HealthDCAT-AP requires can be derived from that dictionary. Most of the
+that defines its forms, its fields, their types and their permitted values. The
+descriptions of the variables that HealthDCAT-AP requires can be derived from that
+dictionary. Most of the
 remaining elements describe how the dataset is governed: the publisher, the person
 responsible, the access conditions, the legal basis and whether the data are personal.
-REDCap does not record this information. A data management plan (DMP) does, and when the
-plan follows the Research Data Alliance (RDA) DMP Common Standard it can be read by
-software.\citep{rdadmp,miksa2019ten}
+REDCap does not mandate the recording of this information. Part of it is the same for every dataset of an
+institution, and the rest is recorded for each study in its data management plan (DMP).
+A machine-actionable DMP (maDMP) provides a computer-readable version of the plan that
+could be used as a source of this information, for instance in the format of the DMP
+Common Standard of the Research Data Alliance (RDA).\citep{rdadmp,miksa2019ten}
 
-Current tools address parts of this task. The guideline of the TEHDAS2 joint action
-explains to data holders how to describe a dataset in HealthDCAT-AP,\citep{tehdas2d51}
-and an online editor lets a person enter the description by hand.\citep{hipeditor}
-ROME, a REDCap module, annotates fields and answer options with ontology concepts while a
+Existing tools address parts of this task. The guideline of the joint action Towards
+the European Health Data Space (TEHDAS2)
+explains to data holders how to describe a dataset in HealthDCAT-AP.\citep{tehdas2d51}
+Online editors are available for entering the description by hand, such as that of the
+European Health Information Portal.\citep{hipeditor}
+ROME (REDCap Ontologies Made Easy), a REDCap module, annotates fields and answer options with ontology concepts while a
 project is designed,\citep{meigen2026rome} and RareLink defines REDCap data dictionaries
 for rare-disease registries with ontology codes in their field annotations.%
 \citep{graefe2025rarelink} The \code{sdc\_healthdcat\_ap} project derives HealthDCAT-AP
 records from published data models of the Semantic Data Charter.\citep{sdchealthdcat}
 To our knowledge, no published method produces a HealthDCAT-AP description from a data
-capture project and completes it with the governance metadata of a machine-actionable
-plan. \TBD{State how the related-work search was done: databases, terms, date.}
+capture project and completes it with the governance metadata of a
+maDMP. Such a method would complement these tools.
 
 \section{Objectives}
 
 The objectives of this work were:
-(1) to define a method that composes a HealthDCAT-AP dataset description from three
-sources, namely a REDCap project, a machine-actionable DMP and a set of institutional
-settings;
-(2) to attach terminology codes to the description at the level of the dataset, the
-form and the field, with a convention for carrying the codes in REDCap;
-(3) to determine which of the minimum metadata elements of Implementing Regulation
+(1) to design a method that composes a HealthDCAT-AP dataset description from three
+sources, namely a REDCap project, a maDMP and a set of institutional settings, with
+terminology codes at the level of the dataset, the form and the field;
+(2) to examine which of the minimum metadata elements of Implementing Regulation
 2026/2098 each source can supply; and
-(4) to test the conformance of the output against the official shapes and the robustness
-of the method over public REDCap projects.
+(3) to test the conformance of the output against the official validation rules, which
+are written as shapes in the Shapes Constraint Language (SHACL), and to test the
+robustness of the method over public REDCap projects.
 
 \section{Methods}
 
@@ -131,26 +173,30 @@ of the method over public REDCap projects.
 The method combines three sources (Figure~\ref{fig:architecture}). The REDCap project
 supplies the title, the forms, the fields with their types and value sets, and
 structural facts such as longitudinal events. The institutional settings supply values
-that are the same for every project of an institution, such as the publisher, the
+that are typically the same for every project of an institution, such as the publisher, the
 default access rights, the health data category and the page where access to data is
 requested; they are written once in a configuration file. The DMP supplies the values
 that differ between studies and are decided outside the data capture system: the
 description, the creator, the licence, the funded project and the declaration of
-personal data. A REDCap project and a plan rarely carry the same value. Where they do,
-the value from REDCap is kept and the plan fills only empty elements. The institutional
-settings fill the elements that remain empty after both.
+personal data. When REDCap and the plan both provide a value for an element,
+the REDCap value is used. The institutional settings are used for the elements that are
+still empty.
 
-The method reads two REDCap file formats: the data dictionary in comma-separated values
-(CSV) and the project export in XML, an extension of the CDISC Operational Data Model
-(ODM).\citep{cdiscodm} It reads only the project's structure. An export that contains
-patient records is rejected with an error, and a separate command removes the records
-from such an export so that its structure can be described. The tool never writes to
-REDCap and runs on the user's computer, so no project file is sent to a remote service.
+\ifrevision
+\begin{figure}[!htb]
+\centering\includegraphics[width=\linewidth]{figures/fig1-architecture.pdf}
+\caption{\FigOneCaption}\label{fig:architecture}
+\end{figure}
+\fi
+
+The tool reads two REDCap file formats: the data dictionary in comma-separated values
+(CSV) and the project export in the Extensible Markup Language (XML), an extension of the
+Operational Data Model (ODM) of the Clinical Data Interchange Standards Consortium.\citep{cdiscodm} It reads only the structure of a project and rejects an export that
+contains patient records.
 
 \subsection{Dataset and variable description}
 
-The dataset-level record is a \code{dcat:Dataset} in HealthDCAT-AP. The project title
-gives \code{dct:title}, and the identifier is built from the project identifier and an
+The dataset-level record is a \code{dcat:Dataset} in HealthDCAT-AP. The identifier is built from the project identifier and an
 institutional base address. The variables are described with the W3C vocabulary for CSV
 on the Web (CSVW),\citep{csvw} which HealthDCAT-AP uses for this purpose. Each REDCap
 form becomes a \code{csvw:Table}, and the tables of a project form one
@@ -160,25 +206,28 @@ its description is the field note, or the label when the field has no note. The 
 follows from the field type and its validation; a date validation, for instance, gives
 \code{date}. A
 checkbox field with $n$ options is exported by REDCap as $n$ columns, and the
-description follows the exported shape. Event and repeat-instance columns, which appear
-in the export of a longitudinal project but not in its dictionary, are recovered from
-the event definitions of the XML export. A field that REDCap flags as an identifier is
+description follows the exported shape. Columns that REDCap adds on export and that a data dictionary does not list are added
+as well: the event and repeat columns of longitudinal projects and of repeating
+instruments and events, the completion status of each form, and the identifier and
+timestamps of forms used as surveys. The mapping therefore covers classic and
+longitudinal projects, with arms, repetition and surveys. A field that REDCap flags as an identifier is
 marked as personal data with a category of the Data Privacy Vocabulary (DPV-PD) that
 follows from its validation, such as an e-mail address or a telephone number.%
 \citep{dpvpd}
 
 Some mandatory elements are derived without a source value. Because a REDCap project
 always has a variable description, \code{healthdcatap:hasStructuredData} is set to true.
-The provenance statement records that the data were captured on electronic case report
-forms, with the REDCap version and the number of forms and events, and names the plan
-when one is used. The distribution points to the access-request page given in the
+The provenance statement records the REDCap version, the number of forms and events
+and the number of forms used as surveys, and it names the plan when one is used. The distribution points to the access-request page given in the
 settings. Values from controlled vocabularies, such as the language, the access rights
 and the file format, are written as the addresses of the EU vocabularies, with the class
 that the shapes check.
 
 \subsection{Composition with the data management plan}
 
-The RDA DMP Common Standard is a JSON schema with a companion ontology that reuses
+\revisedhere
+
+The RDA DMP Common Standard is a schema in JavaScript Object Notation (JSON) with a companion ontology that reuses
 the W3C DCAT vocabulary,\citep{rdadmp,cardoso2022dcso} which is also the base of
 HealthDCAT-AP. Most of its dataset elements therefore have a direct counterpart in the
 profile (Table~\ref{tab:dmp}). The plan is parsed and validated with \code{madmpy}.%
@@ -188,6 +237,8 @@ activity that generated the dataset, typed as a research project in the HealthDC
 vocabulary of health activities and identified by its grant. A plan that declares
 personal data adds the category \code{dpv-pd:Health}, since personal data held by a
 health study are health data.
+
+\ifrevision\input{tables/t-dmp}\fi
 
 \subsection{Terminology coding at three levels}
 
@@ -206,48 +257,48 @@ carry codes there in a repeatable tag of the form
 \code{@CODE=<system>|<version>|<code or expression>}, for example
 \code{@CODE=SNOMED|20230731|22298006} or \code{@CODE=LOINC|2.74|4548-4}. The system token
 names any code system, the version is optional, and the value is either a code or a
-SNOMED CT compositional expression.\citep{snomedct} A plain code yields a concept
-address; an expression is carried as text. The tag ends at the next action tag, so the
-behaviour of the form is unchanged.
+compositional expression of the Systematized Nomenclature of Medicine Clinical Terms
+(SNOMED CT).\citep{snomedct} A plain code yields a concept
+address; an expression is carried as text. REDCap does not act on annotation text that is not one of its action tags, so
+the tag leaves the behaviour of the form unchanged.
 
 The tool also reads the annotations written by ROME, which stores in an
 \code{@ONTOLOGY} tag a JSON object with codes for the field, for each answer option and
 for the unit.\citep{meigen2026rome,romeformat} The codes of the field are emitted as
-above. Each coded answer option becomes a SKOS concept with the choice code and label,
+above. Each coded answer option becomes a concept of the Simple Knowledge Organization System
+(SKOS) with the choice code and label,
 linked to its codes and referenced from the column. For a checkbox, the column of each
 option also links to the codes of that option. Units are not emitted, because neither
 CSVW nor HealthDCAT-AP has a property for them.
 
 The method emits codes that a project already carries and does not decide which concept
-a field denotes. The tool includes a demonstration mapper that assigns SNOMED CT concepts
-from field labels with a small lookup table. Its assignments are not clinically
-validated, and we use it only to exercise the three levels of emission.
+a field denotes. 
 
 \subsection{Implementation}
 
 The tool, \code{redcap2hdcat}, is written in Python and released under the Apache~2.0
 licence. Each source is read by an adapter into one intermediate representation of the
-project, and emitters serialise that representation in RDF. The command-line interface has commands to build a record, to validate
+project, and emitters serialise that representation in the Resource Description Framework (RDF). The command-line interface has commands to build a record, to validate
 it, to audit a data dictionary for design problems such as coded fields without value
 sets or identifiers not flagged as such, to produce a synthetic sample distribution, and
 to remove patient records from an export. Validation runs pySHACL\citep{shacl} over the
 configuration of the HealthData@EU validator that is published with each release of
 HealthDCAT-AP, and selects the public, non-public or restricted profile from the access
-rights of the record. A record built for one project is a single command:
+rights of the record. One command builds the record of a project:
 \code{redcap2hdcat build project.xml -c institution.yaml --dmp plan.json -o record.ttl}.
 
 \subsection{Evaluation}
 
 \paragraph{Reference set} We took as reference the 27 minimum metadata elements listed
 in Part~B of the Annex to Implementing Regulation 2026/2098.\citep{ir20262098} The
-regulation requires the latest release of HealthDCAT-AP and names no properties. We
+regulation requires the latest release of HealthDCAT-AP and does not name the properties. We
 mapped each element by name to its property in Release~8 (September 2026), the latest
 release at the time of the study, and pinned the shapes to the commit of 8 October 2026
 in the official repository.\citep{healthdcatap} The obligations are those of the
 non-public profile, which applies to datasets whose use requires a data permit.
 
 \paragraph{Source contribution} For one clinical research project, a longitudinal study
-of rectal cancer at \TBD{institution}, we built the record in three cumulative stages:
+of rectal cancer at \TBD{institution; confirm authorisation to describe the project}, we built the record in three cumulative stages:
 (a) from the REDCap export alone, with no institutional settings; (b) with the
 institutional settings added; and (c) with a DMP added. For each element we recorded the
 stage that first supplied it. The plan used in stage (c) is a test plan written for the
@@ -259,28 +310,27 @@ stages (a) and (b).
 \paragraph{Conformance} We validated each record against the shapes, vocabularies and
 imports of the validator configuration of the pinned release, merged into one graph as
 the online HealthData@EU validator does. For one public record, built with each version
-of the tool, we compared the local results with the report of the online validator. Two
-mandatory
-elements had no source in any stage (see Results). We therefore validated each record as
-built and again with placeholders for these two, to separate their violations from the
-rest. We first ran this validation on version 0.1.0 of the tool, corrected the defects
-it revealed, and repeated it on version 0.2.0.
+of the tool, we compared the local results with the report of the online validator. Mandatory
+elements without a source cause violations of their own. To separate these from the
+rest, we validated each record as built and again with placeholders for such elements.
+We first ran this validation on version 0.1.0 of the tool, corrected the defects it
+found, and repeated it on version 0.2.0.
 
 \paragraph{Robustness} We ran the tool over ten public REDCap projects from three
 collections: the forms of the Uniform Data Set of the National Alzheimer's Coordinating
-Center (NACC),\citep{naccuds} the data dictionaries of the IeDEA data exchange
-standard\citep{iedeadict} and the REDCap test datasets\citep{redcaptestdata}
+Center (NACC),\citep{naccuds} the data dictionaries of the data exchange standard of the International
+epidemiology Databases to Evaluate AIDS (IeDEA)\citep{iedeadict} and the REDCap test datasets\citep{redcaptestdata}
 (Table~\ref{tab:corpus}). They differ in input format, in the header convention of the
 dictionary, and in whether they are longitudinal. The scripts and their outputs are
 archived with the tool.\TBD{Zenodo DOI}
 
+\ifrevision\input{tables/t-corpus}\fi
+
 \subsection{Ethical considerations}
 
-This work did not involve human subjects. The tool reads the structure of REDCap
-projects and rejects exports that contain patient records. The clinical project was used
-through a metadata-only export \TBD{confirm institutional authorisation to describe the
-rectal cancer project}, and no patient data were accessed. Ethical review was therefore
-not required.
+This work did not involve human subjects or patient data. The clinical project was used
+through a metadata-only export, so ethical review was not required.
+
 
 \section{Results}
 
@@ -288,28 +338,29 @@ not required.
 
 Table~\ref{tab:elements} lists the 27 elements with the source that supplied each in the
 clinical project. From the REDCap export alone (stage a) the record contained nine
-elements. Three came from the project: the title, the keywords, which are the names of
-its five forms, and the variable description. The tool added the access rights as a
-default, the applicable legislation and the structured-data flag as constants, the
-identifier from the institutional base address, the provenance statement, and a
+elements. Three came from the project: the title, the keywords (the names of its five forms)
+and the variable description. The tool added the access rights as a
+default, the applicable legislation and the structured-data flag as constants, the identifier from a default base address, the provenance statement, and a
 description that copied the title. The institutional settings (stage b) added five
 elements: the contact point, the distribution, the health data category, the language
 and the publisher. The plan (stage c) added two: the declaration of personal data and
 the research project that generated the data. It also replaced the copied description
 and set the language to that of the study.
 
+\ifrevision\input{tables/t-elements}\fi
+
 The REDCap export of the clinical project flagged none of its 2,096 fields as an
 identifier. Without the plan, the record would not have declared personal data, although
 the study collects data on patients.
 
-Eleven elements were supplied in no stage. The number of records, the number of unique
+Eleven elements were not supplied at any stage. The number of records, the number of unique
 individuals and the temporal coverage are computed from the records and need the REDCap
-programming interface. The health data access body, the dataset type and the custodian
+programming interface. An adapter for it is in development. The health data access body, the dataset type and the custodian
 can be set in the institutional settings once they are known. The coding system would
 come from field annotations, which this project does not use. The code values, the
 standard the data conform to, the geographical coverage and the health theme need a
-person. Of the 13 of these elements that are mandatory in the non-public profile, the
-record of stage (c) contained 11; the health data access body and the dataset type were missing.
+person. Of the 13 elements that are mandatory in the non-public profile, the record of
+stage (c) contained 11; it lacked the health data access body and the dataset type.
 
 Across the ten public projects, the export alone supplied the keywords and the variable
 description in every project. It supplied the title in the five projects exported as
@@ -319,7 +370,7 @@ identifier. The institutional settings added the same five elements in every pro
 
 \subsection{Conformance}
 
-Version 0.1.0 of the tool produced no conformant record. The ten public records had
+None of the records built by version 0.1.0 of the tool conformed. The ten public records had
 1,451 violations in total, and a placeholder for the health data access body did not
 change that number. The violations came from defects of the tool: a term that CSVW does
 not define, the variables linked with \code{dct:conformsTo}, literals where Release~8
@@ -332,21 +383,23 @@ access body and the missing dataset type. With placeholders for both, all ten re
 conformed (Table~\ref{tab:corpus}). The remaining warnings concern recommended properties
 that the tool does not emit, such as the legal basis, the purpose and the retention
 period, and the use of a dataset type from outside the recommended vocabulary. The
-record of the clinical project had the same two violations at stages (b) and (c). The
-validation command of the tool reached the same verdict as the evaluation set-up. For the
-public record with placeholders, the online validator reported no violations and 31
-warnings. The local results agreed with it for every group of results; one warning
+record of the clinical project had the same two violations at stages (b) and (c). The validation command of the tool reached the same verdict as the evaluation set-up.
+None of the evaluated projects carries terminology codes. A test project whose fields
+carry codes in both notations, the \code{@CODE} tag and ROME, also conformed.
+
+For the public record with placeholders, the online validator reported no violations and
+31 warnings. The local results agreed with it for every group of results; one warning
 concerned the description of an author in an imported vocabulary, and not the record.
-The two reports had also agreed for version 0.1.0. None of the evaluated projects carries
-terminology codes. A test project whose fields carry codes in both forms also conformed.
+The two reports had also agreed for version 0.1.0.
 
 \subsection{Robustness}
 
 The tool built a record for each of the ten public projects without error. Together they
-have 22 forms and 640 fields, described in 622 CSVW columns (Table~\ref{tab:corpus}).
+have 22 forms and 640 fields, described in 649 CSVW columns (Table~\ref{tab:corpus}).
 The numbers of fields and columns differ because descriptive fields have no column, a
-checkbox field has one column per option, and Project XML exports add a completion field
-per form. Dictionaries with both header conventions, from the user interface and from the
+checkbox field has one column per option, and each form has a completion-status column,
+which Project XML exports list as a field and the tool adds for CSV dictionaries. Forms
+used as surveys also have a timestamp column.  Dictionaries with both header conventions, from the user interface and from the
 programming interface, were read. Project XML exports from recent REDCap versions list each checkbox
 option as a separate item. Version 0.1.0 split these items a second time; version 0.2.0
 merges them back into one field before the columns are derived. One project is
@@ -370,19 +423,19 @@ this point.
 Conformance required validation against the official shapes. A check of the mandatory
 properties alone would not have found most defects of the first version, because they
 concerned the form of values, such as a literal in place of a vocabulary address, or the
-class of a vocabulary term. The official example record of Release~8 states these classes in
-the same way.
+class of a vocabulary term. The official example record of Release~8 also declares the class of each vocabulary
+term in the record itself.
 
-The evaluation also exposed three properties of the specification. First, the regulation
+The evaluation also showed four problems in the regulation and the specification. First, the regulation
 requires the latest release of HealthDCAT-AP without naming one. On 21 September 2026,
-the day the regulation was published, an archived copy of the address of the latest
-release on the former host of the specification still led to Release~7. Release~8 is
+when the regulation was published, an archived copy of the former address of the latest
+release still led to Release~7. Release~8 is
 dated September 2026, and its shapes changed again on 8 October 2026. A tool should
-therefore state the release and the commit of the shapes it targets, as we do. Second, Release~8 makes
+therefore state the release and the commit of the shapes that it targets. Second, Release~8 makes
 the applicable legislation and the health data access body mandatory at every access
 level, while the regulation requires them only where legislation exists and where access
 is not public. Third, the recommended vocabulary of dataset types has no concept for
-research data, so a mandatory element can only be filled from outside it. Release~8 also
+research data, so a mandatory element can only be filled from outside it. Fourth, Release~8
 states one of its rules as a property shape without a path, which a SHACL processor that
 follows the standard rejects; we converted it into a node shape before validating.
 
@@ -394,26 +447,25 @@ described here derives the elements that existing sources hold and leaves the re
 person. Codes that ROME adds while a project is designed reach the catalogue record
 without further work.\citep{meigen2026rome} \code{sdc\_healthdcat\_ap} takes the
 governance values from a file that the data holder writes;\citep{sdchealthdcat} the
-method described here reads them from a plan that funders usually require already.
+method described here reads them from a plan that many research funders already require.
 
 \subsection{Implications for public health}
 
-By March 2029 every health data holder under the regulation must describe its datasets,
-and much academic clinical research is captured in REDCap. Deriving the description from
-the capture project and the plan reduces the work for each dataset to the values that
-only a person can give. Catalogue records that describe the variables and carry terminology codes
+From March 2029, every health data holder under the regulation must describe its datasets,
+and much academic clinical research is captured in REDCap. When the description is derived
+from the capture project and the plan, the work left for each dataset is the values that
+only a person can give and those that need the records. Catalogue records that describe the variables and carry terminology codes
 let researchers judge whether datasets from different institutions are comparable before
 they apply to a health data access body for a permit.
 
 \subsection{Limitations}
 
-The REDCap file formats do not carry the number of records, the number of individuals or
-the temporal coverage. These need the REDCap programming interface, for which an adapter
-is in development. The plan is matched to the project by title, which fails when the
+The plan is matched to the project by title, which fails when the
 titles differ; a persistent identifier shared between the plan and the project would be
 more reliable. The plan of the clinical project was a test plan, and a study's own plan
 may leave fields empty or use them differently. The identifier of a record built from a
-file export depends on the file name. Spain had not
+file export depends on the file name. The provenance statement cannot
+record data imported from outside REDCap, such as the electronic health record. Spain had not
 designated its health data access body at the time of writing,\citep{hdabes} so records
 for Spanish data holders cannot yet carry that element. The public projects come from
 consortia that publish their instruments for reuse, so they are not a sample of typical
@@ -423,14 +475,14 @@ preparation.
 
 \section{Conclusions}
 
-A HealthDCAT-AP description that meets most of the minimum of the implementing
-regulation can be composed from a REDCap project, the study's data management plan and
-settings written once for the institution. The capture project supplies the variables,
-the settings supply the institutional elements, and the plan supplies the governance
-values of the study, including the declaration of personal data that REDCap projects
-often leave unflagged. The counts and the temporal coverage need the REDCap programming
-interface, the topic and coverage of each dataset need a person, and the health data
-access body and the dataset type depend on decisions outside the institution.
+A HealthDCAT-AP description that contains most of the minimum elements of the
+implementing regulation can be composed automatically from a REDCap project, the study's
+maDMP and settings written once for the institution. The capture project supplies the
+variables, and the plan supplies the governance values of the study, including the
+declaration of personal data that REDCap projects often leave unflagged. The counts and
+the temporal coverage need the REDCap programming interface, and the topic and coverage
+of each dataset need a person. The health data access body and the dataset type depend
+on decisions outside the institution.
 Validation against the shapes of a pinned release is part of the method.
 
 \section*{Software availability}
@@ -438,7 +490,7 @@ Source code: \TBD{repository URL} (Apache~2.0), version 0.2.0. Archived release:
 \TBD{Zenodo DOI}. Evaluation scripts and results: \TBD{DOI}.
 
 \section*{Acknowledgments}
-\TBD{Technical assistance, if any.}
+None.
 
 \section*{Funding}
 This work was carried out within the project IMPaCT-Data~2 (PMP24/00024,
@@ -448,64 +500,25 @@ European Union through NextGenerationEU and the Recovery and Resilience Facility
 \TBD{Confirm the funder's required wording.}
 
 \section*{Conflict of Interest}
-None declared. \TBD{Confirm for every author; ICMJE forms.}
+The authors declare that they have no conflict of interest.
 
 \newpage
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
 
+\ifrevision\else
 \newpage
 \section*{Figure captions}
 
-\noindent\textbf{Figure 1.} Architecture of the method. Adapters read the REDCap
-dictionary or project export, the machine-actionable DMP and the institutional settings
-into one intermediate representation; the coding layer attaches terminology concepts;
-emitters write the HealthDCAT-AP record with its CSVW variable description.
-\TBD{Draw as black-and-white line art; submit as a separate EPS/TIFF file.}
-\label{fig:architecture}
+\refstepcounter{figure}\label{fig:architecture}%
+\noindent\textbf{Figure 1.} \FigOneCaption
 
 \newpage
 \section*{Tables}
-
-\begin{table}[!h]
-\caption{Minimum metadata elements of Implementing Regulation 2026/2098, their property
-in HealthDCAT-AP Release~8, their obligation in the non-public profile (M mandatory,
-R recommended, O optional) and the source that supplied each in the clinical project.
-For elements not supplied, the source that could supply them.}
-\label{tab:elements}
-\footnotesize
-\input{tables/elements.tex}
-\end{table}
-
-\begin{table}[!h]
-\caption{Elements of the RDA DMP Common Standard read into HealthDCAT-AP.}
-\label{tab:dmp}
-\small
-\begin{tabular}{@{}ll@{}}
-\toprule
-DMP element & HealthDCAT-AP property \\
-\midrule
-\code{dataset.title} (if REDCap has none) & \code{dct:title} \\
-\code{dataset.description} & \code{dct:description} \\
-\code{contributor} (first) & \code{dct:creator} \\
-\code{dataset.keyword} & \code{dcat:keyword} \\
-\code{dataset.language} & \code{dct:language} \\
-\code{dataset.personal\_data} & \code{dpv:hasPersonalData} \\
-\code{project.title}, \code{funding.grant\_id} & \code{prov:wasGeneratedBy} \\
-\code{distribution.license} & \code{dct:license} of the distribution \\
-\code{dataset.issued}, \code{modified} & \code{dct:issued}, \code{dct:modified} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-\caption{Public REDCap projects used to test robustness. Header: convention of the CSV
-dictionary (UI, user interface; API, programming interface). Fields as counted in the
-source; columns in the CSVW description. Viol., violations of the Release~8 non-public shapes
-without and with placeholders for the health data access body and the dataset type.}
-\label{tab:corpus}
-\footnotesize
-\input{tables/corpus.tex}
-\end{table}
+%% In order of first citation.
+\input{tables/t-dmp}
+\input{tables/t-corpus}
+\input{tables/t-elements}
+\fi
 
 \end{document}

@@ -10,9 +10,11 @@ class TestExpansion:
             [n for n in names if n.startswith("comorbilidades")]
 
     def test_descriptive_fields_are_not_columns(self, dictionary_project):
-        # Nothing presentational in this fixture, so counts follow the expansion only.
+        # Nothing presentational in this fixture, so counts follow the expansion only,
+        # plus the status column that REDCap adds to each instrument on export.
         columns = expand(dictionary_project)
-        assert len(columns) == 11 + 3  # 12 variables - 1 checkbox + 3 expanded
+        forms = len(dictionary_project.forms)
+        assert len(columns) == 11 + 3 + forms  # 12 variables - 1 checkbox + 3 expanded
 
     def test_record_id_is_required_and_identifying(self, dictionary_project):
         record_id = expand(dictionary_project)[0]
@@ -26,6 +28,11 @@ class TestExpansion:
     def test_no_structural_columns_when_classic(self, dictionary_project):
         names = [c.name for c in expand(dictionary_project)]
         assert "redcap_event_name" not in names
+
+    def test_dictionary_gets_one_status_column_per_instrument(self, dictionary_project):
+        names = [c.name for c in expand(dictionary_project)]
+        assert [n for n in names if n.endswith("_complete")] == \
+            [f"{f}_complete" for f in dictionary_project.forms]
 
 
 class TestDatatypes:

@@ -1,0 +1,20 @@
+\begin{table}[!htb]
+\caption{Elements of the RDA DMP Common Standard read into HealthDCAT-AP.}
+\label{tab:dmp}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+DMP element & HealthDCAT-AP property \\
+\midrule
+\code{dataset.title} (if REDCap has none) & \code{dct:title} \\
+\code{dataset.description} & \code{dct:description} \\
+\code{contributor} (first) & \code{dct:creator} \\
+\code{dataset.keyword} & \code{dcat:keyword} \\
+\code{dataset.language} & \code{dct:language} \\
+\code{dataset.personal\_data} & \code{dpv:hasPersonalData} \\
+\code{project.title}, \code{funding.grant\_id} & \code{prov:wasGeneratedBy} \\
+\code{distribution.license} & \code{dct:license} of the distribution \\
+\code{dataset.issued}, \code{modified} & \code{dct:issued}, \code{dct:modified} \\
+\bottomrule
+\end{tabular}
+\end{table}

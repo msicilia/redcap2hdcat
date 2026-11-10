@@ -34,12 +34,15 @@ def plain(tex: str) -> str:
 
 src = (here / "main.tex").read_text(encoding="utf-8")
 body = src.split(r"\begin{document}", 1)[1]
-body_chars = len(plain(body))
+# Tables live in tables/t-*.tex and are input once in either layout (review copy or
+# submission); their captions and inline tabulars count as text, as before.
+float_files = sorted(here.glob("tables/t-*.tex"))
+float_src = "\n".join(f.read_text(encoding="utf-8") for f in float_files)
+body_chars = len(plain(body)) + len(plain(float_src))
 bbl = here / "main.bbl"
 ref_chars = len(plain(bbl.read_text(encoding="utf-8"))) if bbl.exists() else 0
-n_floats = len(re.findall(r"\\begin\{(table|figure)\}", src)) + len(
-    re.findall(r"\\textbf\{Figure \d+\.\}", src)
-)
+# Each figure or table once, by its label (the figure is labelled in both layouts).
+n_floats = len(set(re.findall(r"\\label\{((?:tab|fig):[^}]*)\}", src + float_src)))
 effective = body_chars + ref_chars + FLOAT_COST * n_floats
 pages = effective / CHARS_PER_PAGE
 extra = max(0, -(-effective // CHARS_PER_PAGE) - FREE_PAGES)
