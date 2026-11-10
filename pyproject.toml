@@ -37,8 +37,8 @@ dmp = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/impact-data/redcap2hdcat"
-Issues = "https://github.com/impact-data/redcap2hdcat/issues"
+Homepage = "https://github.com/msicilia/redcap2hdcat"
+Issues = "https://github.com/msicilia/redcap2hdcat/issues"
 
 [project.scripts]
 redcap2hdcat = "redcap2hdcat.cli:main"
