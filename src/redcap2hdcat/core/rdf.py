@@ -28,6 +28,7 @@ from .vocab import (
     ELI,
     FILE_TYPE,
     FOAF,
+    GEODCATAP,
     HEALTHDCATAP,
     RDF,
     RDFS,
@@ -49,7 +50,8 @@ HEALTH_ACTIVITY_RESEARCH_PROJECT = URIRef(
 def bind_namespaces(g: Graph) -> None:
     for prefix, ns in [
         ("dcat", DCAT), ("dct", DCTERMS), ("dcatap", DCATAP), ("dpv", DPV),
-        ("dpv-pd", DPV_PD), ("healthdcatap", HEALTHDCATAP), ("csvw", CSVW), ("adms", ADMS),
+        ("dpv-pd", DPV_PD), ("geodcatap", GEODCATAP), ("healthdcatap", HEALTHDCATAP),
+        ("csvw", CSVW), ("adms", ADMS),
         ("vcard", VCARD), ("foaf", FOAF), ("owl", OWL), ("cv", CV), ("eli", ELI),
         ("prov", PROV),
     ]:
@@ -193,6 +195,8 @@ def build_dataset(g: Graph, project: Project, config: Config) -> URIRef:
         g.add((uri, DCTERMS.publisher, _agent_node(g, config.publisher)))
     if config.hdab.name:
         g.add((uri, HEALTHDCATAP.hdab, _agent_node(g, config.hdab)))
+    if config.custodian.name:
+        g.add((uri, GEODCATAP.custodian, _agent_node(g, config.custodian)))
     if config.contact.name or config.contact.email:
         g.add((uri, DCAT.contactPoint, _contact_node(g, config.contact)))
     elif meta.pi_email:

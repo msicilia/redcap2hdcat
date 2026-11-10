@@ -68,21 +68,21 @@
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/dictionary/table-0> a csvw:Table ;
     dct:title "my_first_instrument"@en ;
-    csvw:column _:N02f4431d2a594c838970ae8e2b4464a5,
-        _:N15aeb80c968846008927c3327e1158f1,
-        _:N2b93b0ec5d6c43f5999abf2baa90f81f,
-        _:N590843fd312347cf9a8fa1c18989c438,
-        _:N5d856ba1637347a8baba81ad5261b929,
-        _:N8e1fb13e128849dcaff4ba9c0dcd9adb,
-        _:Nd4dda317342e44f38257ed3f239889d8 ;
+    csvw:column _:N4dfc0ea500dc400796ab824c075e3cbe,
+        _:N976225c94b5f4c259c282b8a9f08e9ff,
+        _:N9a5685e2baa447b58bd31d41a5839d44,
+        _:N9ea950df4a3a4372aaac2590f0f0bb15,
+        _:Nb8c8c75ded5e4f5095934b0e8a573dd3,
+        _:Nc40d6d7ffe414d37bf403828c5b33d48,
+        _:Nfcf65efb31ad43e3b7e76fa243881ad0 ;
     csvw:tableSchema [ a csvw:Schema ;
-            csvw:column _:N02f4431d2a594c838970ae8e2b4464a5,
-                _:N15aeb80c968846008927c3327e1158f1,
-                _:N2b93b0ec5d6c43f5999abf2baa90f81f,
-                _:N590843fd312347cf9a8fa1c18989c438,
-                _:N5d856ba1637347a8baba81ad5261b929,
-                _:N8e1fb13e128849dcaff4ba9c0dcd9adb,
-                _:Nd4dda317342e44f38257ed3f239889d8 ;
+            csvw:column _:N4dfc0ea500dc400796ab824c075e3cbe,
+                _:N976225c94b5f4c259c282b8a9f08e9ff,
+                _:N9a5685e2baa447b58bd31d41a5839d44,
+                _:N9ea950df4a3a4372aaac2590f0f0bb15,
+                _:Nb8c8c75ded5e4f5095934b0e8a573dd3,
+                _:Nc40d6d7ffe414d37bf403828c5b33d48,
+                _:Nfcf65efb31ad43e3b7e76fa243881ad0 ;
             csvw:primaryKey "record_id" ] .
 
 <https://catalogue.fictional-institute.invalid/dataset/test-case-20-data-dictionary.csv/distribution> a dcat:Distribution ;
@@ -93,35 +93,7 @@
 
 <http://data.europa.eu/eli/reg/2025/327/oj> a eli:LegalResource .
 
-_:N02f4431d2a594c838970ae8e2b4464a5 a csvw:Column ;
-    dct:description "Post test response"@en ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "post_test" ;
-    csvw:title "Post test response"@en .
-
-_:N15aeb80c968846008927c3327e1158f1 a csvw:Column ;
-    dct:description "Treatment"@en ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "dropdown" ;
-    skos:notation "0 = Control",
-        "1 = Treatment" ;
-    csvw:datatype "integer" ;
-    csvw:name "treatment" ;
-    csvw:title "Treatment"@en .
-
-_:N2b93b0ec5d6c43f5999abf2baa90f81f a csvw:Column ;
-    dct:description "Record ID"@en ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "record_id" ;
-    csvw:required true ;
-    csvw:title "Record ID"@en ;
-    dpv:hasPersonalData dpv-pd:Identifying .
-
-_:N590843fd312347cf9a8fa1c18989c438 a csvw:Column ;
+_:N4dfc0ea500dc400796ab824c075e3cbe a csvw:Column ;
     dct:description "Completion status of the instrument."@en ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -132,7 +104,23 @@ _:N590843fd312347cf9a8fa1c18989c438 a csvw:Column ;
     csvw:name "my_first_instrument_complete" ;
     csvw:title "Complete?"@en .
 
-_:N5d856ba1637347a8baba81ad5261b929 a csvw:Column ;
+_:N976225c94b5f4c259c282b8a9f08e9ff a csvw:Column ;
+    dct:description "Pre test response"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "pre_test" ;
+    csvw:title "Pre test response"@en .
+
+_:N9a5685e2baa447b58bd31d41a5839d44 a csvw:Column ;
+    dct:description "Post test response"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "post_test" ;
+    csvw:title "Post test response"@en .
+
+_:N9ea950df4a3a4372aaac2590f0f0bb15 a csvw:Column ;
     dct:description "Sex"@en ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -142,7 +130,27 @@ _:N5d856ba1637347a8baba81ad5261b929 a csvw:Column ;
     csvw:name "sex" ;
     csvw:title "Sex"@en .
 
-_:N8e1fb13e128849dcaff4ba9c0dcd9adb a csvw:Column ;
+_:Nb8c8c75ded5e4f5095934b0e8a573dd3 a csvw:Column ;
+    dct:description "Treatment"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "dropdown" ;
+    skos:notation "0 = Control",
+        "1 = Treatment" ;
+    csvw:datatype "integer" ;
+    csvw:name "treatment" ;
+    csvw:title "Treatment"@en .
+
+_:Nc40d6d7ffe414d37bf403828c5b33d48 a csvw:Column ;
+    dct:description "Record ID"@en ;
+    dct:isPartOf "my_first_instrument" ;
+    dct:type "text" ;
+    csvw:datatype "string" ;
+    csvw:name "record_id" ;
+    csvw:required true ;
+    csvw:title "Record ID"@en ;
+    dpv:hasPersonalData dpv-pd:Identifying .
+
+_:Nfcf65efb31ad43e3b7e76fa243881ad0 a csvw:Column ;
     dct:description "Location"@en ;
     dct:isPartOf "my_first_instrument" ;
     dct:type "dropdown" ;
@@ -155,12 +163,4 @@ _:N8e1fb13e128849dcaff4ba9c0dcd9adb a csvw:Column ;
     csvw:datatype "integer" ;
     csvw:name "location" ;
     csvw:title "Location"@en .
-
-_:Nd4dda317342e44f38257ed3f239889d8 a csvw:Column ;
-    dct:description "Pre test response"@en ;
-    dct:isPartOf "my_first_instrument" ;
-    dct:type "text" ;
-    csvw:datatype "string" ;
-    csvw:name "pre_test" ;
-    csvw:title "Pre test response"@en .
 

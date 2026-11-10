@@ -206,8 +206,8 @@ its description is the field note, or the label when the field has no note. The 
 follows from the field type and its validation; a date validation, for instance, gives
 \code{date}. A
 checkbox field with $n$ options is exported by REDCap as $n$ columns, and the
-description follows the exported shape. Columns that REDCap adds on export and that a data dictionary does not list are added
-as well: the event and repeat columns of longitudinal projects and of repeating
+description follows the exported shape. Columns that REDCap adds on export are added when the export declares them: the
+event and repeat columns of longitudinal projects and of repeating
 instruments and events, the completion status of each form, and the identifier and
 timestamps of forms used as surveys. The mapping therefore covers classic and
 longitudinal projects, with arms, repetition and surveys. A field that REDCap flags as an identifier is
@@ -225,8 +225,6 @@ that the shapes check.
 
 \subsection{Composition with the data management plan}
 
-\revisedhere
-
 The RDA DMP Common Standard is a schema in JavaScript Object Notation (JSON) with a companion ontology that reuses
 the W3C DCAT vocabulary,\citep{rdadmp,cardoso2022dcso} which is also the base of
 HealthDCAT-AP. Most of its dataset elements therefore have a direct counterpart in the
@@ -243,7 +241,7 @@ health study are health data.
 \subsection{Terminology coding at three levels}
 
 HealthDCAT-AP records the code systems used in a dataset with
-\code{healthdcatap:hasCodingSystem}. We emit codes at three levels. At the dataset level,
+\code{healthdcatap:hasCodingSystem}. The record carries codes at three levels. At the dataset level,
 \code{hasCodingSystem} lists each system that occurs in the project, as a concept of the
 coding-system vocabulary of HealthDCAT-AP. At the form level,
 each \code{csvw:Table} lists with \code{dct:subject} the concepts of its fields. At the
@@ -264,28 +262,24 @@ the tag leaves the behaviour of the form unchanged.
 
 The tool also reads the annotations written by ROME, which stores in an
 \code{@ONTOLOGY} tag a JSON object with codes for the field, for each answer option and
-for the unit.\citep{meigen2026rome,romeformat} The codes of the field are emitted as
-above. Each coded answer option becomes a concept of the Simple Knowledge Organization System
+for the unit.\citep{meigen2026rome,romeformat} The codes of the field are recorded as above. Each coded answer option becomes a concept of the Simple Knowledge Organization System
 (SKOS) with the choice code and label,
 linked to its codes and referenced from the column. For a checkbox, the column of each
-option also links to the codes of that option. Units are not emitted, because neither
+option also links to the codes of that option. Units are not recorded, because neither
 CSVW nor HealthDCAT-AP has a property for them.
-
-The method emits codes that a project already carries and does not decide which concept
-a field denotes. 
 
 \subsection{Implementation}
 
 The tool, \code{redcap2hdcat}, is written in Python and released under the Apache~2.0
 licence. Each source is read by an adapter into one intermediate representation of the
-project, and emitters serialise that representation in the Resource Description Framework (RDF). The command-line interface has commands to build a record, to validate
+project, and a record builder writes that representation in the Resource Description Framework
+(RDF). The command-line interface has commands to build a record, to validate
 it, to audit a data dictionary for design problems such as coded fields without value
 sets or identifiers not flagged as such, to produce a synthetic sample distribution, and
 to remove patient records from an export. Validation runs pySHACL\citep{shacl} over the
 configuration of the HealthData@EU validator that is published with each release of
 HealthDCAT-AP, and selects the public, non-public or restricted profile from the access
-rights of the record. One command builds the record of a project:
-\code{redcap2hdcat build project.xml -c institution.yaml --dmp plan.json -o record.ttl}.
+rights of the record.
 
 \subsection{Evaluation}
 
@@ -297,32 +291,34 @@ release at the time of the study, and pinned the shapes to the commit of 8 Octob
 in the official repository.\citep{healthdcatap} The obligations are those of the
 non-public profile, which applies to datasets whose use requires a data permit.
 
-\paragraph{Source contribution} For one clinical research project, a longitudinal study
-of rectal cancer at \TBD{institution; confirm authorisation to describe the project}, we built the record in three cumulative stages:
+%% MIRAMUT: confirm with the project's PI that it may be named (pending, 2026-11-10).
+\paragraph{Source contribution} For one clinical research project, MIRAMUT, a longitudinal study of rectal cancer at
+IRyCIS that combines clinical data with radiomic features, microRNAs and tumour
+mutations, we built the record in three cumulative stages:
 (a) from the REDCap export alone, with no institutional settings; (b) with the
 institutional settings added; and (c) with a DMP added. For each element we recorded the
-stage that first supplied it. The plan used in stage (c) is a test plan written for the
-tool's development; it carries the study's title and funded project, with fictitious
-contributors. The institutional settings used in the evaluation are fictitious as well.
-For the public projects described below, which have no published plans, we repeated
-stages (a) and (b).
+stage that first supplied it. The plan used in stage (c) is the study's own data management plan, which we converted
+by hand from a text document into the RDA DMP Common Standard. The institutional
+settings name IRyCIS as publisher and contact point; the base address of identifiers and
+the address of the data-access request page are fictitious. For the public projects
+described below, which have no published plans, we repeated stages (a) and (b) with
+fictitious institutional settings.
 
-\paragraph{Conformance} We validated each record against the shapes, vocabularies and
+\paragraph{Conformance} We validated each record built by version 0.2.0 of the tool
+against the shapes, vocabularies and
 imports of the validator configuration of the pinned release, merged into one graph as
-the online HealthData@EU validator does. For one public record, built with each version
-of the tool, we compared the local results with the report of the online validator. Mandatory
+the online HealthData@EU validator does. For one public record, we compared the local results with the report of the online validator. Mandatory
 elements without a source cause violations of their own. To separate these from the
 rest, we validated each record as built and again with placeholders for such elements.
-We first ran this validation on version 0.1.0 of the tool, corrected the defects it
-found, and repeated it on version 0.2.0.
 
 \paragraph{Robustness} We ran the tool over ten public REDCap projects from three
 collections: the forms of the Uniform Data Set of the National Alzheimer's Coordinating
 Center (NACC),\citep{naccuds} the data dictionaries of the data exchange standard of the International
 epidemiology Databases to Evaluate AIDS (IeDEA)\citep{iedeadict} and the REDCap test datasets\citep{redcaptestdata}
 (Table~\ref{tab:corpus}). They differ in input format, in the header convention of the
-dictionary, and in whether they are longitudinal. The scripts and their outputs are
-archived with the tool.\TBD{Zenodo DOI}
+dictionary, and in whether they are longitudinal. The scripts are published with the tool, with the outputs for the IeDEA and REDCap
+test projects; the NACC forms are copyrighted, and the scripts regenerate their records
+from the published forms.
 
 \ifrevision\input{tables/t-corpus}\fi
 
@@ -345,7 +341,8 @@ description that copied the title. The institutional settings (stage b) added fi
 elements: the contact point, the distribution, the health data category, the language
 and the publisher. The plan (stage c) added two: the declaration of personal data and
 the research project that generated the data. It also replaced the copied description
-and set the language to that of the study.
+and set the language to that of the study. The plan describes the database in a single
+sentence that does not state the topic of the study.
 
 \ifrevision\input{tables/t-elements}\fi
 
@@ -370,18 +367,12 @@ identifier. The institutional settings added the same five elements in every pro
 
 \subsection{Conformance}
 
-None of the records built by version 0.1.0 of the tool conformed. The ten public records had
-1,451 violations in total, and a placeholder for the health data access body did not
-change that number. The violations came from defects of the tool: a term that CSVW does
-not define, the variables linked with \code{dct:conformsTo}, literals where Release~8
-requires vocabulary addresses, agents without a contact point, and four mandatory
-elements omitted. Correct vocabulary addresses also failed, because the shapes check
-their class and the published vocabularies type them only as SKOS concepts.
+\revisedhere
 
-In version 0.2.0 each public record had exactly two violations, the missing health data
+Each public record had exactly two violations, the missing health data
 access body and the missing dataset type. With placeholders for both, all ten records
 conformed (Table~\ref{tab:corpus}). The remaining warnings concern recommended properties
-that the tool does not emit, such as the legal basis, the purpose and the retention
+that the tool does not produce, such as the legal basis, the purpose and the retention
 period, and the use of a dataset type from outside the recommended vocabulary. The
 record of the clinical project had the same two violations at stages (b) and (c). The validation command of the tool reached the same verdict as the evaluation set-up.
 None of the evaluated projects carries terminology codes. A test project whose fields
@@ -390,7 +381,7 @@ carry codes in both notations, the \code{@CODE} tag and ROME, also conformed.
 For the public record with placeholders, the online validator reported no violations and
 31 warnings. The local results agreed with it for every group of results; one warning
 concerned the description of an author in an imported vocabulary, and not the record.
-The two reports had also agreed for version 0.1.0.
+
 
 \subsection{Robustness}
 
@@ -399,10 +390,10 @@ have 22 forms and 640 fields, described in 649 CSVW columns (Table~\ref{tab:corp
 The numbers of fields and columns differ because descriptive fields have no column, a
 checkbox field has one column per option, and each form has a completion-status column,
 which Project XML exports list as a field and the tool adds for CSV dictionaries. Forms
-used as surveys also have a timestamp column.  Dictionaries with both header conventions, from the user interface and from the
+used as surveys also have a timestamp column. Dictionaries with both header conventions, from the user interface and from the
 programming interface, were read. Project XML exports from recent REDCap versions list each checkbox
-option as a separate item. Version 0.1.0 split these items a second time; version 0.2.0
-merges them back into one field before the columns are derived. One project is
+option as a separate item, and the tool merges these items back into one field before
+deriving the columns. One project is
 longitudinal according to its repository, but its data dictionary carries no event
 definitions, so its description has no event column.
 
@@ -420,13 +411,11 @@ source that declared personal data, because no field was flagged as an identifie
 REDCap. A description derived from the capture system alone would have been wrong on
 this point.
 
-Conformance required validation against the official shapes. A check of the mandatory
-properties alone would not have found most defects of the first version, because they
-concerned the form of values, such as a literal in place of a vocabulary address, or the
-class of a vocabulary term. The official example record of Release~8 also declares the class of each vocabulary
-term in the record itself.
+Conformance requires validation against the official shapes, and not only a check that
+the mandatory properties are present. The shapes also check the form of each value, such
+as a vocabulary address in place of a literal, and the class of each vocabulary term.
 
-The evaluation also showed four problems in the regulation and the specification. First, the regulation
+The evaluation also showed five problems in the regulation and the specification. First, the regulation
 requires the latest release of HealthDCAT-AP without naming one. On 21 September 2026,
 when the regulation was published, an archived copy of the former address of the latest
 release still led to Release~7. Release~8 is
@@ -438,6 +427,10 @@ is not public. Third, the recommended vocabulary of dataset types has no concept
 research data, so a mandatory element can only be filled from outside it. Fourth, Release~8
 states one of its rules as a property shape without a path, which a SHACL processor that
 follows the standard rejects; we converted it into a node shape before validating.
+Fifth, the shapes check the class of each vocabulary term, but the published vocabularies
+declare their terms only as SKOS concepts. A record that uses the correct address
+therefore fails unless it declares the class itself, as the official example record of
+Release~8 does.
 
 \subsection{Relation to existing tools}
 
@@ -462,8 +455,8 @@ they apply to a health data access body for a permit.
 
 The plan is matched to the project by title, which fails when the
 titles differ; a persistent identifier shared between the plan and the project would be
-more reliable. The plan of the clinical project was a test plan, and a study's own plan
-may leave fields empty or use them differently. The identifier of a record built from a
+more reliable. Only one study's plan was tested, and plans written for other funders may fill the
+elements differently. The identifier of a record built from a
 file export depends on the file name. The provenance statement cannot
 record data imported from outside REDCap, such as the electronic health record. Spain had not
 designated its health data access body at the time of writing,\citep{hdabes} so records
@@ -486,8 +479,8 @@ on decisions outside the institution.
 Validation against the shapes of a pinned release is part of the method.
 
 \section*{Software availability}
-Source code: \TBD{repository URL} (Apache~2.0), version 0.2.0. Archived release:
-\TBD{Zenodo DOI}. Evaluation scripts and results: \TBD{DOI}.
+Source code, evaluation scripts and results: \TBD{repository URL} (Apache~2.0),
+version 0.2.0.
 
 \section*{Acknowledgments}
 None.

@@ -38,10 +38,9 @@ redcap2hdcat init-config -o institution.yaml
 # 3. Generate the record for each project.
 redcap2hdcat build project.xml -c institution.yaml -o record.ttl
 
-# 3b. Compose with a machine-actionable DMP (fills institute, responsible, licence,
-#     description) and add semantic coding. Needs the 'dmp' extra.
-redcap2hdcat build project.xml -c institution.yaml \
-    --dmp plan.json --snomed -o record.ttl
+# 3b. Compose with a machine-actionable DMP (fills the description, creator, licence,
+#     funded project and personal-data declaration). Needs the 'dmp' extra.
+redcap2hdcat build project.xml -c institution.yaml --dmp plan.json -o record.ttl
 
 # 4. Check conformance. --shapes takes the HealthData@EU validator folder published with
 #    each HealthDCAT-AP release (the one holding config.properties); the profile follows
@@ -60,8 +59,8 @@ of this library.
 ## Composition: REDCap + DMP + coding
 
 A REDCap export describes the instrument, not the dataset as a governed asset. The
-institute, responsible person, licence, legal basis and a real description live in the
-study's **data management plan**. Pass a machine-actionable DMP (RDA DMP Common
+description, creator, licence, funded project and declaration of personal data live in
+the study's **data management plan**. Pass a machine-actionable DMP (RDA DMP Common
 Standard, read via [madmpy](https://pypi.org/project/madmpy/)) with `--dmp`, and it
 fills the fields REDCap cannot — without ever overwriting a value REDCap already has.
 

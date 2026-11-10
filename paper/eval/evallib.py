@@ -26,6 +26,11 @@ RECTAL_CSV = PAPER / "workspace" / "ejemplo-test" / (
     "MultiplataformaEnCncerDeRecto_DataDictionary_2026-07-20.csv")
 # Synthetic DMP written for the tool's tests. NOT the study's real DMP.
 DMP_FIXTURE = TOOL / "tests" / "fixtures" / "dmp.json"
+# The study's own data management plan, converted by hand to the RDA DMP Common Standard, and
+# IRYCIS's institutional settings (base_uri and access_url fictitious). PRIVATE: see the README
+# in that folder; outputs stay local (results/rectal/).
+MIRAMUT_DMP = PAPER / "workspace" / "miramut" / "dmp-miramut.json"
+MIRAMUT_CONFIG = PAPER / "workspace" / "miramut" / "institution-irycis.yaml"
 
 UV = ["uv", "run", "--project", str(TOOL), "--extra", "shacl", "--extra", "dmp"]
 CLI = UV + ["redcap2hdcat"]

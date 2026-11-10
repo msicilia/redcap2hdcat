@@ -7,9 +7,9 @@ Everything else the tool emits on the dataset node is listed separately as "extr
 
 Stages (cumulative), all built with the tool's CLI:
   a  REDCap export only        config/redcap_only.yaml   (base_uri only; nothing else)
-  b  + institutional config    config/institution.yaml
-  c  + DMP                     config/institution.yaml --dmp tests/fixtures/dmp.json
-     (the DMP is the tool's SYNTHETIC test fixture, not the study's real DMP)
+  b  + institutional config    IRYCIS settings (workspace/miramut/institution-irycis.yaml)
+  c  + DMP                     the same --dmp workspace/miramut/dmp-miramut.json
+     (the study's own data management plan, converted by hand to the RDA DMP Common Standard)
 
 Outputs
   results/ir2026_2098_elements.csv        the 27 Annex elements + source URL
@@ -27,7 +27,7 @@ from pathlib import Path
 from rdflib import BNode, Graph, Literal, URIRef
 from rdflib.namespace import RDF
 
-from evallib import (CONFIG, DMP_FIXTURE, EVAL, RECTAL_CSV, RECTAL_XML, RESULTS, load_sources,
+from evallib import (CONFIG, EVAL, MIRAMUT_CONFIG, MIRAMUT_DMP, RECTAL_CSV, RECTAL_XML, RESULTS, load_sources,
                      run_cli, write_csv)
 from redcap2hdcat.adapters import load_project
 
@@ -86,7 +86,7 @@ NOTES = {
 IF_NOT_SUPPLIED = {
     "Code values": "human / terminology mapping (REDCap has no native slot; @CODE or ROME annotations could carry them)",
     "Conforms to": "human (a standard from the HealthData@EU standard vocabulary, e.g. a CDM)",
-    "Custodian": "institutional configuration (the tool has no configuration key for it)",
+    "Custodian": "institutional configuration (custodian)",
     "Distribution": "institutional configuration (access_url)",
     "Geographical coverage": "human (or DMP); not in REDCap metadata",
     "Health theme": "human / configuration (the tool has no configuration key for it)",
@@ -276,8 +276,8 @@ def main() -> None:
     rectal = RESULTS / "rectal"
     stages = {"a": rectal / "stage_a.ttl", "b": rectal / "stage_b.ttl", "c": rectal / "stage_c.ttl"}
     build(RECTAL_XML, CONFIG / "redcap_only.yaml", stages["a"])
-    build(RECTAL_XML, CONFIG / "institution.yaml", stages["b"])
-    build(RECTAL_XML, CONFIG / "institution.yaml", stages["c"], dmp=DMP_FIXTURE)
+    build(RECTAL_XML, MIRAMUT_CONFIG, stages["b"])
+    build(RECTAL_XML, MIRAMUT_CONFIG, stages["c"], dmp=MIRAMUT_DMP)
     (rectal / "identifier_flags.txt").write_text(identifier_flags(), encoding="utf-8")
     rows = contribution_table(stages, RECTAL_XML.name)
     fields = ["section", "n", "element", "annex_condition", "r8_property", "emitted_as",
