@@ -1,5 +1,5 @@
 from rdflib import Literal, URIRef
-from rdflib.namespace import RDF, RDFS
+from rdflib.namespace import FOAF, RDF, RDFS
 
 from redcap2hdcat.config import Config
 from redcap2hdcat.core import rdf
@@ -154,3 +154,18 @@ class TestCatalogue:
         g = rdf.build_catalogue([uri], full_config)
         assert (None, RDF.type, DCAT.Catalog) in g
         assert (None, DCAT.dataset, uri) in g
+
+
+class TestCustodian:
+    def test_custodian_emitted_when_set(self, dictionary_project, full_config):
+        from redcap2hdcat.config import Agent
+        from redcap2hdcat.core.vocab import GEODCATAP
+        full_config.custodian = Agent(name="Example Data Office", email="office@example.org")
+        g = rdf.build(dictionary_project, full_config)
+        custodian = next(g.objects(None, GEODCATAP.custodian))
+        assert str(g.value(custodian, FOAF.name)) == "Example Data Office"
+
+    def test_custodian_omitted_when_blank(self, dictionary_project, full_config):
+        from redcap2hdcat.core.vocab import GEODCATAP
+        g = rdf.build(dictionary_project, full_config)
+        assert not list(g.objects(None, GEODCATAP.custodian))

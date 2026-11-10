@@ -169,14 +169,14 @@ def load(path: str | Path, project_title: str = "") -> DMPOverlay:
             for lic in getattr(dist, "license", None) or []:
                 license_ref = str(getattr(lic, "license_ref", "") or "")
 
-    ds_title = str(getattr(dataset, "title", "") if dataset else "")
+    ds_title = str((getattr(dataset, "title", None) if dataset else None) or "")
     return DMPOverlay(
         title=ds_title or str(getattr(dmp, "title", "")),
-        description=str(getattr(dataset, "description", "") if dataset else "")
+        description=str((getattr(dataset, "description", None) if dataset else None) or "")
         or str(getattr(dmp, "description", "") or ""),
         language=_enum_value(getattr(dataset, "language", None) if dataset else None)
         or _enum_value(getattr(dmp, "language", None)),
-        issued=str(getattr(dataset, "issued", "") if dataset else ""),
+        issued=str((getattr(dataset, "issued", None) if dataset else None) or ""),
         modified=str(getattr(dmp, "modified", "") or ""),
         creator=creator,
         contact=contact,

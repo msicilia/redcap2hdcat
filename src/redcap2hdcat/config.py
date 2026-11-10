@@ -38,6 +38,8 @@ class Config:
     # Mandatory in the specification, but HDAB-ES is not yet designated.
     # Left empty rather than invented.
     hdab: Agent = field(default_factory=Agent)
+    # Organisation accountable for the dataset (geodcatap:custodian), when not the publisher.
+    custodian: Agent = field(default_factory=Agent)
     contact: Agent = field(default_factory=Agent)
     # The producer of the data. File exports carry no principal investigator, so
     # this comes from configuration until the API adapter exists.
@@ -62,7 +64,7 @@ class Config:
         raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
         agents = {
             key: Agent(**(raw.pop(key, None) or {}))
-            for key in ("publisher", "hdab", "contact", "creator")
+            for key in ("publisher", "hdab", "contact", "creator", "custodian")
         }
         known = {f for f in cls.__dataclass_fields__ if f not in agents}
         unknown = set(raw) - known
@@ -94,7 +96,7 @@ def _placeholder_values() -> frozenset[str]:
         value = data.get(key)
         if isinstance(value, str) and value.strip():
             out.add(value.strip())
-    for key in ("publisher", "creator", "contact", "hdab"):
+    for key in ("publisher", "creator", "contact", "hdab", "custodian"):
         for value in (data.get(key) or {}).values():
             if isinstance(value, str) and value.strip():
                 out.add(value.strip())
@@ -160,6 +162,12 @@ hdab:
 contact:
   name: Data Protection Office
   email: dpo@example.org
+
+# Organisation accountable for the dataset (geodcatap:custodian), if different from
+# the publisher. Recommended; leave blank to omit.
+custodian:
+  name: ""
+  email: ""
 """
 
 # Computed once, after TEMPLATE is defined.

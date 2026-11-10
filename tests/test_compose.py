@@ -173,3 +173,15 @@ class TestCalcFormula:
         g = rdf.build(project, full_config)
         comments = {str(o) for o in g.objects(None, RDFS.comment)}
         assert "[peso]/([altura]*[altura])" in comments
+
+    def test_absent_plan_values_stay_empty(self, tmp_path):
+        # Regression: a dataset without 'issued' gave the text "None" as its date.
+        pytest.importorskip("madmpy")
+        import json
+
+        from redcap2hdcat.adapters import dmp
+        raw = json.loads(DMP.read_text(encoding="utf-8"))
+        del raw["dmp"]["dataset"][0]["issued"]
+        path = tmp_path / "plan.json"
+        path.write_text(json.dumps(raw), encoding="utf-8")
+        assert dmp.load(path).issued == ""

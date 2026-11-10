@@ -16,6 +16,7 @@ __all__ = [
 
 HEALTHDCATAP = Namespace("http://healthdataportal.eu/ns/health#")
 DCATAP = Namespace("http://data.europa.eu/r5r/")
+GEODCATAP = Namespace("http://data.europa.eu/930/")
 DPV = Namespace("https://w3id.org/dpv#")
 # HealthDCAT-AP Release 8 requires dpv:hasPersonalData values from this namespace.
 DPV_PD = Namespace("https://w3id.org/dpv/dpv-pd#")
