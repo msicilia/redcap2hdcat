@@ -14,7 +14,7 @@ from pathlib import Path
 from . import __version__
 from .adapters import load_project
 from .adapters.odm import ClinicalDataPresent
-from .config import TEMPLATE, Config
+from .config import TEMPLATE, TEMPLATE_TTL, Config
 from .core import audit as audit_mod
 from .core import rdf, sample, strip, validate
 
@@ -148,15 +148,18 @@ def cmd_strip(args: argparse.Namespace) -> int:
 
 
 def cmd_init_config(args: argparse.Namespace) -> int:
+    fmt = args.format or ("turtle" if (args.output or "").endswith((".ttl", ".turtle"))
+                          else "yaml")
+    template = TEMPLATE_TTL if fmt == "turtle" else TEMPLATE
     if args.output:
         path = Path(args.output)
         if path.exists() and not args.force:
             print(f"{path} exists; pass --force to overwrite.", file=sys.stderr)
             return EXIT_ERROR
-        path.write_text(TEMPLATE, encoding="utf-8")
+        path.write_text(template, encoding="utf-8")
         print(f"Wrote {path}", file=sys.stderr)
     else:
-        sys.stdout.write(TEMPLATE)
+        sys.stdout.write(template)
     return EXIT_OK
 
 
@@ -206,6 +209,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("init-config", help="write a configuration template")
     p.add_argument("-o", "--output")
+    p.add_argument("--format", choices=["yaml", "turtle"],
+                   help="YAML (default) or a partial HealthDCAT-AP record in Turtle "
+                        "(default when the output ends in .ttl)")
     p.add_argument("--force", action="store_true")
     p.set_defaults(func=cmd_init_config)
 

@@ -207,3 +207,32 @@ published SHACL shapes) nor a manual editor (the Dataset Descriptions Assistant 
 3. Check what changes in the `latest` version compared to Release 5.
 4. Open an issue at `https://code.europa.eu/healthdataeu/healthdcat-ap/-/issues` asking
    whether there is prior work on automated harvesting from data-capture systems.
+
+---
+
+## 9. Institutional settings
+
+The third source is a file written once per institution. It has two equivalent forms, read by
+`Config.load`: YAML (`init-config --format yaml`) and a partial HealthDCAT-AP record in Turtle
+(`init-config -o institution.ttl`). The RDF form is the institution's `dcat:Catalog` plus one
+`dcat:Dataset` node, linked with `dcat:dataset`, whose values are the defaults for every dataset.
+Both forms produce the same record (tests/test_config_turtle.py).
+
+| YAML key | RDF (subject: property) | Scope | Becomes |
+|---|---|---|---|
+| `base_uri` | catalogue IRI, without the final `/catalogue` | institution | base of `dct:identifier` |
+| `catalogue_title`, `catalogue_description` | catalogue: `dct:title`, `dct:description` | institution | the `dcat:Catalog` record |
+| `language` | catalogue: `dct:language` (EU language table) | institution | `dct:language`, language tags |
+| `publisher` | catalogue: `dct:publisher` (`foaf:Agent`) | institution | `dct:publisher` of catalogue and datasets |
+| `contact` | defaults: `dcat:contactPoint` (`vcard:Kind`) | institution | `dcat:contactPoint` |
+| `hdab` | defaults: `healthdcatap:hdab` (`foaf:Agent`) | institution | `healthdcatap:hdab` |
+| `custodian` | defaults: `geodcatap:custodian` (`foaf:Agent`) | institution | `geodcatap:custodian` |
+| `creator` | defaults: `dct:creator` (`foaf:Agent`) | dataset default | `dct:creator` when the project and the plan name none |
+| `access_rights` | defaults: `dct:accessRights` (EU access-right table) | dataset default | `dct:accessRights` |
+| `health_categories` | defaults: `healthdcatap:healthCategory` | dataset default | `healthdcatap:healthCategory` |
+| `themes` | defaults: `dcat:theme` (EU data-theme table) | dataset default | `dcat:theme` |
+| `dataset_type`, `dataset_type_label` | defaults: `dct:type` (`skos:Concept` + `skos:prefLabel`) | dataset default | `dct:type` |
+| `access_url` | defaults: `dcat:distribution` / `dcat:accessURL` | dataset default | the `dcat:Distribution` |
+| `default_description` | defaults: `dct:description` | dataset default | `dct:description` when the plan gives none |
+| `provenance` | defaults: `dct:provenance` (`rdfs:label`) | dataset default | replaces the composed statement |
+

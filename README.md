@@ -33,7 +33,8 @@ pip install "redcap2hdcat[shacl]"
 redcap2hdcat audit project.xml
 
 # 2. Set up your institution once.
-redcap2hdcat init-config -o institution.yaml
+redcap2hdcat init-config -o institution.yaml      # or -o institution.ttl: the same settings as a
+                                                 # partial HealthDCAT-AP record (see MAPPING.md 9)
 
 # 3. Generate the record for each project.
 redcap2hdcat build project.xml -c institution.yaml -o record.ttl
