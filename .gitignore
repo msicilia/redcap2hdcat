@@ -26,3 +26,5 @@ paper/eval/results/rectal/
 paper/eval/results/contribution.csv
 # Records generated from NACC forms reproduce copyrighted question text; regenerate locally.
 paper/eval/results/**/records*/nacc-*.ttl
+# Full texts of the references, for checking citations; not redistributable.
+paper/fulltext/
