@@ -15,7 +15,7 @@ project and rejects an export that contains patient records.
 pip install "redcap2hdcat[shacl,dmp] @ git+https://github.com/msicilia/redcap2hdcat"
 ```
 
-Python 3.10 or later. The `shacl` extra enables `check`; the `dmp` extra enables `--dmp`.
+Python 3.11 or later. The `shacl` extra enables `check`; the `dmp` extra enables `--dmp`.
 
 ## Use
 
