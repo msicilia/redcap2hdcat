@@ -63,6 +63,8 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]
+# The evaluation scripts are research scripts, kept as run; lint covers the package and tests.
+extend-exclude = ["eval"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

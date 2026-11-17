@@ -9,22 +9,11 @@ build/
 # Never commit real exports: they may carry patient data.
 *.REDCap.xml
 fixtures/private/
-paper/*.aux
-paper/*.log
-paper/*.out
-paper/*.bbl
-paper/*.blg
-paper/*.pdf
-paper/*.synctex.gz
-paper/*.fdb_latexmk
-paper/*.fls
 .DS_Store
 # Evaluation: downloaded corpus (licensed, refetch with fetch_corpus.sh) and anything
 # derived from the internal rectal-cancer project, which must stay local.
-paper/eval/corpus/*/
-paper/eval/results/rectal/
-paper/eval/results/contribution.csv
+eval/corpus/*/
+eval/results/rectal/
+eval/results/contribution.csv
 # Records generated from NACC forms reproduce copyrighted question text; regenerate locally.
-paper/eval/results/**/records*/nacc-*.ttl
-# Full texts of the references, for checking citations; not redistributable.
-paper/fulltext/
+eval/results/**/records*/nacc-*.ttl

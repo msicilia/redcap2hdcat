@@ -5,7 +5,7 @@ asking the human only for what cannot be derived.
 
 **Reference version:** HealthDCAT-AP Release 8 (September 2026), the `latest` release
 required by Implementing Regulation (EU) 2026/2098, pinned at commit `cd7841fc` of
-`code.europa.eu/healthdataeu/healthdcat-ap` (see `paper/eval/shapes/PIN.txt`). The tool
+`code.europa.eu/healthdataeu/healthdcat-ap` (see `eval/shapes/PIN.txt`). The tool
 targets the non-public profile of that release. This note started from Release 5; the
 rows below give what the tool now emits.
 

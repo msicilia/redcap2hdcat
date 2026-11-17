@@ -17,7 +17,7 @@ from redcap2hdcat.core.validate import (
     validate,
 )
 
-RELEASE_8 = Path(__file__).parents[1] / "paper" / "eval" / "shapes" / "release-8" / "ehds"
+RELEASE_8 = Path(__file__).parents[1] / "eval" / "shapes" / "release-8" / "ehds"
 
 
 def test_reads_validator_properties(tmp_path):
