@@ -42,8 +42,6 @@ findings, `2` usage or input error.
 ## More
 
 - [MAPPING.md](MAPPING.md): where each HealthDCAT-AP property comes from.
-- [eval/run_all.sh](eval/run_all.sh): the evaluation over public REDCap projects;
-  `eval/results/viewer.html` shows each record with the source of every element.
 - Development: `uv sync`, `uv run pytest`, `uv run ruff check .`
 
 Licence: Apache-2.0.
