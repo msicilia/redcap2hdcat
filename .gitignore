@@ -10,10 +10,3 @@ build/
 *.REDCap.xml
 fixtures/private/
 .DS_Store
-# Evaluation: downloaded corpus (licensed, refetch with fetch_corpus.sh) and anything
-# derived from the internal rectal-cancer project, which must stay local.
-eval/corpus/*/
-eval/results/rectal/
-eval/results/contribution.csv
-# Records generated from NACC forms reproduce copyrighted question text; regenerate locally.
-eval/results/**/records*/nacc-*.ttl
