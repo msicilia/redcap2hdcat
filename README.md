@@ -26,6 +26,9 @@ redcap2hdcat init-config -o institution.yaml
 # The record of a project; add --dmp to complete it from the study's plan.
 redcap2hdcat build project.xml -c institution.yaml -o record.ttl
 redcap2hdcat build project.xml -c institution.yaml --dmp plan.json -o record.ttl
+# An export that contains records is refused; --aggregates accepts it and only counts
+# the records (number of records and of individuals), reading no value.
+redcap2hdcat build export.xml -c institution.yaml --aggregates -o record.ttl
 
 # Conformance against the validator folder published with a HealthDCAT-AP release.
 redcap2hdcat check record.ttl --shapes ./healthdcat-ap/release-8/ehds/

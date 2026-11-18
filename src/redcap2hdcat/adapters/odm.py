@@ -41,6 +41,40 @@ def assert_metadata_only(root: ET.Element) -> None:
             )
 
 
+def count_records(root: ET.Element) -> tuple[int, int] | None:
+    """Aggregate counts from ClinicalData, without reading any field value.
+
+    Returns (rows, individuals): individuals are the SubjectData records; rows follow
+    the shape of REDCap's flat export, one per record and event, plus one per instance
+    of a repeating instrument or event. None when the export carries no records.
+    """
+    clinical = [c for c in root if _localname(c.tag) == "ClinicalData"]
+    if not clinical:
+        return None
+    subjects: set[str] = set()
+    rows: set[tuple[str, str, str, str, str]] = set()
+
+    def add_forms(parent: ET.Element, key: str, event: str, event_rep: str) -> None:
+        forms = parent.findall(f"{ODM}FormData")
+        if not forms:
+            rows.add((key, event, event_rep, "", ""))
+        for fd in forms:
+            rep = fd.get("FormRepeatKey") or fd.get(f"{REDCAP}RepeatInstance") or ""
+            rows.add((key, event, event_rep, fd.get("FormOID", "") if rep else "", rep))
+
+    for cd in clinical:
+        for sd in cd.iter(f"{ODM}SubjectData"):
+            key = sd.get("SubjectKey", "")
+            subjects.add(key)
+            for sed in sd.findall(f"{ODM}StudyEventData"):
+                event_rep = (sed.get("StudyEventRepeatKey")
+                             or sed.get(f"{REDCAP}RepeatInstance") or "")
+                add_forms(sed, key, sed.get("StudyEventOID", ""), event_rep)
+            if sd.find(f"{ODM}FormData") is not None:
+                add_forms(sd, key, "", "")
+    return len(rows), len(subjects)
+
+
 def _text_of(elem: ET.Element | None) -> str:
     return (elem.text or "").strip() if elem is not None and elem.text else ""
 
@@ -105,11 +139,17 @@ def _checkbox_choices(mdv: ET.Element, codelist_oid: str) -> list[Choice]:
     return []
 
 
-def load(path: str | Path) -> Project:
-    """Read a REDCap Project XML export into the intermediate representation."""
+def load(path: str | Path, with_records: bool = False) -> Project:
+    """Read a REDCap Project XML export into the intermediate representation.
+
+    An export that carries records is refused unless ``with_records`` is set; then the
+    records are only counted (see ``count_records``) and no value is read or kept.
+    """
     path = Path(path)
     root = ET.parse(path).getroot()
-    assert_metadata_only(root)
+    counts = count_records(root) if with_records else None
+    if counts is None:
+        assert_metadata_only(root)
 
     study = root.find(f"{ODM}Study")
     if study is None:
@@ -238,6 +278,8 @@ def load(path: str | Path) -> Project:
         source_system=root.get("SourceSystem", "REDCap"),
         source_system_version=root.get("SourceSystemVersion", ""),
         is_longitudinal=bool(events),
+        record_count=counts[0] if counts else None,
+        unique_individual_count=counts[1] if counts else None,
     )
 
     return Project(
@@ -252,5 +294,6 @@ def load(path: str | Path) -> Project:
             "source_file": path.name,
             # Export timestamp, not project creation date.
             "export_datetime": root.get("CreationDateTime", ""),
+            **({"records": "counted"} if counts else {}),
         },
     )

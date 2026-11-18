@@ -60,7 +60,10 @@ def cmd_audit(args: argparse.Namespace) -> int:
 
 
 def cmd_build(args: argparse.Namespace) -> int:
-    project = load_project(args.source)
+    project = load_project(args.source, with_records=args.aggregates)
+    if project.metadata.record_count is not None:
+        print(f"Records counted, values not read: {project.metadata.record_count} rows, "
+              f"{project.metadata.unique_individual_count} individuals.", file=sys.stderr)
     config = _load_config(args.config)
 
     # Second source: fill the institute/responsible/description/licence gaps REDCap
@@ -183,6 +186,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dmp", help="maDMP JSON (RDA) to fill institute/responsible/description")
     p.add_argument("--snomed", action="store_true",
                    help="add SNOMED coding (demo mapper; codes are illustrative)")
+    p.add_argument("--aggregates", action="store_true",
+                   help="accept a Project XML export with records and only count them "
+                        "(number of records and of individuals); no value is read or kept")
     p.add_argument("-o", "--output")
     p.add_argument("-f", "--format", default="turtle",
                    choices=["turtle", "xml", "json-ld", "nt"])

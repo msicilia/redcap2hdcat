@@ -51,8 +51,8 @@ The marginal cost per project is low.
 | `dct:language` | 0..* | DMP `language`, else configuration | **CONST** | IRI of the EU language table, typed `dct:LinguisticSystem` |
 | `dct:issued` | 0..1 | `project.creation_time` | **AUTO** | |
 | `dct:modified` | 0..1 | `content=log` (last change) | **SEMI** | Cheap alternative: export date |
-| `healthdcatap:numberOfRecords` | 0..1 | `count(records)` | **AUTO** | In longitudinal = rows, not patients |
-| `healthdcatap:numberOfUniqueIndividuals` | 0..1 | `distinct(record_id)` | **AUTO** | Distinguish from the previous |
+| `healthdcatap:numberOfRecords` | 0..1 | ClinicalData of a Project XML export with records (`build --aggregates`), or `count(records)` via the API | **AUTO** | Rows of the flat export: one per record and event, plus one per repeating instance |
+| `healthdcatap:numberOfUniqueIndividuals` | 0..1 | SubjectData count of the same export, or `distinct(record_id)` via the API | **AUTO** | Distinguish from the previous |
 | `dct:temporal` | 0..* | min/max of date fields | **AUTO** | Date fields identified by `text_validation_type` |
 | `healthdcatap:minTypicalAge` / `maxTypicalAge` | 0..1 | age or birth-date field | **SEMI** | Heuristic detection by name/label |
 | `dpv:hasPersonalData` | 0..* | dictionary `identifier` flag, DMP `personal_data` | **SEMI** | DPV-PD categories: `dpv-pd:Health`, plus one per flagged validation type (e-mail, phone, postcode…). Beware the false negative (§4) |
